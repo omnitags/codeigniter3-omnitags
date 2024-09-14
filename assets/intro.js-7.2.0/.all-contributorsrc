@@ -1,0 +1,35 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "afshinm",
+      "name": "Afshin Mehrabani",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/314326?v=4",
+      "profile": "http://afshinm.name",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "bozdoz",
+      "name": "bozdoz",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1410985?v=4",
+      "profile": "https://bozdoz.com",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "intro.js",
+  "projectOwner": "usablica",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
