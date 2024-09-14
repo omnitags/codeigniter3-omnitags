@@ -38,6 +38,8 @@ if (!class_exists('Omnitags')) {
         public $flash, $flash_func;
         public $notif_limit, $notif_null, $notifications, $elapsedTime, $elapsed, $elapsed2;
         public $recommendation, $theme, $theme_id;
+        public $fb_api1;
+        public $fb_bucket1;
         public $flash1_msg_1;
         public $flash1_msg_2;
         public $flash1_msg_3;
@@ -627,6 +629,82 @@ if (!class_exists('Omnitags')) {
             set_flashdata($this->views['flash1'], $msg . $extra);
             set_flashdata($flashtype, $this->views['flash1_func1']);
             return [];
+        }
+
+        public function upload_new_image($new_name, $path, $field, $allowed_types, $tabel)
+        {
+            $new_name = $this->v_post['tabel_b1_field2'];
+            $path = $this->v_upload_path['tabel_b1'];
+            $img = $this->v_post[$field . '_old'];
+            $extension = '.' . getExtension($path . $img);
+
+            $config['upload_path'] = $path;
+            // nama file telah ditetapkan dan hanya berekstensi jpg dan dapat diganti dengan file bernama sama
+            $config['file_name'] = $new_name;
+            $config['allowed_types'] = $allowed_types;
+            $config['overwrite'] = TRUE;
+            $config['remove_spaces'] = TRUE;
+
+            $this->load->library('upload', $config);
+            $upload = $this->upload->do_upload($this->v_input[$img . '_input']);
+
+            if (!$upload) {
+                if ($new_name != $tabel[0]->kode) {
+                    rename($path . $img, $path . str_replace(' ', '_', $new_name) . $extension);
+                    $gambar = str_replace(' ', '_', $new_name) . $extension;
+                } else {
+                    $gambar = $img;
+                }
+            } else {
+                if ($new_name != $tabel[0]->kode) {
+                    // File upload is successful, delete the old file
+                    if (file_exists($path . $img)) {
+                        unlink($path . $img);
+                    }
+                    $upload = $this->upload->data();
+                    return $gambar = $upload['file_name'];
+                } else {
+                    return $gambar = $img;
+                }
+            }
+        }
+
+        public function change_image($new_name, $path, $field, $allowed_types, $tabel)
+        {
+            $new_name = $this->v_post['tabel_b1_field2'];
+            $path = $this->v_upload_path['tabel_b1'];
+            $img = $this->v_post[$field . '_old'];
+            $extension = '.' . getExtension($path . $img);
+
+            $config['upload_path'] = $path;
+            // nama file telah ditetapkan dan hanya berekstensi jpg dan dapat diganti dengan file bernama sama
+            $config['file_name'] = $new_name;
+            $config['allowed_types'] = $allowed_types;
+            $config['overwrite'] = TRUE;
+            $config['remove_spaces'] = TRUE;
+
+            $this->load->library('upload', $config);
+            $upload = $this->upload->do_upload($this->v_input[$img . '_input']);
+
+            if (!$upload) {
+                if ($new_name != $tabel[0]->kode) {
+                    rename($path . $img, $path . str_replace(' ', '_', $new_name) . $extension);
+                    $gambar = str_replace(' ', '_', $new_name) . $extension;
+                } else {
+                    $gambar = $img;
+                }
+            } else {
+                if ($new_name != $tabel[0]->kode) {
+                    // File upload is successful, delete the old file
+                    if (file_exists($path . $img)) {
+                        unlink($path . $img);
+                    }
+                    $upload = $this->upload->data();
+                    return $gambar = $upload['file_name'];
+                } else {
+                    return $gambar = $img;
+                }
+            }
         }
 
         public function serve_image($directory, $filename)
