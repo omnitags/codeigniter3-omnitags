@@ -62,7 +62,7 @@ class C_tabel_f1 extends Omnitags
 		$param3 = $this->v_get['tabel_f1_field12_filter1'];
 		$param4 = $this->v_get['tabel_f1_field12_filter2'];
 
-		$filter = $this->tl_f1->filter($param1, $param2, $param3, $param4);
+		$filter = $this->tl_f1->get_f1_by_field($param1, $param2, $param3, $param4);
 
 		if (empty($param1)) {
 			$result = $this->tl_f1->get_f1_with_e4();

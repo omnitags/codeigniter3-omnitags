@@ -119,14 +119,14 @@
 </div>
 
 <!-- modal filter -->
-<!-- <div id="filter" class="modal fade filter">
+<div id="filter" class="modal fade filter">
   <div class="modal-dialog">
     <div class="modal-content">
       <?= modal_header('Filter', '') ?>
 
       <form action="<?= site_url($language . '/' . $tabel_f2 . '/admin') ?>" method="get">
         <div class="modal-body">
-          method get supaya nilai dari filter bisa tampil nanti -->
+          <!-- method get supaya nilai dari filter bisa tampil nanti -->
           <span><?= $tabel_f2_field10_alias ?></span>
           <div class="row mb-3">
             <div class="col-md-6">
@@ -147,7 +147,7 @@
           </div>
         </div>
 
-        <!-- pesan untuk pengguna yang sedang merubah password 
+        <!-- pesan untuk pengguna yang sedang merubah password -->
         <p class="small text-center text-danger"><?= get_flashdata('pesan_filter') ?></p>
 
         <div class="modal-footer">
@@ -158,7 +158,7 @@
 
     </div>
   </div>
-</div> -->
+</div>
 
 <!-- modal ubah -->
 <?php foreach ($tbl_f2->result() as $tl_f2): ?>

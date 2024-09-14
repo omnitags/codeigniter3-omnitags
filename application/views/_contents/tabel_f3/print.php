@@ -19,7 +19,10 @@
         </td>
       </tr>
     </tbody>
+  </table>
 
+  <!-- menampilkan data tamu -->
+  <table class="table">
     <thead class="thead">
       <tr>
         <th><?= lang('tabel_f2_field6_alias') ?></th>
@@ -37,8 +40,10 @@
         </td>
       </tr>
     </tbody>
+  </table>
 
-
+  <!-- menampilkan harga total dari tabel pesanan -->
+  <table class="table">
     <thead class="thead">
       <tr>
         <th><?= lang('tabel_f2_field9_alias') ?></th>
@@ -50,8 +55,12 @@
         </td>
       </tr>
     </tbody>
+  </table>
 
 
+
+  <!-- menampilkan data transaksi -->
+  <table class="table">
     <thead class="thead">
       <tr>
         <th><?= lang('tabel_f3_field1_alias') ?></th>
