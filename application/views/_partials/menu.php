@@ -7,8 +7,7 @@
                     href="<?= site_url($language . '/') ?>"><?= lang('home') ?></a>
             </li>
             <?= nav_item(lang('tabel_e4_alias'), $tabel_e4, '/') ?>
-            <?= nav_item(lang('tabel_b10_alias'), $tabel_b10, '/') ?>
-            <!-- ?= nav_item(lang('tabel_e2_alias'), $tabel_e2, '/') ?> -->
+            <!-- <= nav_item(lang('tabel_e2_alias'), $tabel_e2, '/') ?> -->
             <?= nav_item(lang('login'), 'login', '') ?>
             <?php break;
         case $tabel_c2_field6_value5:
@@ -32,26 +31,21 @@
                                 <?php switch (userdata($tabel_c2_field6)) {
                                     case $tabel_c2_field6_value2:
                                         ?>
-                                        <h6 class="dropdown-header"><?= lang('tabel_f3_alias') ?></h6>
-                                        <?= dropdown_menu('tabel_f3', '/admin') ?>
-                                        <?= dropdown_menu_unique(lang('tabel_f3_alias_past'), $tabel_f3, '/history') ?>
+                                        <!-- <h6 class="dropdown-header"><?= lang('tabel_f3_alias') ?></h6> -->
+                                        <!-- <= dropdown_menu('tabel_f3', '/admin') ?> -->
+                                        <!-- <= dropdown_menu_unique(lang('tabel_f3_alias_past'), $tabel_f3, '/history') ?> -->
                                         <?php break;
 
                                     case $tabel_c2_field6_value3:
                                         ?>
                                         <h6 class="dropdown-header"><?= lang('data') ?></h6>
-                                        <?= dropdown_menu('tabel_e2', '/admin') ?>
-                                        <?= dropdown_menu('tabel_e3', '/admin') ?>
+                                        <!-- <= dropdown_menu('tabel_e1', '/admin') ?> -->
+                                        <!-- <= dropdown_menu('tabel_e2', '/admin') ?> -->
+                                        <!-- <= dropdown_menu('tabel_e3', '/admin') ?> -->
                                         <?= dropdown_menu('tabel_e4', '/admin') ?>
-                                        <div class="dropdown-divider"></div>
-                                        <h6 class="dropdown-header"><?= lang('manage') ?></h6>
-                                        <?= dropdown_menu('tabel_e5', '/admin') ?>
-                                        <?= dropdown_menu('tabel_e6', '/admin') ?>
-                                        <?= dropdown_menu('tabel_e7', '/admin') ?>
-                                        <?= dropdown_menu('tabel_e8', '/admin') ?>
+                                        <!-- <= dropdown_menu('tabel_f2', '/admin') ?> -->
                                         <div class="dropdown-divider"></div>
                                         <h6 class="dropdown-header"><?= lang('operational') ?></h6>
-                                        <?= dropdown_menu('tabel_e1', '/admin') ?>
                                         <?= dropdown_menu('tabel_c1', '/admin') ?>
                                         <?= dropdown_menu('tabel_c2', '/admin') ?>
                                         <div class="dropdown-divider"></div>
@@ -63,10 +57,10 @@
                                         <h6 class="dropdown-header"><?= lang('manage') ?></h6>
                                         <?= dropdown_menu('tabel_e3', '/admin') ?>
                                         <?= dropdown_menu('tabel_f2', '/admin') ?>
-                                        <?= dropdown_menu('tabel_f1', '/admin') ?>
+                                        <!-- <= dropdown_menu('tabel_f1', '/admin') ?> -->
                                         <div class="dropdown-divider"></div>
                                         <h6 class="dropdown-header"><?= lang('operational') ?></h6>
-                                        <?= dropdown_menu('tabel_f4', '/admin') ?>
+                                        <!-- <= dropdown_menu('tabel_f4', '/admin') ?> -->
 
                                         <?php break;
                                     default:
@@ -197,16 +191,9 @@
                             case $tabel_c2_field6_value5:
                                 ?>
                                 <h6 class="dropdown-header"><?= lang('explore') ?></h6>
-                                <?= dropdown_menu_unique(lang('order_now'), '', '') ?>
                                 <?= dropdown_menu('tabel_e4', '') ?>
-                                <div class="dropdown-divider"></div>
-                                <h6 class="dropdown-header"><?= lang('reservations') ?></h6>
-                                <?= dropdown_menu('tabel_f2', '/daftar') ?>
-                                <?= dropdown_menu('tabel_f3', '/daftar') ?>
-                                <div class="dropdown-divider"></div>
-                                <h6 class="dropdown-header"><?= lang('history') ?></h6>
-                                <?= dropdown_menu('tabel_f1', '/daftar') ?>
-                                <?= dropdown_menu_unique(lang('tabel_f3_alias'), $tabel_f3, '/daftar_history') ?>
+                                <h6 class="dropdown-header"><?= lang('manage') ?></h6>
+                                <?= dropdown_menu('tabel_e4', '/daftar') ?>
                                 <div class="dropdown-divider"></div>
                                 <?php break;
                             case $tabel_c2_field6_value2:
@@ -231,8 +218,8 @@
         default:
             break;
     } ?>
-
-    <!-- <li class="nav-item pb-2">
+<!-- 
+    <li class="nav-item pb-2">
         <form action="<?= site_url($language . '/welcome/set_language'); ?>" method="post" class="form-inline">
             <select name="language" class="form-control" onchange="this.form.submit()">
                 <option value="en" <?= (userdata('site_lang') == 'en') ? 'selected' : ''; ?>>EN</option>

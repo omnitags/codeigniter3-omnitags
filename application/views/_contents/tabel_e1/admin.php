@@ -17,14 +17,18 @@
     <tr>
 
       <td class="pr-2">
-        <?= select_edit(
-          'tabel_e1_field5',
-          $tabel_e1_field5_value,
-          $tbl_e4,
-          $tabel_e4_field1,
-          $tabel_e4_field2,
-          'required'
-        ); ?>
+        <div class="form-group">
+          <select class="form-control float" required name="<?= $tabel_e1_field2_input ?>">
+            <?php foreach ($tbl_e4->result() as $tl_e4): ?>
+              <option selected hidden value="<?= $tabel_e1_field2_value ?>"><?= $tabel_e1_field2_value ?></option>
+              <option value="<?= $tl_e4->$tabel_e4_field2 ?>">
+                <?= $tl_e4->$tabel_e4_field1 . ' - ' . $tl_e4->$tabel_e4_field2 ?>
+              </option>
+            <?php endforeach ?>
+          </select>
+          <label for="<?= $tabel_e1_field2_input ?>" class="form-label"><?= lang('select') ?>
+            <?= $tabel_e4_alias ?></label>
+        </div>
       </td>
 
       <td>
@@ -65,12 +69,13 @@
     foreach ($tbl_e1->result() as $tl_e1):
       echo card_regular(
         $tl_e1->$tabel_e1_field1,
-        "ID " . $tl_e1->$tabel_e1_field1,
-        $tl_e1->$tabel_e1_field2 . " " . $tl_e1->$tabel_e1_field3,
+        $tl_e1->$tabel_e1_field2,
+        $tl_e1->$tabel_e1_field3 .
+        card_content('30%', 'tabel_e1_field4', 'Rp' . number_format($tl_e1->$tabel_e1_field4, '2', ',', '.')),
         btn_lihat($tl_e1->$tabel_e1_field1) . ' ' .
         btn_edit($tl_e1->$tabel_e1_field1),
         'text-white bg-danger',
-        'col-md-3',
+        'col-md-4',
         $tabel_e1,
       );
     endforeach;
@@ -87,7 +92,6 @@
         <th><?= lang('tabel_e1_field2_alias') ?></th>
         <th><?= lang('tabel_e1_field3_alias') ?></th>
         <th><?= lang('tabel_e1_field4_alias') ?></th>
-        <th><?= lang('tabel_e1_field5_alias') ?></th>
         <th><?= lang('action') ?></th>
       </tr>
     </thead>
@@ -99,8 +103,7 @@
           <td><?= $tl_e1->$tabel_e1_field1; ?></td>
           <td><?= $tl_e1->$tabel_e1_field2 ?></td>
           <td><?= $tl_e1->$tabel_e1_field3 ?></td>
-          <td><?= $tl_e1->$tabel_e1_field4 ?></td>
-          <td><?= $tl_e1->$tabel_e1_field5 ?></td>
+          <td><?= 'Rp' . number_format($tl_e1->$tabel_e1_field4, '2', ',', '.') ?></td>
           <td>
             <?= btn_lihat($tl_e1->$tabel_e1_field1) ?>
             <?= btn_edit($tl_e1->$tabel_e1_field1) ?>
@@ -122,15 +125,7 @@
 
           <?= input_add('text', 'tabel_e1_field2', 'required') ?>
           <?= input_add('text', 'tabel_e1_field3', 'required') ?>
-          <?= input_add('text', 'tabel_e1_field4', 'required') ?>
-
-          <?= select_add(
-            'tabel_e1_field5',
-            $tbl_e4,
-            $tabel_e4_field1,
-            $tabel_e4_field2,
-            'required'
-          ); ?>
+          <?= add_min_max('number', 'tabel_e1_field4', 'required', '0', '') ?>
         </div>
 
         <!-- memunculkan notifikasi modal -->
@@ -157,16 +152,7 @@
             <?= input_hidden('tabel_e1_field1', $tl_e1->$tabel_e1_field1, 'required') ?>
             <?= input_edit('text', 'tabel_e1_field2', $tl_e1->$tabel_e1_field2, 'required') ?>
             <?= input_edit('text', 'tabel_e1_field3', $tl_e1->$tabel_e1_field3, 'required') ?>
-            <?= input_edit('email', 'tabel_e1_field4', $tl_e1->$tabel_e1_field4, 'required') ?>
-
-            <?= select_edit(
-              'tabel_e1_field5',
-              $tabel_e1_field5_value,
-              $tbl_e4,
-              $tabel_e4_field1,
-              $tabel_e4_field2,
-              'required'
-            ); ?>
+            <?= edit_min_max('number', 'tabel_e1_field4', $tl_e1->$tabel_e1_field4, 'required', '0', '') ?>
           </div>
           <!-- memunculkan notifikasi modal -->
           <p class="small text-center text-danger"><?= get_flashdata('pesan_ubah') ?></p>
@@ -191,11 +177,9 @@
         <form>
           <div class="modal-body">
             <?= table_data(
-              row_data('tabel_e1_field1', $tl_e1->$tabel_e1_field1) .
               row_data('tabel_e1_field2', $tl_e1->$tabel_e1_field2) .
               row_data('tabel_e1_field3', $tl_e1->$tabel_e1_field3) .
-              row_data('tabel_e1_field4', $tl_e1->$tabel_e1_field4) .
-              row_data('tabel_e1_field5', $tl_e1->$tabel_e1_field5),
+              row_data('tabel_e1_field4', 'Rp' . number_format($tl_e1->$tabel_e1_field4, '2', ',', '.')),
               'table-light',
             ) ?>
           </div>

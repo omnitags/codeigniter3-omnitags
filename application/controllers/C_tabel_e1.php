@@ -5,18 +5,18 @@ include 'Omnitags.php';
 
 class C_tabel_e1 extends Omnitags
 {
-	// Account Only Pages / 帐户特定页面
+	// Account Only Pages
 
 
-	// Admin Pages / 管理页面
+	// Admin Pages
 	public function admin()
 	{
 		$this->declarew();
 		$this->page_session_3();
 
-		$param1 = $this->v_get['tabel_e1_field5'];
+		$param1 = $this->v_get['tabel_e1_field2'];
 
-		$filter = $this->tl_e1->get_e1_by_field('tabel_e1_field5', $param1);
+		$filter = $this->tl_e1->filter($param1);
 
 		if (empty($param1)) {
 			$result = $this->tl_e1->get_all_e1();
@@ -30,7 +30,7 @@ class C_tabel_e1 extends Omnitags
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e1']),
 			'tbl_e1' => $result,
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
-			'tabel_e1_field5_value' => $param1
+			'tabel_e1_field2_value' => $param1
 		);
 
 		$data = array_merge($data1, $this->package);
@@ -69,24 +69,17 @@ class C_tabel_e1 extends Omnitags
 				$this->v_post['tabel_e1_field2'],
 				$this->v_post['tabel_e1_field3'],
 				$this->v_post['tabel_e1_field4'],
-				$this->v_post['tabel_e1_field5'],
 			),
 			$this->views['flash2'],
 			'tambah'
 		);
 
-		// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
-		// $this->aliases['tabel_e1_field1'] => $id,
-
-		$code = $this->add_code('tabel_e1', $this->aliases['tabel_e1_field1'], 5, '01');
-
 		// Functional requirement: Construct data array from validated view inputs
 		$data = array(
-			$this->aliases['tabel_e1_field1'] => $code,
+			$this->aliases['tabel_e1_field1'] => '',
 			$this->aliases['tabel_e1_field2'] => $this->v_post['tabel_e1_field2'],
 			$this->aliases['tabel_e1_field3'] => $this->v_post['tabel_e1_field3'],
 			$this->aliases['tabel_e1_field4'] => $this->v_post['tabel_e1_field4'],
-			$this->aliases['tabel_e1_field5'] => $this->v_post['tabel_e1_field5'],
 		);
 
 		$aksi = $this->tl_e1->insert_e1($data);
@@ -117,7 +110,6 @@ class C_tabel_e1 extends Omnitags
 				$this->v_post['tabel_e1_field2'],
 				$this->v_post['tabel_e1_field3'],
 				$this->v_post['tabel_e1_field4'],
-				$this->v_post['tabel_e1_field5'],
 			),
 			$this->views['flash3'],
 			'ubah' . $tabel_e1_field1
@@ -128,7 +120,6 @@ class C_tabel_e1 extends Omnitags
 			$this->aliases['tabel_e1_field2'] => $this->v_post['tabel_e1_field2'],
 			$this->aliases['tabel_e1_field3'] => $this->v_post['tabel_e1_field3'],
 			$this->aliases['tabel_e1_field4'] => $this->v_post['tabel_e1_field4'],
-			$this->aliases['tabel_e1_field5'] => $this->v_post['tabel_e1_field5'],
 		);
 
 		$aksi = $this->tl_e1->update_e1($data, $tabel_e1_field1);
@@ -154,21 +145,9 @@ class C_tabel_e1 extends Omnitags
 		$tabel_e1 = $this->tl_e1->get_e1_by_field('tabel_e1_field1', $tabel_e1_field1)->result();
 		$this->check_data($tabel_e1);
 
-		$tabel_e1_field2 = $tabel_e1[0]->tipe;
-		$tabel_e1_field4 = $tabel_e1[0]->img;
-
-		// Define the folder and file paths
-		$folder_name = $tabel_e1_field2; // Assuming the folder name is stored in img
-		$file_path = $this->v_upload_path['tabel_e1'] . '/' . $folder_name . '/' . $tabel_e1_field4;
-
-		// Delete the image file if it exists
-		if (file_exists($file_path)) {
-			unlink($file_path);
-		}
-
 		try {
 			// Functional requirement: Delete data from the database
-			$aksi = $this->tl_e1->delete_e1_by_field('tabel_e1_field1', $tabel_e1_field1);
+			$aksi = $this->tl_e1->delete_e1($tabel_e1_field1);
 
 			$notif = $this->handle_4e($aksi, 'tabel_e1', $tabel_e1_field1);
 

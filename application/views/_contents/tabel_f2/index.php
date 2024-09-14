@@ -74,7 +74,7 @@
         <label class="form-label"><?= $tabel_e4_field2_alias ?></label>
       </div>
       <!-- keterangan * -->
-      <small>*<?= $tabel_f2_field4_alias . lang('required_to_do') . $tabel_f2_alias . lang('and') . $tabel_f3_alias ?></small>
+      <!-- <small>*<= $tabel_f2_field4_alias . lang('required_to_do') . $tabel_f2_alias . lang('and') . $tabel_f3_alias ?></small> -->
 
     </div>
     <div class="col-md-6">

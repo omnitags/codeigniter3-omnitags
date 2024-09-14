@@ -10,32 +10,6 @@
 </div>
 <hr>
 
-
-<table class="mb-4">
-
-  <!-- method get supaya nilai dari filter bisa tampil nanti -->
-  <form action="<?= site_url($language . '/' . $tabel_e3 . '/admin') ?>" method="get">
-    <tr>
-      <td class="pr-2">
-        <?= select_edit(
-          'tabel_e3_field4',
-          $tabel_e3_field4_value,
-          $tbl_e4,
-          $tabel_e4_field1,
-          $tabel_e4_field2,
-          'required'
-        ); ?>
-      </td>
-
-      <td>
-        <?= btn_cari() ?>
-        <?= btn_redo('tabel_e3', '/admin') ?>
-      </td>
-    </tr>
-  </form>
-</table>
-
-
 <div class="row">
   <div class="col-md-10">
     <?= btn_tambah() ?>
@@ -62,15 +36,17 @@
 
   <?php } else {
     foreach ($tbl_e3->result() as $tl_e3):
+      $button = btn_edit($tl_e3->$tabel_e3_field1);
+
       echo card_regular(
         $tl_e3->$tabel_e3_field1,
-        $tl_e3->$tabel_e3_field1 . ' | ' . $tl_e3->$tabel_e3_field3,
         $tl_e3->$tabel_e3_field2,
+        $tl_e3->$tabel_e3_field3 .
+        card_content('40%', 'tabel_e3_field4',  'Rp' . number_format($tl_e3->$tabel_e3_field4, '2', ',', '.')),
         btn_lihat($tl_e3->$tabel_e3_field1) . ' ' .
-        btn_edit($tl_e3->$tabel_e3_field1) . ' ' .
-        btn_hapus('tabel_e3', $tl_e3->$tabel_e3_field1),
+        $button,
         'text-white bg-danger',
-        'col-md-3',
+        'col-md-4',
         $tabel_e3
       );
     endforeach;
@@ -85,8 +61,8 @@
         <th><?= lang('no') ?></th>
         <th><?= lang('tabel_e3_field1_alias') ?></th>
         <th><?= lang('tabel_e3_field2_alias') ?></th>
+        <th><?= lang('tabel_e3_field3_alias') ?></th>
         <th><?= lang('tabel_e3_field4_alias') ?></th>
-        <th><?= lang('tabel_e3_field5_alias') ?></th>
         <th><?= lang('action') ?></th>
       </tr>
     </thead>
@@ -96,13 +72,12 @@
         <tr>
           <td></td>
           <td><?= $tl_e3->$tabel_e3_field1; ?></td>
-          <td><?= $tl_e3->$tabel_e3_field2 ?></td>
-          <td><?= $tl_e3->$tabel_e3_field4 ?></td>
-          <td><?= $tl_e3->$tabel_e3_field5 ?></td>
+          <td><?= $tl_e3->$tabel_e3_field2; ?></td>
+          <td><?= $tl_e3->$tabel_e3_field3; ?></td>
+          <td><?= $tl_e3->$tabel_e3_field4; ?></td>
           <td>
             <?= btn_lihat($tl_e3->$tabel_e3_field1) ?>
             <?= btn_edit($tl_e3->$tabel_e3_field1) ?>
-            <?= btn_hapus('tabel_e3', $tl_e3->$tabel_e3_field1) ?>
           </td>
         </tr>
       <?php endforeach; ?>
@@ -120,24 +95,9 @@
         enctype="multipart/form-data">
         <div class="modal-body">
 
-          <?= input_add('text', 'tabel_e3_field2', 'required') ?>
-          <?= input_add('text', 'tabel_e3_field3', 'required') ?>
-
-          <?= select_add(
-            'tabel_e3_field4',
-            $tbl_e4,
-            $tabel_e4_field1,
-            $tabel_e4_field2,
-            'required'
-          ); ?>
-
-          <?= select_add(
-            'tabel_e3_field5',
-            $tbl_e1,
-            $tabel_e1_field1,
-            $tabel_e1_field2,
-            'required'
-          ); ?>
+          <?= input_add('text', 'tabel_e3_field2', '') ?>
+          <?= input_add('text', 'tabel_e3_field3', '') ?>
+          <?= add_min_max('number', 'tabel_e3_field4', 'required', '0', '') ?>
 
         </div>
 
@@ -162,29 +122,11 @@
         <form action="<?= site_url($language . '/' . $tabel_e3 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
-            <?= input_edit('text', 'tabel_e3_field2', $tl_e3->$tabel_e3_field2, 'required') ?>
-            <?= input_edit('text', 'tabel_e3_field3', $tl_e3->$tabel_e3_field3, 'required') ?>
-
-            <?= select_edit(
-              'tabel_e3_field4',
-              $tl_e3->$tabel_e3_field4,
-              $tbl_e4,
-              $tabel_e4_field1,
-              $tabel_e4_field2,
-              'required'
-            ); ?>
-
-            <?= select_edit(
-              'tabel_e3_field5',
-              $tl_e3->$tabel_e3_field5,
-              $tbl_e1,
-              $tabel_e1_field1,
-              $tabel_e1_field2,
-              'required'
-            ); ?>
-
 
             <?= input_hidden('tabel_e3_field1', $tl_e3->$tabel_e3_field1, 'required') ?>
+            <?= input_edit('text', 'tabel_e3_field2', $tl_e3->$tabel_e3_field2, 'required') ?>
+            <?= input_edit('text', 'tabel_e3_field3', $tl_e3->$tabel_e3_field3, 'required') ?>
+            <?= edit_min_max('number', 'tabel_e3_field4', $tl_e3->$tabel_e3_field4, 'required', '0', '') ?>
           </div>
 
           <!-- memunculkan notifikasi modal -->
@@ -199,8 +141,6 @@
   </div>
 
 
-
-
   <div id="lihat<?= $tl_e3->$tabel_e3_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -210,8 +150,7 @@
             <?= table_data(
               row_data('tabel_e3_field2', $tl_e3->$tabel_e3_field2) .
               row_data('tabel_e3_field3', $tl_e3->$tabel_e3_field3) .
-              row_data('tabel_e3_field4', $tl_e3->$tabel_e3_field4) .
-              row_data('tabel_e3_field5', $tl_e3->$tabel_e3_field5),
+              row_data('tabel_e3_field4', 'Rp' . number_format($tl_e3->$tabel_e3_field4, '2', ',', '.')),
               'table-light'
             ) ?>
           </div>

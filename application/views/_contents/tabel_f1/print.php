@@ -19,7 +19,10 @@
         </td>
       </tr>
     </tbody>
+  </table>
 
+  <!-- menampilkan data tamu -->
+  <table class="table">
     <thead class="thead">
       <tr>
         <th><?= lang('tabel_f1_field7_alias') ?></th>
@@ -37,8 +40,10 @@
         </td>
       </tr>
     </tbody>
+  </table>
 
-
+  <!-- menampilkan harga total dari tabel pesanan -->
+  <table class="table">
     <thead class="thead">
       <tr>
         <th><?= lang('tabel_f1_field10_alias') ?></th>
@@ -51,6 +56,7 @@
       </tr>
     </tbody>
   </table>
+
 
   <?php
 endforeach ?>

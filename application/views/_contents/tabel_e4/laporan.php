@@ -4,7 +4,7 @@
       <th><?= lang('tabel_e4_field1_alias') ?></th>
       <th><?= lang('tabel_e4_field2_alias') ?></th>
       <th><?= lang('tabel_e4_field3_alias') ?></th>
-    </tr>
+      <th><?= lang('tabel_e4_field4_alias') ?></th>
     </tr>
   </thead>
   <tbody>
@@ -12,8 +12,8 @@
       <tr>
         <td width=""><?= $tl_e4->$tabel_e4_field1; ?></td>
         <td width=""><?= $tl_e4->$tabel_e4_field2 ?></td>
-        <td width=""><img src="img/<?= htmlspecialchars($tabel_e4) ?>/<?= htmlspecialchars($tl_e4->$tabel_e4_field3) ?>"
-        width="100"></td>
+        <td width=""><?= $tl_e4->$tabel_e4_field3 ?></td>
+        <td width=""><?= 'Rp' . number_format($tl_e4->$tabel_e4_field4, '2', ',', '.') ?></td>
       </tr>
     <?php endforeach ?>
   </tbody>

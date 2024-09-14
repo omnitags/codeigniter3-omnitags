@@ -17,28 +17,6 @@ class C_tabel_e2 extends Omnitags
 			'konten' => $this->v1['tabel_e2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e2']),
 			'tbl_e2' => $this->tl_e2->get_all_e2(),
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
-		);
-		
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		load_view_data('_layouts/template', $data);
-	}
-
-	public function detail($param1 = null)
-	{
-		$this->declarew();
-		$this->page_session_all();
-
-		$tabel = $this->tl_e2->get_e2_by_field('tabel_e2_field1', $param1)->result();
-		$this->check_data($tabel);
-
-		$data1 = array(
-			'title' => lang('tabel_e2_alias_v8_title'),
-			'konten' => $this->v8['tabel_e2'],
-			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b2']),
-			'tbl_e2' => $this->tl_e2->get_e2_by_field('tabel_e2_field1', $param1),
 		);
 
 		$data = array_merge($data1, $this->package);
@@ -46,7 +24,7 @@ class C_tabel_e2 extends Omnitags
 		set_userdata('previous_url', current_url());
 		load_view_data('_layouts/template', $data);
 	}
-	
+
 	// Account Only Pages
 
 
@@ -56,26 +34,13 @@ class C_tabel_e2 extends Omnitags
 		$this->declarew();
 		$this->page_session_3();
 
-		$param1 = $this->v_get['tabel_e2_field3'];
-
-		$filter = $this->tl_e2->get_e2_by_field('tabel_e2_field3', $param1);
-
-		if (empty($param1)) {
-			$result = $this->tl_e2->get_all_e2();
-		} else {
-			$result = $filter;
-		}
-
 		$data1 = array(
 			'title' => lang('tabel_e2_alias_v3_title'),
 			'konten' => $this->v3['tabel_e2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e2']),
-			'tbl_e2' => $result,
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
-			'tabel_e2_field3_value' => $param1,
-			'stuff' => firebase_get_data('/teachers')
+			'tbl_e2' => $this->tl_e2->get_all_e2(),
 		);
-		
+
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
@@ -114,9 +79,6 @@ class C_tabel_e2 extends Omnitags
 			array(
 				$this->v_post['tabel_e2_field2'],
 				$this->v_post['tabel_e2_field3'],
-				$this->v_post['tabel_e2_field4'],
-				$this->v_post['tabel_e2_field5'],
-				$this->v_post['tabel_e2_field6'],
 			),
 			$this->views['flash2'],
 			'tambah'
@@ -124,16 +86,11 @@ class C_tabel_e2 extends Omnitags
 
 		// $id = get_next_code($this->aliases['tabel_e2'], $this->aliases['tabel_e2_field1'], 'FH');
 
-		$code = $this->add_code('tabel_e2', $this->aliases['tabel_e2_field1'], 5, '02');
-
 		$data = array(
 			// $this->aliases['tabel_e2_field1'] => $id,
-			$this->aliases['tabel_e2_field1'] => $code,
+			$this->aliases['tabel_e2_field1'] => '',
 			$this->aliases['tabel_e2_field2'] => $this->v_post['tabel_e2_field2'],
 			$this->aliases['tabel_e2_field3'] => $this->v_post['tabel_e2_field3'],
-			$this->aliases['tabel_e2_field4'] => $this->v_post['tabel_e2_field4'],
-			$this->aliases['tabel_e2_field5'] => $this->v_post['tabel_e2_field5'],
-			$this->aliases['tabel_e2_field6'] => $this->v_post['tabel_e2_field6'],
 		);
 
 		// $query = 'INSERT INTO tabel_e2 VALUES('.$data.')';
@@ -168,9 +125,6 @@ class C_tabel_e2 extends Omnitags
 				$this->v_post['tabel_e2_field1'],
 				$this->v_post['tabel_e2_field2'],
 				$this->v_post['tabel_e2_field3'],
-				$this->v_post['tabel_e2_field4'],
-				$this->v_post['tabel_e2_field5'],
-				$this->v_post['tabel_e2_field6'],
 			),
 			$this->views['flash3'],
 			'ubah' . $tabel_e2_field1
@@ -179,9 +133,6 @@ class C_tabel_e2 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_e2_field2'] => $this->v_post['tabel_e2_field2'],
 			$this->aliases['tabel_e2_field3'] => $this->v_post['tabel_e2_field3'],
-			$this->aliases['tabel_e2_field4'] => $this->v_post['tabel_e2_field4'],
-			$this->aliases['tabel_e2_field5'] => $this->v_post['tabel_e2_field5'],
-			$this->aliases['tabel_e2_field6'] => $this->v_post['tabel_e2_field6'],
 		);
 
 		$aksi = $this->tl_e2->update_e2($data, $tabel_e2_field1);
@@ -203,7 +154,10 @@ class C_tabel_e2 extends Omnitags
 		$tabel_e2 = $this->tl_e2->get_e2_by_field('tabel_e2_field1', $tabel_e2_field1)->result();
 		$this->check_data($tabel_e2);
 
-		$aksi = $this->tl_e2->delete_e2_by_field('tabel_e2_field1', $tabel_e2_field1);
+		$tabel_e2_field3 = $tabel_e2[0]->img;
+
+		unlink($this->v_upload_path['tabel_e2'] . $tabel_e2_field3);
+		$aksi = $this->tl_e2->delete_e2($tabel_e2_field1);
 
 		$notif = $this->handle_4e($aksi, 'tabel_e2', $tabel_e2_field1);
 

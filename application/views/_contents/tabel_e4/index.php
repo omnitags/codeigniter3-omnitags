@@ -1,54 +1,107 @@
-<!-- menampilkan fasilitas kamar sesuai dengan tipe kamar yang ada
-https://stackoverflow.com/questions/30531359/nested-foreach-in-codeigniter-view
-https://stackoverflow.com/questions/22354514/message-trying-to-get-property-of-non-object-in-codeigniter
-terima kasih pada link di atas -->
-<?php foreach ($tbl_a1 as $tl_a1): ?>
-  <img src="img/<?= $tabel_b7 ?>/<?= $tl_a1->$tabel_b7_field5 ?>" class="img-fluid rounded">
-<?php endforeach; ?>
-
 <h2 class="pt-2"><?= $title ?><?= $phase ?></h2>
 <hr>
 
-<?php foreach ($tbl_e4->result() as $tl_e4): ?>
-  <div class="row mb-5">
-    <div class="col-md-6">
-      <img src="img/<?= $tabel_e4 ?>/<?= $tl_e4->$tabel_e4_field3 ?>" class="img-fluid rounded">
+<?php if (userdata($tabel_c2_field1)) { ?>
 
+<?php } else {
+  $button = '';
+} ?>
+
+
+<div id="card-view" class="row data-view active">
+  <?php if (empty($tbl_e4->result())) { ?>
+    <div class="col-md-12">
+      <div class="text-center">
+        <?php foreach ($no_data->result() as $nd): ?>
+          <img src="img/<?= $tabel_b1 ?>/<?= $nd->$tabel_b1_field4 ?>" width="200" alt="Image">
+        <?php endforeach ?>
+        <h3>NO DATA</h3>
+      </div>
     </div>
-    <div class="col-md-6">
-      <h2 class="pt-2"><?= $tl_e4->$tabel_e4_field2; ?></h2>
-      <ul class="list-unstyled ml-2">
-        <li><?= $tabel_e2_alias ?> : </li>
-        <?php foreach ($tbl_e2->result() as $tl_e2): ?>
-          <?php if ($tl_e4->$tabel_e4_field1 === $tl_e2->$tabel_e4_field1) { ?>
 
-            <li>
-              <a class="text-decoration-none"
-                href="<?= site_url($language . '/' . $tabel_e2 . '/detail/' . $tl_e2->$tabel_e2_field1) ?>">
-                <?= $tl_e2->$tabel_e2_field2 ?></a>
-            </li>
+  <?php } else {
+    foreach ($tbl_e4->result() as $tl_e4):
+      if ($tl_e4->$tabel_e4_field9 == $tabel_e4_field9_value1) {
+        $button = '';
+      } else {
+        if ($tl_e4->$tabel_e4_field2 != userdata($tabel_c2_field1)) {
+          $button = '';
+        } else {
 
-          <?php } ?>
-        <?php endforeach; ?>
-      </ul>
-    </div>
-  </div>
+          if ($tl_e4->$tabel_e4_field8 == $tabel_e4_field8_value1) {
+            $button =
+              btn_action('tabel_e4', '/nonaktifkan/' . $tl_e4->$tabel_e4_field1, '<i class="far fa-eye"></i>', 'text-success btn-light') .
+              btn_hapus('tabel_e4', $tl_e4->$tabel_e4_field1);
+          } elseif ($tl_e4->$tabel_e4_field8 == $tabel_e4_field8_value2) {
+            $button =
+              btn_action('tabel_e4', '/aktifkan/' . $tl_e4->$tabel_e4_field1, '<i class="far fa-eye-slash"></i>', 'text-secondary btn-light') .
+              btn_hapus('tabel_e4', $tl_e4->$tabel_e4_field1);
+          }
+        }
+      }
+      if ($tl_e4->$tabel_e4_field8 == $tabel_e4_field8_value2) {
+      } else {
+        echo card_file(
+          $tl_e4->$tabel_e4_field1,
+          $tl_e4->$tabel_e4_field3,
+          $tl_e4->$tabel_e4_field8,
+          btn_lihat($tl_e4->$tabel_e4_field1) .
+          $button,
+          'text-white bg-danger',
+          'col-md-4',
+          $tabel_e4,
+          $tl_e4->$tabel_e4_field5,
+        );
+      }
+    endforeach;
+  } ?>
+</div>
 
 
-<?php endforeach; ?>
+
+<!-- modal edit -->
+<?php foreach ($tbl_e4->result() as $tl_e4):
+  if ($tl_e4->$tabel_e4_field2 == userdata($tabel_c2_field1)) { ?>
 
 
-<!-- method get supaya nilai dari form bisa tampil nanti (tidak langsung masuk ke database) -->
-<!-- <form action="<?= site_url($language . '/' . $tabel_f2) ?>" method="get">
-  <div class="row justify-content-center align-items-end mt-2">
-    <div class="col-md-1">
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">Pesan</button>
+  <?php } ?>
+
+  <!-- modal lihat -->
+  <div id="lihat<?= $tl_e4->$tabel_e4_field1 ?>" class="modal fade lihat">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <?= modal_header($tl_e4->$tabel_e4_field3, '') ?>
+
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <?= tampil_image('400px', $tabel_e4, $tl_e4->$tabel_e4_field5, $tl_e4->$tabel_e4_field5) ?>
+
+            </div>
+            <div class="col-md-6">
+              <div class="border border-dark">
+                <div style="height: 200px" class="overflow-auto">
+                  <p><?= $tl_e4->$tabel_e4_field4 ?></p>
+                </div>
+
+              </div>
+              <?= table_data(
+                row_data('tabel_e4_field2', $tl_e4->$tabel_e4_field2) .
+                row_data('tabel_e4_field6', $tl_e4->$tabel_e4_field6) .
+                row_data('tabel_e4_field7', $tl_e4->$tabel_e4_field7),
+                'text-dark bg-light'
+              ); ?>
+            </div>
+          </div>
+        </div>
+
+        <!-- memunculkan notifikasi modal -->
+        <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
+
+        <div class="modal-footer">
+          <?= btn_tutup() ?>
+        </div>
       </div>
     </div>
   </div>
-</form> -->
-
-
-<!-- Ide baru : jika tekan tombol di fasilitas bisa muncul pop up yang menampilkan
- keterangan fasilitas(termasuk gambar) -->
+<?php endforeach; ?>
