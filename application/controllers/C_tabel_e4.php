@@ -16,7 +16,7 @@ class C_tabel_e4 extends Omnitags
 			'title' => lang('tabel_e4_alias_v1_title'),
 			'konten' => $this->v1['tabel_e4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e4']),
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			'tbl_e4' => firebase_get_data($this->fb_api1, $this->aliases['tabel_e4']),
 			'tbl_e2' => $this->tl_e2->get_all_e2(),
 		);
 
