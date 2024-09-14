@@ -22,24 +22,23 @@
 </div>
 
 
+
+
 <div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_c1->result())) {
-    load_view('_partials/no_data');
-  } else {
-    foreach ($tbl_c1->result() as $tl_c1):
-      echo card_regular(
-        $tl_c1->$tabel_c1_field1,
-        $tl_c1->$tabel_c1_field2,
-        $tl_c1->$tabel_c1_field5,
-        btn_lihat($tl_c1->$tabel_c1_field1) . ' ' .
-        btn_edit($tl_c1->$tabel_c1_field1) . ' ' .
-        btn_hapus('tabel_c1', $tl_c1->$tabel_c1_field1),
-        'text-white bg-danger',
-        'col-md-3',
-        $tabel_c1,
-      );
-    endforeach;
-  } ?>
+  <?php foreach ($tbl_c1->result() as $tl_c1):
+    echo card_file(
+      $tl_c1->$tabel_c1_field1,
+      $tl_c1->$tabel_c1_field2,
+      $tl_c1->$tabel_c1_field5,
+      btn_lihat($tl_c1->$tabel_c1_field1) . ' ' .
+      btn_edit($tl_c1->$tabel_c1_field1) . ' ' .
+      btn_hapus('tabel_c1', $tl_c1->$tabel_c1_field1),
+      'text-white bg-danger',
+      'col-md-3',
+      $tabel_c1,
+      $tl_c1->$tabel_c1_field6,
+    );
+  endforeach; ?>
 </div>
 
 
@@ -51,8 +50,9 @@
         <th><?= lang('tabel_c1_field1_alias') ?></th>
         <th><?= lang('tabel_c1_field2_alias') ?></th>
         <th><?= lang('tabel_c1_field3_alias') ?></th>
-        <th><?= lang('tabel_c1_field4_alias') ?></th>
-        <th><?= lang('tabel_c1_field5_alias') ?></th>
+        <th><?= lang('tabel_c1_field6_alias') ?></th>
+        <th><?= lang('tabel_c1_field7_alias') ?></th>
+        <th><?= lang('tabel_c1_field7_alias') ?></th>
         <th><?= lang('action') ?></th>
       </tr>
     </thead>
@@ -64,8 +64,9 @@
           <td><?= $tl_c1->$tabel_c1_field1; ?></td>
           <td><?= $tl_c1->$tabel_c1_field2 ?></td>
           <td><?= $tl_c1->$tabel_c1_field3 ?></td>
-          <td><?= $tl_c1->$tabel_c1_field4 ?></td>
-          <td><?= $tl_c1->$tabel_c1_field5 ?></td>
+          <td><?= $tl_c1->$tabel_c1_field6 ?></td>
+          <td><?= $tl_c1->$tabel_c1_field7 ?></td>
+          <td><?= $tl_c1->$tabel_c1_field7 ?></td>
           <td>
             <?= btn_lihat($tl_c1->$tabel_c1_field1) ?>
             <?= btn_edit($tl_c1->$tabel_c1_field1) ?>
@@ -93,23 +94,29 @@
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog">
     <div class="modal-content">
-      <?= modal_header(lang('add') . ' ' . lang('tabel_c1_alias'), '') ?>
+      <?= modal_header_add(lang('add') . ' ' . lang('tabel_c1_alias'), '') ?>
 
       <form action="<?= site_url($language . '/' . $tabel_c1 . '/tambah') ?>" method="post">
         <div class="modal-body">
 
           <?= input_add('text', 'tabel_c1_field2', 'required') ?>
-          <?= input_add('text', 'tabel_c1_field3', 'required') ?>
-          <?= input_add('email', 'tabel_c1_field4', 'required') ?>
+          <?= input_add('email', 'tabel_c1_field3', 'required') ?>
+          <?= add_new_password('tabel_c1_field4', 'required') ?>
+          <?= password_req() ?>
+          <?= add_confirm('password', 'tabel_c1_field4', 'required') ?>
           <?= input_add('text', 'tabel_c1_field5', 'required') ?>
+          <?= add_file('tabel_c1_field6', 'required') ?>
 
-          <?= select_add(
-            'tabel_c1_field6',
-            $tbl_e2,
-            $tabel_e2_field1,
-            $tabel_e2_field2,
-            'required'
-          ); ?>
+          <div class="form-group">
+            <select class="form-control float" required name="<?= $tabel_c1_field7_input ?>">
+              <option value="" selected hidden><?= lang('select') ?> <?= $tabel_c1_field7_alias ?></option>
+              <option value="<?= $tabel_c1_field7_value1 ?>"><?= $tabel_c1_field7_value1_alias ?></option>
+              <option value="<?= $tabel_c1_field7_value2 ?>"><?= $tabel_c1_field7_value2_alias ?></option>
+            </select>
+            <label class="form-label"><?= $tabel_c1_field7_alias ?></label>
+          </div>
+
+
         </div>
 
         <!-- memunculkan notifikasi modal -->
@@ -128,7 +135,7 @@
   <div id="ubah<?= $tl_c1->$tabel_c1_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_c1_alias'), $tl_c1->$tabel_c1_field1) ?>
+        <?= modal_header(lang('change_data') . ' ' . lang('tabel_c1_alias'), $tl_c1->$tabel_c1_field1) ?>
 
         <!-- administrator tidak dapat mengubah password akun lain -->
         <form action="<?= site_url($language . '/' . $tabel_c1 . '/update') ?>" method="post"
@@ -136,18 +143,18 @@
           <div class="modal-body">
             <?= input_hidden('tabel_c1_field1', $tl_c1->$tabel_c1_field1, 'required') ?>
             <?= input_edit('text', 'tabel_c1_field2', $tl_c1->$tabel_c1_field2, 'required') ?>
-            <?= input_edit('text', 'tabel_c1_field3', $tl_c1->$tabel_c1_field3, 'required') ?>
-            <?= input_edit('email', 'tabel_c1_field4', $tl_c1->$tabel_c1_field4, 'required') ?>
+            <?= input_edit('email', 'tabel_c1_field3', $tl_c1->$tabel_c1_field3, 'required') ?>
             <?= input_edit('text', 'tabel_c1_field5', $tl_c1->$tabel_c1_field5, 'required') ?>
+            <?= edit_file('tabel_c1', 'tabel_c1_field6', $tl_c1->$tabel_c1_field6, '') ?>
 
-            <?= select_edit(
-              'tabel_c1_field6',
-              $tl_c1->$tabel_c1_field6,
-              $tbl_e2,
-              $tabel_e2_field1,
-              $tabel_e2_field2,
-              'required'
-            ); ?>
+            <div class="form-group">
+              <select class="form-control float" required name="<?= $tabel_c1_field7_input ?>">
+                <option value="<?= $tl_c1->$tabel_c1_field7 ?>" selected hidden><?= $tl_c1->$tabel_c1_field7 ?></option>
+                <option value="<?= $tabel_c1_field7_value1 ?>"><?= $tabel_c1_field7_value1_alias ?></option>
+                <option value="<?= $tabel_c1_field7_value2 ?>"><?= $tabel_c1_field7_value2_alias ?></option>
+              </select>
+              <label class="form-label"><?= $tabel_c1_field7_alias ?></label>
+            </div>
 
           </div>
 
@@ -166,7 +173,7 @@
   <div id="lihat<?= $tl_c1->$tabel_c1_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_c1_alias'), $tl_c1->$tabel_c1_field1) ?>
+        <?= modal_header(lang('tabel_c1_alias'), $tl_c1->$tabel_c1_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>
@@ -175,7 +182,7 @@
               row_data('tabel_c1_field2', $tl_c1->$tabel_c1_field2) .
               row_data('tabel_c1_field3', $tl_c1->$tabel_c1_field3) .
               row_data('tabel_c1_field5', $tl_c1->$tabel_c1_field5) .
-              row_data('tabel_c1_field6', $tl_c1->$tabel_c1_field6),
+              row_file($tabel_c1, 'tabel_c1_field6', $tl_c1->$tabel_c1_field6),
               'table-light'
             ) ?>
           </div>

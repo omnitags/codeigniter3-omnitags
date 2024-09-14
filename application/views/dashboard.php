@@ -48,7 +48,7 @@
     case $tabel_c2_field6_value4: ?>
       <?= card_count(lang('tabel_e3_alias'), 'tabel_e3', 'text-white bg-danger', $tbl_e3) ?>
       <?= card_count(lang('tabel_f2_alias'), 'tabel_f2', 'text-white bg-danger', $tbl_f2) ?>
-      <?= card_count(lang('tabel_f1_alias'), 'tabel_f1', 'text-white bg-danger', $tbl_f1) ?>
+      <!-- ?= card_count(lang('tabel_f1_alias'), 'tabel_f1', 'text-white bg-danger', $tbl_f1) ?> -->
       <?php break;
 
     case $tabel_c2_field6_value2: ?>

@@ -46,7 +46,7 @@
   <div id="password<?= $tl_c1->$tabel_c1_field1 ?>" class="modal fade <?= $tabel_c1_field5 ?>">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . $tabel_c1_field5_alias, '') ?>
+        <?= modal_header(lang('change_data') . ' ' . $tabel_c1_field5_alias, '') ?>
 
         <form action="<?= site_url($language . '/' . $tabel_c1 . '/update_pass') ?>" method="post"
           enctype="multipart/form-data">

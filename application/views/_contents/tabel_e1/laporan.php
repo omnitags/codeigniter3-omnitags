@@ -4,8 +4,6 @@
       <th><?= lang('tabel_e1_field1_alias') ?></th>
       <th><?= lang('tabel_e1_field2_alias') ?></th>
       <th><?= lang('tabel_e1_field3_alias') ?></th>
-      <th><?= lang('tabel_e1_field4_alias') ?></th>
-      <th><?= lang('tabel_e1_field5_alias') ?></th>
     </tr>
   </thead>
   <tbody>
@@ -14,8 +12,6 @@
         <td width=""><?= $tl_e1->$tabel_e1_field1; ?></td>
         <td width=""><?= $tl_e1->$tabel_e1_field2 ?></td>
         <td width=""><?= $tl_e1->$tabel_e1_field3 ?></td>
-        <td width=""><?= $tl_e1->$tabel_e1_field4 ?></td>
-        <td width=""><?= $tl_e1->$tabel_e1_field5 ?></td>
       </tr>
     <?php endforeach ?>
   </tbody>

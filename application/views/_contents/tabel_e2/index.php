@@ -23,7 +23,7 @@
   <div id="lihat<?= $tl_e2->$tabel_e2_field1 ?>" class="modal fade lihat">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id($tl_e2->$tabel_e2_field2, '') ?>
+        <?= modal_header($tl_e2->$tabel_e2_field2, '') ?>
         
         <div class="modal-body">
           <img class="img-thumbnail" width="100%" src="img/<?= $tabel_e2 ?>/<?= $tl_e2->$tabel_e2_field4; ?>">

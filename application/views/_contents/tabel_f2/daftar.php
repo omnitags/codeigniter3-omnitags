@@ -21,43 +21,38 @@
 </div>
 
 <div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_f2->result())) {
-    load_view('_partials/no_data');
-  } else {
-    foreach ($tbl_f2->result() as $tl_f2):
-      switch ($tl_f2->$tabel_f2_field12) {
-        case $tabel_f2_field12_value2:
-          $button = btn_field($tabel_f3_field6 . $tl_f2->$tabel_f2_field1, '<i class="fas fa-shopping-cart"></i>');
-          $theme = 'text-white bg-primary';
-          break;
-        case $tabel_f2_field12_value3:
-          $button = btn_print('tabel_f2', $tl_f2->$tabel_f2_field1);
-          $theme = 'text-white bg-info';
-          break;
-        case $tabel_f2_field12_value4:
-          $button = btn_print('tabel_f2', $tl_f2->$tabel_f2_field1);
-          $theme = 'text-white bg-success';
-          break;
-        default:
-          $button = '';
-          $theme = 'text-white bg-secondary';
-          break;
-      }
+  <?php foreach ($tbl_f2->result() as $tl_f2):
+    switch ($tl_f2->$tabel_f2_field12) {
+      case $tabel_f2_field12_value2:
+        $button = btn_field($tabel_f3_field6 . $tl_f2->$tabel_f2_field1, '<i class="fas fa-shopping-cart"></i>');
+        $theme = 'text-white bg-primary';
+        break;
+      case $tabel_f2_field12_value3:
+        $button = btn_print('tabel_f2', $tl_f2->$tabel_f2_field1);
+        $theme = 'text-white bg-info';
+        break;
+      case $tabel_f2_field12_value4:
+        $button = btn_print('tabel_f2', $tl_f2->$tabel_f2_field1);
+        $theme = 'text-white bg-success';
+        break;
+      default:
+        $button = '';
+        $theme = 'text-white bg-secondary';
+        break;
+    }
 
-      echo card_regular(
-        $tl_f2->$tabel_f2_field1,
-        $tl_f2->$tabel_f2_field1 . ' | ' . $tl_f2->$tabel_e4_field2,
-        $tl_f2->$tabel_f2_field12,
-        btn_lihat($tl_f2->$tabel_f2_field1) . ' ' .
-        $button,
-        $theme,
-        'col-md-3',
-        $tabel_f2,
-      );
-    endforeach;
-  } ?>
+    echo card_regular(
+      $tl_f2->$tabel_f2_field1,
+      $tl_f2->$tabel_f2_field1 . ' | ' . $tl_f2->$tabel_e4_field2,
+      $tl_f2->$tabel_f2_field12,
+      btn_lihat($tl_f2->$tabel_f2_field1) . ' ' .
+      $button,
+      $theme,
+      'col-md-3',
+      $tabel_f2,
+    );
+  endforeach; ?>
 </div>
-
 
 <div id="table-view" class="table-responsive data-view" style="display: none;">
   <table class="table table-light" id="data">
@@ -105,9 +100,9 @@
 <div id="filter" class="modal fade filter">
   <div class="modal-dialog">
     <div class="modal-content">
-      <?= modal_header('Filter', '') ?>
+      <?= modal_header_add('Filter', '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_f2 . '/daftar') ?>" method="get">
+      <form action="<?= site_url($language . '/' . $tabel_f2 . '/filter_user') ?>" method="get">
         <div class="modal-body">
           <!-- method get supaya nilai dari filter bisa tampil nanti -->
           <span><?= $tabel_f2_field10_alias ?></span>
@@ -147,7 +142,7 @@
   <div id="lihat<?= $tl_f2->$tabel_f2_field1 ?>" class="modal fade lihat">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_f2_alias'), $tl_f2->$tabel_f2_field1) ?>
+        <?= modal_header(lang('tabel_f2_alias'), $tl_f2->$tabel_f2_field1) ?>
 
         <div class="modal-body">
 
@@ -187,9 +182,9 @@
   <?php switch ($tl_f2->$tabel_f2_field12) {
     case $tabel_f2_field12_value2: ?>
       <div id="<?= $tabel_f3_field6 . $tl_f2->$tabel_f2_field1 ?>" class="modal fade <?= $tabel_f3_field6 ?>">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog">
           <div class="modal-content">
-            <?= modal_header_id(lang('tabel_f3_alias') . ' untuk ' . lang('tabel_f2_alias'), $tl_f2->$tabel_f2_field1) ?>
+            <?= modal_header(lang('tabel_f3_alias') . ' untuk ' . lang('tabel_f2_alias'), $tl_f2->$tabel_f2_field1) ?>
 
             <form action="<?= site_url($language . '/' . $tabel_f3 . '/tambah') ?>" method="post"
               enctype="multipart/form-data">
@@ -220,42 +215,36 @@
 
 
                 <!-- Input metode pembayaran -->
-                <div class="row">
-                  <div class="col-md-6">
-                    <?= table_data(
-                      row_data('tabel_f2_field9', 'Rp ' . number_format($tl_f2->$tabel_f2_field9, '2', ',', '.')),
-                      'table-light'
-                    ) ?>
+
+                <div class="col-md-12">
+
+                  <?= row_data('tabel_f2_field9', 'Rp ' . number_format($tl_f2->$tabel_f2_field9, '2', ',', '.')) ?>
+
+                  <div class="form-group">
+                    <select class="form-control float" required name="<?= $tabel_f3_field5_input ?>">
+                      <option selected hidden value=""><?= lang('select') ?>       <?= $tabel_f3_field5_alias ?>...</option>
+                      <option value="<?= $tabel_f3_field5_value1 ?>"><?= $tabel_f3_field5_value1_alias ?></option>
+                      <option value="<?= $tabel_f3_field5_value2 ?>"><?= $tabel_f3_field5_value2_alias ?></option>
+                    </select>
+                    <label class="form-label"><?= $tabel_f3_field5_alias ?></label>
                   </div>
 
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <select class="form-control float" required name="<?= $tabel_f3_field5_input ?>">
-                        <option selected hidden value=""><?= lang('select') ?>       <?= $tabel_f3_field5_alias ?>...</option>
-                        <option value="<?= $tabel_f3_field5_value1 ?>"><?= $tabel_f3_field5_value1_alias ?></option>
-                        <option value="<?= $tabel_f3_field5_value2 ?>"><?= $tabel_f3_field5_value2_alias ?></option>
-                      </select>
-                      <label class="form-label"><?= $tabel_f3_field5_alias ?></label>
-                    </div>
-
-                    <?= input_hidden('tabel_f2_field1', $tl_f2->$tabel_f2_field1, 'required') ?>
-                    <?= input_hidden('tabel_f2_field12', $tabel_f2_field12_value3, 'required') ?>
-                    <?= edit_min_max('number', 'tabel_f3_field6', $tl_f2->$tabel_f2_field9, 'required readonly', '0', '') ?>
-                  </div>
+                  <?= input_hidden('tabel_f2_field1', $tl_f2->$tabel_f2_field1, 'required') ?>
+                  <?= input_hidden('tabel_f2_field12', $tabel_f2_field12_value3, 'required') ?>
+                  <?= edit_min_max('number', 'tabel_f3_field6', $tl_f2->$tabel_f2_field9, 'required readonly', '0', '') ?>
                 </div>
 
-
               </div>
-
-              <!-- pesan untuk pengguna yang sedang merubah password -->
-              <p class="small text-center text-danger"><?= get_flashdata('pesan_' . $tabel_f3_field6) ?></p>
-
-              <div class="modal-footer">
-                <button class="btn btn-success" type="submit">Bayar</button>
-              </div>
-            </form>
-
           </div>
+
+          <!-- pesan untuk pengguna yang sedang merubah password -->
+          <p class="small text-center text-danger"><?= get_flashdata('pesan_' . $tabel_f3_field6) ?></p>
+
+          <div class="modal-footer">
+            <button class="btn btn-success" type="submit">Bayar</button>
+          </div>
+          </form>
+
         </div>
       </div>
 

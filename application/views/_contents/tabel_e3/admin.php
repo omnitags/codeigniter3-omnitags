@@ -10,32 +10,6 @@
 </div>
 <hr>
 
-
-<table class="mb-4">
-
-  <!-- method get supaya nilai dari filter bisa tampil nanti -->
-  <form action="<?= site_url($language . '/' . $tabel_e3 . '/admin') ?>" method="get">
-    <tr>
-      <td class="pr-2">
-        <?= select_edit(
-          'tabel_e3_field4',
-          $tabel_e3_field4_value,
-          $tbl_e4,
-          $tabel_e4_field1,
-          $tabel_e4_field2,
-          'required'
-        ); ?>
-      </td>
-
-      <td>
-        <?= btn_cari() ?>
-        <?= btn_redo('tabel_e3', '/admin') ?>
-      </td>
-    </tr>
-  </form>
-</table>
-
-
 <div class="row">
   <div class="col-md-10">
     <?= btn_tambah() ?>
@@ -50,23 +24,18 @@
 
 
 <div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_e3->result())) {
-    load_view('_partials/no_data');
-  } else {
-    foreach ($tbl_e3->result() as $tl_e3):
-      echo card_regular(
-        $tl_e3->$tabel_e3_field1,
-        $tl_e3->$tabel_e3_field1 . ' | ' . $tl_e3->$tabel_e3_field3,
-        $tl_e3->$tabel_e3_field2,
-        btn_lihat($tl_e3->$tabel_e3_field1) . ' ' .
-        btn_edit($tl_e3->$tabel_e3_field1) . ' ' .
-        btn_hapus('tabel_e3', $tl_e3->$tabel_e3_field1),
-        'text-white bg-danger',
-        'col-md-3',
-        $tabel_e3
-      );
-    endforeach;
-  } ?>
+  <?php foreach ($tbl_e3->result() as $tl_e3):
+    echo card_regular(
+      $tl_e3->$tabel_e3_field1,
+      $tl_e3->$tabel_e3_field1 . ' | ' . $tl_e3->$tabel_e3_field2,
+      $tl_e3->$tabel_e3_field3,
+      btn_edit($tl_e3->$tabel_e3_field1) . ' ' .
+      btn_lihat($tl_e3->$tabel_e3_field1),
+      'text-white bg-danger',
+      'col-md-3',
+      $tabel_e3
+    );
+  endforeach; ?>
 </div>
 
 
@@ -77,8 +46,7 @@
         <th><?= lang('no') ?></th>
         <th><?= lang('tabel_e3_field1_alias') ?></th>
         <th><?= lang('tabel_e3_field2_alias') ?></th>
-        <th><?= lang('tabel_e3_field4_alias') ?></th>
-        <th><?= lang('tabel_e3_field5_alias') ?></th>
+        <th><?= lang('tabel_e3_field3_alias') ?></th>
         <th><?= lang('action') ?></th>
       </tr>
     </thead>
@@ -89,12 +57,11 @@
           <td></td>
           <td><?= $tl_e3->$tabel_e3_field1; ?></td>
           <td><?= $tl_e3->$tabel_e3_field2 ?></td>
-          <td><?= $tl_e3->$tabel_e3_field4 ?></td>
-          <td><?= $tl_e3->$tabel_e3_field5 ?></td>
+          <td><?= $tl_e3->$tabel_e3_field3 ?></td>
           <td>
-            <?= btn_lihat($tl_e3->$tabel_e3_field1) ?>
             <?= btn_edit($tl_e3->$tabel_e3_field1) ?>
-            <?= btn_hapus('tabel_e3', $tl_e3->$tabel_e3_field1) ?>
+            <?= btn_lihat($tl_e3->$tabel_e3_field1) ?>
+
           </td>
         </tr>
       <?php endforeach; ?>
@@ -106,30 +73,15 @@
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog">
     <div class="modal-content">
-      <?= modal_header(lang('add') . ' ' . lang('tabel_e3_alias'), '') ?>
+      <?= modal_header_add(lang('add') . ' ' . lang('tabel_e3_alias'), '') ?>
 
       <form action="<?= site_url($language . '/' . $tabel_e3 . '/tambah') ?>" method="post"
         enctype="multipart/form-data">
         <div class="modal-body">
 
+
           <?= input_add('text', 'tabel_e3_field2', 'required') ?>
           <?= input_add('text', 'tabel_e3_field3', 'required') ?>
-
-          <?= select_add(
-            'tabel_e3_field4',
-            $tbl_e4,
-            $tabel_e4_field1,
-            $tabel_e4_field2,
-            'required'
-          ); ?>
-
-          <?= select_add(
-            'tabel_e3_field5',
-            $tbl_e1,
-            $tabel_e1_field1,
-            $tabel_e1_field2,
-            'required'
-          ); ?>
 
         </div>
 
@@ -144,39 +96,23 @@
   </div>
 </div>
 
-<!-- modal edit -->
+
 <?php foreach ($tbl_e3->result() as $tl_e3): ?>
-  <div id="ubah<?= $tl_e3->$tabel_e3_field1; ?>" class="modal fade ubah">
+
+  <!-- modal edit -->
+  <div id="ubah<?= $tl_e3->$tabel_e3_field1 ?>" class="modal fade tambah">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_e3_alias'), $tl_e3->$tabel_e3_field1) ?>
+        <?= modal_header_add(lang('change_data') . ' ' . lang('tabel_e3_alias'), $tl_e3->$tabel_e3_field1) ?>
 
         <form action="<?= site_url($language . '/' . $tabel_e3 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
+
+
             <?= input_edit('text', 'tabel_e3_field2', $tl_e3->$tabel_e3_field2, 'required') ?>
             <?= input_edit('text', 'tabel_e3_field3', $tl_e3->$tabel_e3_field3, 'required') ?>
 
-            <?= select_edit(
-              'tabel_e3_field4',
-              $tl_e3->$tabel_e3_field4,
-              $tbl_e4,
-              $tabel_e4_field1,
-              $tabel_e4_field2,
-              'required'
-            ); ?>
-
-            <?= select_edit(
-              'tabel_e3_field5',
-              $tl_e3->$tabel_e3_field5,
-              $tbl_e1,
-              $tabel_e1_field1,
-              $tabel_e1_field2,
-              'required'
-            ); ?>
-
-
-            <?= input_hidden('tabel_e3_field1', $tl_e3->$tabel_e3_field1, 'required') ?>
           </div>
 
           <!-- memunculkan notifikasi modal -->
@@ -191,19 +127,15 @@
   </div>
 
 
-
-
   <div id="lihat<?= $tl_e3->$tabel_e3_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_e3_alias'), $tl_e3->$tabel_e3_field1) ?>
+        <?= modal_header(lang('tabel_e3_alias'), $tl_e3->$tabel_e3_field1) ?>
         <form>
           <div class="modal-body">
             <?= table_data(
               row_data('tabel_e3_field2', $tl_e3->$tabel_e3_field2) .
-              row_data('tabel_e3_field3', $tl_e3->$tabel_e3_field3) .
-              row_data('tabel_e3_field4', $tl_e3->$tabel_e3_field4) .
-              row_data('tabel_e3_field5', $tl_e3->$tabel_e3_field5),
+              row_data('tabel_e3_field3', $tl_e3->$tabel_e3_field3),
               'table-light'
             ) ?>
           </div>
