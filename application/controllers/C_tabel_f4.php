@@ -107,7 +107,7 @@ class C_tabel_f4 extends Omnitags
 
 		$tabel_f4_field1 = $this->v_post['tabel_f4_field1'];
 
-		$tabel = $this->tl_f4->get_f4_by_field('tabel_f4_field1', $tabel_f4_field1)->result();
+		$tabel = $this->tl_f4->get_f4_by_f4_field1($tabel_f4_field1)->result();
 		$this->check_data($tabel);
 
 		validate_all(
@@ -138,10 +138,10 @@ class C_tabel_f4 extends Omnitags
 		$this->declarew();
 		$this->session_4();
 
-		$tabel = $this->tl_f4->get_f4_by_field('tabel_f4_field1', $tabel_f4_field1)->result();
+		$tabel = $this->tl_f4->get_f4_by_f4_field1($tabel_f4_field1)->result();
 		$this->check_data($tabel);
 
-		$aksi = $this->tl_f4->delete_f4_by_field('tabel_f4_field1', $tabel_f4_field1);
+		$aksi = $this->tl_f4->delete_f4($tabel_f4_field1);
 
 		$notif = $this->handle_4e($aksi, 'tabel_f4', $tabel_f4_field1);
 

@@ -27,7 +27,7 @@ class C_tabel_f2 extends Omnitags
 					'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 					'tbl_b5' => $this->tl_b5->get_all_b5(),
 					'tbl_b7' => $this->tl_b7->get_all_b7(),
-					'tbl_a1' => $this->tl_a1->get_a1_by_field('tabel_a1_field1', $this->tabel_a1_field1),
+					'tbl_a1' => $this->tl_a1->get_a1_by_a1_field1($this->tabel_a1_field1),
 					'tbl_e4' => $this->tl_e4->get_all_e4(),
 
 					'tabel_f2_field10_value' => $this->v_get['tabel_f2_field10'],
@@ -101,34 +101,34 @@ class C_tabel_f2 extends Omnitags
 	public function admin()
 	{
 		$this->declarew();
-		$this->page_session_3();
+		$this->page_session_4();
 
 		// nilai min dan max di sini belum ada
-		// $param1 = $this->v_get['tabel_f2_field10_filter1'];
-		// $param2 = $this->v_get['tabel_f2_field10_filter2'];
-		// $param3 = $this->v_get['tabel_f2_field11_filter1'];
-		// $param4 = $this->v_get['tabel_f2_field11_filter2'];
+		$param1 = $this->v_get['tabel_f2_field10_filter1'];
+		$param2 = $this->v_get['tabel_f2_field10_filter2'];
+		$param3 = $this->v_get['tabel_f2_field11_filter1'];
+		$param4 = $this->v_get['tabel_f2_field11_filter2'];
 
-		// $filter = $this->tl_f2->filter_with_e4($param1, $param2, $param3, $param4);
+		$filter = $this->tl_f2->filter_with_e4($param1, $param2, $param3, $param4);
 
-		// if (empty($param1)) {
-		// 	$result = $this->tl_f2->get_f2_with_e4();
-		// } else {
-		// 	$result = $filter;
-		// }
+		if (empty($param1)) {
+			$result = $this->tl_f2->get_f2_with_e4();
+		} else {
+			$result = $filter;
+		}
 
 		$data1 = array(
 			'title' => lang('tabel_f2_alias_v3_title'),
 			'konten' => $this->v3['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
-			'tbl_f2' => $this->tl_f2->get_all_f2(),
+			'tbl_f2' => $result,
 			'tbl_e3' => $this->tl_e3->get_all_e3(),
 
 			// menggunakan nilai $min dan $max sebagai bagian dari $data
-			// 'tabel_f2_field10_filter1_value' => $param1,
-			// 'tabel_f2_field10_filter2_value' => $param2,
-			// 'tabel_f2_field11_filter1_value' => $param3,
-			// 'tabel_f2_field11_filter2_value' => $param4
+			'tabel_f2_field10_filter1_value' => $param1,
+			'tabel_f2_field10_filter2_value' => $param2,
+			'tabel_f2_field11_filter1_value' => $param3,
+			'tabel_f2_field11_filter2_value' => $param4
 		);
 
 		$data = array_merge($data1, $this->package);
@@ -141,7 +141,7 @@ class C_tabel_f2 extends Omnitags
 	public function laporan()
 	{
 		$this->declarew();
-		$this->page_session_3();
+		$this->page_session_4();
 
 		$data1 = array(
 			'title' => lang('tabel_f2_alias_v4_title'),
@@ -166,7 +166,7 @@ class C_tabel_f2 extends Omnitags
             ];
             $this->page_session_check($allowed_values);
 
-		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $tabel_f2_field1);
+		$tabel = $this->tl_f2->get_f2_by_f2_field1($tabel_f2_field1);
 		$this->check_data($tabel);
 
 		$data1 = array(
@@ -239,7 +239,7 @@ class C_tabel_f2 extends Omnitags
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 
 			// mengembalikan data baris terakhir/terbaru sesuai ketentuan dalam database untuk ditampilkan
-			'tbl_f2' => $this->tl_f2->get_f2_by_field('tabel_c2_field3', $tabel_c2_field3)->last_row(),
+			'tbl_f2' => $this->tl_f2->get_f2_by_c2_field3($tabel_c2_field3)->last_row(),
 		);
 
 		$data = array_merge($data1, $this->package);
@@ -350,7 +350,7 @@ class C_tabel_f2 extends Omnitags
 
 		$tabel_f2_field1 = $this->v_post['tabel_f2_field1'];
 
-		$tabel_f2 = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $tabel_f2_field1)->result();
+		$tabel_f2 = $this->tl_f2->get_f2_by_f2_field1($tabel_f2_field1)->result();
 		$this->check_data($tabel_f2);
 
 		validate_all(
@@ -377,7 +377,7 @@ class C_tabel_f2 extends Omnitags
 		} elseif ($this->v_post['tabel_f2_field12'] == $this->aliases['tabel_f2_field12_value5']) {
 
 			// menghapus data pesanan supaya trigger tambah_kamar dapat berjalan
-			$aksi = $this->tl_f2->delete_f2_by_field('tabel_f2_field1', $tabel_f2_field1);
+			$aksi = $this->tl_f2->delete_f2($tabel_f2_field1);
 
 			// memasukkan nama resepsionis yang melakukan operasi
 			$data = array(
@@ -400,13 +400,13 @@ class C_tabel_f2 extends Omnitags
 		$this->declarew();
 		$this->session_4();
 
-		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $tabel_f2_field1)->result();
+		$tabel = $this->tl_f2->get_f2_by_f2_field1($tabel_f2_field1)->result();
 		$this->check_data($tabel);
 
 		$tabel_f2_field1 = $this->v_post['tabel_f2_field1'];
 		$status = $this->v_post['tabel_f2_field12'];
 
-		$hapus = $this->tl_f2->delete_f2_by_field('tabel_f2_field1', $tabel_f2_field1);
+		$hapus = $this->tl_f2->delete_f2($tabel_f2_field1);
 
 		// memasukkan nama resepsionis yang melakukan operasi
 		$data = array(
@@ -435,7 +435,7 @@ class C_tabel_f2 extends Omnitags
 
 		$tabel_f2_field1 = $this->v_post['tabel_f2_field1'];
 
-		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $tabel_f2_field1)->result();
+		$tabel = $this->tl_f2->get_f2_by_f2_field1($tabel_f2_field1)->result();
 		$this->check_data($tabel);
 
 		validate_all(

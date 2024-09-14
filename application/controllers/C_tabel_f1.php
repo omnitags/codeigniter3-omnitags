@@ -126,7 +126,7 @@ class C_tabel_f1 extends Omnitags
             ];
             $this->page_session_check($allowed_values);
 
-		$tabel = $this->tl_f1->get_f1_by_field('tabel_f1_field1', $tabel_f1_field1);
+		$tabel = $this->tl_f1->get_f1_by_f1_field1($tabel_f1_field1);
 		$this->check_data($tabel);
 
 		$data1 = array(
