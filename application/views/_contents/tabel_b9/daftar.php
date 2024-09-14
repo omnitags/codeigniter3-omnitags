@@ -22,17 +22,9 @@
 
 
 <div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_b9->result())) { ?>
-    <div class="col-md-12">
-      <div class="text-center">
-        <?php foreach ($no_data->result() as $nd): ?>
-          <img src="img/<?= $tabel_b1 ?>/<?= $nd->$tabel_b1_field4 ?>" width="200" alt="Image">
-        <?php endforeach ?>
-        <h3>NO DATA</h3>
-      </div>
-    </div>
-
-  <?php } else {
+  <?php if (empty($tbl_b9->result())) {
+    load_view('_partials/no_data');
+  } else {
     foreach ($tbl_b9->result() as $tl_b9):
       if ($tl_b9->$tabel_b9_field6 == NULL) {
         echo card_regular(
