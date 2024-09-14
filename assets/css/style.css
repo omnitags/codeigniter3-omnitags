@@ -1,0 +1,211 @@
+@font-face {
+	font-family: Poppy;
+	src: url(../font/Poppins-Medium.ttf);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	font-family: Poppy;
+	height: 100%;
+}
+
+#konten {
+	min-height: 100%;
+}
+
+.konten {
+	margin-top: 100px;
+}
+
+div.logpage {
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	background-color: white;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+.img-fluid {
+	width: 100%;
+	height: 300px;
+	object-fit: cover;
+}
+
+.input-group {
+	margin: 20px 0;
+}
+
+.btn.login {
+	margin-top: 20px;
+	width: 48%;
+}
+
+.tabel_e2 {
+	margin-bottom: 40px;
+}
+
+.pengaturan {
+	width: 90%;
+}
+
+#notif {
+	height: 50px;
+}
+
+hr {
+	margin-top: -2px;
+}
+
+.card.radio {
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	text-align: center;
+}
+
+.form-check {
+	margin-bottom: 0px;
+}
+
+.checkbox-option {
+	/* Adjust this selector to target your specific checkbox class */
+	width: 30px; /* Adjust width as desired */
+	height: 30px; /* Adjust height as desired */
+}
+
+.toast {
+	position: absolute;
+	top: 80;
+	right: 15;
+	z-index: 1000;
+}
+
+.container-fluid.bg-light.border {
+	bottom: 0;
+	margin-top: 20px;
+}
+
+.checkpass {
+	font-size: 12px;
+}
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+	display: none;
+	background: #f1f1f1;
+	color: #000;
+	position: relative;
+	padding: 20px;
+	margin-top: 10px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+	color: green;
+}
+
+.valid:before {
+	position: relative;
+	left: -3px;
+	content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+	color: red;
+}
+
+.invalid:before {
+	position: relative;
+	left: -3px;
+	content: "✖";
+}
+
+.truncate {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.list-group-item:hover,
+.list-group-item:focus {
+	color: #16181b;
+	text-decoration: none;
+	background-color: #e9ecef;
+}
+
+.list-group-item.active,
+.list-group-item:active {
+	color: #fff;
+	text-decoration: none;
+	background-color: #007bff;
+}
+
+.list-group-item.disabled,
+.list-group-item:disabled {
+	color: #adb5bd;
+	pointer-events: none;
+	background-color: transparent;
+}
+
+.small {
+	font-size: 11px;
+}
+
+/* Define styles for the responsive image */
+.responsive-image {
+	display: block; /* Ensure the image behaves as a block element */
+	max-width: 100%; /* Limit image width to its container */
+	height: auto; /* Maintain image aspect ratio */
+	margin: 0 auto; /* Center the image horizontally */
+}
+
+/* Media query for screens smaller than 768px (typical mobile devices) */
+@media (max-width: 768px) {
+	.responsive-image {
+		width: 100%; /* Make image width 100% on mobile devices */
+	}
+}
+
+/* Media query for screens larger than 768px (desktop screens) */
+@media (min-width: 769px) {
+	.responsive-image {
+		width: 50%; /* Keep image width at 50% on desktop screens */
+	}
+}
+
+li.sidebar-item:nth-child(5) {
+	width: 100%;
+	position: absolute;
+	bottom: 7.5vh;
+}
+
+a.sidebar-link.logout {
+	border: 1px solid #686868;
+	border-radius: 10px;
+}
+
+/* input[type='date'] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+  }
+  
+  input[type='date'],
+  input[type='date']:focus {
+	border: none;
+	box-shadow: none;
+  }
+  
+  input[type='date']::-webkit-calendar-picker-indicator {
+	opacity: 0;
+  }
+  
+  input[type='date']::placeholder {
+	display: none;
+  } */
