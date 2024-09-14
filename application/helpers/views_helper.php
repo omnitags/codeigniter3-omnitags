@@ -90,7 +90,7 @@ if (!function_exists('set_security_headers')) {
             "X-Frame-Options: SAMEORIGIN",
             "X-Content-Type-Options: nosniff",
             "Referrer-Policy: strict-origin-when-cross-origin",
-            "Permissions-Policy: geolocation=(self 'http://localhost/college/college')"
+            "Permissions-Policy: geolocation=(self 'http://localhost/me/omnitags')"
         ];
 
         foreach ($headers as $header) {
