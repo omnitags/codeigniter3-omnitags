@@ -60,7 +60,7 @@ class C_tabel_e4 extends Omnitags
 			'title' => lang('tabel_e4_alias_v3_title'),
 			'konten' => $this->v3['tabel_e4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e4']),
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			'tbl_e4' => firebase_get_data($this->fb_api1, $this->aliases['tabel_e4']),
 		);
 
 		$data = array_merge($data1, $this->package);
@@ -79,7 +79,7 @@ class C_tabel_e4 extends Omnitags
 			'title' => lang('tabel_e4_alias_v4_title'),
 			'konten' => $this->v4['tabel_e4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e4']),
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			'tbl_e4' => firebase_get_data($this->fb_api1, $this->aliases['tabel_e4']),
 		);
 
 		$data = array_merge($data1, $this->package);
@@ -112,38 +112,56 @@ class C_tabel_e4 extends Omnitags
 		);
 
 		$new_name = $this->v_post['tabel_e4_field2'];
-			$path = $this->v_upload_path['tabel_e4'];
+		$path = $this->v_upload_path['tabel_e4'];
 
-			$config['upload_path'] = $path;
-			$config['allowed_types'] = $this->file_type1;
-			$config['file_name'] = $new_name;
-			$config['overwrite'] = TRUE;
-			$config['remove_spaces'] = TRUE;
+		$config['upload_path'] = $path;
+		$config['allowed_types'] = $this->file_type1;
+		$config['file_name'] = $new_name;
+		$config['overwrite'] = TRUE;
+		$config['remove_spaces'] = TRUE;
 
-			$this->load->library('upload', $config);
-			$upload = $this->upload->do_upload($this->v_input['tabel_e4_field3_input']);
+		$this->load->library('upload', $config);
+		$upload = $this->upload->do_upload($this->v_input['tabel_e4_field3_input']);
 
-			if (!$upload) {
-				// Di sini seharusnya ada notifikasi modal kalau upload tidak berhasil
-				// Tapi karena formnya sudah required saya rasa tidak perlu
-				set_flashdata($this->views['flash2'], $this->flash_msg2['tabel_e4_field3_alias']);
-				set_flashdata('modal', $this->views['flash2_func1']);
-				redirect($_SERVER['HTTP_REFERER']);
+		if (!$upload) {
+			// If upload fails, redirect or handle error
+			set_flashdata($this->views['flash2'], $this->flash_msg2['tabel_e4_field3_alias']);
+			set_flashdata('modal', $this->views['flash2_func1']);
+			redirect($_SERVER['HTTP_REFERER']);
+		} else {
+			// Get upload data
+			$upload = $this->upload->data();
+			$gambar = $upload['file_name'];  // File name on the server
+
+			// Full file path on the server
+			$file_path = $upload['full_path'];
+
+			// Firebase storage path (where to upload the file)
+			$storagePath = 'uploaded_files/' . $gambar;
+
+			// Call the Firebase upload function
+			$firebase_download_url = firebase_upload_file($this->fb_bucket1, $storagePath, $file_path);
+
+			if ($firebase_download_url) {
+				// Success: File uploaded to Firebase Storage, use download URL
+				$gambar = $firebase_download_url;
 			} else {
-				// Di bawah ini adalah method untuk mengambil informasi dari hasil upload data
-				$upload = $this->upload->data();
-				$gambar = $upload['file_name'];
+				// Handle error if Firebase upload fails
+				set_flashdata('error', 'Failed to upload to Firebase');
+				redirect($_SERVER['HTTP_REFERER']);
 			}
-
-		$code = $this->add_code('tabel_e4', $this->aliases['tabel_e4_field1'], 5, '04');
+		}
 
 		$data = array(
-			$this->aliases['tabel_e4_field1'] => $code,
 			$this->aliases['tabel_e4_field2'] => $this->v_post['tabel_e4_field2'],
-			$this->aliases['tabel_e4_field3'] => $gambar,
+			$this->aliases['tabel_e4_field3'] => $gambar,  // Store Firebase URL or handle null
 		);
 
-		$aksi = $this->tl_e4->insert_e4($data);
+		// Proceed with saving data to the database
+
+
+		// $aksi = $this->tl_e4->insert_e4($data);
+		$aksi = firebase_create_data($this->fb_api1, $this->aliases['tabel_e4'], $data);
 
 		$notif = $this->handle_4b($aksi, 'tabel_e4');
 
@@ -164,7 +182,7 @@ class C_tabel_e4 extends Omnitags
 
 		$tabel_e4_field1 = $this->v_post['tabel_e4_field1'];
 
-		$tabel_e4 = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
+		$tabel_e4 = firebase_get_data($this->fb_api1, $this->aliases['tabel_e4'] . '/' . $tabel_e4_field1);
 		$this->check_data($tabel_e4);
 
 		validate_all(
@@ -192,12 +210,30 @@ class C_tabel_e4 extends Omnitags
 			$upload = $this->upload->data();
 			$gambar = $upload['file_name'];
 		} else {
-			$table = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
+			$table = firebase_get_data($this->fb_api1, $this->aliases['tabel_e4'] . '/' . $tabel_e4_field1);
 			$tabel_e4_field3 = $table[0]->img;
 			unlink($this->v_upload_path['tabel_e4'] . $tabel_e4_field3);
 
 			$upload = $this->upload->data();
 			$gambar = $upload['file_name'];
+			
+			// Full file path on the server
+			$file_path = $upload['full_path'];
+
+			// Firebase storage path (where to upload the file)
+			$storagePath = 'uploaded_files/' . $gambar;
+
+			// Call the Firebase upload function
+			$firebase_download_url = firebase_upload_file($storagePath, $file_path);
+
+			if ($firebase_download_url) {
+				// Success: File uploaded to Firebase Storage, use download URL
+				$gambar = $firebase_download_url;
+			} else {
+				// Handle error if Firebase upload fails
+				set_flashdata('error', 'Failed to upload to Firebase');
+				redirect($_SERVER['HTTP_REFERER']);
+			}
 		}
 
 		$data = array(
@@ -205,23 +241,26 @@ class C_tabel_e4 extends Omnitags
 			$this->aliases['tabel_e4_field3'] => $gambar,
 		);
 
-		$aksi = $this->tl_e4->update_e4($data, $tabel_e4_field1);
-
+		// $aksi = $this->tl_e4->update_e4($data, $tabel_e4_field1);
+		$aksi = firebase_update_data($this->fb_api1, $this->aliases['tabel_e4'] . '/' . $this->v_post['tabel_e4_field1'], $data);
+		
 		$notif = $this->handle_4c($aksi, 'tabel_e4', $tabel_e4_field1);
-
+		
 		redirect($_SERVER['HTTP_REFERER']);
 	}
-
+	
 	// Delete data
 	public function delete($tabel_e4_field1 = null)
 	{
 		$this->declarew();
 		$this->session_3();
-
-		$tabel_e4 = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
+		
+		// $tabel_e4 = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
+		$tabel_e4 = firebase_get_data($this->fb_api1, $this->aliases['tabel_e4'] . '/' . $tabel_e4_field1);
 		$this->check_data($tabel_e4);
-
-		$aksi = $this->tl_e4->delete_e4_by_field('tabel_e4_field1', $tabel_e4_field1);
+		
+		// $aksi = $this->tl_e4->delete_e4_by_field('tabel_e4_field1', $tabel_e4_field1);
+		$aksi = firebase_delete_data($this->fb_api1, $this->aliases['tabel_e4'] . '/' . $this->v_post['tabel_e4_field1']);
 
 		$notif = $this->handle_4e($aksi, 'tabel_e4', $tabel_e4_field1);
 

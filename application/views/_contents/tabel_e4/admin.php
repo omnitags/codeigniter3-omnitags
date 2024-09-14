@@ -1,6 +1,6 @@
 <div class="row mb-2 align-items-center">
   <div class="col-md-9 d-flex align-items-center">
-    <h1><?= $title ?><?= count_data($tbl_e4) ?><?= $phase ?></h1>
+    <h1><?= $title ?> <?= count_data_fb($tbl_e4) ?><?= $phase ?></h1>
 
   </div>
   <div class="col-md-3 text-right">
@@ -29,28 +29,20 @@
 
 
 <div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_e4->result())) { ?>
-    <div class="col-md-12">
-      <div class="text-center">
-        <?php foreach ($no_data->result() as $nd): ?>
-          <img src="img/<?= $tabel_b1 ?>/<?= $nd->$tabel_b1_field4 ?>" width="200" alt="Image">
-        <?php endforeach ?>
-        <h3>NO DATA</h3>
-      </div>
-    </div>
-
-  <?php } else {
-    foreach ($tbl_e4->result() as $tl_e4):
+  <?php if (empty($tbl_e4)) {
+    load_view('_partials/no_data');
+  } else {
+    foreach ($tbl_e4 as $id_e4 => $tl_e4):
       echo card_file(
-        $tl_e4->$tabel_e4_field1,
-        $tabel_e4_field1_alias . ": " . $tl_e4->$tabel_e4_field1,
-        $tl_e4->$tabel_e4_field2,
-        btn_lihat($tl_e4->$tabel_e4_field1) . ' ' .
-        btn_edit($tl_e4->$tabel_e4_field1),
+        $id_e4,
+        $tabel_e4_field1_alias . ": " . $id_e4,
+        $tl_e4[$tabel_e4_field2],
+        btn_lihat($id_e4) . ' ' .
+        btn_edit($id_e4),
         'text-white bg-danger',
         'col-md-3',
         $tabel_e4,
-        $tl_e4->$tabel_e4_field3
+        $tl_e4[$tabel_e4_field3]
       );
     endforeach;
   } ?>
@@ -70,39 +62,42 @@
     </thead>
 
     <tbody>
-      <?php foreach ($tbl_e4->result() as $tl_e4): ?>
-        <tr>
-          <td></td>
-          <td><?= $tl_e4->$tabel_e4_field1; ?></td>
-          <td><?= $tl_e4->$tabel_e4_field2 ?></td>
-          <td><?= $tl_e4->$tabel_e4_field3 ?></td>
-          <td>
-            <?= btn_lihat($tl_e4->$tabel_e4_field1) ?>
-            <?= btn_edit($tl_e4->$tabel_e4_field1) ?>
+      <?php if (!empty($tbl_e4)) {
+        foreach ($tbl_e4 as $id_e4 => $tl_e4): ?>
+          <tr>
+            <td></td>
+            <td><?= $id_e4; ?></td>
+            <td><?= $tl_e4[$tabel_e4_field2] ?></td>
+            <td><img src="img/<?= $tabel_e4 ?>/<?= $tl_e4[$tabel_e4_field3] ?>" width="100"></td>
+            <td>
+              <?= btn_lihat($id_e4) ?>
+              <?= btn_edit($id_e4) ?>
 
-            <!-- Sebelumnya saya sudah membahas ini di v_admin_spp
+              <!-- Sebelumnya saya sudah membahas ini di v_admin_spp
           Saya akan mempending fitur ini dengan alasan yang sama dalam waktu yang belum ditentukan -->
-            <!-- <a class="btn btn-light text-danger" onclick="return confirm('Hapus user?')" href="< site_url($tabel_c2 . '/hapus/' . $tl_e4->$tabel_e4_field1) ?>">
+              <!-- <a class="btn btn-light text-danger" onclick="return confirm('Hapus user?')" href="< site_url($tabel_c2 . '/hapus/' . $tl_e4->$tabel_e4_field1) ?>">
             <i class="fas fa-trash"></i></a> -->
 
-          </td>
-        </tr>
-      <?php endforeach; ?>
+            </td>
+          </tr>
+        <?php endforeach;
+      } ?>
     </tbody>
 
   </table>
 </div>
-
 
 <!-- modal tambah -->
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog">
     <div class="modal-content">
       <?= modal_header(lang('add') . ' ' . lang('tabel_e4_alias'), '') ?>
-      <form action="<?= site_url($language . '/' . $tabel_e4 . '/tambah') ?>" method="post" enctype="multipart/form-data">
+      <form action="<?= site_url($language . '/' . $tabel_e4 . '/tambah') ?>" method="post"
+        enctype="multipart/form-data">
         <div class="modal-body">
           <?= input_add('text', 'tabel_e4_field2', 'required') ?>
           <?= add_file('tabel_e4_field3', 'required') ?>
+
         </div>
         <!-- memunculkan notifikasi modal -->
         <p class="small text-center text-danger"><?= get_flashdata('pesan_tambah') ?></p>
@@ -115,60 +110,63 @@
 </div>
 
 <!-- modal edit -->
-<?php foreach ($tbl_e4->result() as $tl_e4): ?>
-  <div id="ubah<?= $tl_e4->$tabel_e4_field1; ?>" class="modal fade ubah">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_e4_alias'), $tl_e4->$tabel_e4_field1) ?>
+<?php if (!empty($tbl_e4)) {
+  foreach ($tbl_e4 as $id_e4 => $tl_e4): ?>
+    <div id="ubah<?= $id_e4; ?>" class="modal fade ubah">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_e4_alias'), $id_e4) ?>
 
-        <!-- administrator tidak dapat mengubah password akun lain -->
-        <form action="<?= site_url($language . '/' . $tabel_e4 . '/update') ?>" method="post"
-          enctype="multipart/form-data">
-          <div class="modal-body">
-            <?= input_hidden('tabel_e4_field1', $tl_e4->$tabel_e4_field1, 'required') ?>
-            <?= input_edit('text', 'tabel_e4_field2', $tl_e4->$tabel_e4_field2, 'required') ?>
-            <?= edit_file($tabel_e4, 'tabel_e4_field3', $tl_e4->$tabel_e4_field3, 'required') ?>
-          </div>
+          <!-- administrator tidak dapat mengubah password akun lain -->
+          <form action="<?= site_url($language . '/' . $tabel_e4 . '/update') ?>" method="post"
+            enctype="multipart/form-data">
+            <div class="modal-body">
+              <?= input_hidden('tabel_e4_field1', $id_e4, 'required') ?>
+              <?= input_edit('text', 'tabel_e4_field2', $tl_e4[$tabel_e4_field2], 'required') ?>
+              <?= edit_file($tabel_e4, 'tabel_e4_field3', $tl_e4[$tabel_e4_field3], '') ?>
 
-          <!-- memunculkan notifikasi modal -->
-          <p class="small text-center text-danger"><?= get_flashdata('pesan_ubah') ?></p>
+            </div>
 
-          <div class="modal-footer">
-            <?= btn_update() ?>
-          </div>
-        </form>
+            <!-- memunculkan notifikasi modal -->
+            <p class="small text-center text-danger"><?= get_flashdata('pesan_ubah') ?></p>
+
+            <div class="modal-footer">
+              <?= btn_update() ?>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
 
 
-  <div id="lihat<?= $tl_e4->$tabel_e4_field1; ?>" class="modal fade lihat" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <?= modal_header_id(lang('tabel_e4_alias'), $tl_e4->$tabel_e4_field1) ?>
+    <div id="lihat<?= $id_e4; ?>" class="modal fade lihat" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <?= modal_header_id(lang('tabel_e4_alias'), $id_e4) ?>
 
-        <!-- administrator tidak bisa melihat password user lain -->
-        <form>
-          <div class="modal-body">
-            <?= table_data(
-              row_data('tabel_e4_field2', $tl_e4->$tabel_e4_field2) . 
-              row_file($tabel_e4, 'tabel_e4_field3', $tl_e4->$tabel_e4_field3),
-              'table-light'
-            ) ?>
+          <!-- administrator tidak bisa melihat password user lain -->
+          <form>
+            <div class="modal-body">
+              <?= table_data(
+                row_data('tabel_e4_field2', $tl_e4[$tabel_e4_field2]) .
+                row_file($tabel_e4, 'tabel_e4_field3', $tl_e4[$tabel_e4_field3]),
+                'table-light'
+              ) ?>
 
-          </div>
+            </div>
 
-          <!-- memunculkan notifikasi modal -->
-          <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
+            <!-- memunculkan notifikasi modal -->
+            <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
-          <div class="modal-footer">
-            <?= btn_tutup() ?>
-          </div>
-        </form>
+            <div class="modal-footer">
+              <?= btn_tutup() ?>
+            </div>
+          </form>
 
+        </div>
       </div>
     </div>
-  </div>
-<?php endforeach; ?>
+  <?php endforeach;
+} ?>
 
 <?= adjust_col_js() ?>

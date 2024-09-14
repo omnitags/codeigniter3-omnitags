@@ -109,6 +109,36 @@
 </div>
 
 
+<div id="table-view" class="table-responsive data-view"">
+  <table class="table table-light" id="data">
+    <thead class="thead-light">
+      <tr>
+        <th><?= lang('no') ?></th>
+        <th>Course</th>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Turl</th>
+        <th><?= lang('action') ?></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <?php foreach ($stuff as $id => $stf): ?>
+        <tr>
+          <td><?= $id ?></td>
+          <td><?= $stf['course']; ?></td>
+          <td><?= $stf['email']; ?></td>
+          <td><?= $stf['name']; ?></td>
+          <td><?= $stf['turl']; ?></td>
+          <td>
+            <?= btn_lihat($id) ?>
+            <?= btn_edit($id) ?>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+</div>
+
 <!-- modal tambah -->
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog">

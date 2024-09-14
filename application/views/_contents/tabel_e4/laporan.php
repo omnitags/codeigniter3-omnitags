@@ -7,14 +7,16 @@
     </tr>
     </tr>
   </thead>
-  <tbody>
-    <?php foreach ($tbl_e4->result() as $tl_e4): ?>
-      <tr>
-        <td width=""><?= $tl_e4->$tabel_e4_field1; ?></td>
-        <td width=""><?= $tl_e4->$tabel_e4_field2 ?></td>
-        <td width=""><img src="img/<?= htmlspecialchars($tabel_e4) ?>/<?= htmlspecialchars($tl_e4->$tabel_e4_field3) ?>"
-        width="100"></td>
-      </tr>
-    <?php endforeach ?>
-  </tbody>
+  <?php if (empty($tbl_e4)) {
+  } else {
+    foreach ($tbl_e4 as $id_e4 => $tl_e4): ?>
+      <tbody>
+        <tr>
+          <td width=""><?= $id_e4; ?></td>
+          <td width=""><?= $tl_e4[$tabel_e4_field2] ?></td>
+          <td width=""><?= $tl_e4[$tabel_e4_field3] ?></td>
+        </tr>
+      </tbody>
+    <?php endforeach;
+  } ?>
 </table>

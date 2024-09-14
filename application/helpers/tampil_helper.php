@@ -13,6 +13,18 @@ if (!function_exists('count_data')) {
     }
 }
 
+// Counts the number of rows in a given table
+if (!function_exists('count_data_fb')) {
+    function count_data_fb($table)
+    {
+        $table = count((array) $table);
+
+        return <<<HTML
+        <br><span class="h6"> Data: {$table}
+        HTML;
+    }
+}
+
 // Generates an HTML table with a given theme and data
 if (!function_exists('table_data')) {
     function table_data($data, $theme)
@@ -53,6 +65,23 @@ if (!function_exists('row_file')) {
     {
         $alias = lang($field . '_alias');
         $img = tampil_image($tabel_class, $value, $alias);
+
+        return <<<HTML
+        <tr>
+              <td width="40%" class="table-active">{$alias}</td>
+              <td width="">
+                {$img}
+            </tr>
+        HTML;
+    }
+}
+
+// Generates a table row with a field alias and an image
+if (!function_exists('row_file_fb')) {
+    function row_file_fb($field, $value)
+    {
+        $alias = lang($field . '_alias');
+        $img = tampil_image_fb($value, $alias);
 
         return <<<HTML
         <tr>
@@ -117,6 +146,24 @@ if (!function_exists('tampil_image')) {
         <img style="max-height: 125px" role="button" data-toggle="tooltip" data-placement="right" 
             class="img-thumbnail img-fluid" src="img/{$tabel_class}/{$value}" 
             title="<img class='img-thumbnail' src='img/{$tabel_class}/{$value}' />
+            <br>{$konten}">
+        HTML;
+    }
+}
+
+// Generates an image with a tooltip
+if (!function_exists('tampil_image_fb')) {
+    function tampil_image_fb($value, $konten)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+        return <<<HTML
+        <img style="max-height: 125px" role="button" data-toggle="tooltip" data-placement="right" 
+            class="img-thumbnail img-fluid" src="{$value}" 
+            title="<img class='img-thumbnail' src='{$value}' />
             <br>{$konten}">
         HTML;
     }

@@ -16,11 +16,11 @@ class C_tabel_e6 extends Omnitags
 			'title' => lang('tabel_e6_alias_v1_title'),
 			'konten' => $this->v1['tabel_e6'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e6']),
-			'tbl_e6' => $this->tl_e6->get_all_e6(),
+			'tbl_e6' => firebase_get_data($$this->aliases['tabel_e6']),
 		);
-		
+
 		$data = array_merge($data1, $this->package);
-		
+
 		set_userdata('previous_url', current_url());
 		load_view_data('_layouts/template', $data);
 	}
@@ -32,14 +32,14 @@ class C_tabel_e6 extends Omnitags
 	{
 		$this->declarew();
 		$this->page_session_3();
-		
+
 		$data1 = array(
 			'title' => lang('tabel_e6_alias_v3_title'),
 			'konten' => $this->v3['tabel_e6'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e6']),
-			'tbl_e6' => $this->tl_e6->get_all_e6(),
-			'tbl_e7' => $this->tl_e7->get_all_e7(),
-			'tbl_c1' => $this->tl_c1->get_all_c1(),
+			'tbl_e6' => firebase_get_data($this->aliases['tabel_e6']),
+			'tbl_e7' => firebase_get_data($this->aliases['tabel_e7']),
+			'tbl_e1' => firebase_get_data($this->aliases['tabel_e1']),
 		);
 
 		$data = array_merge($data1, $this->package);

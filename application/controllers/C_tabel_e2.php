@@ -73,7 +73,7 @@ class C_tabel_e2 extends Omnitags
 			'tbl_e2' => $result,
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
 			'tabel_e2_field3_value' => $param1,
-			'stuff' => firebase_get_data('/teachers')
+			'stuff' => firebase_get_data('teachers')
 		);
 		
 		$data = array_merge($data1, $this->package);

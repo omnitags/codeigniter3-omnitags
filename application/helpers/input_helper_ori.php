@@ -222,7 +222,7 @@ if (!function_exists('add_confirm')) {
 }
 
 if (!function_exists('select_add')) {
-    function select_add($field, $tbl, $target_name, $required)
+    function select_add($field, $tbl, $target_id, $target_name, $required)
     {
         // Get CodeIgniter instance
         $CI =& get_instance();
@@ -239,9 +239,9 @@ if (!function_exists('select_add')) {
         HTML;
 
         // Loop through the results to generate options
-        foreach ($tbl as $tbl_id => $obj) {
-            $value = $tbl_id;
-            $label = $tbl_id . ' - ' . $obj[$target_name];
+        foreach ($tbl->result() as $obj) {
+            $value = $obj->$target_id;
+            $label = $obj->$target_id . ' - ' . $obj->$target_name;
             $select_html .= <<<HTML
                 <option value="{$value}">{$label}</option>
         HTML;

@@ -1,6 +1,6 @@
 <div class="row mb-2 align-items-center">
   <div class="col-md-9 d-flex align-items-center">
-    <h1><?= $title ?> <?= count((array) $tbl_e6) ?><?= $phase ?></h1>
+    <h1><?= $title ?><?= count_data($tbl_e4) ?><?= $phase ?></h1>
 
   </div>
   <div class="col-md-3 text-right">
@@ -15,7 +15,7 @@
 <div class="row">
   <div class="col-md-10">
     <?= btn_tambah() ?>
-    <?= btn_laporan('tabel_e6') ?>
+    <?= btn_laporan('tabel_e4') ?>
     <!-- <button class="btn btn-info   b-4" type="button" data-toggle="modal" data-target="#import">+ Import</button>
     <button type="button" class="btn btn-info mb-4" id="export-btn" target="_blank">
       <i class="fas fa-print"></i> Cetak Excel</button> -->
@@ -29,7 +29,7 @@
 
 
 <div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_e6)) { ?>
+  <?php if (empty($tbl_e4->result())) { ?>
     <div class="col-md-12">
       <div class="text-center">
         <?php foreach ($no_data->result() as $nd): ?>
@@ -40,16 +40,17 @@
     </div>
 
   <?php } else {
-    foreach ($tbl_e6 as $id_e6 => $tl_e6):
-      echo card_regular(
-        $id_e6,
-        $tabel_e6_field1_alias . ": ". $id_e6,
-        $tl_e6[$tabel_e6_field2],
-        btn_lihat($id_e6) . ' ' .
-        btn_edit($id_e6),
+    foreach ($tbl_e4->result() as $tl_e4):
+      echo card_file(
+        $tl_e4->$tabel_e4_field1,
+        $tabel_e4_field1_alias . ": " . $tl_e4->$tabel_e4_field1,
+        $tl_e4->$tabel_e4_field2,
+        btn_lihat($tl_e4->$tabel_e4_field1) . ' ' .
+        btn_edit($tl_e4->$tabel_e4_field1),
         'text-white bg-danger',
         'col-md-3',
-        $tabel_e6,
+        $tabel_e4,
+        $tl_e4->$tabel_e4_field3
       );
     endforeach;
   } ?>
@@ -61,25 +62,27 @@
     <thead class="thead-light">
       <tr>
         <th><?= lang('no') ?></th>
-        <th><?= lang('tabel_e6_field1_alias') ?></th>
-        <th><?= lang('tabel_e6_field2_alias') ?></th>
+        <th><?= lang('tabel_e4_field1_alias') ?></th>
+        <th><?= lang('tabel_e4_field2_alias') ?></th>
+        <th><?= lang('tabel_e4_field3_alias') ?></th>
         <th><?= lang('action') ?></th>
       </tr>
     </thead>
 
     <tbody>
-      <?php foreach ($tbl_e6 as $id_e6 => $tl_e6): ?>
+      <?php foreach ($tbl_e4->result() as $tl_e4): ?>
         <tr>
           <td></td>
-          <td><?= $id_e6; ?></td>
-          <td><?= $tl_e6[$tabel_e6_field2] ?></td>
+          <td><?= $tl_e4->$tabel_e4_field1; ?></td>
+          <td><?= $tl_e4->$tabel_e4_field2 ?></td>
+          <td><?= $tl_e4->$tabel_e4_field3 ?></td>
           <td>
-            <?= btn_lihat($id_e6) ?>
-            <?= btn_edit($id_e6) ?>
+            <?= btn_lihat($tl_e4->$tabel_e4_field1) ?>
+            <?= btn_edit($tl_e4->$tabel_e4_field1) ?>
 
             <!-- Sebelumnya saya sudah membahas ini di v_admin_spp
           Saya akan mempending fitur ini dengan alasan yang sama dalam waktu yang belum ditentukan -->
-            <!-- <a class="btn btn-light text-danger" onclick="return confirm('Hapus user?')" href="< site_url($tabel_c2 . '/hapus/' . $tl_e6->$tabel_e6_field1) ?>">
+            <!-- <a class="btn btn-light text-danger" onclick="return confirm('Hapus user?')" href="< site_url($tabel_c2 . '/hapus/' . $tl_e4->$tabel_e4_field1) ?>">
             <i class="fas fa-trash"></i></a> -->
 
           </td>
@@ -90,33 +93,16 @@
   </table>
 </div>
 
+
 <!-- modal tambah -->
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog">
     <div class="modal-content">
-      <?= modal_header(lang('add') . ' ' . lang('tabel_e6_alias'), '') ?>
-      <form action="<?= site_url($language . '/' . $tabel_e6 . '/tambah') ?>" method="post">
+      <?= modal_header(lang('add') . ' ' . lang('tabel_e4_alias'), '') ?>
+      <form action="<?= site_url($language . '/' . $tabel_e4 . '/tambah') ?>" method="post" enctype="multipart/form-data">
         <div class="modal-body">
-          <?= select_add(
-            'tabel_e6_field2',
-            $tbl_e7,
-            $tabel_e7_field2,
-            'required'
-          ); ?>
-
-          <?= input_add('text', 'tabel_e6_field3', 'required') ?>
-          <?= add_min_max('date', 'tabel_e6_field4', 'required', '', '') ?>
-          <?= add_min_max('date', 'tabel_e6_field5', 'required', '', '') ?>
-          <?= input_ckeditor('tabel_e6_field6', '', 'required') ?>
-          <?= add_file('tabel_e6_field7', 'required') ?>
-
-          <?= select_add(
-            'tabel_e6_field8',
-            $tbl_c1,
-            $tabel_c1_field2,
-            'required'
-          ); ?>
-
+          <?= input_add('text', 'tabel_e4_field2', 'required') ?>
+          <?= add_file('tabel_e4_field3', 'required') ?>
         </div>
         <!-- memunculkan notifikasi modal -->
         <p class="small text-center text-danger"><?= get_flashdata('pesan_tambah') ?></p>
@@ -129,18 +115,19 @@
 </div>
 
 <!-- modal edit -->
-<?php foreach ($tbl_e6 as $id_e6 => $tl_e6): ?>
-  <div id="ubah<?= $id_e6; ?>" class="modal fade ubah">
+<?php foreach ($tbl_e4->result() as $tl_e4): ?>
+  <div id="ubah<?= $tl_e4->$tabel_e4_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_e6_alias'), $id_e6) ?>
+        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_e4_alias'), $tl_e4->$tabel_e4_field1) ?>
 
         <!-- administrator tidak dapat mengubah password akun lain -->
-        <form action="<?= site_url($language . '/' . $tabel_e6 . '/update') ?>" method="post"
+        <form action="<?= site_url($language . '/' . $tabel_e4 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
-            <?= input_hidden('tabel_e6_field1', $id_e6, 'required') ?>
-            <?= input_edit('text', 'tabel_e6_field2', $tl_e6[$tabel_e6_field2], 'required') ?>
+            <?= input_hidden('tabel_e4_field1', $tl_e4->$tabel_e4_field1, 'required') ?>
+            <?= input_edit('text', 'tabel_e4_field2', $tl_e4->$tabel_e4_field2, 'required') ?>
+            <?= edit_file($tabel_e4, 'tabel_e4_field3', $tl_e4->$tabel_e4_field3, 'required') ?>
           </div>
 
           <!-- memunculkan notifikasi modal -->
@@ -155,16 +142,17 @@
   </div>
 
 
-  <div id="lihat<?= $id_e6; ?>" class="modal fade lihat" role="dialog">
+  <div id="lihat<?= $tl_e4->$tabel_e4_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_e6_alias'), $id_e6) ?>
+        <?= modal_header_id(lang('tabel_e4_alias'), $tl_e4->$tabel_e4_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>
           <div class="modal-body">
             <?= table_data(
-              row_data('tabel_e6_field2', $tl_e6[$tabel_e6_field2]),
+              row_data('tabel_e4_field2', $tl_e4->$tabel_e4_field2) . 
+              row_file($tabel_e4, 'tabel_e4_field3', $tl_e4->$tabel_e4_field3),
               'table-light'
             ) ?>
 
