@@ -7,7 +7,6 @@
                     href="<?= site_url($language . '/') ?>"><?= lang('home') ?></a>
             </li>
             <?= nav_item(lang('tabel_e4_alias'), $tabel_e4, '/') ?>
-            <?= nav_item(lang('tabel_b10_alias'), $tabel_b10, '/') ?>
             <!-- ?= nav_item(lang('tabel_e2_alias'), $tabel_e2, '/') ?> -->
             <?= nav_item(lang('login'), 'login', '') ?>
             <?php break;
@@ -40,19 +39,13 @@
                                     case $tabel_c2_field6_value3:
                                         ?>
                                         <h6 class="dropdown-header"><?= lang('data') ?></h6>
-                                        <?= dropdown_menu('tabel_e2', '/admin') ?>
+                                        <!-- ?= dropdown_menu('tabel_e1', '/admin') ?> -->
+                                        <!-- ?= dropdown_menu('tabel_e2', '/admin') ?> -->
                                         <?= dropdown_menu('tabel_e3', '/admin') ?>
                                         <?= dropdown_menu('tabel_e4', '/admin') ?>
                                         <div class="dropdown-divider"></div>
-                                        <h6 class="dropdown-header"><?= lang('manage') ?></h6>
-                                        <?= dropdown_menu('tabel_e5', '/admin') ?>
-                                        <?= dropdown_menu('tabel_e6', '/admin') ?>
-                                        <?= dropdown_menu('tabel_e7', '/admin') ?>
-                                        <?= dropdown_menu('tabel_e8', '/admin') ?>
-                                        <div class="dropdown-divider"></div>
                                         <h6 class="dropdown-header"><?= lang('operational') ?></h6>
-                                        <?= dropdown_menu('tabel_e1', '/admin') ?>
-                                        <?= dropdown_menu('tabel_c1', '/admin') ?>
+                                        <!-- ?= dropdown_menu('tabel_c1', '/admin') ?> -->
                                         <?= dropdown_menu('tabel_c2', '/admin') ?>
                                         <div class="dropdown-divider"></div>
                                         <?= dropdown_menu('tabel_a1', '/profil') ?>

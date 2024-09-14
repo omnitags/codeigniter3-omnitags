@@ -41,16 +41,15 @@
 
   <?php } else {
     foreach ($tbl_e4->result() as $tl_e4):
-      echo card_file(
+      echo card_regular(
         $tl_e4->$tabel_e4_field1,
-        $tabel_e4_field1_alias . ": " . $tl_e4->$tabel_e4_field1,
-        $tl_e4->$tabel_e4_field2,
+        'ID Laptop: ' . $tl_e4->$tabel_e4_field1,
+        $tl_e4->$tabel_e4_field3,
         btn_lihat($tl_e4->$tabel_e4_field1) . ' ' .
         btn_edit($tl_e4->$tabel_e4_field1),
         'text-white bg-danger',
         'col-md-3',
         $tabel_e4,
-        $tl_e4->$tabel_e4_field3
       );
     endforeach;
   } ?>
@@ -64,7 +63,8 @@
         <th><?= lang('no') ?></th>
         <th><?= lang('tabel_e4_field1_alias') ?></th>
         <th><?= lang('tabel_e4_field2_alias') ?></th>
-        <th><?= lang('tabel_e4_field3_alias') ?></th>
+        <th><?= lang('tabel_e4_field4_alias') ?></th>
+        <th><?= lang('tabel_e4_field5_alias') ?></th>
         <th><?= lang('action') ?></th>
       </tr>
     </thead>
@@ -75,7 +75,8 @@
           <td></td>
           <td><?= $tl_e4->$tabel_e4_field1; ?></td>
           <td><?= $tl_e4->$tabel_e4_field2 ?></td>
-          <td><?= $tl_e4->$tabel_e4_field3 ?></td>
+          <td><?= $tl_e4->$tabel_e4_field4 ?></td>
+          <td><?= $tl_e4->$tabel_e4_field5 ?></td>
           <td>
             <?= btn_lihat($tl_e4->$tabel_e4_field1) ?>
             <?= btn_edit($tl_e4->$tabel_e4_field1) ?>
@@ -94,15 +95,62 @@
 </div>
 
 
+<!-- modal import -->
+<div id="import" class="modal fade import">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <?= modal_header_id('Import ' . lang('tabel_e4_alias'), '') ?>
+
+      <form action="<?= site_url($language . '/' . $tabel_e4 . '/import') ?>" enctype="multipart/form-data"
+        method="post">
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label for="excel">Import Excel</label>
+            <input type="file" class="form-control-file" name="import" id="excel" placeholder="Masukkan"
+              aria-describedby="fileHelpId">
+          </div>
+
+
+        </div>
+
+        <!-- memunculkan notifikasi modal -->
+        <p class="small text-center text-danger"><?= get_flashdata('pesan_import') ?></p>
+
+        <div class="modal-footer">
+          <?= btn_simpan() ?>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 <!-- modal tambah -->
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog">
     <div class="modal-content">
       <?= modal_header(lang('add') . ' ' . lang('tabel_e4_alias'), '') ?>
-      <form action="<?= site_url($language . '/' . $tabel_e4 . '/tambah') ?>" method="post" enctype="multipart/form-data">
+      <form action="<?= site_url($language . '/' . $tabel_e4 . '/tambah') ?>" method="post">
         <div class="modal-body">
-          <?= input_add('text', 'tabel_e4_field2', 'required') ?>
-          <?= add_file('tabel_e4_field3', 'required') ?>
+          <?= input_add('text', 'tabel_e4_field1', 'required') ?>
+          <?= input_add('text', 'tabel_e4_field3', 'required') ?>
+          
+          <div class="row">
+            <div class="col-md-6">
+              <?= input_add('text', 'tabel_e4_field4', 'required') ?>
+              <?= input_add('text', 'tabel_e4_field5', 'required') ?>
+              <?= input_add('text', 'tabel_e4_field6', 'required') ?>
+              <?= input_add('text', 'tabel_e4_field7', 'required') ?>
+              <?= input_add('text', 'tabel_e4_field8', 'required') ?>
+            </div>
+            <div class="col-md-6">
+                <?= input_add('text', 'tabel_e4_field9', 'required') ?>
+                <?= input_add('text', 'tabel_e4_field10', 'required') ?>
+                <?= input_add('text', 'tabel_e4_field11', 'required') ?>
+                <?= input_add('text', 'tabel_e4_field12', 'required') ?>    
+              <?= input_add('text', 'tabel_e4_field13', 'required') ?>
+            </div>
+          </div>
         </div>
         <!-- memunculkan notifikasi modal -->
         <p class="small text-center text-danger"><?= get_flashdata('pesan_tambah') ?></p>
@@ -126,8 +174,26 @@
           enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_e4_field1', $tl_e4->$tabel_e4_field1, 'required') ?>
-            <?= input_edit('text', 'tabel_e4_field2', $tl_e4->$tabel_e4_field2, 'required') ?>
-            <?= edit_file($tabel_e4, 'tabel_e4_field3', $tl_e4->$tabel_e4_field3, 'required') ?>
+            <div class="row">
+              <div class="col-md-6">
+                <?= input_edit('text', 'tabel_e4_field2', $tl_e4->$tabel_e4_field2, 'required') ?>
+                <?= input_edit('text', 'tabel_e4_field3', $tl_e4->$tabel_e4_field3, 'required') ?>
+                <?= input_edit('text', 'tabel_e4_field4', $tl_e4->$tabel_e4_field4, 'required') ?>
+                <?= input_edit('text', 'tabel_e4_field5', $tl_e4->$tabel_e4_field5, 'required') ?>
+                <?= input_edit('text', 'tabel_e4_field6', $tl_e4->$tabel_e4_field6, 'required') ?>
+                <?= input_edit('text', 'tabel_e4_field7', $tl_e4->$tabel_e4_field7, 'required') ?>
+                
+              </div>
+              <div class="col-md-6">
+                
+                <?= input_edit('text', 'tabel_e4_field8', $tl_e4->$tabel_e4_field8, 'required') ?>
+                <?= input_edit('text', 'tabel_e4_field9', $tl_e4->$tabel_e4_field9, 'required') ?>
+                <?= input_edit('text', 'tabel_e4_field10', $tl_e4->$tabel_e4_field10, 'required') ?>
+                <?= input_edit('text', 'tabel_e4_field11', $tl_e4->$tabel_e4_field11, 'required') ?>
+                <?= input_edit('text', 'tabel_e4_field12', $tl_e4->$tabel_e4_field12, 'required') ?>
+                <?= input_edit('text', 'tabel_e4_field13', $tl_e4->$tabel_e4_field13, 'required') ?>
+              </div>
+            </div>
           </div>
 
           <!-- memunculkan notifikasi modal -->
@@ -150,12 +216,31 @@
         <!-- administrator tidak bisa melihat password user lain -->
         <form>
           <div class="modal-body">
-            <?= table_data(
-              row_data('tabel_e4_field2', $tl_e4->$tabel_e4_field2) . 
-              row_file($tabel_e4, 'tabel_e4_field3', $tl_e4->$tabel_e4_field3),
+            <div class="row">
+              <div class="col-md-6">
+              <?= table_data(
+              row_data('tabel_e4_field2', $tl_e4->$tabel_e4_field2) .
+              row_data('tabel_e4_field3', $tl_e4->$tabel_e4_field3) .
+              row_data('tabel_e4_field4', $tl_e4->$tabel_e4_field4) .
+              row_data('tabel_e4_field5', $tl_e4->$tabel_e4_field5) .
+              row_data('tabel_e4_field6', $tl_e4->$tabel_e4_field6) . 
+              row_data('tabel_e4_field7', $tl_e4->$tabel_e4_field7),
               'table-light'
             ) ?>
-
+              </div>
+              <div class="col-md-6">
+              <?= table_data(
+              row_data('tabel_e4_field8', $tl_e4->$tabel_e4_field8) .
+              row_data('tabel_e4_field9', $tl_e4->$tabel_e4_field9) .
+              row_data('tabel_e4_field10', $tl_e4->$tabel_e4_field10) .
+              row_data('tabel_e4_field11', $tl_e4->$tabel_e4_field11) .
+              row_data('tabel_e4_field12', $tl_e4->$tabel_e4_field12) .
+              row_data('tabel_e4_field13', $tl_e4->$tabel_e4_field13),
+              'table-light'
+            ) ?>
+              </div>
+            </div>
+           
           </div>
 
           <!-- memunculkan notifikasi modal -->
