@@ -38,6 +38,8 @@ if (!class_exists('Omnitags')) {
         public $flash, $flash_func;
         public $notif_limit, $notif_null, $notifications, $elapsedTime, $elapsed, $elapsed2;
         public $recommendation, $theme, $theme_id;
+        public $fb_api1;
+        public $fb_bucket1;
         public $flash1_msg_1;
         public $flash1_msg_2;
         public $flash1_msg_3;
@@ -169,6 +171,10 @@ if (!class_exists('Omnitags')) {
 
             $this->theme = $this->tl_b7->tema($this->tabel_a1_field1)->result();
             $this->theme_id = $this->theme[0]->id_theme;
+
+            // Use numbering for scalability
+            $this->fb_api1 = $this->aliases['firebase_api1'];
+            $this->fb_bucket1 = $this->aliases['firebase_storage_bucket1'];
 
             $this->notif_limit = $this->tl_b9->get_b9_with_b8_limit(userdata($this->aliases['tabel_c2_field1']))->result();
             $this->notif_null = $this->tl_b9->get_b9_by_field(['tabel_b9_field2', 'tabel_b9_field6'], [userdata($this->aliases['tabel_c2_field1']), NULL]);
@@ -629,6 +635,89 @@ if (!class_exists('Omnitags')) {
             return [];
         }
 
+        public function upload_image($new_name, $path, $field, $allowed_types, $tabel)
+        {
+            $new_name = $this->v_post['tabel_e4_field2'];
+            $path = $this->v_upload_path['tabel_e4'];
+
+            $config['upload_path'] = $path;
+            $config['allowed_types'] = $this->file_type1;
+            $config['file_name'] = $new_name;
+            $config['overwrite'] = TRUE;
+            $config['remove_spaces'] = TRUE;
+
+            $this->load->library('upload', $config);
+            $upload = $this->upload->do_upload($this->v_input['tabel_e4_field3_input']);
+
+            if (!$upload) {
+                // If upload fails, redirect or handle error
+                set_flashdata($this->views['flash2'], $this->flash_msg2['tabel_e4_field3_alias']);
+                set_flashdata('modal', $this->views['flash2_func1']);
+                redirect($_SERVER['HTTP_REFERER']);
+            } else {
+                // Get upload data
+                $upload = $this->upload->data();
+                $gambar = $upload['file_name'];  // File name on the server
+
+                // Full file path on the server
+                $file_path = $upload['full_path'];
+
+                // Firebase storage path (where to upload the file)
+                $storagePath = 'uploaded_files/' . $gambar;
+
+                // Call the Firebase upload function
+                $firebase_download_url = firebase_upload_file($this->fb_bucket1, $storagePath, $file_path);
+
+                if ($firebase_download_url) {
+                    // Success: File uploaded to Firebase Storage, use download URL
+                    return $gambar = $firebase_download_url;
+                } else {
+                    // Handle error if Firebase upload fails
+                    set_flashdata('error', 'Failed to upload to Firebase');
+                    redirect($_SERVER['HTTP_REFERER']);
+                }
+            }
+
+        }
+
+        public function change_image($new_name, $path, $field, $allowed_types, $tabel)
+        {
+            $new_name = $this->v_post['tabel_b1_field2'];
+            $path = $this->v_upload_path['tabel_b1'];
+            $img = $this->v_post[$field . '_old'];
+            $extension = '.' . getExtension($path . $img);
+
+            $config['upload_path'] = $path;
+            // nama file telah ditetapkan dan hanya berekstensi jpg dan dapat diganti dengan file bernama sama
+            $config['file_name'] = $new_name;
+            $config['allowed_types'] = $allowed_types;
+            $config['overwrite'] = TRUE;
+            $config['remove_spaces'] = TRUE;
+
+            $this->load->library('upload', $config);
+            $upload = $this->upload->do_upload($this->v_input[$img . '_input']);
+
+            if (!$upload) {
+                if ($new_name != $tabel[0]->kode) {
+                    rename($path . $img, $path . str_replace(' ', '_', $new_name) . $extension);
+                    $gambar = str_replace(' ', '_', $new_name) . $extension;
+                } else {
+                    $gambar = $img;
+                }
+            } else {
+                if ($new_name != $tabel[0]->kode) {
+                    // File upload is successful, delete the old file
+                    if (file_exists($path . $img)) {
+                        unlink($path . $img);
+                    }
+                    $upload = $this->upload->data();
+                    return $gambar = $upload['file_name'];
+                } else {
+                    return $gambar = $img;
+                }
+            }
+        }
+
         public function serve_image($directory, $filename)
         {
             // Set the correct content type
@@ -658,7 +747,7 @@ if (!class_exists('Omnitags')) {
         {
             if (!$method) {
                 // error handling
-                set_flashdata($this->views['flash1'], "Error occurred while processing data!");
+                set_flashdata($this->views['flash1'], "Data might not exist, try something else!");
                 set_flashdata('toast', $this->views['flash1_func1']);
                 redirect(userdata('previous_url'));
             }

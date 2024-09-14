@@ -162,6 +162,15 @@ class C_tabel_b1 extends Omnitags
 		);
 
 		$tabel_b1 = $this->tl_b1->get_b1_by_field('tabel_b1_field1', $tabel_b1_field1)->result();
+
+		$this->change_image(
+			$this->v_post['tabel_b1_field2'],
+			$this->v_upload_path['tabel_b1'],
+			'tabel_b1_field4',
+			$this->file_type1,
+			$tabel
+		);
+
 		$new_name = $this->v_post['tabel_b1_field2'];
 		$path = $this->v_upload_path['tabel_b1'];
 		$img = $this->v_post['tabel_b1_field4_old'];
