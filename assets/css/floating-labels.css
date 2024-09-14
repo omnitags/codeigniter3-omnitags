@@ -1,0 +1,31 @@
+.form-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-control.float {
+  width: 100%;
+  padding: 1.5rem 0.75rem 0.5rem; /* Adjusted padding */
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  min-height: 3.5rem;
+}
+
+.form-label {
+  position: absolute;
+  top: 1rem;
+  left: 0.75rem;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  color: #999;
+  font-size: 1rem;
+}
+
+.form-control.float:focus + .form-label,
+.form-control.float:not(:placeholder-shown) + .form-label {
+  top: 0.25rem;
+  left: 0.75rem;
+  font-size: 0.75rem;
+  color: #666666;
+}
