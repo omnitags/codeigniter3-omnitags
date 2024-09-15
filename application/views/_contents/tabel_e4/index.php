@@ -9,17 +9,9 @@
 
 
 <div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_e4->result())) { ?>
-    <div class="col-md-12">
-      <div class="text-center">
-        <?php foreach ($no_data->result() as $nd): ?>
-          <img src="img/<?= $tabel_b1 ?>/<?= $nd->$tabel_b1_field4 ?>" width="200" alt="Image">
-        <?php endforeach ?>
-        <h3>NO DATA</h3>
-      </div>
-    </div>
-
-  <?php } else {
+  <?php if (empty($tbl_e4->result())) {
+    load_view('_partials/no_data');
+  } else {
     foreach ($tbl_e4->result() as $tl_e4):
       if ($tl_e4->$tabel_e4_field9 == $tabel_e4_field9_value1) {
         $button = '';

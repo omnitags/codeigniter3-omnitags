@@ -8,9 +8,9 @@
       default: ?>
           <div class="col-md-6 d-flex align-items-center">
             <div>
-              <h1>Find a place that meets your needs</h1>
+              <h1>Cek Postingan Daur Ulang Plastik Bekas</h1>
               <br>
-              <a href="<?= site_url($language . '/' . $tabel_f2) ?>" class="btn btn-primary mb-4">Book Now</a>
+              <a href="<?= site_url($language . '/' . $tabel_e4) ?>" class="btn btn-primary mb-4">Cek Sekarang</a>
             </div>
           </div>
 
@@ -22,36 +22,6 @@
     </div>
   </div>
 <?php endforeach; ?>
-
-<?php switch (userdata($tabel_c2_field6)) {
-  case $tabel_c2_field6_value5: ?>
-
-    <!-- method get supaya nilai dari form bisa tampil nanti (tidak langsung masuk ke database) -->
-    <!-- <form action="<?= site_url($language . '/' . $tabel_f2) ?>" method="get">
-      <div id="tour2" class="row justify-content-center align-items-end mt-2">
-        <div class="col-md-2">
-          <?= add_min_max('date', 'tabel_f2_field10', 'required oninput="myFunction1()"', date('Y-m-d'), '') ?>
-        </div>
-
-        <div class="col-md-2">
-          <?= add_min_max('date', 'tabel_f2_field11', 'required', date('Y-m-d', strtotime("+1 day")), '') ?>
-        </div>
-
-        <div class="col-md-2">
-          <?= edit_min_max('number', 'tabel_f2_field8', '1', 'required readonly', '1', '10') ?>
-        </div>
-
-        <div class="col-md-1">
-          <div class="form-group">
-            <button class="btn btn-primary" type="submit">Pesan</button>
-          </div>
-        </div>
-      </div>
-    </form> -->
-    <?php break;
-
-  default: ?>
-<?php } ?>
 
 <h1 class="text-center">Recent Events</h1>
 <hr>
@@ -75,11 +45,6 @@
 <br>
 <br>
 
-<!-- <h1>News about Apple</h1>
-<div id="news-container"></div>
-<br>
-<br>
-<br> -->
 
 <?php foreach ($tbl_a1 as $tl_a1): ?>
   <h1 class="text-center">About Us</h1>
@@ -97,7 +62,6 @@
   </div>
 <?php endforeach ?>
 
-<?= newsapi_apple('news-container') ?>
 
-<!-- ?= adjust_date1($tabel_f2_field10_input, $tabel_f2_field11_input) ?> -->
+<!-- <= adjust_date1($tabel_f2_field10_input, $tabel_f2_field11_input) ?> -->
 <?= adjust_col_js() ?>
