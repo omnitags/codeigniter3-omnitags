@@ -96,7 +96,7 @@ class Welcome extends Omnitags
 		$data1 = array(
 			'title' => lang('dashboard'),
 			'konten' => 'dashboard',
-			'dekor' => $this->tl_b1->dekor($this->theme_id, 'v5')->result(),
+			'dekor' => $this->tl_b1->dekor($this->theme_id, 'dashboard'),
 			// 'tbl_e1' => $this->tl_e1->get_all_e1()->num_rows(),
 			// 'tbl_e2' => $this->tl_e2->get_all_e2()->num_rows(),
 			// 'tbl_c1' => $this->tl_c1->get_all_c1()->num_rows(),
@@ -115,9 +115,9 @@ class Welcome extends Omnitags
 		$this->session->set_flashdata($this->views['flash1'], $this->views['flash1_note1']);
 		$this->session->set_flashdata('toast', $this->views['flash1_func1']);
 
-		$data = array_merge($data1, $this->views, $this->aliases, $this->v_input, $this->v_filter1, $this->v_filter2, $this->v_old);
+		$data = array_merge($data1, $this->package);
 
-		$this->load->view($this->views['v1'], $data);
+		$this->load->view('_layouts/template', $data);
 	}
 
 	public function invalid()
