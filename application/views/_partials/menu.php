@@ -7,7 +7,7 @@
                     href="<?= site_url($language . '/') ?>"><?= lang('home') ?></a>
             </li>
             <?= nav_item(lang('tabel_e4_alias'), $tabel_e4, '/') ?>
-            <?= nav_item(lang('tabel_b10_alias'), $tabel_b10, '/') ?>
+            <!-- ?= nav_item(lang('tabel_b10_alias'), $tabel_b10, '/') ?> -->
             <!-- ?= nav_item(lang('tabel_e2_alias'), $tabel_e2, '/') ?> -->
             <?= nav_item(lang('login'), 'login', '') ?>
             <?php break;
