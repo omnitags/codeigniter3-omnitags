@@ -1,10 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-// Calling the Omnitags file
 include 'Omnitags.php';
 
-// Using encapsulation
 class Welcome extends Omnitags
 {
 	// Calling the default language
@@ -12,7 +10,7 @@ class Welcome extends Omnitags
 	{
 		redirect('/en', 'refresh');
 	}
-
+	
 
 	// First loaded function
 	public function index()
@@ -80,10 +78,8 @@ class Welcome extends Omnitags
 		}
 	}
 
-	// Dashboard page
 	public function dashboard()
 	{
-		// call declarew from Omnitags
 		$this->declarew();
 
 		// showing all sessions that can be loaded in this controller
@@ -94,15 +90,13 @@ class Welcome extends Omnitags
 		];
 		$this->page_session_check($allowed_values);
 
-		// initialize the charts from each table with specific model function
 		// $chart_tabel_f1 = $this->tl_e4->getCharttabel_f1();
 		// $chart_tabel_f2 = $this->tl_e4->getCharttabel_f2();
 
-		// setting the array for data1
 		$data1 = array(
 			'title' => lang('dashboard'),
 			'konten' => 'dashboard',
-			'dekor' => $this->tl_b1->dekor($this->theme_id, 'dashboard'),
+			'dekor' => $this->tl_b1->dekor($this->theme_id, 'v5')->result(),
 			// 'tbl_e1' => $this->tl_e1->get_all_e1()->num_rows(),
 			// 'tbl_e2' => $this->tl_e2->get_all_e2()->num_rows(),
 			// 'tbl_c1' => $this->tl_c1->get_all_c1()->num_rows(),
@@ -118,24 +112,14 @@ class Welcome extends Omnitags
 			// 'chart_tabel_f2' => json_encode($chart_tabel_f2),
 		);
 
-		// setting the flashdata
-		set_flashdata($this->views['flash1'], $this->views['flash1_note1']);
-		set_flashdata('toast', $this->views['flash1_func1']);
+		$this->session->set_flashdata($this->views['flash1'], $this->views['flash1_note1']);
+		$this->session->set_flashdata('toast', $this->views['flash1_func1']);
 
-		// combining the data and package from Omnitags
-		$data = array_merge($data1, $this->package);
+		$data = array_merge($data1, $this->views, $this->aliases, $this->v_input, $this->v_filter1, $this->v_filter2, $this->v_old);
 
-		// handling the notification
-		$notif = $this->handle_2a();
-
-		// set the session for this function to be called if there's an error page
-		set_userdata('previous_url', current_url());
-
-		// load the view with data
-		load_view_data('_layouts/template', $data);
+		$this->load->view($this->views['v1'], $data);
 	}
 
-	// Page that will be loaded if a function is performed by a user with the wrong level
 	public function invalid()
 	{
 		$this->declarew();
@@ -248,6 +232,5 @@ class Welcome extends Omnitags
 			show_error('Invalid language selected.');
 		}
 	}
-
 
 }
