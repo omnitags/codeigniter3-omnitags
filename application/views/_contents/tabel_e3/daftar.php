@@ -28,8 +28,8 @@
     </thead>
 
     <tbody>
-      <?php foreach ($tbl_e3 as $tl_e3): ?>
-        <?php foreach ($tbl_e4 as $tl_e4): ?>
+      <?php foreach ($tbl_e3->result() as $tl_e3): ?>
+        <?php foreach ($tbl_e4->result() as $tl_e4): ?>
           <?php if ($tl_e4->$tabel_e3_field2 == $tl_e3->$tabel_e3_field2) { ?>
             <tr>
               <td></td>
@@ -87,7 +87,7 @@
             <label><?= $tabel_e4_field1_alias ?></label>
             <select class="form-control" required name="<?= $tabel_e4_field1_input ?>">
               <option selected hidden value="">Pilih <?= $tabel_e4_field1_alias ?>...</option>
-              <?php foreach ($tbl_e4 as $tl_e4): ?>
+              <?php foreach ($tbl_e4->result() as $tl_e4): ?>
 
                 <!-- mengambil nilai tipe dari tipe kamar -->
                 <option value="<?= $tl_e4->$tabel_e3_field2 ?>"><?= $tl_e4->$tabel_e4_field2; ?></option>
@@ -125,8 +125,8 @@
 </div>
 
 <!-- modal edit -->
-<?php foreach ($tbl_e3 as $tl_e3): ?>
-  <?php foreach ($tbl_e4 as $tl_e4): ?>
+<?php foreach ($tbl_e3->result() as $tl_e3): ?>
+  <?php foreach ($tbl_e4->result() as $tl_e4): ?>
     <?php if ($tl_e4->$tabel_e3_field2 == $tl_e3->$tabel_e3_field2) { ?>
       <div id="ubah<?= $tl_e3->$tabel_e3_field1; ?>" class="modal fade ubah">
         <div class="modal-dialog">
@@ -159,7 +159,7 @@
                      menampilkan nilai tipe kamar yang aktif
                     <option selected hidden value="< $tl_e4->$tabel_e3_field2 ?>">< $tl_e4->$tabel_e4_field2; ?></option>
 
-                    < foreach ($tbl_e4 as $tl_e4) : ?>
+                    < foreach ($tbl_e4->result() as $tl_e4) : ?>
                       <option value value="<$tl_e4->$tabel_e3_field2 ?>">< $tl_e4->$tabel_e4_field2; ?></option>
                     < endforeach ?>
                   </select> -->
@@ -202,8 +202,8 @@
 <?php endforeach; ?>
 
 <!-- Modal Lihat -->
-<?php foreach ($tbl_e3 as $tl_e3): ?>
-  <?php foreach ($tbl_e4 as $tl_e4): ?>
+<?php foreach ($tbl_e3->result() as $tl_e3): ?>
+  <?php foreach ($tbl_e4->result() as $tl_e4): ?>
     <?php if ($tl_e4->$tabel_e3_field2 == $tl_e3->$tabel_e3_field2) { ?>
 
       <div id="lihat<?= $tl_e3->$tabel_e3_field1; ?>" class="modal fade lihat" role="dialog">

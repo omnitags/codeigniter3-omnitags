@@ -1,14 +1,4 @@
-<?php switch ($this->session->userdata($tabel_c2_field6)) {
-    // case $tabel_c2_field6_value3:
-  case $tabel_c2_field6_value5:
-    break;
-
-  default:
-    redirect(site_url('welcome/no_level'));
-}
-?>
-
-<?php foreach ($tbl_a1 as $tl_a1): ?>
+<?php foreach ($tbl_a1->result() as $tl_a1): ?>
   <img src="img/<?= $tabel_b7 ?>/<?= $tl_a1->$tabel_b7_field5 ?>" class="img-fluid rounded">
 <?php endforeach; ?>
 
@@ -111,7 +101,7 @@
         <label><?= $tabel_e4_field2_alias ?></label>
         <select class="form-control" required name="<?= $tabel_e4_field1_input ?>">
           <option selected hidden value="">Pilih <?= $tabel_e4_field2_alias ?>...</option>
-          <?php foreach ($tbl_e4 as $tl_e4) : ?>
+          <?php foreach ($tbl_e4->result() as $tl_e4) : ?>
             <option value="<?= $tl_e4->$tabel_e4_field1; ?>"><?= $tl_e4->$tabel_e4_field2 ?></option>
           <?php endforeach ?>
         </select>
@@ -121,7 +111,7 @@
 
     </div>
     <div class="col-md-6">
-    <?php foreach ($dekor as $dk): ?>
+    <?php foreach ($dekor->result() as $dk): ?>
   <img src="img/<?= $tabel_b1 ?>/<?= $dk->$tabel_b1_field4 ?>" class="img-fluid rounded">
 <?php endforeach ?>
     </div>

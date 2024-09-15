@@ -12,7 +12,7 @@
 <h1><?= $title ?><?= $phase ?></h1>
 <hr>
 
-<?php foreach ($tbl_e3 as $tl_e3):
+<?php foreach ($tbl_e3->result() as $tl_e3):
   if ($tl_e3->$tabel_e3_field1 == '') { ?>   <?php } else { ?>
 
     <a class="btn btn-info mb-4" href="<?= site_url($tabel_e3 . '/print/' . $tl_e3->$tabel_e3_field1) ?>" target="_blank">
@@ -125,7 +125,7 @@
 
             <tbody>
 
-              <?php foreach ($tbl_e2 as $tl_e2): ?>
+              <?php foreach ($tbl_e2->result() as $tl_e2): ?>
                 <tr>
                   <td><?= $tl_e2->$tabel_e2_field1 ?></td>
                   <td><?= $tl_e2->$tabel_e2_field3 ?></td>
@@ -216,7 +216,7 @@
 
                 <tbody>
 
-                  <?php foreach ($tbl_f2 as $tl_f2): ?>
+                  <?php foreach ($tbl_f2->result() as $tl_f2): ?>
                     <tr>
                       <td><?= $tl_f2->$tabel_f2_field1 ?></td>
                       <td><?= $tl_f2->$tabel_f2_field2 ?></td>
@@ -293,7 +293,7 @@
 
                 <tbody>
 
-                  <?php foreach ($tbl_e1 as $tl_e1): ?>
+                  <?php foreach ($tbl_e1->result() as $tl_e1): ?>
                     <tr>
                       <td><?= $tl_e1->$tabel_e1_field1 ?></td>
                       <td><?= $tl_e1->$tabel_e1_field2 ?></td>
@@ -362,7 +362,7 @@
 
                 <tbody>
 
-                  <?php foreach ($tbl_f2 as $tl_f2): ?>
+                  <?php foreach ($tbl_f2->result() as $tl_f2): ?>
                     <tr>
                       <td><?= $tl_f2->$tabel_f2_field1 ?></td>
                       <td><?= $tl_f2->$tabel_f2_field2 ?></td>
@@ -431,7 +431,7 @@
               <!-- Data siswa -->
               <div class="col-md-6">
                 <input type="hidden" name="<?= $tabel_e2_field2_input ?>" value="<?= $tl_e3->$tabel_e3_field1 ?>">
-                <?php foreach ($tbl_c1 as $tl_c1): ?>
+                <?php foreach ($tbl_c1->result() as $tl_c1): ?>
                   <input type="hidden" name="<?= $tabel_e2_field3_input ?>" value="<?= $tl_c1->$tabel_c1_field1 ?>">
                 <?php endforeach ?>
 
@@ -474,7 +474,7 @@
 
           <div class="modal-body">
 
-            <?php foreach ($tbl_e4 as $tl_e4): ?>
+            <?php foreach ($tbl_e4->result() as $tl_e4): ?>
               <?php if ($tl_e4->$tabel_e4_field1 == $tl_e3->$tabel_e4_field1) { ?>
                 <div class="row">
 
@@ -582,7 +582,7 @@
             <div class="row">
 
               <!-- Data siswa -->
-              <?php foreach ($tbl_e4 as $tl_e4): ?>
+              <?php foreach ($tbl_e4->result() as $tl_e4): ?>
                 <?php if ($tl_e4->$tabel_e4_field1 == $tl_e3->$tabel_e4_field1) { ?>
                   <div class="col-md-6">
                     <div class="form-group">
@@ -700,7 +700,7 @@
             <div class="row">
 
               <!-- Data siswa -->
-              <?php foreach ($tbl_e4 as $tl_e4): ?>
+              <?php foreach ($tbl_e4->result() as $tl_e4): ?>
                 <?php if ($tl_e4->$tabel_e4_field1 == $tl_e3->$tabel_e4_field1) { ?>
                   <div class="col-md-6">
                     <div class="form-group">

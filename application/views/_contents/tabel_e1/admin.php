@@ -28,7 +28,7 @@
     </thead>
 
     <tbody>
-      <?php foreach ($tbl_e1 as $tl_e1) : ?>
+      <?php foreach ($tbl_e1->result() as $tl_e1) : ?>
         <tr>
           <td></td>
           <td><?= $tl_e1->$tabel_e1_field1; ?></td>
@@ -89,7 +89,7 @@
 </div>
 
 <!-- modal edit -->
-<?php foreach ($tbl_e1 as $tl_e1) : ?>
+<?php foreach ($tbl_e1->result() as $tl_e1) : ?>
   <div id="ubah<?= $tl_e1->$tabel_e1_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -130,7 +130,7 @@
 <?php endforeach; ?>
 
 <!-- modal lihat -->
-<?php foreach ($tbl_e1 as $tl_e1) : ?>
+<?php foreach ($tbl_e1->result() as $tl_e1) : ?>
   <div id="lihat<?= $tl_e1->$tabel_e1_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">

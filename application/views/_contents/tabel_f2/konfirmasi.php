@@ -1,14 +1,3 @@
-<?php switch ($this->session->userdata($tabel_c2_field6)) {
-    // case $tabel_c2_field6_value3:
-  case $tabel_c2_field6_value5:
-    break;
-
-  default:
-    redirect(site_url('welcome/no_level'));
-}
-?>
-
-<base href="<?= base_url('assets/') ?>">
 <!DOCTYPE html>
 <html lang="en">
 

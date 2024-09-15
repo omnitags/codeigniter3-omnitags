@@ -1,13 +1,3 @@
-<?php switch ($this->session->userdata($tabel_c2_field6)) {
-  // case $tabel_c2_field6_value3:
-  case $tabel_c2_field6_value5:
-    break;
-
-  default:
-    redirect(site_url() . 'welcome/no_level');
-}
-?>
-
 <h1><?= $title ?><?= $phase ?></h1>
 <hr>
 
@@ -26,7 +16,7 @@
     </thead>
 
     <tbody>
-      <?php foreach ($tbl_f2 as $tl_f2): ?>
+      <?php foreach ($tbl_f2->result() as $tl_f2): ?>
         <tr>
           <td></td>
           <td><?= $tl_f2->$tabel_f2_field1 ?></td>

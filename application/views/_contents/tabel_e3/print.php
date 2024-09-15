@@ -21,7 +21,7 @@
 
   <!-- border garis putus-putus -->
   <div class="container" style="border-style: dashed;">
-    <?php foreach ($tbl_a1 as $tl_a1): ?>
+    <?php foreach ($tbl_a1->result() as $tl_a1): ?>
       <h1 class="text-center"><?= $title ?><?= $phase ?></h1>
       <p class="text-center"><?= $tl_a1->$tabel_a1_field2; ?> | <?= $tl_a1->$tabel_a1_field8; ?> |
         <?= $tl_a1->$tabel_a1_field7; ?></p>
@@ -29,7 +29,7 @@
     <?php endforeach; ?>
 
     <!-- menampilkan data pesanan sebagai ps -->
-    <?php foreach ($tbl_e3 as $tl_e3): ?>
+    <?php foreach ($tbl_e3->result() as $tl_e3): ?>
 
       <!-- menampilkan data pemesan -->
       <table class="table">

@@ -1,4 +1,4 @@
-<?php foreach ($tbl_a1 as $tl_a1) : ?>
+<?php foreach ($tbl_a1->result() as $tl_a1) : ?>
   <img src="img/<?= $tabel_b7 ?>/<?= $tl_a1->$tabel_b7_field5 ?>" class="img-fluid rounded">
 <?php endforeach; ?>
 
@@ -6,7 +6,7 @@
 <hr>
 
 <div class="row">
-  <?php foreach ($tbl_e2 as $tl_e2) : ?>
+  <?php foreach ($tbl_e2->result() as $tl_e2) : ?>
     <div class="col-md-4 tabel_e2">
 
       <!-- gambar dapat ditekan untuk memunculkan modal -->
@@ -18,7 +18,7 @@
 
 
 <!-- modal lihat -->
-<?php foreach ($tbl_e2 as $tl_e2) : ?>
+<?php foreach ($tbl_e2->result() as $tl_e2) : ?>
   <div id="lihat<?= $tl_e2->$tabel_e2_field1 ?>" class="modal fade lihat">
     <div class="modal-dialog">
       <div class="modal-content">

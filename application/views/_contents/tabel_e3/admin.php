@@ -1,21 +1,42 @@
-<?php switch ($this->session->userdata($tabel_c2_field6)) {
-  case $tabel_c2_field6_value3:
-  case $tabel_c2_field6_value4:
-    break;
-
-  default:
-    redirect(site_url('welcome/no_level'));
-}
-?>
-
 <h1><?= $title ?><?= $phase ?></h1>
 <hr>
 
-<button class="btn btn-primary mb-4" type="button" data-toggle="modal" data-target="#tambah">+ Tambah</button>
-<a class="btn btn-info mb-4" href="<?= site_url($tabel_e3 . '/laporan') ?>" target="_blank">
-  <i class="fas fa-print"></i> Cetak Laporan</a>
+<div class="row">
+  <div class="col-md-10">
+    <?= btn_tambah() ?>
+    <?= btn_laporan('tabel_e3') ?>
 
-<div class="table-responsive">
+  </div>
+
+  <div class="col-md-2 d-flex justify-content-end">
+    <?= view_switcher() ?>
+  </div>
+</div>
+
+
+
+<div id="card-view" class="row data-view active">
+  <?php if (empty($tbl_e3->result())) {
+    load_view('_partials/no_data');
+  } else {
+    foreach ($tbl_e3->result() as $tl_e3):
+      echo card_regular(
+        $tl_e3->$tabel_e3_field1,
+        $tl_e3->$tabel_e3_field2,
+        $tl_e3->$tabel_e3_field5,
+        btn_lihat($tl_e3->$tabel_e3_field1) . ' ' .
+        btn_edit($tl_e3->$tabel_e3_field1) . ' ' .
+        btn_hapus('tabel_e3', $tl_e3->$tabel_e3_field1),
+        'text-white bg-danger',
+        'col-md-3',
+        $tabel_e3,
+      );
+    endforeach;
+  } ?>
+</div>
+
+
+<div id="table-view" class="table-responsive data-view" style="display: none;">
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
@@ -29,12 +50,12 @@
     </thead>
 
     <tbody>
-      <?php foreach ($tbl_e3 as $tl_e3): ?>
-        <?php foreach ($tbl_e4 as $tl_e4): ?>
+      <?php foreach ($tbl_e3->result() as $tl_e3): ?>
+        <?php foreach ($tbl_e4->result() as $tl_e4): ?>
           <?php if ($tl_e4->$tabel_e3_field2 == $tl_e3->$tabel_e3_field2) { ?>
             <tr>
               <td></td>
-              <td><?= $tl_e3->$tabel_e3_field1; ?></td>
+              <td><?= $tl_e3->$tabel_e3_field1 ?></td>
               <td><?= $tl_e4->$tabel_e4_field2 ?></td>
               <td><?= $tl_e3->$tabel_e3_field4 ?></td>
               <td><?= $tl_e3->$tabel_e3_field5 ?></td>
@@ -88,7 +109,7 @@
             <label><?= $tabel_e4_field1_alias ?></label>
             <select class="form-control" required name="<?= $tabel_e4_field1_input ?>">
               <option selected hidden value="">Pilih <?= $tabel_e4_field1_alias ?>...</option>
-              <?php foreach ($tbl_e4 as $tl_e4): ?>
+              <?php foreach ($tbl_e4->result() as $tl_e4): ?>
 
                 <!-- mengambil nilai tipe dari tipe kamar -->
                 <option value="<?= $tl_e4->$tabel_e3_field2 ?>"><?= $tl_e4->$tabel_e4_field2; ?></option>
@@ -126,46 +147,18 @@
 </div>
 
 <!-- modal edit -->
-<?php foreach ($tbl_e3 as $tl_e3): ?>
-  <?php foreach ($tbl_e4 as $tl_e4): ?>
+<?php foreach ($tbl_e3->result() as $tl_e3): ?>
+  <?php foreach ($tbl_e4->result() as $tl_e4): ?>
     <?php if ($tl_e4->$tabel_e3_field2 == $tl_e3->$tabel_e3_field2) { ?>
       <div id="ubah<?= $tl_e3->$tabel_e3_field1; ?>" class="modal fade ubah">
         <div class="modal-dialog">
           <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Edit <?= $tabel_e3_alias ?>       <?= $tl_e3->$tabel_e3_field1; ?></h5>
-
-              <button class="close" data-dismiss="modal">
-                <span>&times;</span>
-              </button>
-            </div>
+            <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_e3_alias'), $tl_e3->$tabel_e3_field1) ?>
 
             <form action="<?= site_url($tabel_e3 . '/update') ?>" method="post" enctype="multipart/form-data">
               <div class="modal-body">
-                <div class="form-group">
-
-                  <!-- memilih salah satu tipe kamar yang ada -->
-                  <label><?= $tabel_e4_field2_alias ?></label>
-                  <input class="form-control" type="text" readonly name="<?= $tabel_e4_field2_input ?>"
-                    value="<?= $tl_e4->$tabel_e4_field2 ?>">
-                  <input type="hidden" name="<?= $tabel_e4_field1_input ?>" value="<?= $tl_e4->$tabel_e3_field2 ?>">
-
-
-                  <!-- Fitur di bawah ini masuk harus dibahas kembali
-                  Apakah bisa mengubah id_tipe tipe kamar atau tidak
-                  Mengingat pengalaman kerja di PT LSI dulu
-                  Jika mengubah parent table, maka child tabel tidak akan terlalu berpengaruh  -->
-                  <!-- <select class="form-control" required name="<?= $tabel_e4_field1_input ?>">
-
-                     menampilkan nilai tipe kamar yang aktif
-                    <option selected hidden value="< $tl_e4->$tabel_e3_field2 ?>">< $tl_e4->$tabel_e4_field2; ?></option>
-
-                    < foreach ($tbl_e4 as $tl_e4) : ?>
-                      <option value value="<$tl_e4->$tabel_e3_field2 ?>">< $tl_e4->$tabel_e4_field2; ?></option>
-                    < endforeach ?>
-                  </select> -->
-
-                </div>
+                <?= input_hidden('tabel_e3_field1', $tl_e4->$tabel_e3_field2, 'required') ?>
+                <?= input_add('text', 'tabel_e4_field2', 'required readonly') ?>
 
                 <div class="form-group">
                   <label><?= $tabel_e3_field4_alias ?></label>
@@ -180,19 +173,15 @@
                   <input type="hidden" name="<?= $tabel_e3_field1_input ?>" value="<?= $tl_e3->$tabel_e3_field1; ?>">
                 </div>
 
-                <div class="form-group">
-                  <label><?= $tabel_e3_field5_alias ?></label>
-                  <textarea class="form-control" name="<?= $tabel_e3_field5_input ?>"
-                    rows="3"><?= $tl_e3->$tabel_e3_field5; ?></textarea>
-                </div>
-
+                <?= input_textarea('tabel_e3_field5', $tl_e3->$tabel_e3_field5, 'required') ?>
               </div>
 
               <!-- memunculkan notifikasi modal -->
-              <p id="p_ubah" class="small text-center text-danger"><?= $this->session->flashdata('pesan_ubah') ?></p>
+              <p class="small text-center text-danger"><?= get_flashdata('pesan_tambah') ?></p>
 
               <div class="modal-footer">
-                <button class="btn btn-success" type="submit">Simpan Perubahan</button>
+                <?= fontawesome_link() ?>
+                <?= btn_simpan() ?>
               </div>
             </form>
           </div>
@@ -203,8 +192,8 @@
 <?php endforeach; ?>
 
 <!-- Modal Lihat -->
-<?php foreach ($tbl_e3 as $tl_e3): ?>
-  <?php foreach ($tbl_e4 as $tl_e4): ?>
+<?php foreach ($tbl_e3->result() as $tl_e3): ?>
+  <?php foreach ($tbl_e4->result() as $tl_e4): ?>
     <?php if ($tl_e4->$tabel_e3_field2 == $tl_e3->$tabel_e3_field2) { ?>
 
       <div id="lihat<?= $tl_e3->$tabel_e3_field1; ?>" class="modal fade lihat" role="dialog">

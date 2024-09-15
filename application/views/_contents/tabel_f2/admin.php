@@ -1,13 +1,3 @@
-<?php switch ($this->session->userdata($tabel_c2_field6)) {
-    // case $tabel_c2_field6_value3:
-  case $tabel_c2_field6_value4:
-    break;
-
-  default:
-    redirect(site_url('welcome/no_level'));
-}
-?>
-
 <h1><?= $title ?><?= $phase ?></h1>
 <hr>
 
@@ -91,7 +81,7 @@
     </thead>
 
     <tbody>
-      <?php foreach ($tbl_f2 as $tl_f2) : ?>
+      <?php foreach ($tbl_f2->result() as $tl_f2) : ?>
         <tr>
           <td></td>
           <td><?= $tl_f2->$tabel_f2_field1 ?></td>
@@ -136,9 +126,9 @@
 </div>
 
 <!-- modal ubah -->
-<?php foreach ($tbl_f2 as $tl_f2) : ?>
+<?php foreach ($tbl_f2->result() as $tl_f2) : ?>
   <div id="ubah<?= $tl_f2->$tabel_f2_field1 ?>" class="modal fade ubah">
-    <?php foreach ($tbl_e4 as $tl_e4) : ?>
+    <?php foreach ($tbl_e4->result() as $tl_e4) : ?>
       <?php if ($tl_e4->$tabel_f2_field7 === $tl_f2->$tabel_f2_field7) { ?>
         <div class="modal-dialog">
           <div class="modal-content">
@@ -254,9 +244,9 @@
 <?php endforeach ?>
 
 <!-- modal book -->
-<?php foreach ($tbl_f2 as $tl_f2) : ?>
+<?php foreach ($tbl_f2->result() as $tl_f2) : ?>
   <div id="book<?= $tl_f2->$tabel_f2_field1 ?>" class="modal fade book">
-    <?php foreach ($tbl_e4 as $tl_e4) : ?>
+    <?php foreach ($tbl_e4->result() as $tl_e4) : ?>
       <?php if ($tl_e4->$tabel_f2_field7 === $tl_f2->$tabel_f2_field7) { ?>
         <div class="modal-dialog">
           <div class="modal-content">
@@ -357,7 +347,7 @@
                         <!-- <option value="<?= $tl_e3->$tabel_f2_field13 ?>"><?= $tl_e3->$tabel_f2_field13; ?> - <?= $tl_e4->$tabel_e4_field2 ?></option> -->
                         <!-- </select> -->
 
-                        <?php foreach ($tbl_e3 as $tl_e3) :
+                        <?php foreach ($tbl_e3->result() as $tl_e3) :
                           if ($tl_f2->$tabel_f2_field7 == $tl_e3->$tabel_f2_field7) {
                             if ($tl_e3->$tabel_f2_field7 == $tl_e4->$tabel_f2_field7) {
                               if ($tl_e3->$tabel_e3_field4 == $tabel_e3_field4_value2) { ?>
