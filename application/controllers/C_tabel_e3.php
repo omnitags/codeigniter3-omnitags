@@ -22,26 +22,15 @@ class C_tabel_e3 extends Omnitags
 		];
 		$this->page_session_check($allowed_values);
 
-		$param1 = $this->v_get['tabel_e3_field4'];
-
-		$filter = $this->tl_e3->get_e3_by_field('tabel_e3_field4', $param1);
-
-		if (empty($param1)) {
-			$result = $this->tl_e3->get_all_e3();
-		} else {
-			$result = $filter;
-		}
-
 		$data1 = array(
 			'title' => lang('tabel_e3_alias_v3_title'),
 			'konten' => $this->v3['tabel_e3'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e3']),
 			'tbl_e1' => $this->tl_e1->get_all_e1(),
 			'tbl_e2' => $this->tl_e2->get_all_e2(),
-			'tbl_e3' => $result,
+			'tbl_e3' => $this->tl_e3->get_all_e3(),
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
-			// 'tbl_c1' => $this->tl_c1->get_all_c1(),
-			'tabel_e3_field4_value' => $param1
+			'tbl_c1' => $this->tl_c1->get_all_c1(),
 		);
 
 		$data = array_merge($data1, $this->package);

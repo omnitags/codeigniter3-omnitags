@@ -1,6 +1,5 @@
 <?php switch ($this->session->userdata($tabel_c2_field6)) {
-  case $tabel_c2_field6_value3:
-  case $tabel_c2_field6_value4:
+  case $tabel_c2_field6_value5:
     break;
 
   default:
@@ -12,7 +11,7 @@
 <hr>
 
 <button class="btn btn-primary mb-4" type="button" data-toggle="modal" data-target="#tambah">+ Tambah</button>
-<a class="btn btn-info mb-4" href="<?= site_url($tabel_e3 . '/laporan') ?>" target="_blank">
+<a class="btn btn-info mb-4" href="<?= site_url($tabel_e4 . '/laporan') ?>" target="_blank">
   <i class="fas fa-print"></i> Cetak Laporan</a>
 
 <div class="table-responsive">
@@ -20,30 +19,30 @@
     <thead class="thead-light">
       <tr>
         <th>No</th>
-        <th><?= $tabel_e3_field1_alias ?></th>
+        <th><?= $tabel_e4_field1_alias ?></th>
         <th><?= $tabel_e4_field2_alias ?></th>
-        <th><?= $tabel_e3_field4_alias ?></th>
-        <th><?= $tabel_e3_field5_alias ?></th>
+        <th><?= $tabel_e4_field4_alias ?></th>
+        <th><?= $tabel_e4_field5_alias ?></th>
         <th>Aksi</th>
       </tr>
     </thead>
 
     <tbody>
-      <?php foreach ($tbl_e3 as $tl_e3): ?>
+      <?php foreach ($tbl_e4 as $tl_e4): ?>
         <?php foreach ($tbl_e4 as $tl_e4): ?>
-          <?php if ($tl_e4->$tabel_e3_field2 == $tl_e3->$tabel_e3_field2) { ?>
+          <?php if ($tl_e4->$tabel_e4_field2 == $tl_e4->$tabel_e4_field2) { ?>
             <tr>
               <td></td>
-              <td><?= $tl_e3->$tabel_e3_field1; ?></td>
+              <td><?= $tl_e4->$tabel_e4_field1; ?></td>
               <td><?= $tl_e4->$tabel_e4_field2 ?></td>
-              <td><?= $tl_e3->$tabel_e3_field4 ?></td>
-              <td><?= $tl_e3->$tabel_e3_field5 ?></td>
+              <td><?= $tl_e4->$tabel_e4_field4 ?></td>
+              <td><?= $tl_e4->$tabel_e4_field5 ?></td>
               <td>
                 <a class="btn btn-light text-info" type="button" data-toggle="modal"
-                  data-target="#lihat<?= $tl_e3->$tabel_e3_field1; ?>">
+                  data-target="#lihat<?= $tl_e4->$tabel_e4_field1; ?>">
                   <i class="fas fa-eye"></i>
                 </a>
-                <a class="btn btn-light text-info" href="<?= site_url($tabel_e3 . '/detail/' . $tl_e3->$tabel_e3_field1) ?>">
+                <a class="btn btn-light text-info" href="<?= site_url($tabel_e4 . '/detail/' . $tl_e4->$tabel_e4_field1) ?>">
                   <i class="fas fa-info-circle"></i>
                 </a>
               </td>
@@ -56,10 +55,10 @@
     <!-- <tfoot>
       <tr>
         <th>No</th>
-        <th><?= $tabel_e3_field1_alias ?></th>
-        <th><?= $tabel_e3_field2_alias ?></th>
-        <th><?= $tabel_e3_field4_alias ?></th>
-        <th><?= $tabel_e3_field5_alias ?></th>
+        <th><?= $tabel_e4_field1_alias ?></th>
+        <th><?= $tabel_e4_field2_alias ?></th>
+        <th><?= $tabel_e4_field4_alias ?></th>
+        <th><?= $tabel_e4_field5_alias ?></th>
         <th>Aksi</th>
       </tr>
     </tfoot> -->
@@ -73,14 +72,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Tambah <?= $tabel_e3_alias ?></h5>
+        <h5 class="modal-title">Tambah <?= $tabel_e4_alias ?></h5>
 
         <button class="close" data-dismiss="modal">
           <span>&times;</span>
         </button>
       </div>
 
-      <form action="<?= site_url($tabel_e3 . '/tambah') ?>" method="post" enctype="multipart/form-data">
+      <form action="<?= site_url($tabel_e4 . '/tambah') ?>" method="post" enctype="multipart/form-data">
         <div class="modal-body">
 
           <!-- memilih salah satu tipe kamar yang ada -->
@@ -91,7 +90,7 @@
               <?php foreach ($tbl_e4 as $tl_e4): ?>
 
                 <!-- mengambil nilai tipe dari tipe kamar -->
-                <option value="<?= $tl_e4->$tabel_e3_field2 ?>"><?= $tl_e4->$tabel_e4_field2; ?></option>
+                <option value="<?= $tl_e4->$tabel_e4_field2 ?>"><?= $tl_e4->$tabel_e4_field2; ?></option>
 
               <?php endforeach ?>
 
@@ -99,18 +98,18 @@
           </div>
 
           <div class="form-group">
-            <label><?= $tabel_e3_field3_alias ?></label>
-            <select class="form-control" required name="<?= $tabel_e3_field3_input ?>">
-              <option selected hidden value="">Pilih <?= $tabel_e3_field3_alias ?>...</option>
+            <label><?= $tabel_e4_field3_alias ?></label>
+            <select class="form-control" required name="<?= $tabel_e4_field3_input ?>">
+              <option selected hidden value="">Pilih <?= $tabel_e4_field3_alias ?>...</option>
 
               <!-- memilih nilai status -->
-              <option value="<?= $tabel_e3_field3_value1 ?>"><?= $tabel_e3_field3_value1_alias ?></option>
-              <option value="<?= $tabel_e3_field3_value2 ?>"><?= $tabel_e3_field3_value2_alias ?></option>
+              <option value="<?= $tabel_e4_field3_value1 ?>"><?= $tabel_e4_field3_value1_alias ?></option>
+              <option value="<?= $tabel_e4_field3_value2 ?>"><?= $tabel_e4_field3_value2_alias ?></option>
 
             </select>
           </div>
 
-          <input type="hidden" name="<?= $tabel_e3_field4_input ?>" value="<?= $tabel_e3_field4_value0 ?>">
+          <input type="hidden" name="<?= $tabel_e4_field4_input ?>" value="<?= $tabel_e4_field4_value0 ?>">
 
         </div>
 
@@ -126,21 +125,21 @@
 </div>
 
 <!-- modal edit -->
-<?php foreach ($tbl_e3 as $tl_e3): ?>
+<?php foreach ($tbl_e4 as $tl_e4): ?>
   <?php foreach ($tbl_e4 as $tl_e4): ?>
-    <?php if ($tl_e4->$tabel_e3_field2 == $tl_e3->$tabel_e3_field2) { ?>
-      <div id="ubah<?= $tl_e3->$tabel_e3_field1; ?>" class="modal fade ubah">
+    <?php if ($tl_e4->$tabel_e4_field2 == $tl_e4->$tabel_e4_field2) { ?>
+      <div id="ubah<?= $tl_e4->$tabel_e4_field1; ?>" class="modal fade ubah">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Edit <?= $tabel_e3_alias ?>       <?= $tl_e3->$tabel_e3_field1; ?></h5>
+              <h5 class="modal-title">Edit <?= $tabel_e4_alias ?>       <?= $tl_e4->$tabel_e4_field1; ?></h5>
 
               <button class="close" data-dismiss="modal">
                 <span>&times;</span>
               </button>
             </div>
 
-            <form action="<?= site_url($tabel_e3 . '/update') ?>" method="post" enctype="multipart/form-data">
+            <form action="<?= site_url($tabel_e4 . '/update') ?>" method="post" enctype="multipart/form-data">
               <div class="modal-body">
                 <div class="form-group">
 
@@ -148,7 +147,7 @@
                   <label><?= $tabel_e4_field2_alias ?></label>
                   <input class="form-control" type="text" readonly name="<?= $tabel_e4_field2_input ?>"
                     value="<?= $tl_e4->$tabel_e4_field2 ?>">
-                  <input type="hidden" name="<?= $tabel_e4_field1_input ?>" value="<?= $tl_e4->$tabel_e3_field2 ?>">
+                  <input type="hidden" name="<?= $tabel_e4_field1_input ?>" value="<?= $tl_e4->$tabel_e4_field2 ?>">
 
 
                   <!-- Fitur di bawah ini masuk harus dibahas kembali
@@ -158,32 +157,32 @@
                   <!-- <select class="form-control" required name="<?= $tabel_e4_field1_input ?>">
 
                      menampilkan nilai tipe kamar yang aktif
-                    <option selected hidden value="< $tl_e4->$tabel_e3_field2 ?>">< $tl_e4->$tabel_e4_field2; ?></option>
+                    <option selected hidden value="< $tl_e4->$tabel_e4_field2 ?>">< $tl_e4->$tabel_e4_field2; ?></option>
 
                     < foreach ($tbl_e4 as $tl_e4) : ?>
-                      <option value value="<$tl_e4->$tabel_e3_field2 ?>">< $tl_e4->$tabel_e4_field2; ?></option>
+                      <option value value="<$tl_e4->$tabel_e4_field2 ?>">< $tl_e4->$tabel_e4_field2; ?></option>
                     < endforeach ?>
                   </select> -->
 
                 </div>
 
                 <div class="form-group">
-                  <label><?= $tabel_e3_field4_alias ?></label>
-                  <select class="form-control" required name="<?= $tabel_e3_field4_input ?>">
-                    <option selected hidden value="<?= $tl_e3->$tabel_e3_field4; ?>"><?= $tl_e3->$tabel_e3_field4; ?></option>
+                  <label><?= $tabel_e4_field4_alias ?></label>
+                  <select class="form-control" required name="<?= $tabel_e4_field4_input ?>">
+                    <option selected hidden value="<?= $tl_e4->$tabel_e4_field4; ?>"><?= $tl_e4->$tabel_e4_field4; ?></option>
 
                     <!-- memilih nilai status -->
-                    <option value="<?= $tabel_e3_field4_value4 ?>"><?= $tabel_e3_field4_value4_alias ?></option>
-                    <option value="<?= $tabel_e3_field4_value5 ?>"><?= $tabel_e3_field4_value5_alias ?></option>
+                    <option value="<?= $tabel_e4_field4_value4 ?>"><?= $tabel_e4_field4_value4_alias ?></option>
+                    <option value="<?= $tabel_e4_field4_value5 ?>"><?= $tabel_e4_field4_value5_alias ?></option>
 
                   </select>
-                  <input type="hidden" name="<?= $tabel_e3_field1_input ?>" value="<?= $tl_e3->$tabel_e3_field1; ?>">
+                  <input type="hidden" name="<?= $tabel_e4_field1_input ?>" value="<?= $tl_e4->$tabel_e4_field1; ?>">
                 </div>
 
                 <div class="form-group">
-                  <label><?= $tabel_e3_field5_alias ?></label>
-                  <textarea class="form-control" name="<?= $tabel_e3_field5_input ?>"
-                    rows="3"><?= $tl_e3->$tabel_e3_field5; ?></textarea>
+                  <label><?= $tabel_e4_field5_alias ?></label>
+                  <textarea class="form-control" name="<?= $tabel_e4_field5_input ?>"
+                    rows="3"><?= $tl_e4->$tabel_e4_field5; ?></textarea>
                 </div>
 
               </div>
@@ -203,15 +202,15 @@
 <?php endforeach; ?>
 
 <!-- Modal Lihat -->
-<?php foreach ($tbl_e3 as $tl_e3): ?>
+<?php foreach ($tbl_e4 as $tl_e4): ?>
   <?php foreach ($tbl_e4 as $tl_e4): ?>
-    <?php if ($tl_e4->$tabel_e3_field2 == $tl_e3->$tabel_e3_field2) { ?>
+    <?php if ($tl_e4->$tabel_e4_field2 == $tl_e4->$tabel_e4_field2) { ?>
 
-      <div id="lihat<?= $tl_e3->$tabel_e3_field1; ?>" class="modal fade lihat" role="dialog">
+      <div id="lihat<?= $tl_e4->$tabel_e4_field1; ?>" class="modal fade lihat" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title"><?= $tabel_e3_alias ?>       <?= $tl_e3->$tabel_e3_field1; ?></h5>
+              <h5 class="modal-title"><?= $tabel_e4_alias ?>       <?= $tl_e4->$tabel_e4_field1; ?></h5>
 
               <button class="close" data-dismiss="modal">
                 <span>&times;</span>
@@ -227,14 +226,14 @@
                 <hr>
 
                 <div class="form-group">
-                  <label><?= $tabel_e3_field4_alias ?> : </label>
-                  <p><?= $tl_e3->$tabel_e3_field4; ?></p>
+                  <label><?= $tabel_e4_field4_alias ?> : </label>
+                  <p><?= $tl_e4->$tabel_e4_field4; ?></p>
                 </div>
                 <hr>
 
                 <div class="form-group">
-                  <label><?= $tabel_e3_field5_alias ?> : </label>
-                  <p><?= $tl_e3->$tabel_e3_field5; ?></p>
+                  <label><?= $tabel_e4_field5_alias ?> : </label>
+                  <p><?= $tl_e4->$tabel_e4_field5; ?></p>
                 </div>
 
               </div>
