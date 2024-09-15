@@ -432,7 +432,7 @@ if (!function_exists('edit_file')) {
         $alias = lang($field . '_alias');
         $input = $data[$field . '_input'];
         $old = $data[$field . "_old"];
-        $img = tampil_image($tabel, $value, $alias);
+        $img = tampil_image('125px', $tabel, $value, $alias);
 
         if (strpos($required, 'required') !== false) {
             $msg = '';
