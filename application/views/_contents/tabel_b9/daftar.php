@@ -32,7 +32,7 @@
           $tl_b9->$tabel_b8_field3,
           $tl_b9->$tabel_b9_field4 . '<br>' .
           $tl_b9->$tabel_b9_field5,
-          btn_value('tabel_b9', '/lihat', $tl_b9->$tabel_b9_field1, '<i class="fas fa-envelope-open"></i>') .
+          btn_value('tabel_b9', $tl_b9->$tabel_b9_field1, 'lihat', '<i class="fas fa-envelope-open"></i>') .
           btn_lihat($tl_b9->$tabel_b9_field1),
           'text-dark bg-white',
           'col-md-3',
@@ -76,7 +76,7 @@
             <td><?= $tl_b9->$tabel_b9_field4 ?></td>
             <td><?= $tl_b9->$tabel_b9_field5 ?></td>
             <td>
-              <?= btn_value('tabel_b9', '/lihat', $tl_b9->$tabel_b9_field1, '<i class="fas fa-envelope-open"></i>') ?>
+              <?= btn_value('tabel_b9', $tl_b9->$tabel_b9_field1, 'lihat', '<i class="fas fa-envelope-open"></i>') ?>
               <?= btn_lihat($tl_b9->$tabel_b9_field1) ?>
             </td>
           </tr>

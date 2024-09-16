@@ -103,6 +103,9 @@ class C_tabel_e5 extends Omnitags
 			$this->aliases['tabel_e5_field6'] => $this->v_post['tabel_e5_field6'],
 			$this->aliases['tabel_e5_field7'] => $this->v_post['tabel_e5_field7'],
 			$this->aliases['tabel_e5_field8'] => $this->v_post['tabel_e5_field8'],
+
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e5->insert_e5($data);
@@ -146,6 +149,8 @@ class C_tabel_e5 extends Omnitags
 			$this->aliases['tabel_e5_field6'] => $this->v_post['tabel_e5_field6'],
 			$this->aliases['tabel_e5_field7'] => $this->v_post['tabel_e5_field7'],
 			$this->aliases['tabel_e5_field8'] => $this->v_post['tabel_e5_field8'],
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e5->update_e5($data, $tabel_e5_field1);

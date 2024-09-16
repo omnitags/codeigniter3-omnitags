@@ -7,7 +7,7 @@
                     href="<?= site_url($language . '/') ?>"><?= lang('home') ?></a>
             </li>
             <?= nav_item(lang('tabel_e4_alias'), $tabel_e4, '/') ?>
-            <?= nav_item(lang('tabel_b10_alias'), $tabel_b10, '/') ?>
+            <!-- ?= nav_item(lang('tabel_b10_alias'), $tabel_b10, '/') ?> -->
             <!-- ?= nav_item(lang('tabel_e2_alias'), $tabel_e2, '/') ?> -->
             <?= nav_item(lang('login'), 'login', '') ?>
             <?php break;
@@ -113,7 +113,7 @@
                                 if ($nf->$tabel_b9_field2 == userdata($tabel_c2_field1)) {
                                     if ($nf->$tabel_b9_field6 == NULL) { ?>
 
-                                        <a href="<?= site_url($language . '/' . $tabel_b9 . '/detail/' . $nf->$tabel_b9_field1) ?>"
+                                        <a href="<?= site_url($language . '/' . $tabel_b9 . '/' . $nf->$tabel_b9_field1 . '/detail') ?>"
                                             class="list-group-item bg-light">
                                             <div class="row g-0 align-items-center">
                                                 <div class="col-2">
@@ -131,7 +131,7 @@
                                         </a>
 
                                     <?php } else { ?>
-                                        <a href="<?= site_url($language . '/' . $tabel_b9 . '/detail/' . $nf->$tabel_b9_field1) ?>"
+                                        <a href="<?= site_url($language . '/' . $tabel_b9 . '/' . $nf->$tabel_b9_field1 . '/detail') ?>"
                                             class="list-group-item">
                                             <div class="row g-0 align-items-center">
                                                 <div class="col-2">

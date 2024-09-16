@@ -26,7 +26,7 @@
                                     <?php foreach ($lisensi->result() as $ls): ?>
                                         <div class="col-md-4 mt-2">
                                             <a class="text-decoration-none text-light"
-                                                href="<?= site_url($language . '/' . $tabel_b5 . '/detail/' . $ls->$tabel_b5_field1) ?>">
+                                                href="<?= site_url($language . '/' . $tabel_b5 . '/' . $ls->$tabel_b5_field1 . '/detail') ?>">
                                                 <img src="img/<?= $tabel_b5 ?>/<?= $ls->$tabel_b5_field4 ?>" height="25">
                                             </a>
                                         </div>

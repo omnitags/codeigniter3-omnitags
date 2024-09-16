@@ -798,7 +798,8 @@ if (!class_exists('Omnitags')) {
                 $this->aliases['tabel_b9_field2'] => userdata($this->aliases['tabel_c2_field1']),
                 $this->aliases['tabel_b9_field3'] => $type,
                 $this->aliases['tabel_b9_field4'] => $msg . $extra,
-                $this->aliases['tabel_b9_field5'] => date("Y-m-d\TH:i:s"),
+                
+                'created_at' => date("Y-m-d\TH:i:s"),
             );
 
             $ambil = $this->tl_b9->insert_b9($notif);
@@ -833,7 +834,8 @@ if (!class_exists('Omnitags')) {
                     $this->aliases['tabel_b9_field2'] => userdata($this->aliases['tabel_c2_field1']),
                     $this->aliases['tabel_b9_field3'] => $type,
                     $this->aliases['tabel_b9_field4'] => $msg . $extra,
-                    $this->aliases['tabel_b9_field5'] => date("Y-m-d\TH:i:s"),
+                    
+                    'created_at' => date("Y-m-d\TH:i:s"),
                 );
 
                 $ambil = $this->tl_b9->insert_b9($notif);

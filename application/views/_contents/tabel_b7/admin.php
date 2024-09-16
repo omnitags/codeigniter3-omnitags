@@ -40,7 +40,7 @@
         ($tl_b7->$tabel_b7_field2 != $database ?
           '<a class="btn mr-1 mb-2 btn-light text-danger"
           onclick="return confirm(\'Tindakan anda akan menghapus hal-hal berikut:\n' . $tabel_b7_alias . '\n' . $tabel_b1_alias . '\n' . $tabel_b2_alias . '\n' . $tabel_b5_alias . '\n' . $tabel_b6_alias . '\nHapus data?\')"
-          href="' . site_url($language . '/' . $tabel_b7 . '/delete/' . $tl_b7->$tabel_b7_field1) . '">
+          href="' . site_url($language . '/' . $tabel_b7 . $tl_b7->$tabel_b7_field1 . '/delete') . '">
           <i class="fas fa-trash"></i></a>' : ''
         ),
         'text-white bg-danger',
@@ -92,7 +92,7 @@
             <?php if ($tl_b7->$tabel_b7_field2 != $database) { ?>
               <a class="btn btn-light text-danger"
                 onclick="return confirm('Tindakan anda akan menghapus hal-hal berikut:\n<?= xss_clean($tabel_b7_alias) ?>\n<?= xss_clean($tabel_b1_alias) ?>\n<?= xss_clean($tabel_b2_alias) ?>\n<?= xss_clean($tabel_b5_alias) ?>\n<?= xss_clean($tabel_b6_alias) ?>\nHapus data?')"
-                href="<?= site_url($language . '/' . $tabel_b7 . '/delete/' . $tl_b7->$tabel_b7_field1) ?>">
+                href="<?= site_url($language . '/' . $tabel_b7 . '/' . $tl_b7->$tabel_b7_field1 . '/delete') ?>">
                 <i class="fas fa-trash"></i></a>
             <?php } ?>
           </td>

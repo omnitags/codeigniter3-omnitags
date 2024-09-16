@@ -64,7 +64,7 @@ if (!function_exists('row_file')) {
     function row_file($tabel_class, $field, $value)
     {
         $alias = lang($field . '_alias');
-        $img = tampil_image($tabel_class, $value, $alias);
+        $img = tampil_image('125px', $tabel_class, $value, $alias);
 
         return <<<HTML
         <tr>
@@ -134,8 +134,9 @@ if (!function_exists('password_req')) {
 }
 
 // Generates an image with a tooltip
+// Generates an image with a tooltip
 if (!function_exists('tampil_image')) {
-    function tampil_image($tabel_class, $value, $konten)
+    function tampil_image($size, $tabel_class, $value, $konten)
     {
         // Get CodeIgniter instance
         $CI =& get_instance();
@@ -143,7 +144,7 @@ if (!function_exists('tampil_image')) {
         $data = $CI->load->get_vars();
 
         return <<<HTML
-        <img style="max-height: 125px" role="button" data-toggle="tooltip" data-placement="right" 
+        <img style="max-height: {$size}" role="button" data-toggle="tooltip" data-placement="right" 
             class="img-thumbnail img-fluid" src="img/{$tabel_class}/{$value}" 
             title="<img class='img-thumbnail' src='img/{$tabel_class}/{$value}' />
             <br>{$konten}">
