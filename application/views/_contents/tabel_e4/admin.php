@@ -43,11 +43,6 @@
             <a class="btn btn-light text-warning" type="button" data-toggle="modal" data-target="#ubah<?= $tl_e4->$tabel_e4_field1; ?>">
               <i class="fas fa-edit"></i></a>
 
-            <!-- Sebelumnya saya sudah membahas ini di v_admin_spp
-          Saya akan mempending fitur ini dengan alasan yang sama dalam waktu yang belum ditentukan -->
-            <!-- <a class="btn btn-light text-danger" onclick="return confirm('Hapus user?')" href="< site_url($tabel_c2 . '/hapus/' . $tl_e4->$tabel_e4_field1) ?>">
-            <i class="fas fa-trash"></i></a> -->
-
           </td>
         </tr>
       <?php endforeach; ?>
