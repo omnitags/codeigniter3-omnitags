@@ -167,6 +167,9 @@ class C_tabel_b10 extends Omnitags
 				$this->aliases['tabel_b10_field2'] => $gambar,
 				$this->aliases['tabel_b10_field3'] => $this->v_post['tabel_b10_field3'],
 				$this->aliases['tabel_b10_field4'] => $this->v_post['tabel_b10_field4'],
+
+				'created_at' => date("Y-m-d\TH:i:s"),
+				'updated_at' => date("Y-m-d\TH:i:s"),
 			);
 
 			$aksi = $this->tl_b10->insert_b10($data);
@@ -243,6 +246,8 @@ class C_tabel_b10 extends Omnitags
 			$this->aliases['tabel_b10_field2'] => $gambar,
 			$this->aliases['tabel_b10_field3'] => $new_name,
 			$this->aliases['tabel_b10_field4'] => $this->v_post['tabel_b10_field4'],
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b10->update_b10($data, $tabel_b10_field1);
