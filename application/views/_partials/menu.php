@@ -107,7 +107,7 @@
                                 if ($nf->$tabel_b9_field2 == userdata($tabel_c2_field1)) {
                                     if ($nf->$tabel_b9_field6 == NULL) { ?>
 
-                                        <a href="<?= site_url($language . '/' . $tabel_b9 . '/detail/' . $nf->$tabel_b9_field1) ?>"
+                                        <a href="<?= site_url($language . '/' . $tabel_b9 . '/' . $nf->$tabel_b9_field1 . '/detail') ?>"
                                             class="list-group-item bg-light">
                                             <div class="row g-0 align-items-center">
                                                 <div class="col-2">
@@ -125,7 +125,7 @@
                                         </a>
 
                                     <?php } else { ?>
-                                        <a href="<?= site_url($language . '/' . $tabel_b9 . '/detail/' . $nf->$tabel_b9_field1) ?>"
+                                        <a href="<?= site_url($language . '/' . $tabel_b9 . '/' . $nf->$tabel_b9_field1 . '/detail') ?>"
                                             class="list-group-item">
                                             <div class="row g-0 align-items-center">
                                                 <div class="col-2">

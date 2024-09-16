@@ -58,9 +58,9 @@
       <?php
       $btn_class = '';
       if ($tl_b6->$tabel_b6_field6 == $tabel_b6_field6_value1) {
-        $btn_class = btn_action('tabel_b6', '/nonaktifkan/' . $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-on fa-lg"></i>', 'text-warning');
+        $btn_class = btn_action('tabel_b6', 'nonaktifkan',  $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-on fa-lg"></i>', 'text-warning');
       } elseif ($tl_b6->$tabel_b6_field6 == $tabel_b6_field6_value2) {
-        $btn_class = btn_action('tabel_b5', '/aktifkan/' . $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-off fa-lg"></i>', 'text-warning');
+        $btn_class = btn_action('tabel_b5', 'aktifkan',  $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-off fa-lg"></i>', 'text-warning');
       }
       echo card_regular(
         $tl_b6->$tabel_b6_field1,
@@ -108,10 +108,10 @@
           </td>
           <td>
             <?php if ($tl_b6->$tabel_b6_field6 == $tabel_b6_field6_value1) { ?>
-              <?= btn_action('tabel_b6', '/nonaktifkan/' . $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-on fa-lg"></i>', 'text-warning') ?>
+              <?= btn_action('tabel_b6', 'nonaktifkan',  $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-on fa-lg"></i>', 'text-warning') ?>
 
             <?php } elseif ($tl_b6->$tabel_b6_field6 == $tabel_b6_field6_value2) { ?>
-              <?= btn_action('tabel_b6', '/aktifkan/' . $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-off fa-lg"></i>', 'text-warning') ?>
+              <?= btn_action('tabel_b6', 'aktifkan',  $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-off fa-lg"></i>', 'text-warning') ?>
 
             <?php } else { ?>
 
