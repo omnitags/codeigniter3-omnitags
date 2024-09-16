@@ -307,7 +307,10 @@ class C_tabel_f2 extends Omnitags
 			$this->aliases['tabel_f2_field9'] => $harga_total,
 			$this->aliases['tabel_f2_field10'] => $this->v_post['tabel_f2_field10'],
 			$this->aliases['tabel_f2_field11'] => $this->v_post['tabel_f2_field11'],
-			$this->aliases['tabel_f2_field12'] => $this->aliases['tabel_f2_field12_value1']
+			$this->aliases['tabel_f2_field12'] => $this->aliases['tabel_f2_field12_value1'],
+
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		];
 
 		// Create temporary session for a specific duration

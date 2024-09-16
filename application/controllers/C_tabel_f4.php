@@ -85,6 +85,9 @@ class C_tabel_f4 extends Omnitags
 			$this->aliases['tabel_f4_field5'] => $this->v_post['tabel_f4_field5'],
 			$this->aliases['tabel_f4_field6'] => $this->v_post['tabel_f4_field6'],
 			$this->aliases['tabel_f4_field7'] => $tabel_f4_field7,
+
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$data2 = array(
@@ -123,6 +126,8 @@ class C_tabel_f4 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_f4_field2'] => $this->v_post['tabel_f4_field2'],
 			$this->aliases['tabel_f4_field3'] => $this->v_post['tabel_f4_field3'],
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_f4->update_f4($data, $tabel_f4_field1);
