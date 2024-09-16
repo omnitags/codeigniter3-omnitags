@@ -69,6 +69,9 @@ class C_tabel_d3 extends Omnitags
 			$this->aliases['tabel_d3_field2'] => userdata($this->aliases['tabel_c2_field1']),
 			$this->aliases['tabel_d3_field3'] => date("Y-m-d\TH:i:s"),
 			$this->aliases['tabel_d3_field4'] => date("Y-m-d\TH:i:s"),
+
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_d3->insert_d3($data);
