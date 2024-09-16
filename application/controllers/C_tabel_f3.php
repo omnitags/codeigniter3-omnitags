@@ -255,6 +255,9 @@ class C_tabel_f3 extends Omnitags
 			$this->aliases['tabel_f3_field5'] => $this->v_post['tabel_f3_field5'],
 			$this->aliases['tabel_f3_field6'] => $tabel_f3_field6,
 			$this->aliases['tabel_f3_field7'] => $tabel_f3_field7,
+
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		set_userdata($this->aliases['tabel_c2_field3'] . '_' . $this->aliases['tabel_f3'], $tabel_f3_field3);
@@ -314,6 +317,8 @@ class C_tabel_f3 extends Omnitags
 			$this->aliases['tabel_f3_field5'] => $this->v_post['tabel_f3_field5'],
 			$this->aliases['tabel_f3_field6'] => $this->v_post['tabel_f3_field6'],
 			$this->aliases['tabel_f3_field7'] => $tabel_f3_field7,
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_f3->update_f3($data, $tabel_f3_field1);
