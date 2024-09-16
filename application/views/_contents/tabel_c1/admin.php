@@ -70,10 +70,6 @@
             <?= btn_lihat($tl_c1->$tabel_c1_field1) ?>
             <?= btn_edit($tl_c1->$tabel_c1_field1) ?>
             <?= btn_hapus('tabel_c1', $tl_c1->$tabel_c1_field1) ?>
-            <!-- Sebelumnya saya sudah membahas ini di v_admin_spp
-          Saya akan mempending fitur ini dengan alasan yang sama dalam waktu yang belum ditentukan -->
-            <!-- <a class="btn btn-light text-danger" onclick="return confirm('Hapus user?')" href="< site_url($tabel_c2 . '/hapus/' . $tl_c1->$tabel_c1_field1) ?>">
-            <i class="fas fa-trash"></i></a> -->
 
           </td>
         </tr>
