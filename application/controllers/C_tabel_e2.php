@@ -19,7 +19,7 @@ class C_tabel_e2 extends Omnitags
 			'tbl_e2' => $this->tl_e2->get_all_e2(),
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
 		);
-		
+
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
@@ -46,7 +46,7 @@ class C_tabel_e2 extends Omnitags
 		set_userdata('previous_url', current_url());
 		load_view_data('_layouts/template', $data);
 	}
-	
+
 	// Account Only Pages
 
 
@@ -75,7 +75,7 @@ class C_tabel_e2 extends Omnitags
 			'tabel_e2_field3_value' => $param1,
 			'stuff' => firebase_get_data('/teachers')
 		);
-		
+
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
@@ -134,6 +134,9 @@ class C_tabel_e2 extends Omnitags
 			$this->aliases['tabel_e2_field4'] => $this->v_post['tabel_e2_field4'],
 			$this->aliases['tabel_e2_field5'] => $this->v_post['tabel_e2_field5'],
 			$this->aliases['tabel_e2_field6'] => $this->v_post['tabel_e2_field6'],
+
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		// $query = 'INSERT INTO tabel_e2 VALUES('.$data.')';
@@ -182,6 +185,8 @@ class C_tabel_e2 extends Omnitags
 			$this->aliases['tabel_e2_field4'] => $this->v_post['tabel_e2_field4'],
 			$this->aliases['tabel_e2_field5'] => $this->v_post['tabel_e2_field5'],
 			$this->aliases['tabel_e2_field6'] => $this->v_post['tabel_e2_field6'],
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e2->update_e2($data, $tabel_e2_field1);

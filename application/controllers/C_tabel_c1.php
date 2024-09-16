@@ -55,12 +55,12 @@ class C_tabel_c1 extends Omnitags
 	{
 		$this->declarew();
 		$allowed_values = [
-                $this->aliases['tabel_c2_field6_value2'],
-                $this->aliases['tabel_c2_field6_value3'],
-                $this->aliases['tabel_c2_field6_value4'],
-                $this->aliases['tabel_c2_field6_value5']
-            ];
-            $this->page_session_check($allowed_values);
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->page_session_check($allowed_values);
 
 		$tabel_c1_field1 = userdata($this->aliases['tabel_c1_field1']);
 		$data1 = array(
@@ -147,12 +147,14 @@ class C_tabel_c1 extends Omnitags
 			$this->aliases['tabel_c1_field5'] => $this->v_post['tabel_c1_field5'],
 			$this->aliases['tabel_c1_field6'] => $this->v_post['tabel_c1_field6'],
 
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
-		
+
 		$aksi = $this->tl_c1->insert_c1($data);
 		$notif = $this->handle_4b($aksi, 'tabel_c1');
-		
+
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
@@ -186,13 +188,15 @@ class C_tabel_c1 extends Omnitags
 		);
 
 		$tabel_c1 = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $tabel_c1_field1)->result();
-		
+
 		$data = array(
 			$this->aliases['tabel_c1_field2'] => $this->v_post['tabel_c1_field2'],
 			$this->aliases['tabel_c1_field3'] => $this->v_post['tabel_c1_field3'],
 			$this->aliases['tabel_c1_field4'] => $this->v_post['tabel_c1_field4'],
 			$this->aliases['tabel_c1_field5'] => $this->v_post['tabel_c1_field5'],
 			$this->aliases['tabel_c1_field6'] => $this->v_post['tabel_c1_field6'],
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_c1->update_c1($data, $tabel_c1_field1);
@@ -224,12 +228,12 @@ class C_tabel_c1 extends Omnitags
 	{
 		$this->declarew();
 		$allowed_values = [
-                $this->aliases['tabel_c2_field6_value2'],
-                $this->aliases['tabel_c2_field6_value3'],
-                $this->aliases['tabel_c2_field6_value4'],
-                $this->aliases['tabel_c2_field6_value5']
-            ];
-            $this->session_check($allowed_values);
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->session_check($allowed_values);
 
 		$tabel_c1_field1 = $this->v_post['tabel_c1_field1'];
 
@@ -241,6 +245,8 @@ class C_tabel_c1 extends Omnitags
 			$this->aliases['tabel_c1_field3'] => $this->v_post['tabel_c1_field3'],
 			$this->aliases['tabel_c1_field5'] => $this->v_post['tabel_c1_field5'],
 			$this->aliases['tabel_c1_field7'] => $this->v_post['tabel_c1_field7'],
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_c1->update_c1($data, $tabel_c1_field1);
@@ -269,12 +275,12 @@ class C_tabel_c1 extends Omnitags
 	{
 		$this->declarew();
 		$allowed_values = [
-                $this->aliases['tabel_c2_field6_value2'],
-                $this->aliases['tabel_c2_field6_value3'],
-                $this->aliases['tabel_c2_field6_value4'],
-                $this->aliases['tabel_c2_field6_value5']
-            ];
-            $this->session_check($allowed_values);
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->session_check($allowed_values);
 
 		$tabel_c1_field1 = $this->v_post['tabel_c1_field1'];
 
@@ -435,12 +441,12 @@ class C_tabel_c1 extends Omnitags
 	{
 		$this->declarew();
 		$allowed_values = [
-                $this->aliases['tabel_c2_field6_value2'],
-                $this->aliases['tabel_c2_field6_value3'],
-                $this->aliases['tabel_c2_field6_value4'],
-                $this->aliases['tabel_c2_field6_value5']
-            ];
-            $this->session_check($allowed_values);
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->session_check($allowed_values);
 
 		// menghapus session
 		session_destroy();

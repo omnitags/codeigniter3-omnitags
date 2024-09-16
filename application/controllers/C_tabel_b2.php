@@ -142,6 +142,9 @@ class C_tabel_b2 extends Omnitags
 				$this->aliases['tabel_b2_field5'] => htmlspecialchars($this->v_post['tabel_b2_field5']),
 				$this->aliases['tabel_b2_field6'] => $this->aliases['tabel_b2_field6_value2'],
 				$this->aliases['tabel_b2_field7'] => $this->v_post['tabel_b2_field7'],
+
+				'created_at' => date("Y-m-d\TH:i:s"),
+				'updated_at' => date("Y-m-d\TH:i:s"),
 			);
 
 			$aksi = $this->tl_b2->insert_b2($data);
@@ -222,6 +225,8 @@ class C_tabel_b2 extends Omnitags
 			$this->aliases['tabel_b2_field4'] => $gambar,
 			$this->aliases['tabel_b2_field5'] => $this->v_post['tabel_b2_field5'],
 			$this->aliases['tabel_b2_field7'] => $this->v_post['tabel_b2_field7'],
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b2->update_b2($data, $tabel_b2_field1);
@@ -242,6 +247,8 @@ class C_tabel_b2 extends Omnitags
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			$this->aliases['tabel_b2_field6'] => $this->aliases['tabel_b2_field6_value1'],
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b2->update_b2($data, $tabel_b2_field1);
@@ -262,6 +269,8 @@ class C_tabel_b2 extends Omnitags
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			$this->aliases['tabel_b2_field6'] => $this->aliases['tabel_b2_field6_value2'],
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b2->update_b2($data, $tabel_b2_field1);

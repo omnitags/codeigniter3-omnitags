@@ -77,6 +77,9 @@ class C_tabel_b8 extends Omnitags
 			$this->aliases['tabel_b8_field2'] => $this->v_post['tabel_b8_field2'],
 			$this->aliases['tabel_b8_field3'] => $this->v_post['tabel_b8_field3'],
 			$this->aliases['tabel_b8_field4'] => $this->v_post['tabel_b8_field4'],
+
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b8->insert_b8($data);
@@ -113,6 +116,8 @@ class C_tabel_b8 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_b8_field3'] => $this->v_post['tabel_b8_field3'],
 			$this->aliases['tabel_b8_field4'] => $this->v_post['tabel_b8_field4'],
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b8->update_b8($data, $tabel_b8_field1);

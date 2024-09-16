@@ -141,6 +141,9 @@ class C_tabel_e4 extends Omnitags
 			$this->aliases['tabel_e4_field1'] => $code,
 			$this->aliases['tabel_e4_field2'] => $this->v_post['tabel_e4_field2'],
 			$this->aliases['tabel_e4_field3'] => $gambar,
+
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e4->insert_e4($data);
@@ -203,6 +206,8 @@ class C_tabel_e4 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_e4_field2'] => $this->v_post['tabel_e4_field2'],
 			$this->aliases['tabel_e4_field3'] => $gambar,
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e4->update_e4($data, $tabel_e4_field1);
