@@ -191,7 +191,7 @@ if (!function_exists('btn_sync')) {
         $controller = xss_clean($data[$tabel]);
         $lang = xss_clean($data['language']);
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/sync_theme/' . $value));
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/sync_theme'));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-primary" onclick="return confirm('Sync with {$value}?')" href="{$url}">
@@ -210,7 +210,7 @@ if (!function_exists('btn_read_more')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = xss_clean(site_url($data['language'] . '/' . $data[$table] . '/detail/' . $id));
+        $url = xss_clean(site_url($data['language'] . '/' . $data[$table] . '/' . $id));
 
         return <<<HTML
         <a class="text-decoration-none" href="{$url}" target="_blank"> Read more</a>
@@ -220,14 +220,14 @@ if (!function_exists('btn_read_more')) {
 
 if (!function_exists('btn_value')) {
     // Creates a button with a specific value for a table
-    function btn_value($table, $function, $id, $logo)
+    function btn_value($table, $id, $function, $logo)
     {
         // Get CodeIgniter instance
         $CI =& get_instance();
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = xss_clean(site_url($data['language'] . '/' . $data[$table] . $function .'/' . $id));
+        $url = xss_clean(site_url($data['language'] . '/' . $data[$table] . '/' . $id . '/' . $function));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-warning"
@@ -303,7 +303,7 @@ if (!function_exists('btn_print')) {
 
         $lang = xss_clean($data['language']);
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/print/' . $value));
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/print'));
 
         return <<<HTML
         <a class="btn btn-light border border-dark text-info mb-2" href="{$url}"
@@ -371,7 +371,7 @@ if (!function_exists('btn_hapus')) {
         $alias = xss_clean(lang($tabel . '_alias'));
         $lang = xss_clean($data['language']);
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/delete/' . $value));
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/delete'));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah data {$alias} ingin dihapus?')"
@@ -384,7 +384,7 @@ if (!function_exists('btn_hapus')) {
 
 if (!function_exists('btn_action')) {
 
-    function btn_action($tabel, $function, $logo, $theme)
+    function btn_action($tabel, $function, $id, $logo, $theme)
     {
         // Get CodeIgniter instance
         $CI =& get_instance();
@@ -393,7 +393,7 @@ if (!function_exists('btn_action')) {
 
         $controller = xss_clean($data[$tabel]);
         $lang = xss_clean($data['language']);
-        $url = xss_clean(site_url($lang . '/' . $controller . $function));
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $id . '/' . $function));
 
         return <<<HTML
         <a class="btn mr-2 mb-2 {$theme}" href="{$url}">
