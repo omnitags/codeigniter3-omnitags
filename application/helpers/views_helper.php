@@ -15,10 +15,6 @@ if (!function_exists('load_view_data')) {
     function load_view_data($view_name, $data)
     {
         $CI =& get_instance();
-        
-        // The line below is dangerous, dont uncomment it
-        // $data = $CI->load->get_vars();
-        
         $CI->load->view($view_name, $data);
     }
 }

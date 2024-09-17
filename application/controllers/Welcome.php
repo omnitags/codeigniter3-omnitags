@@ -44,6 +44,13 @@ class Welcome extends Omnitags
 			case $this->aliases['tabel_c2_field6_value2']:
 			case $this->aliases['tabel_c2_field6_value3']:
 			case $this->aliases['tabel_c2_field6_value4']:
+
+				set_flashdata($this->views['flash1'], $this->views['flash1_note1']);
+				set_flashdata('toast', $this->views['flash1_func1']);
+
+				redirect(site_url($this->language_code . '/' . 'dashboard'));
+				break;
+
 			default:
 				set_flashdata($this->views['flash1'], $this->views['flash1_note1']);
 				set_flashdata('toast', $this->views['flash1_func1']);
@@ -69,7 +76,7 @@ class Welcome extends Omnitags
 
 				//Loading the page
 				$this->track_page();
-				load_view_data('_layouts/template', $data);
+		load_view_data('_layouts/template', $data);
 				break;
 		}
 	}

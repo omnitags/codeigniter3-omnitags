@@ -69,9 +69,6 @@ switch (true) {
 
     </nav>
 
-    <!-- sidebar for admin -->
-    <?php load_view('_partials/sidebar'); ?> <!-- Include the sidebar -->
-
     <!-- komponen berada tengah halaman -->
     <div class="container mb-4" id="konten">
 
