@@ -4,7 +4,7 @@
   </div>
   <div class="col-md-3 text-right">
     <?php foreach ($dekor->result() as $dk): ?>
-      <img src="img/<?= $tabel_b1 ?>/<?= $dk->$tabel_b1_fielb11 ?>" width="200" alt="Image">
+      <img src="img/<?= $tabel_b1 ?>/<?= $dk->$tabel_b1_field4 ?>" width="200" alt="Image">
     <?php endforeach ?>
   </div>
 </div>
