@@ -24,6 +24,7 @@ class C_tabel_e5 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -47,6 +48,7 @@ class C_tabel_e5 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -66,6 +68,7 @@ class C_tabel_e5 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/printpage_landscape', $data);
 	}
 
@@ -104,8 +107,8 @@ class C_tabel_e5 extends Omnitags
 			$this->aliases['tabel_e5_field7'] => $this->v_post['tabel_e5_field7'],
 			$this->aliases['tabel_e5_field8'] => $this->v_post['tabel_e5_field8'],
 
-			'created_at' => date("Y-m-d\TH:i:s"),
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e5->insert_e5($data);
@@ -150,7 +153,7 @@ class C_tabel_e5 extends Omnitags
 			$this->aliases['tabel_e5_field7'] => $this->v_post['tabel_e5_field7'],
 			$this->aliases['tabel_e5_field8'] => $this->v_post['tabel_e5_field8'],
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e5->update_e5($data, $tabel_e5_field1);

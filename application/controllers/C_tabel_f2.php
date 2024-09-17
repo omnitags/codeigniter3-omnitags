@@ -50,6 +50,7 @@ class C_tabel_f2 extends Omnitags
 
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data($halaman, $data);
 	}
 
@@ -93,6 +94,7 @@ class C_tabel_f2 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -134,6 +136,7 @@ class C_tabel_f2 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -153,6 +156,7 @@ class C_tabel_f2 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/printpage', $data);
 	}
 
@@ -179,6 +183,7 @@ class C_tabel_f2 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/printpage', $data);
 	}
 
@@ -222,6 +227,7 @@ class C_tabel_f2 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -245,6 +251,7 @@ class C_tabel_f2 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/blank', $data);
 	}
 
@@ -309,8 +316,8 @@ class C_tabel_f2 extends Omnitags
 			$this->aliases['tabel_f2_field11'] => $this->v_post['tabel_f2_field11'],
 			$this->aliases['tabel_f2_field12'] => $this->aliases['tabel_f2_field12_value1'],
 
-			'created_at' => date("Y-m-d\TH:i:s"),
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		];
 
 		// Create temporary session for a specific duration

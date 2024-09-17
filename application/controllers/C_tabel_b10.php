@@ -33,6 +33,7 @@ class C_tabel_b10 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -56,6 +57,7 @@ class C_tabel_b10 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -91,6 +93,7 @@ class C_tabel_b10 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -110,6 +113,7 @@ class C_tabel_b10 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/printpage', $data);
 	}
 
@@ -168,8 +172,8 @@ class C_tabel_b10 extends Omnitags
 				$this->aliases['tabel_b10_field3'] => $this->v_post['tabel_b10_field3'],
 				$this->aliases['tabel_b10_field4'] => $this->v_post['tabel_b10_field4'],
 
-				'created_at' => date("Y-m-d\TH:i:s"),
-				'updated_at' => date("Y-m-d\TH:i:s"),
+				$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+				$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 			);
 
 			$aksi = $this->tl_b10->insert_b10($data);
@@ -247,7 +251,7 @@ class C_tabel_b10 extends Omnitags
 			$this->aliases['tabel_b10_field3'] => $new_name,
 			$this->aliases['tabel_b10_field4'] => $this->v_post['tabel_b10_field4'],
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b10->update_b10($data, $tabel_b10_field1);

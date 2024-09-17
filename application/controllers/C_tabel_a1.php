@@ -16,6 +16,8 @@ class C_tabel_a1 extends Omnitags
 		// Call to page_session_3 method
 		$this->page_session_3();
 
+		
+
 		$data1 = array(
 			'title' => 'Testing Page',
 			'konten' => '_contents/tabel_a1/testing',
@@ -27,6 +29,7 @@ class C_tabel_a1 extends Omnitags
 		// Set previous URL in session
 		set_userdata('previous_url', current_url());
 		// Load view data with template
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -55,6 +58,7 @@ class C_tabel_a1 extends Omnitags
 		// Set previous URL in session
 		set_userdata('previous_url', current_url());
 		// Load view data with template
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -88,7 +92,7 @@ class C_tabel_a1 extends Omnitags
 			$this->aliases['tabel_a1_field4'] => $this->v_post['tabel_a1_field4'],
 			$this->aliases['tabel_a1_field5'] => $this->v_post['tabel_a1_field5'],
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_a1->update_a1($data, $tabel_a1_field1);
@@ -122,7 +126,7 @@ class C_tabel_a1 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_a1_field6'] => $this->v_post['tabel_a1_field6'],
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_a1->update_a1($data, $tabel_a1_field1);

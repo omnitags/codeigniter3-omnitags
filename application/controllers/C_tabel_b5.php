@@ -25,6 +25,7 @@ class C_tabel_b5 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -59,6 +60,7 @@ class C_tabel_b5 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -78,6 +80,7 @@ class C_tabel_b5 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/printpage', $data);
 	}
 
@@ -147,8 +150,8 @@ class C_tabel_b5 extends Omnitags
 				$this->aliases['tabel_b5_field6'] => $this->aliases['tabel_b5_field6_value2'],
 				$this->aliases['tabel_b5_field7'] => $this->v_post['tabel_b5_field7'],
 
-				'created_at' => date("Y-m-d\TH:i:s"),
-				'updated_at' => date("Y-m-d\TH:i:s"),
+				$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+				$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 			);
 
 			$aksi = $this->tl_b5->insert_b5($data);
@@ -231,7 +234,7 @@ class C_tabel_b5 extends Omnitags
 			$this->aliases['tabel_b5_field5'] => $this->v_post['tabel_b5_field5'],
 			$this->aliases['tabel_b5_field7'] => $this->v_post['tabel_b5_field7'],
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b5->update_b5($data, $tabel_b5_field1);
@@ -252,7 +255,7 @@ class C_tabel_b5 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_b5_field7'] => $tabel_b5_field7,
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b5->update_all_b5($data);
@@ -273,7 +276,7 @@ class C_tabel_b5 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_b5_field6'] => $this->aliases['tabel_b5_field6_value1'],
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b5->update_b5($data, $tabel_b5_field1);
@@ -295,7 +298,7 @@ class C_tabel_b5 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_b5_field6'] => $this->aliases['tabel_b5_field6_value2'],
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b5->update_b5($data, $tabel_b5_field1);

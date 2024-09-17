@@ -23,6 +23,7 @@ class C_tabel_e4 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -45,6 +46,7 @@ class C_tabel_e4 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -66,6 +68,7 @@ class C_tabel_e4 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -85,6 +88,7 @@ class C_tabel_e4 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/printpage', $data);
 	}
 
@@ -142,8 +146,8 @@ class C_tabel_e4 extends Omnitags
 			$this->aliases['tabel_e4_field2'] => $this->v_post['tabel_e4_field2'],
 			$this->aliases['tabel_e4_field3'] => $gambar,
 
-			'created_at' => date("Y-m-d\TH:i:s"),
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e4->insert_e4($data);
@@ -207,7 +211,7 @@ class C_tabel_e4 extends Omnitags
 			$this->aliases['tabel_e4_field2'] => $this->v_post['tabel_e4_field2'],
 			$this->aliases['tabel_e4_field3'] => $gambar,
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e4->update_e4($data, $tabel_e4_field1);

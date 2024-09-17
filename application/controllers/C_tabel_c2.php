@@ -24,6 +24,7 @@ class C_tabel_c2 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -43,6 +44,7 @@ class C_tabel_c2 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/printpage', $data);
 	}
 
@@ -70,6 +72,7 @@ class C_tabel_c2 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -88,6 +91,7 @@ class C_tabel_c2 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/logpage', $data);
 	}
 
@@ -106,6 +110,7 @@ class C_tabel_c2 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/logpage', $data);
 	}
 
@@ -155,8 +160,8 @@ class C_tabel_c2 extends Omnitags
 					$this->aliases['tabel_c2_field5'] => $this->v_post['tabel_c2_field5'],
 					$this->aliases['tabel_c2_field6'] => $this->v_post['tabel_c2_field6'],
 
-					'created_at' => date("Y-m-d\TH:i:s"),
-					'updated_at' => date("Y-m-d\TH:i:s"),
+					$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+					$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 				);
 
 				$aksi = $this->tl_c2->insert_c2($data);
@@ -216,7 +221,7 @@ class C_tabel_c2 extends Omnitags
 			$this->aliases['tabel_c2_field5'] => $this->v_post['tabel_c2_field5'],
 			$this->aliases['tabel_c2_field6'] => $this->v_post['tabel_c2_field6'],
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_c2->update_c2($data, $tabel_c2_field1);
@@ -268,7 +273,7 @@ class C_tabel_c2 extends Omnitags
 			$this->aliases['tabel_c2_field3'] => $this->v_post['tabel_c2_field3'],
 			$this->aliases['tabel_c2_field5'] => $this->v_post['tabel_c2_field5'],
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_c2->update_c2($data, $tabel_c2_field1);
@@ -412,12 +417,10 @@ class C_tabel_c2 extends Omnitags
 				$loginh = array(
 					$this->aliases['tabel_d3_field1'] => '',
 					$this->aliases['tabel_d3_field2'] => userdata($this->aliases['tabel_c2_field1']),
-					$this->aliases['tabel_d3_field3'] => date("Y-m-d\TH:i:s"),
-					$this->aliases['tabel_d3_field4'] => date("Y-m-d\TH:i:s"),
-					$this->aliases['tabel_d3_field5'] => $deviceType,
+					$this->aliases['tabel_d3_field3'] => $deviceType,
 
-					'created_at' => date("Y-m-d\TH:i:s"),
-					'updated_at' => date("Y-m-d\TH:i:s"),
+					$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+					$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 				);
 				$login_history = $this->tl_d3->insert_d3($loginh);
 
