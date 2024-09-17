@@ -40,6 +40,7 @@ class C_tabel_b1 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -59,6 +60,7 @@ class C_tabel_b1 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/printpage', $data);
 	}
 
@@ -122,8 +124,8 @@ class C_tabel_b1 extends Omnitags
 				$this->aliases['tabel_b1_field6'] => $this->v_post['tabel_b1_field6'],
 				$this->aliases['tabel_b1_field7'] => $this->v_post['tabel_b1_field7'],
 
-				'created_at' => date("Y-m-d\TH:i:s"),
-				'updated_at' => date("Y-m-d\TH:i:s"),
+				$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+				$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 			);
 
 			$aksi = $this->tl_b1->insert_b1($data);
@@ -163,6 +165,8 @@ class C_tabel_b1 extends Omnitags
 			$this->views['flash3'],
 			'ubah' . $tabel_b1_field1
 		);
+
+		// $this->change_image('test', );
 
 		$tabel_b1 = $this->tl_b1->get_b1_by_field('tabel_b1_field1', $tabel_b1_field1)->result();
 		$new_name = $this->v_post['tabel_b1_field2'];
@@ -209,7 +213,7 @@ class C_tabel_b1 extends Omnitags
 			$this->aliases['tabel_b1_field6'] => $this->v_post['tabel_b1_field6'],
 			$this->aliases['tabel_b1_field7'] => $this->v_post['tabel_b1_field7'],
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b1->update_b1($data, $tabel_b1_field1);
@@ -232,7 +236,7 @@ class C_tabel_b1 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_b1_field7'] => $tabel_b1_field7,
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b1->update_all_b1($data);

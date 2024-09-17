@@ -26,7 +26,7 @@
                                     <?php foreach ($lisensi->result() as $ls): ?>
                                         <div class="col-md-4 mt-2">
                                             <a class="text-decoration-none text-light"
-                                                href="<?= site_url($language . '/' . $tabel_b5 . '/' . $ls->$tabel_b5_field1 . '/detail') ?>">
+                                                href="<?= footer_url($language . '/' . $tabel_b5 . '/' . $ls->$tabel_b5_field1 . '/detail') ?>">
                                                 <img src="img/<?= $tabel_b5 ?>/<?= $ls->$tabel_b5_field4 ?>" height="25">
                                             </a>
                                         </div>
@@ -48,7 +48,7 @@
                                 <ul class="list-unstyled">
                                     <li>
                                         <a type="button" id="nextPage" class="text-decoration-none text-light"
-                                            href="<?= site_url($language . '/' . $tabel_e4) ?>">
+                                            href="<?= footer_url($language . '/' . $tabel_e4) ?>">
                                             <?= lang('tabel_e4_alias') ?>
                                         </a>
                                     </li>
