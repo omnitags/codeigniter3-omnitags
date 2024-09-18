@@ -115,29 +115,13 @@ class C_tabel_e4 extends Omnitags
 			'tambah'
 		);
 
-		$new_name = $this->v_post['tabel_e4_field2'];
-			$path = $this->v_upload_path['tabel_e4'];
-
-			$config['upload_path'] = $path;
-			$config['allowed_types'] = $this->file_type1;
-			$config['file_name'] = $new_name;
-			$config['overwrite'] = TRUE;
-			$config['remove_spaces'] = TRUE;
-
-			$this->load->library('upload', $config);
-			$upload = $this->upload->do_upload($this->v_input['tabel_e4_field3_input']);
-
-			if (!$upload) {
-				// Di sini seharusnya ada notifikasi modal kalau upload tidak berhasil
-				// Tapi karena formnya sudah required saya rasa tidak perlu
-				set_flashdata($this->views['flash2'], $this->flash_msg2['tabel_e4_field3_alias']);
-				set_flashdata('modal', $this->views['flash2_func1']);
-				redirect($_SERVER['HTTP_REFERER']);
-			} else {
-				// Di bawah ini adalah method untuk mengambil informasi dari hasil upload data
-				$upload = $this->upload->data();
-				$gambar = $upload['file_name'];
-			}
+		$gambar = $this->upload_new_image(
+			$this->v_post['tabel_e4_field2'],
+			$this->v_upload_path['tabel_e4'],
+			'tabel_e4_field3',
+			$this->file_type1,
+			''
+		);
 
 		$code = $this->add_code('tabel_e4', $this->aliases['tabel_e4_field1'], 5, '04');
 
@@ -171,8 +155,8 @@ class C_tabel_e4 extends Omnitags
 
 		$tabel_e4_field1 = $this->v_post['tabel_e4_field1'];
 
-		$tabel_e4 = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
-		$this->check_data($tabel_e4);
+		$tabel = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
+		$this->check_data($tabel);
 
 		validate_all(
 			array(
@@ -183,29 +167,14 @@ class C_tabel_e4 extends Omnitags
 			'ubah' . $tabel_e4_field1
 		);
 
-		$param = $this->v_post['tabel_e4_field2'] . "_";
-
-		$config['upload_path'] = $this->v_upload_path['tabel_e4'];
-		// nama file dan ekstensi telah ditetapkan dan dapat diganti dengan file bernama sama
-		$config['allowed_types'] = $this->file_type1;
-		$config['file_name'] = $param . $this->aliases['tabel_e4_field3'];
-		$config['overwrite'] = TRUE;
-		$config['remove_spaces'] = TRUE;
-
-		$this->load->library('upload', $config);
-		$upload = $this->upload->do_upload($this->v_input['tabel_e4_field3_input']);
-
-		if (!$upload) {
-			$upload = $this->upload->data();
-			$gambar = $upload['file_name'];
-		} else {
-			$table = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
-			$tabel_e4_field3 = $table[0]->img;
-			unlink($this->v_upload_path['tabel_e4'] . $tabel_e4_field3);
-
-			$upload = $this->upload->data();
-			$gambar = $upload['file_name'];
-		}
+		$gambar = $this->change_image(
+			$this->v_post['tabel_e4_field2'] . "_" . $this->aliases['tabel_e4_field3'],
+			$tabel[0]->img,
+			$this->v_upload_path['tabel_e4'],
+			'tabel_e4_field5',
+			$this->file_type1,
+			$tabel
+		);
 
 		$data = array(
 			$this->aliases['tabel_e4_field2'] => $this->v_post['tabel_e4_field2'],

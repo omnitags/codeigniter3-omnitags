@@ -173,30 +173,14 @@ class C_tabel_b7 extends Omnitags
 			$this->aliases['tabel_b7_field3'] . $tabel_b7_field1
 		);
 
-
-		$param = $this->v_post['tabel_b7_field2'] . "_";
-
-		$config['upload_path'] = $this->v_upload_path['tabel_b7'];
-		// nama file dan ekstensi telah ditetapkan dan dapat diganti dengan file bernama sama
-		$config['allowed_types'] = $this->file_type1;
-		$config['file_name'] = $param . $this->aliases['tabel_b7_field3'];
-		$config['overwrite'] = TRUE;
-		$config['remove_spaces'] = TRUE;
-
-		$this->load->library('upload', $config);
-		$upload = $this->upload->do_upload($this->v_input['tabel_b7_field3_input']);
-
-		if (!$upload) {
-			$upload = $this->upload->data();
-			$gambar = $upload['file_name'];
-		} else {
-			$table = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $tabel_b7_field1)->result();
-			$tabel_b7_field3 = $table[0]->favicon;
-			unlink($this->v_upload_path['tabel_b7'] . $tabel_b7_field3);
-
-			$upload = $this->upload->data();
-			$gambar = $upload['file_name'];
-		}
+		$gambar = $this->change_image(
+			$this->v_post['tabel_b7_field2'] . "_" . $this->aliases['tabel_b7_field3'],
+			$tabel[0]->favicon,
+			$this->v_upload_path['tabel_b7'],
+			'tabel_b7_field3',
+			$this->file_type1,
+			$tabel
+		);
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
@@ -231,31 +215,14 @@ class C_tabel_b7 extends Omnitags
 			$this->aliases['tabel_b7_field4'] . $tabel_b7_field1
 		);
 
-
-		$param = $this->v_post['tabel_b7_field2'] . "_";
-
-		$config['upload_path'] = $this->v_upload_path['tabel_b7'];
-		// nama file telah ditetapkan dan hanya berekstensi jpg dan dapat diganti dengan file bernama sama
-		$config['allowed_types'] = $this->file_type1;
-		$config['file_name'] = $param . $this->aliases['tabel_b7_field4'];
-		$config['overwrite'] = TRUE;
-		$config['remove_spaces'] = TRUE;
-
-		$this->load->library('upload', $config);
-		$upload = $this->upload->do_upload($this->v_input['tabel_b7_field4_input']);
-
-		if (!$upload) {
-			$upload = $this->upload->data();
-			$gambar = $upload['file_name'];
-		} else {
-			$table = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $tabel_b7_field1)->result();
-			$tabel_b7_field4 = $table[0]->logo;
-			unlink($this->v_upload_path['tabel_b7'] . $tabel_b7_field4);
-
-			$upload = $this->upload->data();
-			$gambar = $upload['file_name'];
-		}
-
+		$gambar = $this->change_image(
+			$this->v_post['tabel_b7_field2'] . "_" . $this->aliases['tabel_b7_field4'],
+			$tabel[0]->logo,
+			$this->v_upload_path['tabel_b7'],
+			'tabel_b7_field4',
+			$this->file_type1,
+			$tabel
+		);
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
@@ -288,30 +255,14 @@ class C_tabel_b7 extends Omnitags
 			$this->aliases['tabel_b7_field5'] . $tabel_b7_field1
 		);
 
-
-		$param = $this->v_post['tabel_b7_field2'] . "_";
-
-		$config['upload_path'] = $this->v_upload_path['tabel_b7'];
-		// nama file telah ditetapkan dan hanya berekstensi jpg dan dapat diganti dengan file bernama sama
-		$config['allowed_types'] = $this->file_type1;
-		$config['file_name'] = $param . $this->aliases['tabel_b7_field5'];
-		$config['overwrite'] = TRUE;
-		$config['remove_spaces'] = TRUE;
-
-		$this->load->library('upload', $config);
-		$upload = $this->upload->do_upload($this->v_input['tabel_b7_field5_input']);
-
-		if (!$upload) {
-			$upload = $this->upload->data();
-			$gambar = $upload['file_name'];
-		} else {
-			$table = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $tabel_b7_field1)->result();
-			$tabel_b7_field5 = $table[0]->foto;
-			unlink($this->v_upload_path['tabel_b7'] . $tabel_b7_field5);
-
-			$upload = $this->upload->data();
-			$gambar = $upload['file_name'];
-		}
+		$gambar = $this->change_image(
+			$this->v_post['tabel_b7_field2'] . "_" . $this->aliases['tabel_b7_field5'],
+			$tabel[0]->foto,
+			$this->v_upload_path['tabel_b7'],
+			'tabel_b7_field5',
+			$this->file_type1,
+			$tabel
+		);
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(

@@ -153,7 +153,7 @@ class C_tabel_b1 extends Omnitags
 			'ubah' . $tabel_b1_field1
 		);
 
-		$gambar = $this->change_image(
+		$gambar = $this->change_image_advanced(
 			$this->v_post['tabel_b1_field2'],
 			$tabel[0]->kode,
 			$this->v_upload_path['tabel_b1'],

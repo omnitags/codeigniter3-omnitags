@@ -647,15 +647,38 @@ if (!class_exists('Omnitags')) {
 
             if (!$upload) {
                 set_flashdata($this->views['flash2'], $this->flash_msg2[$field . '_alias']);
-				set_flashdata('modal', $this->views['flash2_func1']);
-				redirect($_SERVER['HTTP_REFERER']);
+                set_flashdata('modal', $this->views['flash2_func1']);
+                redirect($_SERVER['HTTP_REFERER']);
             } else {
                 $upload = $this->upload->data();
-				return $upload['file_name'];
+                return $upload['file_name'];
             }
         }
 
         public function change_image($new_name, $old_name, $path, $field, $allowed_types, $tabel)
+        {
+            $config['upload_path'] = $path;
+            // nama file dan ekstensi telah ditetapkan dan dapat diganti dengan file bernama sama
+            $config['allowed_types'] = $allowed_types;
+            $config['file_name'] = $new_name;
+            $config['overwrite'] = TRUE;
+            $config['remove_spaces'] = TRUE;
+
+            $this->load->library('upload', $config);
+            $upload = $this->upload->do_upload($this->v_input[$field . '_input']);
+
+            if (!$upload) {
+                $upload = $this->upload->data();
+                return $upload['file_name'];
+            } else {
+                unlink($path . $old_name);
+
+                $upload = $this->upload->data();
+                return $upload['file_name'];
+            }
+        }
+
+        public function change_image_advanced($new_name, $old_name, $path, $field, $allowed_types, $tabel)
         {
             $img = $this->v_post[$field . '_old'];
             $extension = '.' . getExtension($path . $img);
@@ -782,8 +805,9 @@ if (!class_exists('Omnitags')) {
         public function track_page()
         {
             $tabel = $this->tl_b11->get_b11_by_field('tabel_b11_field2', current_full_url());
-            
-            if (!empty($tabel->result())) {} else {
+
+            if (!empty($tabel->result())) {
+            } else {
                 $data = array(
                     'page_id' => '',
                     'page_url' => current_full_url(),
@@ -791,17 +815,17 @@ if (!class_exists('Omnitags')) {
 
                     $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
                 );
-                
+
                 $aksi = $this->tl_b11->insert_b11($data);
             }
 
             $tabel = $this->tl_b11->get_b11_by_field('tabel_b11_field2', current_full_url())->result();
-            
+
             $data1 = array(
                 'click_id' => '',
                 'user_id' => userdata($this->aliases['tabel_c2_field1']),
                 'page_id' => $tabel[0]->page_id,
-                
+
                 $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
             );
 

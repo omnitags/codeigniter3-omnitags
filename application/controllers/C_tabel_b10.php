@@ -195,7 +195,7 @@ class C_tabel_b10 extends Omnitags
 
 		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $tabel_b10_field1)->result();
 
-		$gambar = $this->change_image(
+		$gambar = $this->change_image_advanced(
 			$this->v_post['tabel_b10_field3'],
 			$tabel[0]->nama,
 			$this->v_upload_path['tabel_b10'],
