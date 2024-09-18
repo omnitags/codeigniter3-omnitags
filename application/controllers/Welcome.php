@@ -75,7 +75,8 @@ class Welcome extends Omnitags
 				$data = array_merge($data1, $this->package);
 
 				//Loading the page
-				load_view_data('_layouts/template', $data);
+				$this->track_page();
+		load_view_data('_layouts/template', $data);
 				break;
 		}
 	}
@@ -132,6 +133,7 @@ class Welcome extends Omnitags
 		set_userdata('previous_url', current_url());
 
 		// load the view with data
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 

@@ -28,6 +28,7 @@ class C_tabel_c1 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -47,6 +48,7 @@ class C_tabel_c1 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/printpage', $data);
 	}
 
@@ -73,6 +75,7 @@ class C_tabel_c1 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -91,6 +94,7 @@ class C_tabel_c1 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/logpage', $data);
 	}
 
@@ -109,6 +113,7 @@ class C_tabel_c1 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/logpage', $data);
 	}
 
@@ -147,8 +152,8 @@ class C_tabel_c1 extends Omnitags
 			$this->aliases['tabel_c1_field5'] => $this->v_post['tabel_c1_field5'],
 			$this->aliases['tabel_c1_field6'] => $this->v_post['tabel_c1_field6'],
 
-			'created_at' => date("Y-m-d\TH:i:s"),
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 
@@ -196,7 +201,7 @@ class C_tabel_c1 extends Omnitags
 			$this->aliases['tabel_c1_field5'] => $this->v_post['tabel_c1_field5'],
 			$this->aliases['tabel_c1_field6'] => $this->v_post['tabel_c1_field6'],
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_c1->update_c1($data, $tabel_c1_field1);
@@ -246,7 +251,7 @@ class C_tabel_c1 extends Omnitags
 			$this->aliases['tabel_c1_field5'] => $this->v_post['tabel_c1_field5'],
 			$this->aliases['tabel_c1_field7'] => $this->v_post['tabel_c1_field7'],
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_c1->update_c1($data, $tabel_c1_field1);

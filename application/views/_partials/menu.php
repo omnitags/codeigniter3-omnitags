@@ -3,7 +3,8 @@
         case $tabel_c2_field6_value1:
             ?>
             <li class="nav-item pb-2">
-                <a class="nav-link text-decoration-none text-light" href="<?= site_url($language . '/') ?>"><?= lang('home') ?></a>
+                <a class="nav-link text-decoration-none text-light"
+                    href="<?= site_url($language . '/') ?>"><?= lang('home') ?></a>
             </li>
             <?= nav_item(lang('tabel_e4_alias'), $tabel_e4, '/') ?>
             <?= nav_item(lang('tabel_e2_alias'), $tabel_e2, '/') ?>
@@ -31,33 +32,40 @@
                                     case $tabel_c2_field6_value2:
                                         ?>
                                         <h6 class="dropdown-header"><?= lang('tabel_f3_alias') ?></h6>
-                                        <?= dropdown_menu('tabel_f3', '/admin') ?>
-                                        <?= dropdown_menu_unique(lang('tabel_f3_alias_past'), $tabel_f3, '/history') ?>
+                                        <?= dropdown_nav('tabel_f3', '/admin') ?>
+                                        <?= dropdown_nav_unique(lang('tabel_f3_alias_past'), $tabel_f3, '/history') ?>
                                         <?php break;
 
                                     case $tabel_c2_field6_value3:
                                         ?>
                                         <h6 class="dropdown-header"><?= lang('data') ?></h6>
-                                        <?= dropdown_menu('tabel_e1', '/admin') ?>
-                                        <?= dropdown_menu('tabel_e2', '/admin') ?>
-                                        <?= dropdown_menu('tabel_e4', '/admin') ?>
+                                        <?= dropdown_nav('tabel_e2', '/admin') ?>
+                                        <?= dropdown_nav('tabel_e3', '/admin') ?>
+                                        <?= dropdown_nav('tabel_e4', '/admin') ?>
+                                        <div class="dropdown-divider"></div>
+                                        <h6 class="dropdown-header"><?= lang('manage') ?></h6>
+                                        <?= dropdown_nav('tabel_e5', '/admin') ?>
+                                        <?= dropdown_nav('tabel_e6', '/admin') ?>
+                                        <?= dropdown_nav('tabel_e7', '/admin') ?>
+                                        <?= dropdown_nav('tabel_e8', '/admin') ?>
                                         <div class="dropdown-divider"></div>
                                         <h6 class="dropdown-header"><?= lang('operational') ?></h6>
-                                        <?= dropdown_menu('tabel_c1', '/admin') ?>
-                                        <?= dropdown_menu('tabel_c2', '/admin') ?>
+                                        <?= dropdown_nav('tabel_e1', '/admin') ?>
+                                        <?= dropdown_nav('tabel_c1', '/admin') ?>
+                                        <?= dropdown_nav('tabel_c2', '/admin') ?>
                                         <div class="dropdown-divider"></div>
-                                        <?= dropdown_menu('tabel_a1', '/profil') ?>
+                                        <?= dropdown_nav('tabel_a1', '/profil') ?>
                                         <?php break;
                                     case $tabel_c2_field6_value4:
                                         ?>
 
                                         <h6 class="dropdown-header"><?= lang('manage') ?></h6>
-                                        <?= dropdown_menu('tabel_e3', '/admin') ?>
-                                        <?= dropdown_menu('tabel_f2', '/admin') ?>
-                                        <?= dropdown_menu('tabel_f1', '/admin') ?>
+                                        <?= dropdown_nav('tabel_e3', '/admin') ?>
+                                        <?= dropdown_nav('tabel_f2', '/admin') ?>
+                                        <?= dropdown_nav('tabel_f1', '/admin') ?>
                                         <div class="dropdown-divider"></div>
                                         <h6 class="dropdown-header"><?= lang('operational') ?></h6>
-                                        <?= dropdown_menu('tabel_f4', '/admin') ?>
+                                        <?= dropdown_nav('tabel_f4', '/admin') ?>
 
                                         <?php break;
                                     default:
@@ -86,7 +94,7 @@
                         <span><?= $notif_count . ' ' . lang('new_notifications') ?></span>
                         <div>
                             <span class="px-3"></span> <!-- Adding space between buttons -->
-                            <a href="<?= site_url($language . '/' . $tabel_b9 . '/update') ?>" class="btn btn-link">
+                            <a href="<?= nav_url($language . '/' . $tabel_b9 . '/update') ?>" class="btn btn-link">
                                 <i class="far fa-check-circle"></i>
                             </a>
                             <!-- <a class="btn btn-link">
@@ -101,9 +109,9 @@
                             foreach ($notif as $nf):
 
                                 if ($nf->$tabel_b9_field2 == userdata($tabel_c2_field1)) {
-                                    if ($nf->$tabel_b9_field6 == NULL) { ?>
+                                    if ($nf->$read_at == NULL) { ?>
 
-                                        <a href="<?= site_url($language . '/' . $tabel_b9 . '/detail/' . $nf->$tabel_b9_field1) ?>"
+                                        <a href="<?= site_url($language . '/' . $tabel_b9 . '/' . $nf->$tabel_b9_field1 . '/detail') ?>"
                                             class="list-group-item bg-light">
                                             <div class="row g-0 align-items-center">
                                                 <div class="col-2">
@@ -114,14 +122,14 @@
                                                     <div class="text-muted small mt-1">
                                                         <?= $nf->$tabel_b9_field4 ?>
                                                     </div>
-                                                    <div class="text-muted small mt-1"><?= datetime_elapsed_string($nf->$tabel_b9_field5) ?>
+                                                    <div class="text-muted small mt-1"><?= datetime_elapsed_string($nf->$created_at) ?>
                                                     </div>
                                                 </div>
                                             </div>
                                         </a>
 
                                     <?php } else { ?>
-                                        <a href="<?= site_url($language . '/' . $tabel_b9 . '/detail/' . $nf->$tabel_b9_field1) ?>"
+                                        <a href="<?= site_url($language . '/' . $tabel_b9 . '/' . $nf->$tabel_b9_field1 . '/detail') ?>"
                                             class="list-group-item">
                                             <div class="row g-0 align-items-center">
                                                 <div class="col-2">
@@ -132,7 +140,7 @@
                                                     <div class="text-muted small mt-1">
                                                         <?= $nf->$tabel_b9_field4 ?>
                                                     </div>
-                                                    <div class="text-muted small mt-1"><?= datetime_elapsed_string($nf->$tabel_b9_field5) ?>
+                                                    <div class="text-muted small mt-1"><?= datetime_elapsed_string($nf->$created_at) ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -156,7 +164,7 @@
                         } ?>
                     </div>
                     <div class="dropdown-header">
-                        <a href="<?= site_url($language . '/' . $tabel_b9 . '/daftar') ?>"
+                        <a href="<?= nav_url($language . '/' . $tabel_b9 . '/daftar') ?>"
                             class="text-muted"><?= lang('show_all_notifications') ?></a>
                     </div>
                 </div>
@@ -187,16 +195,16 @@
                             case $tabel_c2_field6_value5:
                                 ?>
                                 <h6 class="dropdown-header"><?= lang('explore') ?></h6>
-                                <?= dropdown_menu_unique(lang('order_now'), '', '') ?>
-                                <?= dropdown_menu('tabel_e4', '') ?>
+                                <?= dropdown_nav_unique(lang('order_now'), '', '') ?>
+                                <?= dropdown_nav('tabel_e4', '') ?>
                                 <div class="dropdown-divider"></div>
                                 <h6 class="dropdown-header"><?= lang('reservations') ?></h6>
-                                <?= dropdown_menu('tabel_f2', '/daftar') ?>
-                                <?= dropdown_menu('tabel_f3', '/daftar') ?>
+                                <?= dropdown_nav('tabel_f2', '/daftar') ?>
+                                <?= dropdown_nav('tabel_f3', '/daftar') ?>
                                 <div class="dropdown-divider"></div>
                                 <h6 class="dropdown-header"><?= lang('history') ?></h6>
-                                <?= dropdown_menu('tabel_f1', '/daftar') ?>
-                                <?= dropdown_menu_unique(lang('tabel_f3_alias'), $tabel_f3, '/daftar_history') ?>
+                                <?= dropdown_nav('tabel_f1', '/daftar') ?>
+                                <?= dropdown_nav_unique(lang('tabel_f3_alias'), $tabel_f3, '/daftar_history') ?>
                                 <div class="dropdown-divider"></div>
                                 <?php break;
                             case $tabel_c2_field6_value2:
@@ -210,8 +218,8 @@
                                 <?php break;
                         } ?>
 
-                        <?= dropdown_menu_unique(lang('tabel_c2_alias2'), $tabel_c2, '/profil') ?>
-                        <?= dropdown_menu_unique(lang('logout'), $tabel_c2, '/logout') ?>
+                        <?= dropdown_nav_unique(lang('tabel_c2_alias2'), $tabel_c2, '/profil') ?>
+                        <?= dropdown_nav_unique(lang('logout'), $tabel_c2, '/logout') ?>
 
 
                     </div>
@@ -222,7 +230,7 @@
             break;
     } ?>
 
-<li class="nav-item pb-2">
+    <!-- <li class="nav-item pb-2">
         <form action="<?= site_url($language . '/welcome/set_language'); ?>" method="post" class="form-inline">
             <select name="language" class="form-control" onchange="this.form.submit()">
                 <option value="en" <?= (userdata('site_lang') == 'en') ? 'selected' : ''; ?>>EN</option>

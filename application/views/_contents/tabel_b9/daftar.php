@@ -26,12 +26,12 @@
     load_view('_partials/no_data');
   } else {
     foreach ($tbl_b9->result() as $tl_b9):
-      if ($tl_b9->$tabel_b9_field6 == NULL) {
+      if ($tl_b9->$read_at == NULL) {
         echo card_regular(
           $tl_b9->$tabel_b9_field1,
           $tl_b9->$tabel_b8_field3,
           $tl_b9->$tabel_b9_field4 . '<br>' .
-          $tl_b9->$tabel_b9_field5,
+          $tl_b9->$created_at,
           btn_value('tabel_b9', $tl_b9->$tabel_b9_field1, 'lihat', '<i class="fas fa-envelope-open"></i>') .
           btn_lihat($tl_b9->$tabel_b9_field1),
           'text-dark bg-white',
@@ -43,7 +43,7 @@
           $tl_b9->$tabel_b9_field1,
           $tl_b9->$tabel_b8_field3,
           $tl_b9->$tabel_b9_field4 . '<br>' .
-          $tl_b9->$tabel_b9_field5,
+          $tl_b9->$created_at,
           btn_lihat($tl_b9->$tabel_b9_field1),
           'text-dark bg-light',
           'col-md-3',
@@ -62,19 +62,19 @@
         <th><?= lang('no') ?></th>
         <th><?= lang('tabel_b8_field3_alias') ?></th>
         <th><?= lang('tabel_b9_field4_alias') ?></th>
-        <th><?= lang('tabel_b9_field5_alias') ?></th>
+        <th><?= lang('created_at_alias') ?></th>
         <th><?= lang('action') ?></th>
       </tr>
     </thead>
 
     <tbody>
       <?php foreach ($tbl_b9->result() as $tl_b9):
-        if ($tl_b9->$tabel_b9_field6 == NULL) { ?>
+        if ($tl_b9->$read_at == NULL) { ?>
           <tr class="bg-white">
             <td></td>
             <td><?= $tl_b9->$tabel_b8_field3 ?></td>
             <td><?= $tl_b9->$tabel_b9_field4 ?></td>
-            <td><?= $tl_b9->$tabel_b9_field5 ?></td>
+            <td><?= $tl_b9->$created_at ?></td>
             <td>
               <?= btn_value('tabel_b9', $tl_b9->$tabel_b9_field1, 'lihat', '<i class="fas fa-envelope-open"></i>') ?>
               <?= btn_lihat($tl_b9->$tabel_b9_field1) ?>
@@ -85,7 +85,7 @@
             <td></td>
             <td><?= $tl_b9->$tabel_b8_field3 ?></td>
             <td><?= $tl_b9->$tabel_b9_field4 ?></td>
-            <td><?= $tl_b9->$tabel_b9_field5 ?></td>
+            <td><?= $tl_b9->$created_at ?></td>
             <td>
               <?= btn_lihat($tl_b9->$tabel_b9_field1) ?>
             </td>
@@ -111,8 +111,8 @@
             <?= table_data(
               row_data('tabel_b8_field3', $tl_b9->$tabel_b8_field3) .
               row_data('tabel_b9_field4', html_entity_decode($tl_b9->$tabel_b9_field4)) .
-              row_data('tabel_b9_field5', $tl_b9->$tabel_b9_field5) .
-              row_data('tabel_b9_field6', $tl_b9->$tabel_b9_field6),
+              row_data('created_at', $tl_b9->$created_at) .
+              row_data('read_at', $tl_b9->$read_at),
               'table-light',
             ) ?>
           </div>
