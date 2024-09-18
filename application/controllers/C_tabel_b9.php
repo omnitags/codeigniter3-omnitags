@@ -11,12 +11,12 @@ class C_tabel_b9 extends Omnitags
 	{
 		$this->declarew();
 		$allowed_values = [
-                $this->aliases['tabel_c2_field6_value2'],
-                $this->aliases['tabel_c2_field6_value3'],
-                $this->aliases['tabel_c2_field6_value4'],
-                $this->aliases['tabel_c2_field6_value5']
-            ];
-            $this->page_session_check($allowed_values);
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->page_session_check($allowed_values);
 
 		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$tabel_b9_field1, userdata($this->aliases['tabel_c2_field1'])])->result();
 
@@ -43,11 +43,11 @@ class C_tabel_b9 extends Omnitags
 				if (get('refresh') !== 'true') {
 					// Redirect to the same method with a refresh parameter
 					$this->track_page();
-		load_view_data('_layouts/template', $data);
+					load_view_data('_layouts/template', $data);
 					redirect(current_url() . '?refresh=true');
 				} else {
 					$this->track_page();
-		load_view_data('_layouts/template', $data);
+					load_view_data('_layouts/template', $data);
 				}
 
 			} else {
@@ -63,12 +63,12 @@ class C_tabel_b9 extends Omnitags
 	{
 		$this->declarew();
 		$allowed_values = [
-                $this->aliases['tabel_c2_field6_value2'],
-                $this->aliases['tabel_c2_field6_value3'],
-                $this->aliases['tabel_c2_field6_value4'],
-                $this->aliases['tabel_c2_field6_value5']
-            ];
-            $this->page_session_check($allowed_values);
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->page_session_check($allowed_values);
 
 		$tabel_b9_field2 = userdata($this->aliases['tabel_c2_field1']);
 
@@ -134,12 +134,12 @@ class C_tabel_b9 extends Omnitags
 	{
 		$this->declarew();
 		$allowed_values = [
-                $this->aliases['tabel_c2_field6_value2'],
-                $this->aliases['tabel_c2_field6_value3'],
-                $this->aliases['tabel_c2_field6_value4'],
-                $this->aliases['tabel_c2_field6_value5']
-            ];
-            $this->session_check($allowed_values);
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->session_check($allowed_values);
 
 		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$tabel_b9_field1, userdata($this->aliases['tabel_c2_field1'])])->result();
 
@@ -190,12 +190,12 @@ class C_tabel_b9 extends Omnitags
 	{
 		$this->declarew();
 		$allowed_values = [
-                $this->aliases['tabel_c2_field6_value2'],
-                $this->aliases['tabel_c2_field6_value3'],
-                $this->aliases['tabel_c2_field6_value4'],
-                $this->aliases['tabel_c2_field6_value5']
-            ];
-            $this->session_check($allowed_values);
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->session_check($allowed_values);
 
 		$tabel_b9_field2 = userdata($this->aliases['tabel_c2_field1']);
 
