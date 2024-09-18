@@ -22,6 +22,13 @@ Here are some of the projects that showcase the capabilities of Omnitags:
 ### 4. [BarangMaster](http://hotelkhenjy.com/inventory) (Inventory Website Built and Hosted in Under 1 Hour)
 **Description**: BarangMaster showcases the speed and flexibility of Omnitags by enabling the creation and deployment of a fully functional inventory management system in less than one hour. The project includes basic inventory tracking, stock management, and reporting features, demonstrating how Omnitags can be used for rapid prototyping and deployment of critical business tools.
 
+### 5. [BNSP](http://hotelkhenjy.com/bnsp) (Medical Website in Preparation for Career Enrichment Test)
+**Description**: BNSP is a medical inventory website. I designed it to prepare for my career enrichment tests. Built using Omnitags, this website provides essential information, resources, and tools to assist users in managing medical items.
+
+### 6. [Uvers Website](http://hotelkhenjy.com/uvers_tpl) (Experimental College Website)
+**Description**: Uvers Website is an experimental platform aimed at replicating a college website experience. Built using Omnitags, the site offers a dynamic environment for experimenting with different educational features, content structures, and layout designs that are common in academic institutions.
+
+
 ## How Omnitags Works
 
 Omnitags relies on a branch-based approach to project management, allowing for different modules and applications to exist within the same repository. This means that instead of starting from scratch or copying existing codebases, users can simply switch between branches to implement or modify the framework for various projects. This approach saves development time and ensures consistency across applications.
