@@ -25,6 +25,8 @@
         <?= btn_kelola('tabel_b5', '/admin') ?>
         <?= btn_kelola('tabel_b6', '/admin') ?>
         <!-- ?= btn_kelola('tabel_b10', '/admin') ?> -->
+        <?= btn_kelola('tabel_b11', '/admin') ?>
+        <?= btn_kelola('tabel_d4', '/admin') ?>
       </div>
     </div>
     <div class="col-md-6">

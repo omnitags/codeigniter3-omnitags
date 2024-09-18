@@ -73,7 +73,8 @@ class Welcome extends Omnitags
 				$data = array_merge($data1, $this->package);
 
 				//Loading the page
-				load_view_data('_layouts/template', $data);
+				$this->track_page();
+		load_view_data('_layouts/template', $data);
 				break;
 		}
 	}
@@ -112,12 +113,20 @@ class Welcome extends Omnitags
 			// 'chart_tabel_f2' => json_encode($chart_tabel_f2),
 		);
 
-		$this->session->set_flashdata($this->views['flash1'], $this->views['flash1_note1']);
-		$this->session->set_flashdata('toast', $this->views['flash1_func1']);
+		set_flashdata($this->views['flash1'], $this->views['flash1_note1']);
+		set_flashdata('toast', $this->views['flash1_func1']);
 
 		$data = array_merge($data1, $this->package);
 
-		$this->load->view('_layouts/template', $data);
+		// handling the notification
+		$notif = $this->handle_2a();
+
+		// set the session for this function to be called if there's an error page
+		set_userdata('previous_url', current_url());
+
+		// load the view with data
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
 	}
 
 	public function invalid()

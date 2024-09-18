@@ -129,4 +129,4 @@
 <?php endforeach; ?>
 
 <!-- ?= chart('tabel_f1', 'tabel_f2') ?> -->
-<?= adjust_col_js() ?>
+<?= adjust_col_js('col-md-3', 'col-md-4') ?>
