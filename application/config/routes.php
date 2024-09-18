@@ -35,7 +35,7 @@ foreach ($myData2 as $item2) {
     $route[$routeKey] = $controller;
 
 
-    $routeId = '(' . $languages . ')/' . $item2['value'] . '/(:any)';
+    $routeId = '(' . $languages . ')/' . $item2['value'] . '/(:num)';
     $controller = $prefix . '/detail/$2';
     $route[$routeId] = $controller;
 
@@ -109,7 +109,7 @@ foreach ($myData2 as $item2) {
     }
 
     foreach ($uncommonFunctionRoutes as $key => $value) {
-        $routeKey1 = '(' . $languages . ')/' . $item2['value'] . '/(:any)' . '/' . $key;
+        $routeKey1 = '(' . $languages . ')/' . $item2['value'] . '/(:num)' . '/' . $key;
         $controller1 = $prefix . '/' . $value . '/$2';
 
         $route[$routeKey1] = $controller1;

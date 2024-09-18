@@ -368,7 +368,7 @@ if (!function_exists('adjust_date4')) {
 
 if (!function_exists('adjust_col_js')) {
     // Generates JavaScript code to adjust column sizes based on screen width
-    function adjust_col_js()
+    function adjust_col_js($current_size, $new_size)
     {
         return <<<HTML
         <script>
@@ -380,18 +380,18 @@ if (!function_exists('adjust_col_js')) {
             const breakpoint = 1024; // You can adjust this value based on your needs
 
             // Select all elements with the class "col-md-3"
-            const colMd3Elements = document.querySelectorAll(".col-md-3");
+            const colMd3Elements = document.querySelectorAll(".{$current_size}");
 
             // Loop through each element
             colMd3Elements.forEach(element => {
             if (screenWidth >= breakpoint) {
                 // If screen size is greater than or equal to breakpoint, set class to col-md-4
-                element.classList.add("col-md-3");
-                element.classList.remove("col-md-4");
+                element.classList.add("{$current_size}");
+                element.classList.remove("{$new_size}");
             } else {
                 // If screen size is less than breakpoint, set class to col-md-3
-                element.classList.remove("col-md-3");
-                element.classList.add("col-md-4");
+                element.classList.remove("{$current_size}");
+                element.classList.add("{$new_size}");
             }
             });
         }

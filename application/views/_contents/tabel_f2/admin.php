@@ -321,7 +321,7 @@
   <?= checkbox_js($tl_f2->$tabel_f2_field1) ?>
 <?php endforeach ?>
 
-<?= adjust_col_js() ?>
+<?= adjust_col_js('col-md-3', 'col-md-4') ?>
 
 <?= adjust_date3($tabel_f2_field10_filter1, $tabel_f2_field10_filter2, $tabel_f2_field11_filter1, $tabel_f2_field11_filter2) ?>
 <?= adjust_date2($tabel_f2_field11_filter1, $tabel_f2_field11_filter2) ?>

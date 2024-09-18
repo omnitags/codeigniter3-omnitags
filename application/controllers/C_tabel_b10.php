@@ -139,29 +139,13 @@ class C_tabel_b10 extends Omnitags
 		// mencari apakah jumlah data kurang dari 1
 		if ($method->num_rows() < 1) {
 
-			$new_name = $this->v_post['tabel_b10_field3'];
-			$path = $this->v_upload_path['tabel_b10'];
-
-			$config['upload_path'] = $path;
-			$config['allowed_types'] = $this->file_type1;
-			$config['file_name'] = $new_name;
-			$config['overwrite'] = TRUE;
-			$config['remove_spaces'] = TRUE;
-
-			$this->load->library('upload', $config);
-			$upload = $this->upload->do_upload($this->v_input['tabel_b10_field2_input']);
-
-			if (!$upload) {
-				// Di sini seharusnya ada notifikasi modal kalau upload tidak berhasil
-				// Tapi karena formnya sudah required saya rasa tidak perlu
-				set_flashdata($this->views['flash2'], $this->flash_msg2['tabel_b10_field2_alias']);
-				set_flashdata('modal', $this->views['flash2_func1']);
-				redirect($_SERVER['HTTP_REFERER']);
-			} else {
-				// Di bawah ini adalah method untuk mengambil informasi dari hasil upload data
-				$upload = $this->upload->data();
-				$gambar = $upload['file_name'];
-			}
+			$gambar = $this->upload_new_image(
+				$this->v_post['tabel_b10_field3'],
+				$this->v_upload_path['tabel_b10'],
+				'tabel_b10_field2',
+				$this->file_type1,
+				$method
+			);
 
 			// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
 			// $this->aliases['tabel_e1_field1'] => $id,
@@ -209,46 +193,21 @@ class C_tabel_b10 extends Omnitags
 			'ubah' . $tabel_b10_field1,
 		);
 
-		$tabel_b10 = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $tabel_b10_field1)->result();
-		$new_name = $this->v_post['tabel_b10_field3'];
-		$path = $this->v_upload_path['tabel_b10'];
-		$img = $this->v_post['tabel_b10_field2_old'];
-		$extension = '.' . getExtension($path . $img);
+		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $tabel_b10_field1)->result();
 
-		$config['upload_path'] = $path;
-		// nama file telah ditetapkan dan hanya berekstensi jpg dan dapat diganti dengan file bernama sama
-		$config['file_name'] = $new_name;
-		$config['allowed_types'] = $this->file_type1;
-		$config['overwrite'] = TRUE;
-		$config['remove_spaces'] = TRUE;
-
-		$this->load->library('upload', $config);
-		$upload = $this->upload->do_upload($this->v_input['tabel_b10_field2_input']);
-
-		if (!$upload) {
-			if ($new_name != $tabel_b10[0]->nama) {
-				rename($path . $img, $path . str_replace(' ', '_', $new_name) . $extension);
-				$gambar = str_replace(' ', '_', $new_name) . $extension;
-			} else {
-				$gambar = $img;
-			}
-		} else {
-			if ($new_name != $tabel_b10[0]->nama) {
-				// File upload is successful, delete the old file
-				if (file_exists($path . $img)) {
-					unlink($path . $img);
-				}
-				$upload = $this->upload->data();
-				$gambar = $upload['file_name'];
-			} else {
-				$gambar = $img;
-			}
-		}
+		$gambar = $this->change_image(
+			$this->v_post['tabel_b10_field3'],
+			$tabel[0]->nama,
+			$this->v_upload_path['tabel_b10'],
+			'tabel_b10_field2',
+			$this->file_type1,
+			$tabel
+		);
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			$this->aliases['tabel_b10_field2'] => $gambar,
-			$this->aliases['tabel_b10_field3'] => $new_name,
+			$this->aliases['tabel_b10_field3'] => $this->v_post['tabel_b10_field3'],
 			$this->aliases['tabel_b10_field4'] => $this->v_post['tabel_b10_field4'],
 
 			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),

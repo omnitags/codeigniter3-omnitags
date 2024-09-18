@@ -635,11 +635,6 @@ if (!class_exists('Omnitags')) {
 
         public function upload_new_image($new_name, $path, $field, $allowed_types, $tabel)
         {
-            $new_name = $this->v_post['tabel_b1_field2'];
-            $path = $this->v_upload_path['tabel_b1'];
-            $img = $this->v_post[$field . '_old'];
-            $extension = '.' . getExtension($path . $img);
-
             $config['upload_path'] = $path;
             // nama file telah ditetapkan dan hanya berekstensi jpg dan dapat diganti dengan file bernama sama
             $config['file_name'] = $new_name;
@@ -648,33 +643,20 @@ if (!class_exists('Omnitags')) {
             $config['remove_spaces'] = TRUE;
 
             $this->load->library('upload', $config);
-            $upload = $this->upload->do_upload($this->v_input[$img . '_input']);
+            $upload = $this->upload->do_upload($this->v_input[$field . '_input']);
 
             if (!$upload) {
-                if ($new_name != $tabel[0]->kode) {
-                    rename($path . $img, $path . str_replace(' ', '_', $new_name) . $extension);
-                    $gambar = str_replace(' ', '_', $new_name) . $extension;
-                } else {
-                    $gambar = $img;
-                }
+                set_flashdata($this->views['flash2'], $this->flash_msg2[$field . '_alias']);
+				set_flashdata('modal', $this->views['flash2_func1']);
+				redirect($_SERVER['HTTP_REFERER']);
             } else {
-                if ($new_name != $tabel[0]->kode) {
-                    // File upload is successful, delete the old file
-                    if (file_exists($path . $img)) {
-                        unlink($path . $img);
-                    }
-                    $upload = $this->upload->data();
-                    return $gambar = $upload['file_name'];
-                } else {
-                    return $gambar = $img;
-                }
+                $upload = $this->upload->data();
+				return $upload['file_name'];
             }
         }
 
-        public function change_image($new_name, $path, $field, $allowed_types, $tabel)
+        public function change_image($new_name, $old_name, $path, $field, $allowed_types, $tabel)
         {
-            $new_name = $this->v_post['tabel_b1_field2'];
-            $path = $this->v_upload_path['tabel_b1'];
             $img = $this->v_post[$field . '_old'];
             $extension = '.' . getExtension($path . $img);
 
@@ -686,25 +668,25 @@ if (!class_exists('Omnitags')) {
             $config['remove_spaces'] = TRUE;
 
             $this->load->library('upload', $config);
-            $upload = $this->upload->do_upload($this->v_input[$img . '_input']);
+            $upload = $this->upload->do_upload($this->v_input[$field . '_input']);
 
             if (!$upload) {
-                if ($new_name != $tabel[0]->kode) {
+                if ($new_name != $old_name) {
                     rename($path . $img, $path . str_replace(' ', '_', $new_name) . $extension);
-                    $gambar = str_replace(' ', '_', $new_name) . $extension;
+                    return str_replace(' ', '_', $new_name) . $extension;
                 } else {
-                    $gambar = $img;
+                    return $img;
                 }
             } else {
-                if ($new_name != $tabel[0]->kode) {
+                if ($new_name != $old_name) {
                     // File upload is successful, delete the old file
                     if (file_exists($path . $img)) {
                         unlink($path . $img);
                     }
                     $upload = $this->upload->data();
-                    return $gambar = $upload['file_name'];
+                    return $upload['file_name'];
                 } else {
-                    return $gambar = $img;
+                    return $img;
                 }
             }
         }
