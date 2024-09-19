@@ -17,12 +17,36 @@ class C_tabel_e4 extends Omnitags
 			'konten' => $this->v1['tabel_e4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e4']),
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
-			// 'tbl_e1' => $this->tl_e1->get_all_e1(),
+			'tbl_e2' => $this->tl_e2->get_all_e2(),
 		);
 
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
+	}
+
+	// Public Pages
+	public function detail($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_e4_alias_v8_title'),
+			'konten' => $this->v8['tabel_e4'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b2']),
+			'tbl_e4' => $this->tl_e4->get_e4_by_field('tabel_e4_field1', $param1),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -44,6 +68,7 @@ class C_tabel_e4 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -63,6 +88,7 @@ class C_tabel_e4 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/printpage', $data);
 	}
 
@@ -117,6 +143,9 @@ class C_tabel_e4 extends Omnitags
 			$this->aliases['tabel_e4_field11'] => $this->v_post['tabel_e4_field11'],
 			$this->aliases['tabel_e4_field12'] => $this->v_post['tabel_e4_field12'],
 			$this->aliases['tabel_e4_field13'] => $this->v_post['tabel_e4_field13'],
+
+			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e4->insert_e4($data);
@@ -140,6 +169,8 @@ class C_tabel_e4 extends Omnitags
 
 		$tabel_e4_field1 = $this->v_post['tabel_e4_field1'];
 
+		$tabel = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
+		$this->check_data($tabel);
 		$tabel_e4 = $this->tl_e4->get_e4_by_e4_field1($tabel_e4_field1)->result();
 		$this->check_data($tabel_e4);
 
@@ -169,6 +200,9 @@ class C_tabel_e4 extends Omnitags
 			$this->aliases['tabel_e4_field11'] => $this->v_post['tabel_e4_field11'],
 			$this->aliases['tabel_e4_field12'] => $this->v_post['tabel_e4_field12'],
 			$this->aliases['tabel_e4_field13'] => $this->v_post['tabel_e4_field13'],
+
+			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e4->update_e4($data, $tabel_e4_field1);

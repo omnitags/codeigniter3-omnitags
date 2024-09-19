@@ -28,8 +28,8 @@ class M_tabel_b9 extends CI_Model
 	// from two related tables (tabel_b9 and tabel_b8) based on a given parameter _by_field($fields, $params).
 	// The SQL query selects all columns from tabel_b9 and tabel_b8 
 	// and joins them on where the tabel_b9_field2 column in tabel_b9 matches the given parameter. 
-	// The results are ordered by a case statement that puts rows with a null tabel_b9_field6 value first,
-	// followed then by tabel_b9_field6 in descending order, and finally by tabel_b9_field1 in descending order. 
+	// The results are ordered by a case statement that puts rows with a null read_at value first,
+	// followed then by read_at in descending order, and finally by tabel_b9_field1 in descending order. 
 	// The LIMIT 15 clause limits the number of results to 15.
 	// The method returns the result of the query, which is a CI_DB_mysqli_result object.
 
@@ -39,8 +39,8 @@ class M_tabel_b9 extends CI_Model
 		JOIN {$this->aliases['tabel_b8']} 
 		ON {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field3']} = {$this->aliases['tabel_b8']}.{$this->aliases['tabel_b8_field2']}
 		WHERE {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field2']} = '$param1'
-		ORDER BY CASE WHEN {$this->aliases['tabel_b9_field6']} IS NULL THEN 0
-		ELSE 1 END, {$this->aliases['tabel_b9_field6']} DESC, {$this->aliases['tabel_b9_field1']} DESC LIMIT 15";
+		ORDER BY CASE WHEN {$this->aliases['read_at']} IS NULL THEN 0
+		ELSE 1 END, {$this->aliases['read_at']} DESC, {$this->aliases['tabel_b9_field1']} DESC LIMIT 15";
 		return $this->db->query($sql);
 	}
 	
@@ -50,8 +50,8 @@ class M_tabel_b9 extends CI_Model
 		JOIN {$this->aliases['tabel_b8']} 
 		ON {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field3']} = {$this->aliases['tabel_b8']}.{$this->aliases['tabel_b8_field2']}
 		WHERE {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field2']} = '$param1'
-		ORDER BY CASE WHEN {$this->aliases['tabel_b9_field6']} IS NULL THEN 0
-		ELSE 1 END, {$this->aliases['tabel_b9_field6']} DESC, {$this->aliases['tabel_b9_field1']} DESC";
+		ORDER BY CASE WHEN {$this->aliases['read_at']} IS NULL THEN 0
+		ELSE 1 END, {$this->aliases['read_at']} DESC, {$this->aliases['tabel_b9_field1']} DESC";
 		return $this->db->query($sql);
 	}
 
@@ -71,7 +71,7 @@ class M_tabel_b9 extends CI_Model
 
 	public function update_null($data, $param1)
 	{
-		$this->db->where($this->aliases['tabel_b9_field6'], NULL);
+		$this->db->where($this->aliases['read_at'], NULL);
 		$this->db->where($this->aliases['tabel_b9_field2'], $param1);
 		return $this->db->update($this->aliases['tabel_b9'], $data);
 	}

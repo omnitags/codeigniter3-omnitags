@@ -25,6 +25,28 @@ class C_tabel_e2 extends Omnitags
 		load_view_data('_layouts/template', $data);
 	}
 
+	public function detail($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_e2->get_e2_by_field('tabel_e2_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_e2_alias_v8_title'),
+			'konten' => $this->v8['tabel_e2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b2']),
+			'tbl_e2' => $this->tl_e2->get_e2_by_field('tabel_e2_field1', $param1),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
+	}
+
 	// Account Only Pages
 
 
@@ -44,6 +66,7 @@ class C_tabel_e2 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -63,6 +86,7 @@ class C_tabel_e2 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/printpage', $data);
 	}
 
@@ -91,6 +115,9 @@ class C_tabel_e2 extends Omnitags
 			$this->aliases['tabel_e2_field1'] => '',
 			$this->aliases['tabel_e2_field2'] => $this->v_post['tabel_e2_field2'],
 			$this->aliases['tabel_e2_field3'] => $this->v_post['tabel_e2_field3'],
+			
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		// $query = 'INSERT INTO tabel_e2 VALUES('.$data.')';
@@ -133,6 +160,11 @@ class C_tabel_e2 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_e2_field2'] => $this->v_post['tabel_e2_field2'],
 			$this->aliases['tabel_e2_field3'] => $this->v_post['tabel_e2_field3'],
+			$this->aliases['tabel_e2_field4'] => $this->v_post['tabel_e2_field4'],
+			$this->aliases['tabel_e2_field5'] => $this->v_post['tabel_e2_field5'],
+			$this->aliases['tabel_e2_field6'] => $this->v_post['tabel_e2_field6'],
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e2->update_e2($data, $tabel_e2_field1);
