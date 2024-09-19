@@ -28,7 +28,7 @@ if (!class_exists('Omnitags')) {
         public $phase_4 = '';  // feature released
 
         // Variables that functions as soft code later on
-        public $spreadsheet_lib, $uri $db;
+        public $spreadsheet_lib, $uri, $db;
 
         public $aliases, $views, $flashdatas, $tempdatas, $show, $package;
         public $v1, $v2, $v3, $v4, $v5, $v6, $v7, $v8;
