@@ -76,7 +76,7 @@ class Welcome extends Omnitags
 
 				//Loading the page
 				$this->track_page();
-		load_view_data('_layouts/template', $data);
+				load_view_data('_layouts/template', $data);
 				break;
 		}
 	}
