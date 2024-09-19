@@ -29,7 +29,6 @@ if (!class_exists('Omnitags')) {
 
         // Variables that functions as soft code later on
         public $spreadsheet_lib, $uri, $db;
-
         public $aliases, $views, $flashdatas, $tempdatas, $show, $package;
         public $v1, $v2, $v3, $v4, $v5, $v6, $v7, $v8;
         public $v1_title, $v2_title, $v3_title, $v4_title, $v5_title, $v6_title, $v7_title, $v8_title;
