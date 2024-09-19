@@ -22,7 +22,7 @@ class C_tabel_c1 extends Omnitags
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c1']),
 			'tbl_c1' => $this->tl_c1->get_all_c1(),
 			'tbl_e2' => $this->tl_e2->get_all_e2(),
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			// 'tbl_e4' => $this->tl_e4->get_all_e4(),
 		);
 
 		$data = array_merge($data1, $this->package);

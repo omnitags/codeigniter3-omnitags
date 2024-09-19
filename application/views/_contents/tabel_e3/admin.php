@@ -20,9 +20,9 @@
         <?= select_edit(
           'tabel_e3_field4',
           $tabel_e3_field4_value,
-          $tbl_e4,
-          $tabel_e4_field1,
-          $tabel_e4_field2,
+          $tbl_e1,
+          $tabel_e1_field1,
+          $tabel_e1_field2,
           'required'
         ); ?>
       </td>
@@ -115,13 +115,6 @@
           <?= input_add('text', 'tabel_e3_field2', 'required') ?>
           <?= input_add('text', 'tabel_e3_field3', 'required') ?>
 
-          <?= select_add(
-            'tabel_e3_field4',
-            $tbl_e4,
-            $tabel_e4_field1,
-            $tabel_e4_field2,
-            'required'
-          ); ?>
 
           <?= select_add(
             'tabel_e3_field5',
@@ -156,15 +149,6 @@
           <div class="modal-body">
             <?= input_edit('text', 'tabel_e3_field2', $tl_e3->$tabel_e3_field2, 'required') ?>
             <?= input_edit('text', 'tabel_e3_field3', $tl_e3->$tabel_e3_field3, 'required') ?>
-
-            <?= select_edit(
-              'tabel_e3_field4',
-              $tl_e3->$tabel_e3_field4,
-              $tbl_e4,
-              $tabel_e4_field1,
-              $tabel_e4_field2,
-              'required'
-            ); ?>
 
             <?= select_edit(
               'tabel_e3_field5',

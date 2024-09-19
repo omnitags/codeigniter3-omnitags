@@ -17,7 +17,7 @@ class C_tabel_e2 extends Omnitags
 			'konten' => $this->v1['tabel_e2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e2']),
 			'tbl_e2' => $this->tl_e2->get_all_e2(),
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			// 'tbl_e4' => $this->tl_e4->get_all_e4(),
 		);
 
 		$data = array_merge($data1, $this->package);
@@ -73,7 +73,7 @@ class C_tabel_e2 extends Omnitags
 			'konten' => $this->v3['tabel_e2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e2']),
 			'tbl_e2' => $result,
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			// 'tbl_e4' => $this->tl_e4->get_all_e4(),
 			'tabel_e2_field3_value' => $param1,
 			'stuff' => firebase_get_data('/teachers')
 		);
@@ -121,6 +121,7 @@ class C_tabel_e2 extends Omnitags
 				$this->v_post['tabel_e2_field4'],
 				$this->v_post['tabel_e2_field5'],
 				$this->v_post['tabel_e2_field6'],
+				$this->v_post['tabel_e2_field7'],
 			),
 			$this->views['flash2'],
 			'tambah'
@@ -138,6 +139,7 @@ class C_tabel_e2 extends Omnitags
 			$this->aliases['tabel_e2_field4'] => $this->v_post['tabel_e2_field4'],
 			$this->aliases['tabel_e2_field5'] => $this->v_post['tabel_e2_field5'],
 			$this->aliases['tabel_e2_field6'] => $this->v_post['tabel_e2_field6'],
+			$this->aliases['tabel_e2_field7'] => $this->v_post['tabel_e2_field7'],
 
 			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
 			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
@@ -178,6 +180,7 @@ class C_tabel_e2 extends Omnitags
 				$this->v_post['tabel_e2_field4'],
 				$this->v_post['tabel_e2_field5'],
 				$this->v_post['tabel_e2_field6'],
+				$this->v_post['tabel_e2_field7'],
 			),
 			$this->views['flash3'],
 			'ubah' . $tabel_e2_field1
@@ -189,6 +192,7 @@ class C_tabel_e2 extends Omnitags
 			$this->aliases['tabel_e2_field4'] => $this->v_post['tabel_e2_field4'],
 			$this->aliases['tabel_e2_field5'] => $this->v_post['tabel_e2_field5'],
 			$this->aliases['tabel_e2_field6'] => $this->v_post['tabel_e2_field6'],
+			$this->aliases['tabel_e2_field7'] => $this->v_post['tabel_e2_field7'],
 
 			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);

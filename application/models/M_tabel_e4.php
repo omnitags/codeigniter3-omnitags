@@ -8,7 +8,7 @@ class M_tabel_e4 extends CI_Model
 		$this->db->order_by($this->aliases['tabel_e4_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_e4']);
 	}
-
+	
 	public function get_e4_by_field($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
@@ -24,43 +24,17 @@ class M_tabel_e4 extends CI_Model
 		return $this->db->get($this->aliases['tabel_e4']);
 	}
 
-	public function getCharttabel_f2()
+	public function get_e4_with_e4()
 	{
-		// Query to fetch data from the database
-		$query = $this->db->query("SELECT t6.{$this->aliases['tabel_e4_field2']} AS label, 
-		COUNT(t8.{$this->aliases['tabel_f2_field1']}) AS value
-		FROM {$this->aliases['tabel_e4']} AS t6
-        LEFT JOIN {$this->aliases['tabel_f2']} AS t8 
-		ON t6.{$this->aliases['tabel_e4_field1']} = t8.{$this->aliases['tabel_e4_field1']}
-        GROUP BY t6.{$this->aliases['tabel_e4_field1']}");
-
-		// Convert query result to associative array
-		$result = $query->result_array();
-
-		return $result;
+		$sql = "SELECT * FROM {$this->aliases['tabel_e4']} 
+		JOIN {$this->aliases['tabel_e4']} 
+		ON {$this->aliases['tabel_e4']}.{$this->aliases['tabel_e4_field2']} = {$this->aliases['tabel_e4']}.{$this->aliases['tabel_e4_field2']}
+		ORDER BY {$this->aliases['tabel_e4']}.{$this->aliases['tabel_e4_field1']} DESC";
+		return $this->db->query($sql);
 	}
-
-	public function getCharttabel_f1()
-	{
-		// Query to fetch data from the database
-		$query = $this->db->query("SELECT t6.{$this->aliases['tabel_e4_field2']} AS label, 
-		COUNT(t2.{$this->aliases['tabel_f1_field2']}) AS value
-		FROM {$this->aliases['tabel_e4']} AS t6
-		LEFT JOIN {$this->aliases['tabel_f1']} AS t2 
-		ON t6.{$this->aliases['tabel_e4_field1']} = t2.{$this->aliases['tabel_e4_field1']}
-		GROUP BY t6.{$this->aliases['tabel_e4_field1']};");
-
-		// Convert query result to associative array
-		$result = $query->result_array();
-
-		return $result;
-	}
-
+	
 	public function insert_e4($data)
-	// public function insert_e4($query)
 	{
-		// include "application/config/database.php";
-		// return mysqli_query($db(''), $query);
 		return $this->db->insert($this->aliases['tabel_e4'], $data);
 	}
 

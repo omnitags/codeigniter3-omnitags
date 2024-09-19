@@ -11,31 +11,6 @@
 <hr>
 
 
-<table class="mb-4">
-
-  <!-- method get supaya nilai dari filter bisa tampil nanti -->
-  <form action="<?= site_url($language . '/' . $tabel_e2 . '/admin') ?>" method="get">
-    <tr>
-
-      <td class="pr-2">
-        <?= select_edit(
-          'tabel_e2_field3',
-          $tabel_e2_field3_value,
-          $tbl_e4,
-          $tabel_e4_field1,
-          $tabel_e4_field2,
-          'required'
-        ); ?>
-      </td>
-
-      <td>
-        <?= btn_cari() ?>
-        <?= btn_redo('tabel_e2', '/admin') ?>
-      </td>
-    </tr>
-  </form>
-</table>
-
 <div class="row">
   <div class="col-md-10">
     <?= btn_tambah() ?>
@@ -113,14 +88,6 @@
             <div class="col-md-6">
               <?= input_add('text', 'tabel_e2_field2', 'required') ?>
 
-              <?= select_add(
-                'tabel_e2_field3',
-                $tbl_e4,
-                $tabel_e4_field1,
-                $tabel_e4_field2,
-                'required'
-              ); ?>
-
               <?= input_ckeditor('tabel_e2_field4', '', 'required') ?>
 
             </div>
@@ -159,14 +126,7 @@
               <div class="col-md-6">
                 <?= input_hidden('tabel_e2_field1', $tl_e2->$tabel_e2_field1, 'required') ?>
                 <?= input_edit('text', 'tabel_e2_field2', $tl_e2->$tabel_e2_field2, 'required') ?>
-                <?= select_edit(
-                  'tabel_e2_field3',
-                  $tl_e2->$tabel_e2_field3,
-                  $tbl_e4,
-                  $tabel_e4_field1,
-                  $tabel_e4_field2,
-                  'required'
-                ); ?>
+
                 <?= input_ckeditor('tabel_e2_field4', $tl_e2->$tabel_e2_field4, 'required') ?>
               </div>
               <div class="col-md-6">

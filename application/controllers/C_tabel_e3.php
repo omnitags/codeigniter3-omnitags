@@ -39,7 +39,7 @@ class C_tabel_e3 extends Omnitags
 			'tbl_e1' => $this->tl_e1->get_all_e1(),
 			'tbl_e2' => $this->tl_e2->get_all_e2(),
 			'tbl_e3' => $result,
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			// 'tbl_e4' => $this->tl_e4->get_all_e4(),
 			// 'tbl_c1' => $this->tl_c1->get_all_c1(),
 			'tabel_e3_field4_value' => $param1
 		);
@@ -89,6 +89,8 @@ class C_tabel_e3 extends Omnitags
 				$this->v_post['tabel_e3_field2'],
 				$this->v_post['tabel_e3_field3'],
 				$this->v_post['tabel_e3_field4'],
+				$this->v_post['tabel_e3_field5'],
+				$this->v_post['tabel_e3_field6'],
 			),
 			$this->views['flash2'],
 			'tambah'
@@ -105,6 +107,7 @@ class C_tabel_e3 extends Omnitags
 			$this->aliases['tabel_e3_field3'] => $this->v_post['tabel_e3_field3'],
 			$this->aliases['tabel_e3_field4'] => $this->v_post['tabel_e3_field4'],
 			$this->aliases['tabel_e3_field5'] => $this->v_post['tabel_e3_field5'],
+			$this->aliases['tabel_e3_field6'] => $this->v_post['tabel_e3_field6'],
 
 			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
 			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
@@ -134,6 +137,8 @@ class C_tabel_e3 extends Omnitags
 				$this->v_post['tabel_e3_field2'],
 				$this->v_post['tabel_e3_field3'],
 				$this->v_post['tabel_e3_field4'],
+				$this->v_post['tabel_e3_field5'],
+				$this->v_post['tabel_e3_field6'],
 			),
 			$this->views['flash3'],
 			'ubah' . $tabel_e3_field1
@@ -143,6 +148,8 @@ class C_tabel_e3 extends Omnitags
 			$this->aliases['tabel_e3_field2'] => $this->v_post['tabel_e3_field2'],
 			$this->aliases['tabel_e3_field3'] => $this->v_post['tabel_e3_field3'],
 			$this->aliases['tabel_e3_field4'] => $this->v_post['tabel_e3_field4'],
+			$this->aliases['tabel_e3_field5'] => $this->v_post['tabel_e3_field5'],
+			$this->aliases['tabel_e3_field6'] => $this->v_post['tabel_e3_field6'],
 
 			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);

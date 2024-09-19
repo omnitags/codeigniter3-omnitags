@@ -148,7 +148,7 @@ class C_tabel_f3 extends Omnitags
 			'konten' => $this->v4['tabel_f3'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f3']),
 			'tbl_f3' => $this->tl_f3->get_all_f3(),
-			'tbl_e4' => $this->tl_e4->get_all_f3(),
+			// 'tbl_e4' => $this->tl_e4->get_all_f3(),
 			'tbl_f2' => $this->tl_f2->get_all_f3(),
 		);
 

@@ -29,7 +29,7 @@ class C_tabel_e1 extends Omnitags
 			'konten' => $this->v3['tabel_e1'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e1']),
 			'tbl_e1' => $result,
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			// 'tbl_e4' => $this->tl_e4->get_all_e4(),
 			'tabel_e1_field5_value' => $param1
 		);
 
@@ -72,6 +72,9 @@ class C_tabel_e1 extends Omnitags
 				$this->v_post['tabel_e1_field3'],
 				$this->v_post['tabel_e1_field4'],
 				$this->v_post['tabel_e1_field5'],
+				$this->v_post['tabel_e1_field6'],
+				$this->v_post['tabel_e1_field7'],
+				$this->v_post['tabel_e1_field8'],
 			),
 			$this->views['flash2'],
 			'tambah'
@@ -89,6 +92,9 @@ class C_tabel_e1 extends Omnitags
 			$this->aliases['tabel_e1_field3'] => $this->v_post['tabel_e1_field3'],
 			$this->aliases['tabel_e1_field4'] => $this->v_post['tabel_e1_field4'],
 			$this->aliases['tabel_e1_field5'] => $this->v_post['tabel_e1_field5'],
+			$this->aliases['tabel_e1_field6'] => $this->v_post['tabel_e1_field6'],
+			$this->aliases['tabel_e1_field7'] => $this->v_post['tabel_e1_field7'],
+			$this->aliases['tabel_e1_field8'] => $this->v_post['tabel_e1_field8'],
 
 			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
 			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
@@ -123,6 +129,9 @@ class C_tabel_e1 extends Omnitags
 				$this->v_post['tabel_e1_field3'],
 				$this->v_post['tabel_e1_field4'],
 				$this->v_post['tabel_e1_field5'],
+				$this->v_post['tabel_e1_field6'],
+				$this->v_post['tabel_e1_field7'],
+				$this->v_post['tabel_e1_field8'],
 			),
 			$this->views['flash3'],
 			'ubah' . $tabel_e1_field1
@@ -134,6 +143,9 @@ class C_tabel_e1 extends Omnitags
 			$this->aliases['tabel_e1_field3'] => $this->v_post['tabel_e1_field3'],
 			$this->aliases['tabel_e1_field4'] => $this->v_post['tabel_e1_field4'],
 			$this->aliases['tabel_e1_field5'] => $this->v_post['tabel_e1_field5'],
+			$this->aliases['tabel_e1_field6'] => $this->v_post['tabel_e1_field6'],
+			$this->aliases['tabel_e1_field7'] => $this->v_post['tabel_e1_field7'],
+			$this->aliases['tabel_e1_field8'] => $this->v_post['tabel_e1_field8'],
 
 			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
@@ -160,19 +172,7 @@ class C_tabel_e1 extends Omnitags
 
 		$tabel_e1 = $this->tl_e1->get_e1_by_field('tabel_e1_field1', $tabel_e1_field1)->result();
 		$this->check_data($tabel_e1);
-
-		$tabel_e1_field2 = $tabel_e1[0]->tipe;
-		$tabel_e1_field4 = $tabel_e1[0]->img;
-
-		// Define the folder and file paths
-		$folder_name = $tabel_e1_field2; // Assuming the folder name is stored in img
-		$file_path = $this->v_upload_path['tabel_e1'] . '/' . $folder_name . '/' . $tabel_e1_field4;
-
-		// Delete the image file if it exists
-		if (file_exists($file_path)) {
-			unlink($file_path);
-		}
-
+		
 		try {
 			// Functional requirement: Delete data from the database
 			$aksi = $this->tl_e1->delete_e1_by_field('tabel_e1_field1', $tabel_e1_field1);
