@@ -224,7 +224,7 @@ class C_tabel_e4 extends Omnitags
 			$storagePath = 'uploaded_files/' . $gambar;
 
 			// Call the Firebase upload function
-			$firebase_download_url = firebase_upload_file($storagePath, $file_path);
+			$firebase_download_url = firebase_upload_file($this->fb_bucket1, $storagePath, $file_path);
 
 			if ($firebase_download_url) {
 				// Success: File uploaded to Firebase Storage, use download URL
