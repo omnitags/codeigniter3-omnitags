@@ -169,4 +169,4 @@
   <?php endforeach;
 } ?>
 
-<?= adjust_col_js() ?>
+<?= adjust_col_js('col-md-3', 'col-md-4') ?>

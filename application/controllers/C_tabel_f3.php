@@ -55,6 +55,7 @@ class C_tabel_f3 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -96,6 +97,7 @@ class C_tabel_f3 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -131,6 +133,7 @@ class C_tabel_f3 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/template', $data);
 	}
 
@@ -152,6 +155,7 @@ class C_tabel_f3 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/printpage', $data);
 	}
 
@@ -191,13 +195,15 @@ class C_tabel_f3 extends Omnitags
 				'tbl_f3' => $this->tl_f3->get_f3_with_f1_with_e4_by_f3_field1($tabel_f3_field1, userdata($this->aliases['tabel_c2_field1'])),
 			);
 			$data = array_merge($data1, $data2, $this->views, $this->aliases);
-			load_view_data('_layouts/printpage', $data);
+			$this->track_page();
+		load_view_data('_layouts/printpage', $data);
 		} else {
 			$data2 = array(
 				'tbl_f3' => $this->tl_f2->get_f2_with_f3_with_e4_by_f3_field1($tabel_f3_field1),
 			);
 			$data = array_merge($data1, $data2, $this->views, $this->aliases);
-			load_view_data('_layouts/printpage', $data);
+			$this->track_page();
+		load_view_data('_layouts/printpage', $data);
 		}
 	}
 
@@ -220,6 +226,7 @@ class C_tabel_f3 extends Omnitags
 		$data = array_merge($data1, $this->package);
 
 		set_userdata('previous_url', current_url());
+		$this->track_page();
 		load_view_data('_layouts/blank', $data);
 	}
 
@@ -256,8 +263,8 @@ class C_tabel_f3 extends Omnitags
 			$this->aliases['tabel_f3_field6'] => $tabel_f3_field6,
 			$this->aliases['tabel_f3_field7'] => $tabel_f3_field7,
 
-			'created_at' => date("Y-m-d\TH:i:s"),
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		set_userdata($this->aliases['tabel_c2_field3'] . '_' . $this->aliases['tabel_f3'], $tabel_f3_field3);
@@ -318,7 +325,7 @@ class C_tabel_f3 extends Omnitags
 			$this->aliases['tabel_f3_field6'] => $this->v_post['tabel_f3_field6'],
 			$this->aliases['tabel_f3_field7'] => $tabel_f3_field7,
 
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_f3->update_f3($data, $tabel_f3_field1);
