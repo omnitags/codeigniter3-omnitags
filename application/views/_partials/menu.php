@@ -78,7 +78,8 @@
             } ?>
 
             <li class="nav-item pb-2 dropdown">
-                <a type="button" class="nav-link text-decoration-none h4 mt-1 text-light font-weight-bold" data-toggle="dropdown" href="#">
+                <a type="button" class="nav-link text-decoration-none h4 mt-1 text-light font-weight-bold"
+                    data-toggle="dropdown" href="#">
                     <i class="fas fa-bell"></i><?php if (!$notif_count) { ?><span>&nbsp;&nbsp;</span><?php
                     } else { ?>
                         <span><?= $notif_count ?></span><?php } ?>
@@ -225,7 +226,7 @@
             break;
     } ?>
 
-    <!-- <li class="nav-item pb-2">
+    <li class="nav-item pb-2">
         <form action="<?= site_url($language . '/welcome/set_language'); ?>" method="post" class="form-inline">
             <select name="language" class="form-control" onchange="this.form.submit()">
                 <option value="en" <?= (userdata('site_lang') == 'en') ? 'selected' : ''; ?>>EN</option>
