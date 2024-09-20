@@ -50,33 +50,41 @@
 
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_b6->result())) {
-    load_view('_partials/no_data');
-  } else {
-    foreach ($tbl_b6->result() as $tl_b6): ?>
-      <?php
-      $btn_class = '';
-      if ($tl_b6->$tabel_b6_field6 == $tabel_b6_field6_value1) {
-        $btn_class = btn_action('tabel_b6', 'nonaktifkan',  $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-on fa-lg"></i>', 'text-warning');
-      } elseif ($tl_b6->$tabel_b6_field6 == $tabel_b6_field6_value2) {
-        $btn_class = btn_action('tabel_b5', 'aktifkan',  $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-off fa-lg"></i>', 'text-warning');
-      }
-      echo card_regular(
-        $tl_b6->$tabel_b6_field1,
-        $tl_b6->$tabel_b6_field2,
-        '<a class="text-decoration-none text-warning" href="' . $tl_b6->$tabel_b6_field4 . '" target="_blank">' . $tl_b6->$tabel_b6_field3 . '</a>' . $btn_class,
-        btn_lihat($tl_b6->$tabel_b6_field1) . ' ' .
-        btn_edit($tl_b6->$tabel_b6_field1) . ' ' .
-        btn_hapus('tabel_b6', $tl_b6->$tabel_b6_field1),
-        'text-white bg-secondary',
-        'col-md-3',
-        $tabel_b6,
-      );
-      ?>
-    <?php endforeach;
-  } ?>
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_b6->result())) {
+      load_view('_partials/no_data');
+    } else {
+      $counter = 1;
+      foreach ($tbl_b6->result() as $tl_b6): ?>
+        <?php
+        $btn_class = '';
+        if ($tl_b6->$tabel_b6_field6 == $tabel_b6_field6_value1) {
+          $btn_class = btn_action('tabel_b6', 'nonaktifkan', $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-on fa-lg"></i>', 'text-warning');
+        } elseif ($tl_b6->$tabel_b6_field6 == $tabel_b6_field6_value2) {
+          $btn_class = btn_action('tabel_b5', 'aktifkan', $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-off fa-lg"></i>', 'text-warning');
+        }
+        echo card_regular(
+          $counter,
+          $tl_b6->$tabel_b6_field1,
+          $tl_b6->$tabel_b6_field2,
+          '<a class="text-decoration-none text-warning" href="' . $tl_b6->$tabel_b6_field4 . '" target="_blank">' . $tl_b6->$tabel_b6_field3 . '</a>' . $btn_class,
+          btn_lihat($tl_b6->$tabel_b6_field1) . ' ' .
+          btn_edit($tl_b6->$tabel_b6_field1) . ' ' .
+          btn_hapus('tabel_b6', $tl_b6->$tabel_b6_field1),
+          'text-white bg-secondary',
+          'col-md-3',
+          $tabel_b6,
+        );
+        $counter++;
+      endforeach;
+    } ?>
+  </div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
+
 
 
 <div id="table-view" class="table-responsive data-view" style="display: none;">
@@ -108,10 +116,10 @@
           </td>
           <td>
             <?php if ($tl_b6->$tabel_b6_field6 == $tabel_b6_field6_value1) { ?>
-              <?= btn_action('tabel_b6', 'nonaktifkan',  $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-on fa-lg"></i>', 'text-warning') ?>
+              <?= btn_action('tabel_b6', 'nonaktifkan', $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-on fa-lg"></i>', 'text-warning') ?>
 
             <?php } elseif ($tl_b6->$tabel_b6_field6 == $tabel_b6_field6_value2) { ?>
-              <?= btn_action('tabel_b6', 'aktifkan',  $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-off fa-lg"></i>', 'text-warning') ?>
+              <?= btn_action('tabel_b6', 'aktifkan', $tl_b6->$tabel_b6_field1, '<i class="fas fa-toggle-off fa-lg"></i>', 'text-warning') ?>
 
             <?php } else { ?>
 
@@ -240,3 +248,4 @@
 <?php endforeach; ?>
 
 <?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_b6->num_rows(), 28) ?>

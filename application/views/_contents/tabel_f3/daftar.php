@@ -20,8 +20,9 @@
 </div>
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_f3->result())) { ?>
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_f3->result())) { ?>
     <div class="col-md-12">
       <div class="text-center">
         <?php foreach ($no_data->result() as $nd): ?>

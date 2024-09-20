@@ -55,10 +55,12 @@
 
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_b2->result())) {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_b2->result())) {
     load_view('_partials/no_data');
   } else {
+    $counter = 1;
     foreach ($tbl_b2->result() as $tl_b2): ?>
       <?php
       $btn_class = '';
@@ -68,6 +70,7 @@
         $btn_class = btn_action('tabel_b2', 'aktifkan',  $tl_b2->$tabel_b2_field1, '<i class="fas fa-toggle-off fa-lg"></i>', 'text-warning');
       }
       echo card_file(
+        $counter,
         $tl_b2->$tabel_b2_field1,
         $tl_b2->$tabel_b2_field2,
         $btn_class,
@@ -79,10 +82,15 @@
         $tabel_b2,
         $tl_b2->$tabel_b2_field4,
       );
-      ?>
-    <?php endforeach;
-  } ?>
+        $counter++;
+      endforeach;
+    } ?>
+  </div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
+
 
 
 <div id="table-view" class="table-responsive data-view" style="display: none;">
@@ -269,3 +277,4 @@
 <?php endforeach; ?>
 
 <?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_b2->num_rows(), 28) ?>

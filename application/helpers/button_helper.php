@@ -500,7 +500,6 @@ if (!function_exists('btn_truncate_full')) {
     }
 }
 
-
 if (!function_exists('btn_action')) {
 
     function btn_action($tabel, $function, $id, $logo, $theme)
@@ -521,4 +520,24 @@ if (!function_exists('btn_action')) {
     }
 }
 
+if (!function_exists('card_pagination')) {
 
+    function card_pagination()
+    {
+        return <<<HTML
+        <nav aria-label="Page navigation" class="my-4">
+            <ul class="pagination justify-content-center" id="pagination-numbers">
+            <li class="page-item">
+                <button class="page-link" id="prev-btn" onclick="prevPage()">Previous</button>
+            </li>
+            <li class="page-item">
+                <span id="page-info" style="display: inline-block; padding: 0.5rem 1rem; color: #000;">Page Info</span>
+            </li>
+            <li class="page-item">
+                <button class="page-link" id="next-btn" onclick="nextPage()">Next</button>
+            </li>
+            </ul>
+        </nav>
+        HTML;
+    }
+}

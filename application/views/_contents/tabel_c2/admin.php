@@ -21,12 +21,15 @@
   </div>
 </div>
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_c2->result())) {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_c2->result())) {
     load_view('_partials/no_data');
   } else {
+    $counter = 1;
     foreach ($tbl_c2->result() as $tl_c2):
       echo card_regular(
+        $counter,
         $tl_c2->$tabel_c2_field1,
         $tl_c2->$tabel_c2_field2,
         $tl_c2->$tabel_c2_field5,
@@ -37,8 +40,14 @@
         'col-md-3',
         $tabel_c2,
       );
+    $counter++;
     endforeach;
   } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
 
 

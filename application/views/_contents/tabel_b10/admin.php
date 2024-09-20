@@ -55,13 +55,16 @@
 
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_b10->result())) {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_b10->result())) {
     load_view('_partials/no_data');
   } else {
+    $counter = 1;
     foreach ($tbl_b10->result() as $tl_b10): ?>
       <?php
       echo card_file(
+        $counter,
         $tl_b10->$tabel_b10_field1,
         $tl_b10->$tabel_b10_field3,
         $tabel_b10_field4_alias . ": " . $tl_b10->$tabel_b10_field4,
@@ -73,10 +76,15 @@
         $tabel_b10,
         $tl_b10->$tabel_b10_field2,
       );
-      ?>
-    <?php endforeach;
-  } ?>
+        $counter++;
+      endforeach;
+    } ?>
+  </div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
+
 
 
 <div id="table-view" class="table-responsive data-view" style="display: none;">
@@ -215,3 +223,4 @@
 <?php endforeach; ?>
 
 <?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_b10->num_rows(), 28) ?>

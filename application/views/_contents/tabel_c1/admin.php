@@ -22,12 +22,15 @@
 </div>
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_c1->result())) {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_c1->result())) {
     load_view('_partials/no_data');
   } else {
+    $counter = 1;
     foreach ($tbl_c1->result() as $tl_c1):
       echo card_regular(
+        $counter,
         $tl_c1->$tabel_c1_field1,
         $tl_c1->$tabel_c1_field2,
         $tl_c1->$tabel_c1_field5,
@@ -38,8 +41,14 @@
         'col-md-3',
         $tabel_c1,
       );
+    $counter++;
     endforeach;
   } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
 
 
@@ -191,3 +200,4 @@
 
 <?= password_js() ?>
 <?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_c1->num_rows(), 28) ?>

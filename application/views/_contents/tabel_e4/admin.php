@@ -28,12 +28,15 @@
 </div>
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_e4->result())) {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_e4->result())) {
     load_view('_partials/no_data');
   } else {
+    $counter = 1;
     foreach ($tbl_e4->result() as $tl_e4):
       echo card_file(
+        $counter,
         $tl_e4->$tabel_e4_field1,
         $tabel_e4_field1_alias . ": " . $tl_e4->$tabel_e4_field1,
         $tl_e4->$tabel_e4_field2,
@@ -44,8 +47,14 @@
         $tabel_e4,
         $tl_e4->$tabel_e4_field3
       );
+    $counter++;
     endforeach;
   } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
 
 
@@ -159,3 +168,4 @@
 <?php endforeach; ?>
 
 <?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_e4->num_rows(), 28) ?>

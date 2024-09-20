@@ -85,10 +85,10 @@ if (!function_exists('card_content')) {
 
 // Generates a regular card with a title, detail, actions, theme, size, and table
 if (!function_exists('card_regular')) {
-    function card_regular($id, $title, $detail, $actions, $theme, $size, $table)
+    function card_regular($counter, $id, $title, $detail, $actions, $theme, $size, $table)
     {
         $title = card_title($title);
-        $card_id = 'card-' . $id;
+        $card_id = 'card-' . $counter;
         
         return <<<HTML
         <div id="{$card_id}" class="{$size} mt-2">
@@ -107,7 +107,7 @@ if (!function_exists('card_regular')) {
 
 // Generates a card with a file/image and a title, detail, actions, theme, size, table, and picture
 if (!function_exists('card_file')) {
-    function card_file($id, $title, $detail, $actions, $theme, $size, $table, $picture)
+    function card_file($counter, $id, $title, $detail, $actions, $theme, $size, $table, $picture)
     {
         // Get CodeIgniter instance
         $CI =& get_instance();
@@ -115,8 +115,7 @@ if (!function_exists('card_file')) {
         $data = $CI->load->get_vars();
         $truncated = truncateText($title, 18);
 
-        $i = 1;
-        $card_id = 'card-' . $i;
+        $card_id = 'card-' . $counter;
         
         return <<<HTML
         <div id="{$card_id}" class="{$size} mt-2">
