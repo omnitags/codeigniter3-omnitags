@@ -60,7 +60,7 @@
 
 
 <div id="card-view" class="data-view active">
-  <div class="col-md-6">
+  <div class="row">
     <?php if (empty($tbl_b5->result())) {
       load_view('_partials/no_data');
     } else {
