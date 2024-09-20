@@ -29,7 +29,6 @@ class M_tabel_b9 extends CI_Model
 		}
 		
 		$this->db->where('deleted_at', NULL);
-		$this->db->where('read_at', NULL);
 		$this->db->order_by($this->aliases['tabel_b9_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_b9']);
 	}

@@ -50,6 +50,21 @@ if (!function_exists('card_text')) {
     }
 }
 
+// Generates a card text with a tooltip
+if (!function_exists('card_paragraph')) {
+    function card_paragraph($title, $length)
+    {
+        $truncated = truncateText($title, $length);
+        
+        return <<<HTML
+        <span class="card-text" style="font-size: 16px;"
+        data-toggle="tooltip" data-placement="left" title="{$title}">
+            {$truncated}
+        </span>
+        HTML;
+    }
+}
+
 // Generates a card content with a field alias and value
 if (!function_exists('card_content')) {
     function card_content($size, $field, $value)

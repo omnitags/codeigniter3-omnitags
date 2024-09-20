@@ -111,8 +111,8 @@
                             foreach ($notif as $nf):
 
                                 if ($nf->$tabel_b9_field2 == userdata($tabel_c2_field1)) {
-                                    if ($nf->read_at == NULL) {
-                                        echo list_group_nav(
+                                    if ($nf->read_at == NULL) { ?>
+                                        <?= list_group_nav(
                                             'tabel_b9',
                                             $nf->$tabel_b9_field1 . '/detail',
                                             $nf->$tabel_b8_field4,
@@ -121,8 +121,8 @@
                                             datetime_elapsed_string($nf->created_at),
                                             'bg-light'
                                         );
-                                    } else {
-                                        list_group_nav(
+                                    } else { ?>
+                                        <?= list_group_nav(
                                             'tabel_b9',
                                             $nf->$tabel_b9_field1 . '/detail',
                                             $nf->$tabel_b8_field4,

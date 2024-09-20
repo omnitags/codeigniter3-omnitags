@@ -10,13 +10,7 @@ class C_tabel_b9 extends Omnitags
 	public function detail($tabel_b9_field1 = NULL)
 	{
 		$this->declarew();
-		$allowed_values = [
-			$this->aliases['tabel_c2_field6_value2'],
-			$this->aliases['tabel_c2_field6_value3'],
-			$this->aliases['tabel_c2_field6_value4'],
-			$this->aliases['tabel_c2_field6_value5']
-		];
-		$this->page_session_check($allowed_values);
+		$this->page_session_all();
 
 		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$tabel_b9_field1, userdata($this->aliases['tabel_c2_field1'])])->result();
 
