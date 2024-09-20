@@ -40,6 +40,11 @@ $lang['order_now'] = '立即订购';
 $lang['reservations'] = '预订';
 $lang['history'] = '历史';
 
+$lang['created_at'] = 'Created At';
+$lang['read_at'] = 'Read At';
+$lang['updated_at'] = 'Updated At';
+$lang['deleted_at'] = 'Deleted At';
+
 $lang['invalid'] = "无法执行操作!";
 $lang['no_access'] = "您没有权限访问此页面！";
 $lang['page_not_found'] = "页面不存在！";

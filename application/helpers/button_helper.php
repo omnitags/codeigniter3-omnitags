@@ -14,7 +14,7 @@ if (!function_exists('back_to_home')) {
         $url = xss_clean(site_url($data['language'] . '/home'));
 
         return <<<HTML
-        <a class="text-decoration-none" href="{$url}">{$alias}</a>`
+        <a class="text-decoration-none" href="{$url}">{$alias}</a>
         HTML;
     }
 }
@@ -356,7 +356,6 @@ if (!function_exists('btn_redo')) {
     }
 }
 
-
 if (!function_exists('btn_hapus')) {
     // Creates a button to delete specific data with a confirmation prompt
     function btn_hapus($tabel, $value)
@@ -371,7 +370,7 @@ if (!function_exists('btn_hapus')) {
         $alias = xss_clean(lang($tabel . '_alias'));
         $lang = xss_clean($data['language']);
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/delete'));
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/soft_delete'));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah data {$alias} ingin dihapus?')"
@@ -381,6 +380,125 @@ if (!function_exists('btn_hapus')) {
     }
 }
 
+if (!function_exists('btn_hapus_cepat')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_hapus_cepat($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/soft_delete'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-danger"
+              href="{$url}">
+              <i class="fas fa-trash"></i></a>
+        HTML;
+    }
+}
+
+if (!function_exists('btn_restore')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_restore($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/restore'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-primary" onclick="return confirm('apakah data {$alias} ingin dikembalikan?')"
+              href="{$url}">
+              <i class="fas fa-trash-restore"></i></a>
+        HTML;
+    }
+}
+
+if (!function_exists('btn_hapus_full')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_hapus_full($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/delete'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
+              href="{$url}">
+              <i class="fas fa-times"></i></a>
+        HTML;
+    }
+}
+
+if (!function_exists('btn_truncate')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_truncate($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/soft_truncate'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah semua data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
+              href="{$url}">
+              <i class="fas fa-dumpster"></i></a>
+        HTML;
+    }
+}
+
+if (!function_exists('btn_truncate_full')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_truncate_full($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/truncate'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah semua data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
+              href="{$url}">
+              <i class="fas fa-dumpster-fire"></i></a>
+        HTML;
+    }
+}
 
 if (!function_exists('btn_action')) {
 
@@ -402,4 +520,24 @@ if (!function_exists('btn_action')) {
     }
 }
 
+if (!function_exists('card_pagination')) {
 
+    function card_pagination()
+    {
+        return <<<HTML
+        <nav aria-label="Page navigation" class="my-4">
+            <ul class="pagination justify-content-center" id="pagination-numbers">
+            <li class="page-item">
+                <button class="page-link" id="prev-btn" onclick="prevPage()">Previous</button>
+            </li>
+            <li class="page-item">
+                <span id="page-info" style="display: inline-block; padding: 0.5rem 1rem; color: #000;">Page Info</span>
+            </li>
+            <li class="page-item">
+                <button class="page-link" id="next-btn" onclick="nextPage()">Next</button>
+            </li>
+            </ul>
+        </nav>
+        HTML;
+    }
+}

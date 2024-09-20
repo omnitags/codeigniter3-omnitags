@@ -40,6 +40,11 @@ $lang['order_now'] = 'Pesan sekarang';
 $lang['reservations'] = 'Reservasi';
 $lang['history'] = 'Riwayat';
 
+$lang['created_at'] = 'Created At';
+$lang['read_at'] = 'Read At';
+$lang['updated_at'] = 'Updated At';
+$lang['deleted_at'] = 'Deleted At';
+
 $lang['invalid'] = "Tidak dapat melakukan tindakan!";
 $lang['no_access'] = "Anda tidak memiliki akses ke halaman ini!";
 $lang['page_not_found'] = "Halaman Tidak Ada!";

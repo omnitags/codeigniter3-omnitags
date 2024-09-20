@@ -70,10 +70,52 @@ class C_tabel_d4 extends Omnitags
 			$this->aliases['tabel_d4_field1'] => '',
 			$this->aliases['tabel_d4_field2'] => userdata($this->aliases['tabel_c2_field1']),
 
-			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
-			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_d4->insert_d4($data);
+	}
+	
+	//Soft Delete Data
+	public function soft_delete($tabel_d4_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_d4->get_d4_by_field('tabel_d4_field1', $tabel_d4_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => date("Y-m-d\TH:i:s"),
+		);
+
+		$aksi = $this->tl_d4->update_d4($data, $tabel_d4_field1);
+
+		$notif = $this->handle_4e($aksi, 'tabel_d4', $tabel_d4_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Soft Delete data
+	public function restore($tabel_d4_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_d4->get_d4_by_field('tabel_d4_field1', $tabel_d4_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => NULL,
+		);
+
+		$aksi = $this->tl_d4->update_d4($data, $tabel_d4_field1);
+
+		$notif = $this->handle_4e($aksi, 'tabel_d4', $tabel_d4_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
