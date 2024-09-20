@@ -6,10 +6,17 @@ class M_tabel_c1 extends CI_Model
     // Retrieves all records from the tabel_c1 table in descending order of tabel_c1_field1
     public function get_all_c1()
     {
-        $this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
 		$this->db->where('deleted_at', NULL);
+        $this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_c1']);
     }
+	
+	public function get_all_c1_archive()
+	{
+		$this->db->where('deleted_at IS NOT NULL');
+		$this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_c1']);
+	}
 
     public function get_c1_by_field($fields, $params)
 	{
@@ -22,8 +29,8 @@ class M_tabel_c1 extends CI_Model
 			$this->db->where($this->aliases[$fields], $params);
 		}
 
-		$this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
 		$this->db->where('deleted_at', NULL);
+		$this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_c1']);
 	}
 
@@ -32,8 +39,8 @@ class M_tabel_c1 extends CI_Model
     {
         $this->db->where($this->aliases['tabel_c1_field1'], $param1);
         $this->db->where($this->aliases['tabel_c1_field5'], $param2);
-        $this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
 		$this->db->where('deleted_at', NULL);
+        $this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_c1']);
     }
 

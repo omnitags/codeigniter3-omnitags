@@ -299,6 +299,27 @@ class C_tabel_b7 extends Omnitags
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
+	// Soft Delete data
+	public function restore($tabel_b7_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $tabel_b7_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => NULL,
+		);
+
+		$aksi = $this->tl_b7->update_b7($data, $tabel_b7_field1);
+
+		$notif = $this->handle_4e($aksi, 'tabel_b7', $tabel_b7_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
 	// Delete data
 	public function delete($tabel_b7_field1 = null)
 	{

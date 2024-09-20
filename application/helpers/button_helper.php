@@ -356,7 +356,6 @@ if (!function_exists('btn_redo')) {
     }
 }
 
-
 if (!function_exists('btn_hapus')) {
     // Creates a button to delete specific data with a confirmation prompt
     function btn_hapus($tabel, $value)
@@ -371,12 +370,108 @@ if (!function_exists('btn_hapus')) {
         $alias = xss_clean(lang($tabel . '_alias'));
         $lang = xss_clean($data['language']);
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/delete'));
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/soft_delete'));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah data {$alias} ingin dihapus?')"
               href="{$url}">
               <i class="fas fa-trash"></i></a>
+        HTML;
+    }
+}
+
+if (!function_exists('btn_restore')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_restore($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/restore'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-primary" onclick="return confirm('apakah data {$alias} ingin dikembalikan?')"
+              href="{$url}">
+              <i class="fas fa-trash-restore"></i></a>
+        HTML;
+    }
+}
+
+if (!function_exists('btn_hapus_full')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_hapus_full($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/delete'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
+              href="{$url}">
+              <i class="fas fa-times"></i></a>
+        HTML;
+    }
+}
+
+if (!function_exists('btn_truncate')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_truncate($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/soft_truncate'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah semua data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
+              href="{$url}">
+              <i class="fas fa-dumpster"></i></a>
+        HTML;
+    }
+}
+
+if (!function_exists('btn_truncate_full')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_truncate_full($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/truncate'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah semua data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
+              href="{$url}">
+              <i class="fas fa-dumpster-fire"></i></a>
         HTML;
     }
 }

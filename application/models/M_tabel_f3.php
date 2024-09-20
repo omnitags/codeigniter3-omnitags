@@ -3,6 +3,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_tabel_f3 extends CI_Model
 {
+	
+	public function get_all_f3_archive()
+	{
+		$this->db->where('deleted_at IS NOT NULL');
+		$this->db->order_by($this->aliases['tabel_f3_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_f3']);
+	}
+	
 	// 4 fungsi di bawah ini bisa dibilang pengganti fungsi get_all_ atau ambil atau get_c2_field1
 	public function get_f3_with_f2_with_e4()
 	{
@@ -11,6 +19,7 @@ class M_tabel_f3 extends CI_Model
 		ON {$this->aliases['tabel_f2']}.{$this->aliases['tabel_f3_field4']} = {$this->aliases['tabel_f3']}.{$this->aliases['tabel_f3_field4']}
 		LEFT JOIN {$this->aliases['tabel_e4']} 
 		ON {$this->aliases['tabel_f2']}.{$this->aliases['tabel_e4_field1']} = {$this->aliases['tabel_e4']}.{$this->aliases['tabel_e4_field1']}
+		WHERE {$this->aliases['tabel_f3']}.deleted_at IS NULL
 		ORDER BY {$this->aliases['tabel_f3_field1']} DESC";
 		return $this->db->query($sql);
 	}
@@ -24,6 +33,7 @@ class M_tabel_f3 extends CI_Model
 		ON {$this->aliases['tabel_f1']}.{$this->aliases['tabel_e4_field1']} = {$this->aliases['tabel_e4']}.{$this->aliases['tabel_e4_field1']}
 		WHERE {$this->aliases['tabel_f3']}.{$this->aliases['tabel_f3_field1']} = {$param1}
 		AND {$this->aliases['tabel_f3']}.{$this->aliases['tabel_c2_field1']} = {$param2}
+		WHERE {$this->aliases['tabel_f3']}.deleted_at IS NULL
 		ORDER BY {$this->aliases['tabel_f3_field1']} DESC";
 		return $this->db->query($sql);
 	}
@@ -36,14 +46,15 @@ class M_tabel_f3 extends CI_Model
 		JOIN {$this->aliases['tabel_e4']} 
 		ON {$this->aliases['tabel_f2']}.{$this->aliases['tabel_e4_field1']} = {$this->aliases['tabel_e4']}.{$this->aliases['tabel_e4_field1']}
 		WHERE {$this->aliases['tabel_f3']}.{$this->aliases['tabel_c2_field1']} = {$param1}
+		WHERE {$this->aliases['tabel_f3']}.deleted_at IS NULL
 		ORDER BY {$this->aliases['tabel_f3_field1']} DESC";
 		return $this->db->query($sql);
 	}
 
 	public function get_all_f3()
 	{
-		$this->db->order_by($this->aliases['tabel_f3_field1'], 'DESC');
 		$this->db->where('deleted_at', NULL);
+		$this->db->order_by($this->aliases['tabel_f3_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_f3']);
 	}
 
@@ -58,8 +69,8 @@ class M_tabel_f3 extends CI_Model
 			$this->db->where($this->aliases[$fields], $params);
 		}
 
-		$this->db->order_by($this->aliases['tabel_f3_field1'], 'DESC');
 		$this->db->where('deleted_at', NULL);
+		$this->db->order_by($this->aliases['tabel_f3_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_f3']);
 	}
 

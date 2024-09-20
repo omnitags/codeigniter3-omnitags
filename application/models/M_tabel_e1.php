@@ -2,23 +2,20 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_tabel_e1 extends CI_Model
-{
-    public function __construct() {
-        parent::__construct();
-        // Load SSH library or helper here
-    }
-
-    // Code to connect to SSH server and fetch data
-    public function fetchDataViaSSH() {
-    }
-	
+{	
     // Retrieves all records from the tabel_e1 table in descending order of tabel_e1_field1
     public function get_all_e1()
     {
         $this->db->order_by($this->aliases['tabel_e1_field1'], 'DESC');
-		$this->db->where('deleted_at', NULL);
 		return $this->db->get($this->aliases['tabel_e1']);
     }
+	
+	public function get_all_e1_archive()
+	{
+		$this->db->where('deleted_at IS NOT NULL');
+		$this->db->order_by($this->aliases['tabel_e1_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_e1']);
+	}
 
     public function get_e1_by_field($fields, $params)
 	{
@@ -31,8 +28,8 @@ class M_tabel_e1 extends CI_Model
 			$this->db->where($this->aliases[$fields], $params);
 		}
 
-		$this->db->order_by($this->aliases['tabel_e1_field1'], 'DESC');
 		$this->db->where('deleted_at', NULL);
+		$this->db->order_by($this->aliases['tabel_e1_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_e1']);
 	}
 

@@ -764,6 +764,7 @@ if (!class_exists('Omnitags')) {
                 $this->aliases['tabel_b9_field4'] => $msg . $extra,
 
                 'created_at' => date("Y-m-d\TH:i:s"),
+                'action_url' => current_full_url(),
             );
 
             $ambil = $this->tl_b9->insert_b9($notif);

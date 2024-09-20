@@ -33,7 +33,7 @@
           $tl_b9->$tabel_b9_field4 . '<br>' .
           $tl_b9->created_at,
           btn_value('tabel_b9', $tl_b9->$tabel_b9_field1, 'lihat', '<i class="fas fa-envelope-open"></i>') .
-          btn_lihat($tl_b9->$tabel_b9_field1),
+          btn_lihat($tl_b9->$tabel_b9_field1) . btn_hapus('tabel_b9', $tl_b9->$tabel_b9_field1),
           'text-dark bg-white',
           'col-md-3',
           $tabel_b9,
@@ -44,7 +44,7 @@
           $tl_b9->$tabel_b8_field3,
           $tl_b9->$tabel_b9_field4 . '<br>' .
           $tl_b9->created_at,
-          btn_lihat($tl_b9->$tabel_b9_field1),
+          btn_lihat($tl_b9->$tabel_b9_field1) . btn_hapus('tabel_b9', $tl_b9->$tabel_b9_field1),
           'text-dark bg-light',
           'col-md-3',
           $tabel_b9,

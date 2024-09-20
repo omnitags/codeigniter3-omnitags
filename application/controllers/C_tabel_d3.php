@@ -97,4 +97,25 @@ class C_tabel_d3 extends Omnitags
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
+
+	// Soft Delete data
+	public function restore($tabel_d3_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_d3->get_d3_by_field('tabel_d3_field1', $tabel_d3_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => NULL,
+		);
+
+		$aksi = $this->tl_d3->update_d3($data, $tabel_d3_field1);
+
+		$notif = $this->handle_4e($aksi, 'tabel_d3', $tabel_d3_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
 }
