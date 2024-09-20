@@ -10,13 +10,7 @@ class C_tabel_b9 extends Omnitags
 	public function detail($tabel_b9_field1 = NULL)
 	{
 		$this->declarew();
-		$allowed_values = [
-			$this->aliases['tabel_c2_field6_value2'],
-			$this->aliases['tabel_c2_field6_value3'],
-			$this->aliases['tabel_c2_field6_value4'],
-			$this->aliases['tabel_c2_field6_value5']
-		];
-		$this->page_session_check($allowed_values);
+		$this->page_session_all();
 
 		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$tabel_b9_field1, userdata($this->aliases['tabel_c2_field1'])])->result();
 
@@ -25,7 +19,7 @@ class C_tabel_b9 extends Omnitags
 
 			// menggunakan nama khusus sama dengan konfigurasi
 			$notif = array(
-				$this->aliases['read_at'] => date("Y-m-d\TH:i:s"),
+				'read_at' => date("Y-m-d\TH:i:s"),
 			);
 
 			$aksi = $this->tl_b9->update_satu($notif, $tabel_b9_field1, $tabel_b9_field2);
@@ -149,7 +143,7 @@ class C_tabel_b9 extends Omnitags
 
 			// menggunakan nama khusus sama dengan konfigurasi
 			$notif = array(
-				$this->aliases['read_at'] => date("Y-m-d\TH:i:s"),
+				'read_at' => date("Y-m-d\TH:i:s"),
 			);
 
 			$aksi = $this->tl_b9->update_satu($notif, $tabel_b9_field1, $tabel_b9_field2);
@@ -173,8 +167,8 @@ class C_tabel_b9 extends Omnitags
 			$this->aliases['tabel_b9_field1'] => '',
 			$this->aliases['tabel_b9_field2'] => $this->v_post['tabel_b9_field2'],
 
-			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
-			$this->aliases['read_at'] => date("Y-m-d\TH:i:s"),
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'read_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b9->insert_b9($data);
@@ -201,10 +195,53 @@ class C_tabel_b9 extends Omnitags
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
-			$this->aliases['read_at'] => date("Y-m-d\TH:i:s"),
+			'read_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b9->update_null($data, $tabel_b9_field2);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+	
+	//Soft Delete Data
+	public function soft_delete($tabel_b9_field1 = null)
+	{
+		$this->declarew();
+		$allowed_values = [
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+
+		$tabel = $this->tl_b9->get_b9_by_field('tabel_b9_field1', $tabel_b9_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => date("Y-m-d\TH:i:s"),
+		);
+
+		$aksi = $this->tl_b9->update_b9($data, $tabel_b9_field1);
+		
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Soft Delete data
+	public function restore($tabel_b9_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_b9->get_b9_by_field('tabel_b9_field1', $tabel_b9_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => NULL,
+		);
+
+		$aksi = $this->tl_b9->update_b9($data, $tabel_b9_field1);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}

@@ -3,9 +3,9 @@
     <h1><?= $title ?><?= count_data($tbl_b11) ?><?= $phase ?></h1>
   </div>
   <div class="col-md-3 text-right">
-    <?php foreach ($dekor->result() as $dk): ?>
-      <img src="img/<?= $tabel_b1 ?>/<?= $dk->$tabel_b1_field4 ?>" width="200" alt="Image">
-    <?php endforeach ?>
+    <?php foreach ($dekor->result() as $dk):
+      echo tampil_dekor('175px', $tabel_b1, $dk->$tabel_b1_field4);
+    endforeach ?>
   </div>
 </div>
 <hr>
@@ -20,7 +20,7 @@
         <th><?= lang('tabel_b11_field1_alias') ?></th>
         <th><?= lang('tabel_b11_field2_alias') ?></th>
         <th><?= lang('tabel_b11_field3_alias') ?></th>
-        <th><?= lang('created_at_alias') ?></th>
+        <th><?= lang('created_at') ?></th>
       </tr>
     </thead>
 
@@ -31,7 +31,7 @@
           <td><?= $tl_b11->$tabel_b11_field1; ?></td>
           <td><?= $tl_b11->$tabel_b11_field2 ?></td>
           <td><?= $tl_b11->$tabel_b11_field3 ?></td>
-          <td><?= $tl_b11->$created_at ?></td>
+          <td><?= $tl_b11->created_at ?></td>
         </tr>
       <?php endforeach; ?>
     </tbody>
