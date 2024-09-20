@@ -114,7 +114,7 @@
                                     if ($nf->read_at == NULL) {
                                         echo list_group_nav(
                                             'tabel_b9',
-                                            $nf->$tabel_b9_field1,
+                                            $nf->$tabel_b9_field1 . '/detail',
                                             $nf->$tabel_b8_field4,
                                             $nf->$tabel_b8_field3,
                                             $nf->$tabel_b9_field4,
@@ -124,8 +124,8 @@
                                     } else {
                                         list_group_nav(
                                             'tabel_b9',
-                                            $nf->$tabel_b9_field1,
-                                            $nf->$tabel_b8_field4 . '/detail',
+                                            $nf->$tabel_b9_field1 . '/detail',
+                                            $nf->$tabel_b8_field4,
                                             $nf->$tabel_b8_field3,
                                             $nf->$tabel_b9_field4,
                                             datetime_elapsed_string($nf->created_at),

@@ -213,7 +213,12 @@ class C_tabel_b9 extends Omnitags
 	public function soft_delete($tabel_b9_field1 = null)
 	{
 		$this->declarew();
-		$this->session_3();
+		$allowed_values = [
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
 
 		$tabel = $this->tl_b9->get_b9_by_field('tabel_b9_field1', $tabel_b9_field1)->result();
 		$this->check_data($tabel);

@@ -837,7 +837,7 @@ if (!class_exists('Omnitags')) {
                 'created_at' => date("Y-m-d\TH:i:s"),
             );
 
-            $aksi = $this->tl_d4->insert_d4($data1);
+            return $aksi = $this->tl_d4->insert_d4($data1);
         }
 
         public function track_action()
@@ -850,7 +850,7 @@ if (!class_exists('Omnitags')) {
                 'created_at' => date("Y-m-d\TH:i:s"),
             );
 
-            $aksi = $this->tl_b11->insert_b11($data);
+            return $aksi = $this->tl_b11->insert_b11($data);
         }
     }
 } else {
