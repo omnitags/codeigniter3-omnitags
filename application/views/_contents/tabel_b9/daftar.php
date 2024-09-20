@@ -147,39 +147,4 @@
   </div>
 <?php endforeach; ?>
 
-<script>
-  const totalCards = <?= $tbl_b9->num_rows() ?>;
-  const cardsPerPage = 30;
-  let currentPage = 1;
-  const uniqueIds = <?= json_encode($unique_ids) ?>; // Pass the IDs from PHP
-
-  function displayCards() {
-    // Hide all cards first
-    uniqueIds.forEach(id => {
-      const card = document.getElementById("card-" + id);
-      if (card) {
-        card.style.display = "none";
-      }
-    });
-
-    // Calculate the range of cards to display
-    const start = (currentPage - 1) * cardsPerPage;
-    const end = Math.min(start + cardsPerPage, uniqueIds.length);
-
-    // Show the cards for the current page
-    for (let i = start; i < end; i++) {
-      const card = document.getElementById("card-" + uniqueIds[i]);
-      if (card) {
-        card.style.display = "block";
-      }
-    }
-
-    // Update page info
-    document.getElementById("page-info").textContent = `Page ${currentPage} of ${Math.ceil(uniqueIds.length / cardsPerPage)}`;
-  }
-
-  window.onload = displayCards;
-
-</script>
-
 <?= load_card_pagination_js($tbl_b9->num_rows(), 28) ?>
