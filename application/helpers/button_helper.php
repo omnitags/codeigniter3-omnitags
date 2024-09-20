@@ -14,7 +14,7 @@ if (!function_exists('back_to_home')) {
         $url = xss_clean(site_url($data['language'] . '/home'));
 
         return <<<HTML
-        <a class="text-decoration-none" href="{$url}">{$alias}</a>`
+        <a class="text-decoration-none" href="{$url}">{$alias}</a>
         HTML;
     }
 }
