@@ -88,9 +88,10 @@ if (!function_exists('card_regular')) {
     function card_regular($id, $title, $detail, $actions, $theme, $size, $table)
     {
         $title = card_title($title);
+        $card_id = 'card-' . $id;
         
         return <<<HTML
-        <div class="{$size} mt-2">
+        <div id="{$card_id}" class="{$size} mt-2">
             <div class="card {$theme}">
             <div class="card-body">
                 {$title}
@@ -113,9 +114,12 @@ if (!function_exists('card_file')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
         $truncated = truncateText($title, 18);
+
+        $i = 1;
+        $card_id = 'card-' . $i;
         
         return <<<HTML
-        <div class="{$size} mt-2">
+        <div id="{$card_id}" class="{$size} mt-2">
             <div class="card {$theme}">
             <img src="img/{$table}/{$picture}" class="card-img-top img-fluid" style="max-height: 150px" alt="...">
             <div class="card-body">
@@ -143,7 +147,7 @@ if (!function_exists('card_event')) {
         $data = $CI->load->get_vars();
         
         return <<<HTML
-        <div class="col-md-4 mt-2">
+        <div id="card-{$id}" class="col-md-4 mt-2">
             <div class="card text-white {$theme}">
             <img src="img/{$table}/{$picture}" class="card-img-top img-fluid" style="max-height: 150px" alt="...">
             <div class="card-body">

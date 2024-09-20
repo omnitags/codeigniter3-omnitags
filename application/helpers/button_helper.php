@@ -380,6 +380,30 @@ if (!function_exists('btn_hapus')) {
     }
 }
 
+if (!function_exists('btn_hapus_cepat')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_hapus_cepat($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/soft_delete'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-danger"
+              href="{$url}">
+              <i class="fas fa-trash"></i></a>
+        HTML;
+    }
+}
+
 if (!function_exists('btn_restore')) {
     // Creates a button to delete specific data with a confirmation prompt
     function btn_restore($tabel, $value)
