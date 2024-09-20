@@ -49,9 +49,20 @@ class M_tabel_b9 extends CI_Model
 	
 	public function get_b9_with_b8_by_b9_field2($param1)
 	{
-		$sql = "SELECT * FROM {$this->aliases['tabel_b9']} 
-		JOIN {$this->aliases['tabel_b8']} 
-		ON {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field3']} = {$this->aliases['tabel_b8']}.{$this->aliases['tabel_b8_field2']}
+		$sql = "SELECT 
+
+		{$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field1']}, 
+		{$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field4']}, 
+		{$this->aliases['tabel_b9']}.created_at, 
+		{$this->aliases['tabel_b9']}.read_at, 
+		{$this->aliases['tabel_b8']}.{$this->aliases['tabel_b8_field3']}
+
+		FROM {$this->aliases['tabel_b9']}
+		JOIN {$this->aliases['tabel_b8']}
+
+		ON {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field3']} =
+		 {$this->aliases['tabel_b8']}.{$this->aliases['tabel_b8_field2']}
+
 		WHERE {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field2']} = '$param1'
 		ORDER BY CASE WHEN read_at IS NULL THEN 0
 		ELSE 1 END, read_at DESC, {$this->aliases['tabel_b9_field1']} DESC";
