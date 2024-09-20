@@ -22,7 +22,7 @@
 
         <tr>
           <td class="table-secondary table-active">$created_at</td>
-          <td class="table-light"><?= datetime_elapsed_string($tl_b9->$created_at) ?></td>
+          <td class="table-light"><?= datetime_elapsed_string($tl_b9->created_at) ?></td>
         </tr>
       </tbody>
       <tfoot></tfoot>

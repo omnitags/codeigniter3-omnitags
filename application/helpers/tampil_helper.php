@@ -47,6 +47,21 @@ if (!function_exists('row_data')) {
     }
 }
 
+// Generates a table row with a field alias and value
+if (!function_exists('row_data_crud')) {
+    function row_data_crud($field, $value)
+    {
+        $alias = lang($field);
+
+        return <<<HTML
+        <tr>
+              <td width="40%" class="table-active">{$alias}</td>
+              <td width="">{$value}</td>
+            </tr>
+        HTML;
+    }
+}
+
 // Generates a table row with a field alias and an image
 if (!function_exists('row_file')) {
     function row_file($tabel_class, $field, $value)

@@ -111,8 +111,8 @@ class C_tabel_b1 extends Omnitags
 				$this->aliases['tabel_b1_field6'] => $this->v_post['tabel_b1_field6'],
 				$this->aliases['tabel_b1_field7'] => $this->v_post['tabel_b1_field7'],
 
-				$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
-				$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
+				'created_at' => date("Y-m-d\TH:i:s"),
+				'updated_at' => date("Y-m-d\TH:i:s"),
 			);
 
 			$aksi = $this->tl_b1->insert_b1($data);
@@ -171,7 +171,7 @@ class C_tabel_b1 extends Omnitags
 			$this->aliases['tabel_b1_field6'] => $this->v_post['tabel_b1_field6'],
 			$this->aliases['tabel_b1_field7'] => $this->v_post['tabel_b1_field7'],
 
-			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b1->update_b1($data, $tabel_b1_field1);
@@ -179,7 +179,6 @@ class C_tabel_b1 extends Omnitags
 		$notif = $this->handle_4c($aksi, 'tabel_b1', $tabel_b1_field1);
 
 		redirect($_SERVER['HTTP_REFERER']);
-
 	}
 
 	// Sync the theme of the website
@@ -194,12 +193,33 @@ class C_tabel_b1 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_b1_field7'] => $tabel_b1_field7,
 
-			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b1->update_all_b1($data);
 
 		$notif = $this->handle_4c($aksi, 'tabel_b1', $tabel_b1_field7);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Soft Delete data
+	public function soft_delete($tabel_b1_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_b1->get_b1_by_field('tabel_b1_field1', $tabel_b1_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => date("Y-m-d\TH:i:s"),
+		);
+
+		$aksi = $this->tl_b1->update_b1($data, $tabel_b1_field1);
+
+		$notif = $this->handle_4e($aksi, 'tabel_b1', $tabel_b1_field1);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}

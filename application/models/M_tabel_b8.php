@@ -6,6 +6,7 @@ class M_tabel_b8 extends CI_Model
 	public function get_all_b8()
 	{
 		$this->db->order_by($this->aliases['tabel_b8_field1'], 'DESC');
+		$this->db->where('deleted_at', NULL);
 		return $this->db->get($this->aliases['tabel_b8']);
 	}
 
@@ -21,6 +22,7 @@ class M_tabel_b8 extends CI_Model
 		}
 
 		$this->db->order_by($this->aliases['tabel_b8_field1'], 'DESC');
+		$this->db->where('deleted_at', NULL);
 		return $this->db->get($this->aliases['tabel_b8']);
 	}
 	

@@ -6,6 +6,7 @@ class M_tabel_b9 extends CI_Model
 	public function get_all_b9()
 	{
 		$this->db->order_by($this->aliases['tabel_b9_field1'], 'DESC');
+		$this->db->where('deleted_at', NULL);
 		return $this->db->get($this->aliases['tabel_b9']);
 	}
 
@@ -19,8 +20,10 @@ class M_tabel_b9 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-
+		
+		$this->db->where('read_at', NULL);
 		$this->db->order_by($this->aliases['tabel_b9_field1'], 'DESC');
+		$this->db->where('deleted_at', NULL);
 		return $this->db->get($this->aliases['tabel_b9']);
 	}
 
@@ -39,8 +42,8 @@ class M_tabel_b9 extends CI_Model
 		JOIN {$this->aliases['tabel_b8']} 
 		ON {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field3']} = {$this->aliases['tabel_b8']}.{$this->aliases['tabel_b8_field2']}
 		WHERE {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field2']} = '$param1'
-		ORDER BY CASE WHEN {$this->aliases['read_at']} IS NULL THEN 0
-		ELSE 1 END, {$this->aliases['read_at']} DESC, {$this->aliases['tabel_b9_field1']} DESC LIMIT 15";
+		ORDER BY CASE WHEN read_at IS NULL THEN 0
+		ELSE 1 END, read_at DESC, {$this->aliases['tabel_b9_field1']} DESC LIMIT 15";
 		return $this->db->query($sql);
 	}
 	
@@ -50,8 +53,8 @@ class M_tabel_b9 extends CI_Model
 		JOIN {$this->aliases['tabel_b8']} 
 		ON {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field3']} = {$this->aliases['tabel_b8']}.{$this->aliases['tabel_b8_field2']}
 		WHERE {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field2']} = '$param1'
-		ORDER BY CASE WHEN {$this->aliases['read_at']} IS NULL THEN 0
-		ELSE 1 END, {$this->aliases['read_at']} DESC, {$this->aliases['tabel_b9_field1']} DESC";
+		ORDER BY CASE WHEN read_at IS NULL THEN 0
+		ELSE 1 END, read_at DESC, {$this->aliases['tabel_b9_field1']} DESC";
 		return $this->db->query($sql);
 	}
 
@@ -71,7 +74,7 @@ class M_tabel_b9 extends CI_Model
 
 	public function update_null($data, $param1)
 	{
-		$this->db->where($this->aliases['read_at'], NULL);
+		$this->db->where('read_at', NULL);
 		$this->db->where($this->aliases['tabel_b9_field2'], $param1);
 		return $this->db->update($this->aliases['tabel_b9'], $data);
 	}

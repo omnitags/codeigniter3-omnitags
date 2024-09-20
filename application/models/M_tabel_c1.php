@@ -7,7 +7,8 @@ class M_tabel_c1 extends CI_Model
     public function get_all_c1()
     {
         $this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
-        return $this->db->get($this->aliases['tabel_c1']);
+		$this->db->where('deleted_at', NULL);
+		return $this->db->get($this->aliases['tabel_c1']);
     }
 
     public function get_c1_by_field($fields, $params)
@@ -22,6 +23,7 @@ class M_tabel_c1 extends CI_Model
 		}
 
 		$this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
+		$this->db->where('deleted_at', NULL);
 		return $this->db->get($this->aliases['tabel_c1']);
 	}
 
@@ -31,7 +33,8 @@ class M_tabel_c1 extends CI_Model
         $this->db->where($this->aliases['tabel_c1_field1'], $param1);
         $this->db->where($this->aliases['tabel_c1_field5'], $param2);
         $this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
-        return $this->db->get($this->aliases['tabel_c1']);
+		$this->db->where('deleted_at', NULL);
+		return $this->db->get($this->aliases['tabel_c1']);
     }
 
     // Inserts a new record into the tabel_c1 table

@@ -132,8 +132,8 @@ class C_tabel_b5 extends Omnitags
 				$this->aliases['tabel_b5_field6'] => $this->aliases['tabel_b5_field6_value2'],
 				$this->aliases['tabel_b5_field7'] => $this->v_post['tabel_b5_field7'],
 
-				$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
-				$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
+				'created_at' => date("Y-m-d\TH:i:s"),
+				'updated_at' => date("Y-m-d\TH:i:s"),
 			);
 
 			$aksi = $this->tl_b5->insert_b5($data);
@@ -189,7 +189,7 @@ class C_tabel_b5 extends Omnitags
 			$this->aliases['tabel_b5_field5'] => $this->v_post['tabel_b5_field5'],
 			$this->aliases['tabel_b5_field7'] => $this->v_post['tabel_b5_field7'],
 
-			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b5->update_b5($data, $tabel_b5_field1);
@@ -210,7 +210,7 @@ class C_tabel_b5 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_b5_field7'] => $tabel_b5_field7,
 
-			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b5->update_all_b5($data);
@@ -231,7 +231,7 @@ class C_tabel_b5 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_b5_field6'] => $this->aliases['tabel_b5_field6_value1'],
 
-			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b5->update_b5($data, $tabel_b5_field1);
@@ -253,12 +253,33 @@ class C_tabel_b5 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_b5_field6'] => $this->aliases['tabel_b5_field6_value2'],
 
-			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b5->update_b5($data, $tabel_b5_field1);
 
 		$notif = $this->handle_4c($aksi, 'tabel_b5_field6', $tabel_b5_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	//Soft Delete Data
+	public function soft_delete($tabel_b5_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $tabel_b5_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => date("Y-m-d\TH:i:s"),
+		);
+
+		$aksi = $this->tl_b5->update_b5($data, $tabel_b5_field1);
+
+		$notif = $this->handle_4e($aksi, 'tabel_b5', $tabel_b5_field1);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}

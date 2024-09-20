@@ -107,8 +107,8 @@ class C_tabel_e5 extends Omnitags
 			$this->aliases['tabel_e5_field7'] => $this->v_post['tabel_e5_field7'],
 			$this->aliases['tabel_e5_field8'] => $this->v_post['tabel_e5_field8'],
 
-			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
-			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e5->insert_e5($data);
@@ -153,12 +153,33 @@ class C_tabel_e5 extends Omnitags
 			$this->aliases['tabel_e5_field7'] => $this->v_post['tabel_e5_field7'],
 			$this->aliases['tabel_e5_field8'] => $this->v_post['tabel_e5_field8'],
 
-			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_e5->update_e5($data, $tabel_e5_field1);
 
 		$notif = $this->handle_4c($aksi, 'tabel_e5', $tabel_e5_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+	
+	//Soft Delete Data
+	public function soft_delete($tabel_e5_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_e5->get_e5_by_field('tabel_e5_field1', $tabel_e5_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => date("Y-m-d\TH:i:s"),
+		);
+
+		$aksi = $this->tl_e5->update_e5($data, $tabel_e5_field1);
+
+		$notif = $this->handle_4e($aksi, 'tabel_e5', $tabel_e5_field1);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}

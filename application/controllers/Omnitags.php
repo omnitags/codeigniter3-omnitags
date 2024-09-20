@@ -52,6 +52,8 @@ if (!class_exists('Omnitags')) {
         public $flash_msg5;
         public $tabel_a1, $tabel_a1_field1;
         public $myData1, $myData2, $reverse;
+
+        // Below are the keys that you need to remember
         public $tl_a1;
         public $tl_b1, $tl_b2, $tl_b3, $tl_b4, $tl_b5, $tl_b6, $tl_b7, $tl_b8, $tl_b9, $tl_b10, $tl_b11;
         public $tl_c1, $tl_c2;
@@ -77,6 +79,8 @@ if (!class_exists('Omnitags')) {
             $this->load->helper('load_api');
             // Kelola URL
             $this->load->helper('move_url');
+            // Kelola List Group
+            $this->load->helper('list_group');
             // Kelola Database Firebase
             $this->load->helper('firebase');
             // Tampil card
@@ -174,7 +178,7 @@ if (!class_exists('Omnitags')) {
             $this->theme_id = $this->theme[0]->id_theme;
 
             $this->notif_limit = $this->tl_b9->get_b9_with_b8_limit(userdata($this->aliases['tabel_c2_field1']))->result();
-            $this->notif_null = $this->tl_b9->get_b9_by_field(['tabel_b9_field2', 'read_at'], [userdata($this->aliases['tabel_c2_field1']), NULL]);
+            $this->notif_null = $this->tl_b9->get_b9_by_field('tabel_b9_field2', userdata($this->aliases['tabel_c2_field1']));
 
             $this->views = array(
                 'head' => '_partials/head',
@@ -632,6 +636,7 @@ if (!class_exists('Omnitags')) {
             return [];
         }
 
+        // Function to simplify upload new image
         public function upload_new_image($new_name, $path, $field, $allowed_types, $tabel)
         {
             $config['upload_path'] = $path;
@@ -654,6 +659,7 @@ if (!class_exists('Omnitags')) {
             }
         }
 
+        // Function to simplify change image
         public function change_image($new_name, $old_name, $path, $field, $allowed_types, $tabel)
         {
             $config['upload_path'] = $path;
@@ -677,6 +683,7 @@ if (!class_exists('Omnitags')) {
             }
         }
 
+        // Function to simplify change image but has advanced features
         public function change_image_advanced($new_name, $old_name, $path, $field, $allowed_types, $tabel)
         {
             $img = $this->v_post[$field . '_old'];
@@ -756,7 +763,7 @@ if (!class_exists('Omnitags')) {
                 $this->aliases['tabel_b9_field3'] => $type,
                 $this->aliases['tabel_b9_field4'] => $msg . $extra,
 
-                $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+                'created_at' => date("Y-m-d\TH:i:s"),
             );
 
             $ambil = $this->tl_b9->insert_b9($notif);
@@ -792,7 +799,7 @@ if (!class_exists('Omnitags')) {
                     $this->aliases['tabel_b9_field3'] => $type,
                     $this->aliases['tabel_b9_field4'] => $msg . $extra,
 
-                    $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+                    'created_at' => date("Y-m-d\TH:i:s"),
                 );
 
                 $ambil = $this->tl_b9->insert_b9($notif);
@@ -801,6 +808,7 @@ if (!class_exists('Omnitags')) {
             }
         }
 
+        // Function to track page
         public function track_page()
         {
             $tabel = $this->tl_b11->get_b11_by_field('tabel_b11_field2', current_full_url());
@@ -812,7 +820,7 @@ if (!class_exists('Omnitags')) {
                     'page_url' => current_full_url(),
                     'page_name' => uri_string(),
 
-                    $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+                    'created_at' => date("Y-m-d\TH:i:s"),
                 );
 
                 $aksi = $this->tl_b11->insert_b11($data);
@@ -825,10 +833,23 @@ if (!class_exists('Omnitags')) {
                 'user_id' => userdata($this->aliases['tabel_c2_field1']),
                 'page_id' => $tabel[0]->page_id,
 
-                $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+                'created_at' => date("Y-m-d\TH:i:s"),
             );
 
             $aksi = $this->tl_d4->insert_d4($data1);
+        }
+
+        public function track_action()
+        {
+            $data = array(
+                'id_activity' => '',
+                'page_url' => current_full_url(),
+                'page_name' => uri_string(),
+
+                'created_at' => date("Y-m-d\TH:i:s"),
+            );
+
+            $aksi = $this->tl_b11->insert_b11($data);
         }
     }
 } else {
