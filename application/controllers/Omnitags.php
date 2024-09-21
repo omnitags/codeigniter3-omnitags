@@ -28,8 +28,7 @@ if (!class_exists('Omnitags')) {
         public $phase_4 = '';  // feature released
 
         // Variables that functions as soft code later on
-        public $spreadsheet_lib, $uri;
-
+        public $spreadsheet_lib, $uri, $db;
         public $aliases, $views, $flashdatas, $tempdatas, $show, $package;
         public $v1, $v2, $v3, $v4, $v5, $v6, $v7, $v8;
         public $v1_title, $v2_title, $v3_title, $v4_title, $v5_title, $v6_title, $v7_title, $v8_title;
@@ -53,6 +52,8 @@ if (!class_exists('Omnitags')) {
         public $flash_msg5;
         public $tabel_a1, $tabel_a1_field1;
         public $myData1, $myData2, $reverse;
+
+        // Below are the keys that you need to remember
         public $tl_a1;
         public $tl_b1, $tl_b2, $tl_b3, $tl_b4, $tl_b5, $tl_b6, $tl_b7, $tl_b8, $tl_b9, $tl_b10, $tl_b11;
         public $tl_c1, $tl_c2;
@@ -78,6 +79,8 @@ if (!class_exists('Omnitags')) {
             $this->load->helper('load_api');
             // Kelola URL
             $this->load->helper('move_url');
+            // Kelola List Group
+            $this->load->helper('list_group');
             // Kelola Database Firebase
             $this->load->helper('firebase');
             // Tampil card
@@ -175,7 +178,7 @@ if (!class_exists('Omnitags')) {
             $this->theme_id = $this->theme[0]->id_theme;
 
             $this->notif_limit = $this->tl_b9->get_b9_with_b8_limit(userdata($this->aliases['tabel_c2_field1']))->result();
-            $this->notif_null = $this->tl_b9->get_b9_by_field(['tabel_b9_field2', 'read_at'], [userdata($this->aliases['tabel_c2_field1']), NULL]);
+            $this->notif_null = $this->tl_b9->get_b9_by_field(['tabel_b9_field2', 'tabel_b9_field6'], [userdata($this->aliases['tabel_c2_field1']), NULL]);
 
             $this->views = array(
                 'head' => '_partials/head',
@@ -633,13 +636,9 @@ if (!class_exists('Omnitags')) {
             return [];
         }
 
+        // Function to simplify upload new image
         public function upload_new_image($new_name, $path, $field, $allowed_types, $tabel)
         {
-            $new_name = $this->v_post['tabel_b1_field2'];
-            $path = $this->v_upload_path['tabel_b1'];
-            $img = $this->v_post[$field . '_old'];
-            $extension = '.' . getExtension($path . $img);
-
             $config['upload_path'] = $path;
             // nama file telah ditetapkan dan hanya berekstensi jpg dan dapat diganti dengan file bernama sama
             $config['file_name'] = $new_name;
@@ -648,33 +647,45 @@ if (!class_exists('Omnitags')) {
             $config['remove_spaces'] = TRUE;
 
             $this->load->library('upload', $config);
-            $upload = $this->upload->do_upload($this->v_input[$img . '_input']);
+            $upload = $this->upload->do_upload($this->v_input[$field . '_input']);
 
             if (!$upload) {
-                if ($new_name != $tabel[0]->kode) {
-                    rename($path . $img, $path . str_replace(' ', '_', $new_name) . $extension);
-                    $gambar = str_replace(' ', '_', $new_name) . $extension;
-                } else {
-                    $gambar = $img;
-                }
+                set_flashdata($this->views['flash2'], $this->flash_msg2[$field . '_alias']);
+                set_flashdata('modal', $this->views['flash2_func1']);
+                redirect($_SERVER['HTTP_REFERER']);
             } else {
-                if ($new_name != $tabel[0]->kode) {
-                    // File upload is successful, delete the old file
-                    if (file_exists($path . $img)) {
-                        unlink($path . $img);
-                    }
-                    $upload = $this->upload->data();
-                    return $gambar = $upload['file_name'];
-                } else {
-                    return $gambar = $img;
-                }
+                $upload = $this->upload->data();
+                return $upload['file_name'];
             }
         }
 
-        public function change_image($new_name, $path, $field, $allowed_types, $tabel)
+        // Function to simplify change image
+        public function change_image($new_name, $old_name, $path, $field, $allowed_types, $tabel)
         {
-            $new_name = $this->v_post['tabel_b1_field2'];
-            $path = $this->v_upload_path['tabel_b1'];
+            $config['upload_path'] = $path;
+            // nama file dan ekstensi telah ditetapkan dan dapat diganti dengan file bernama sama
+            $config['allowed_types'] = $allowed_types;
+            $config['file_name'] = $new_name;
+            $config['overwrite'] = TRUE;
+            $config['remove_spaces'] = TRUE;
+
+            $this->load->library('upload', $config);
+            $upload = $this->upload->do_upload($this->v_input[$field . '_input']);
+
+            if (!$upload) {
+                $upload = $this->upload->data();
+                return $upload['file_name'];
+            } else {
+                unlink($path . $old_name);
+
+                $upload = $this->upload->data();
+                return $upload['file_name'];
+            }
+        }
+
+        // Function to simplify change image but has advanced features
+        public function change_image_advanced($new_name, $old_name, $path, $field, $allowed_types, $tabel)
+        {
             $img = $this->v_post[$field . '_old'];
             $extension = '.' . getExtension($path . $img);
 
@@ -686,25 +697,25 @@ if (!class_exists('Omnitags')) {
             $config['remove_spaces'] = TRUE;
 
             $this->load->library('upload', $config);
-            $upload = $this->upload->do_upload($this->v_input[$img . '_input']);
+            $upload = $this->upload->do_upload($this->v_input[$field . '_input']);
 
             if (!$upload) {
-                if ($new_name != $tabel[0]->kode) {
+                if ($new_name != $old_name) {
                     rename($path . $img, $path . str_replace(' ', '_', $new_name) . $extension);
-                    $gambar = str_replace(' ', '_', $new_name) . $extension;
+                    return str_replace(' ', '_', $new_name) . $extension;
                 } else {
-                    $gambar = $img;
+                    return $img;
                 }
             } else {
-                if ($new_name != $tabel[0]->kode) {
+                if ($new_name != $old_name) {
                     // File upload is successful, delete the old file
                     if (file_exists($path . $img)) {
                         unlink($path . $img);
                     }
                     $upload = $this->upload->data();
-                    return $gambar = $upload['file_name'];
+                    return $upload['file_name'];
                 } else {
-                    return $gambar = $img;
+                    return $img;
                 }
             }
         }
@@ -752,7 +763,8 @@ if (!class_exists('Omnitags')) {
                 $this->aliases['tabel_b9_field3'] => $type,
                 $this->aliases['tabel_b9_field4'] => $msg . $extra,
 
-                $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+                'created_at' => date("Y-m-d\TH:i:s"),
+                'action_url' => current_full_url(),
             );
 
             $ambil = $this->tl_b9->insert_b9($notif);
@@ -788,7 +800,7 @@ if (!class_exists('Omnitags')) {
                     $this->aliases['tabel_b9_field3'] => $type,
                     $this->aliases['tabel_b9_field4'] => $msg . $extra,
 
-                    $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+                    'created_at' => date("Y-m-d\TH:i:s"),
                 );
 
                 $ambil = $this->tl_b9->insert_b9($notif);
@@ -797,33 +809,48 @@ if (!class_exists('Omnitags')) {
             }
         }
 
+        // Function to track page
         public function track_page()
         {
             $tabel = $this->tl_b11->get_b11_by_field('tabel_b11_field2', current_full_url());
-            
-            if (!empty($tabel->result())) {} else {
+
+            if (!empty($tabel->result())) {
+            } else {
                 $data = array(
                     'page_id' => '',
                     'page_url' => current_full_url(),
                     'page_name' => uri_string(),
 
-                    $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+                    'created_at' => date("Y-m-d\TH:i:s"),
                 );
-                
+
                 $aksi = $this->tl_b11->insert_b11($data);
             }
 
             $tabel = $this->tl_b11->get_b11_by_field('tabel_b11_field2', current_full_url())->result();
-            
+
             $data1 = array(
                 'click_id' => '',
                 'user_id' => userdata($this->aliases['tabel_c2_field1']),
                 'page_id' => $tabel[0]->page_id,
-                
-                $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+
+                'created_at' => date("Y-m-d\TH:i:s"),
             );
 
-            $aksi = $this->tl_d4->insert_d4($data1);
+            return $aksi = $this->tl_d4->insert_d4($data1);
+        }
+
+        public function track_action()
+        {
+            $data = array(
+                'id_activity' => '',
+                'page_url' => current_full_url(),
+                'page_name' => uri_string(),
+
+                'created_at' => date("Y-m-d\TH:i:s"),
+            );
+
+            return $aksi = $this->tl_b11->insert_b11($data);
         }
     }
 } else {

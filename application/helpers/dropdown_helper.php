@@ -61,7 +61,7 @@ if (!function_exists('nav_item')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = site_url($data['language'] . '/' . $controller . $place);
+        $url = nav_url($data['language'] . '/' . $controller . $place);
 
         return <<<HTML
             <li class="nav-item pb-2">

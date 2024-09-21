@@ -7,6 +7,14 @@ class M_tabel_a1 extends CI_Model
 	// Get all data
 	public function get_all_a1()
 	{
+		$this->db->where('deleted_at', NULL);
+		$this->db->order_by($this->aliases['tabel_a1_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_a1']);
+	}
+	
+	public function get_all_a1_archive()
+	{
+		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by($this->aliases['tabel_a1_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_a1']);
 	}
@@ -22,6 +30,7 @@ class M_tabel_a1 extends CI_Model
 			$this->db->where($this->aliases[$fields], $params);
 		}
 
+		$this->db->where('deleted_at', NULL);
 		$this->db->order_by($this->aliases['tabel_a1_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_a1']);
 	}

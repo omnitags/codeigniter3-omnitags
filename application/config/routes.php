@@ -65,6 +65,7 @@ foreach ($myData2 as $item2) {
         'nonaktifkan' => 'nonaktifkan',
         'detail' => 'detail',
         'lihat' => 'lihat',
+        'soft_delete' => 'soft_delete',
         'delete' => 'delete',
         'print' => 'print',
         'sync_theme' => 'sync_theme',

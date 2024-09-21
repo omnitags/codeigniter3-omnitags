@@ -40,6 +40,11 @@ $lang['order_now'] = "Commandez maintenant";
 $lang['reservations'] = "Réservations";
 $lang['history'] = "Historique";
 
+$lang['created_at'] = 'Created At';
+$lang['read_at'] = 'Read At';
+$lang['updated_at'] = 'Updated At';
+$lang['deleted_at'] = 'Deleted At';
+
 $lang['invalid'] = "Impossible d'exécuter l'action!";
 $lang['no_access'] = "Vous n'avez pas accès à cette page !";
 $lang['page_not_found'] = "Page non trouvée !";

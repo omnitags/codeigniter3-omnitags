@@ -5,6 +5,14 @@ class M_tabel_f4 extends CI_Model
 {
 	public function get_all_f4()
 	{
+		$this->db->where('deleted_at', NULL);
+		$this->db->order_by($this->aliases['tabel_f4_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_f4']);
+	}
+	
+	public function get_all_f4_archive()
+	{
+		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by($this->aliases['tabel_f4_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_f4']);
 	}
@@ -20,6 +28,7 @@ class M_tabel_f4 extends CI_Model
 			$this->db->where($this->aliases[$fields], $params);
 		}
 
+		$this->db->where('deleted_at', NULL);
 		$this->db->order_by($this->aliases['tabel_f4_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_f4']);
 	}

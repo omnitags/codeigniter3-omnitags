@@ -190,6 +190,11 @@ a.sidebar-link.logout {
 	border-radius: 10px;
 }
 
+#pagination-controls {
+	margin-top: 20px;
+	text-align: center;
+}
+
 /* input[type='date'] {
 	-webkit-appearance: none;
 	-moz-appearance: none;

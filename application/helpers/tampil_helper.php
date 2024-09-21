@@ -47,6 +47,21 @@ if (!function_exists('row_data')) {
     }
 }
 
+// Generates a table row with a field alias and value
+if (!function_exists('row_data_crud')) {
+    function row_data_crud($field, $value)
+    {
+        $alias = lang($field);
+
+        return <<<HTML
+        <tr>
+              <td width="40%" class="table-active">{$alias}</td>
+              <td width="">{$value}</td>
+            </tr>
+        HTML;
+    }
+}
+
 // Generates a table row with a field alias and an image
 if (!function_exists('row_file')) {
     function row_file($tabel_class, $field, $value)
@@ -105,7 +120,6 @@ if (!function_exists('password_req')) {
 }
 
 // Generates an image with a tooltip
-// Generates an image with a tooltip
 if (!function_exists('tampil_image')) {
     function tampil_image($size, $tabel_class, $value, $konten)
     {
@@ -119,6 +133,17 @@ if (!function_exists('tampil_image')) {
             class="img-thumbnail img-fluid" src="img/{$tabel_class}/{$value}" 
             title="<img class='img-thumbnail' src='img/{$tabel_class}/{$value}' />
             <br>{$konten}">
+        HTML;
+    }
+}
+
+// Generates an image with a tooltip
+if (!function_exists('tampil_dekor')) {
+    function tampil_dekor($size, $tabel_class, $value)
+    {
+        return <<<HTML
+        <img style="max-height: {$size}" alt="image"
+            class="img-fluid" src="img/{$tabel_class}/{$value}">
         HTML;
     }
 }
