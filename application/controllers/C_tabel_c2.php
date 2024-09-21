@@ -380,7 +380,7 @@ class C_tabel_c2 extends Omnitags
 
 					$data = array(
 						// mengubah password menjadi password berenkripsi
-						$this->aliases['tabel_c2_field4'] => password_hash($tabel_c2_field4, PASSWORD_DEFAULT),
+						$this->aliases['tabel_c2_field4'] => password_hash($tabel_c2_field4, PASSWORD_BCRYPT),
 					);
 
 					$aksi = $this->tl_c2->update_c2($data, $tabel_c2_field1);
