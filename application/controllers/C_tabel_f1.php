@@ -145,4 +145,47 @@ class C_tabel_f1 extends Omnitags
 		$this->track_page();
 		load_view_data('_layouts/printpage', $data);
 	}
+
+	// Archive Page
+	public function archive()
+	{
+		$this->declarew();
+		$this->page_session_3();
+
+		$data1 = array(
+			'title' => lang('tabel_f1_alias_v9_title'),
+			'konten' => $this->v9['tabel_f1'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f1']),
+			'tbl_f1' => $this->tl_f1->get_all_f1_archive(),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
+	}
+
+	// Public Pages
+	public function detail_archive($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_f1->get_f1_by_field('tabel_f1_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_f1_alias_v10_title'),
+			'konten' => $this->v10['tabel_f1'],
+			'dekor' => $this->tl_f1->dekor($this->theme_id, $this->aliases['tabel_f1']),
+			'tbl_f1' => $this->tl_f1->get_f1_by_field_archive('tabel_f1_field1', $param1),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
+	}
 }

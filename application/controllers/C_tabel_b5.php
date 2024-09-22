@@ -269,7 +269,7 @@ class C_tabel_b5 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $tabel_b5_field1)->result();
+		$tabel = $this->tl_b5->get_b5_by_field_archive('tabel_b5_field1', $tabel_b5_field1)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -311,7 +311,7 @@ class C_tabel_b5 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_b5 = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $tabel_b5_field1)->result();
+		$tabel_b5 = $this->tl_b5->get_b5_by_field_archive('tabel_b5_field1', $tabel_b5_field1)->result();
 		$this->check_data($tabel_b5);
 		$img = $tabel_b5[0]->img;
 
@@ -324,4 +324,46 @@ class C_tabel_b5 extends Omnitags
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
+	// Archive Page
+	public function archive()
+	{
+		$this->declarew();
+		$this->page_session_3();
+
+		$data1 = array(
+			'title' => lang('tabel_b5_alias_v9_title'),
+			'konten' => $this->v9['tabel_b5'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b5']),
+			'tbl_b5' => $this->tl_b5->get_all_b5_archive(),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
+	}
+
+	// Public Pages
+	public function detail_archive($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_b5_alias_v10_title'),
+			'konten' => $this->v10['tabel_b5'],
+			'dekor' => $this->tl_b5->dekor($this->theme_id, $this->aliases['tabel_b5']),
+			'tbl_b5' => $this->tl_b5->get_b5_by_field_archive('tabel_b5_field1', $param1),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
+	}
 }

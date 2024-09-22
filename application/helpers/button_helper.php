@@ -289,6 +289,28 @@ if (!function_exists('btn_laporan')) {
     }
 }
 
+if (!function_exists('btn_archive')) {
+    // Generates a button to print a report for a specific table
+    function btn_archive($tabel)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+        $controller = xss_clean($data[$tabel]);
+
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/archive'));
+
+        return <<<HTML
+        <a class="btn mr-1 btn-outline-secondary mb-4" href="{$url}" target="_blank">
+            <i class="fas fa-trash"></i> Trash</a>
+        HTML;
+    }
+}
+
 if (!function_exists('btn_print')) {
     // Generates a button to print specific data
     function btn_print($tabel, $value)

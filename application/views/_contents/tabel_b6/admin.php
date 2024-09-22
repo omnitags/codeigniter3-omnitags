@@ -39,8 +39,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_b6') ?>
-
-
+    <?= btn_archive('tabel_b6') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">

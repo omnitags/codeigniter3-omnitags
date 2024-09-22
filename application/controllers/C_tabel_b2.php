@@ -269,7 +269,7 @@ class C_tabel_b2 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b2->get_b2_by_field('tabel_b2_field1', $tabel_b2_field1)->result();
+		$tabel = $this->tl_b2->get_b2_by_field_archive('tabel_b2_field1', $tabel_b2_field1)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -290,7 +290,7 @@ class C_tabel_b2 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_b2 = $this->tl_b2->get_b2_by_field('tabel_b2_field1', $tabel_b2_field1)->result();
+		$tabel_b2 = $this->tl_b2->get_b2_by_field_archive('tabel_b2_field1', $tabel_b2_field1)->result();
 		$this->check_data($tabel_b2);
 
 		$img = $tabel_b2[0]->img;
@@ -305,4 +305,48 @@ class C_tabel_b2 extends Omnitags
 	}
 
 	// Print one data
+	
+
+	// Archive Page
+	public function archive()
+	{
+		$this->declarew();
+		$this->page_session_3();
+
+		$data1 = array(
+			'title' => lang('tabel_b2_alias_v9_title'),
+			'konten' => $this->v9['tabel_b2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b2']),
+			'tbl_b2' => $this->tl_b2->get_all_b2_archive(),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
+	}
+
+	// Public Pages
+	public function detail_archive($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_b2->get_b2_by_field('tabel_b2_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_b2_alias_v10_title'),
+			'konten' => $this->v10['tabel_b2'],
+			'dekor' => $this->tl_b2->dekor($this->theme_id, $this->aliases['tabel_b2']),
+			'tbl_b2' => $this->tl_b2->get_b2_by_field_archive('tabel_b2_field1', $param1),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
+	}
 }

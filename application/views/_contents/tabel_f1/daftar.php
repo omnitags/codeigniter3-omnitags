@@ -15,6 +15,7 @@
 <div class="row">
   <div class="col-md-10">
     <?= btn_field('filter', '<i class="fas fa-filter"></i> Filter') ?>
+    <?= btn_archive('tabel_f1') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">

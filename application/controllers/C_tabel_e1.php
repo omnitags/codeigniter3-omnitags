@@ -176,7 +176,7 @@ class C_tabel_e1 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_e1->get_e1_by_field('tabel_e1_field1', $tabel_e1_field1)->result();
+		$tabel = $this->tl_e1->get_e1_by_field_archive('tabel_e1_field1', $tabel_e1_field1)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -199,7 +199,7 @@ class C_tabel_e1 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_e1 = $this->tl_e1->get_e1_by_field('tabel_e1_field1', $tabel_e1_field1)->result();
+		$tabel_e1 = $this->tl_e1->get_e1_by_field_archive('tabel_e1_field1', $tabel_e1_field1)->result();
 		$this->check_data($tabel_e1);
 
 		$tabel_e1_field2 = $tabel_e1[0]->tipe;
@@ -231,5 +231,48 @@ class C_tabel_e1 extends Omnitags
 
 
 
+	}
+
+	// Archive Page
+	public function archive()
+	{
+		$this->declarew();
+		$this->page_session_3();
+
+		$data1 = array(
+			'title' => lang('tabel_e1_alias_v9_title'),
+			'konten' => $this->v9['tabel_e1'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e1']),
+			'tbl_e1' => $this->tl_e1->get_all_e1_archive(),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
+	}
+
+	// Public Pages
+	public function detail_archive($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_e1->get_e1_by_field('tabel_e1_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_e1_alias_v10_title'),
+			'konten' => $this->v10['tabel_e1'],
+			'dekor' => $this->tl_e1->dekor($this->theme_id, $this->aliases['tabel_e1']),
+			'tbl_e1' => $this->tl_e1->get_e1_by_field_archive('tabel_e1_field1', $param1),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
 	}
 }

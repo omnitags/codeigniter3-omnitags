@@ -50,7 +50,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_b1') ?>
-
+    <?= btn_archive('tabel_b1') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">

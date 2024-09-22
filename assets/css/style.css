@@ -195,6 +195,10 @@ a.sidebar-link.logout {
 	text-align: center;
 }
 
+.archived {
+	filter: brightness(70%);
+}
+
 /* input[type='date'] {
 	-webkit-appearance: none;
 	-moz-appearance: none;

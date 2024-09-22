@@ -14,6 +14,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_c1') ?>
+    <?= btn_archive('tabel_c1') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">

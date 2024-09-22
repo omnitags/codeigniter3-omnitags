@@ -30,8 +30,8 @@ if (!class_exists('Omnitags')) {
         // Variables that functions as soft code later on
         public $spreadsheet_lib, $uri, $db;
         public $aliases, $views, $flashdatas, $tempdatas, $show, $package;
-        public $v1, $v2, $v3, $v4, $v5, $v6, $v7, $v8;
-        public $v1_title, $v2_title, $v3_title, $v4_title, $v5_title, $v6_title, $v7_title, $v8_title;
+        public $v1, $v2, $v3, $v4, $v5, $v6, $v7, $v8, $v9, $v10;
+        public $v1_title, $v2_title, $v3_title, $v4_title, $v5_title, $v6_title, $v7_title, $v8_title, $v9_title, $v10_title;
         public $v_input, $v_post, $v_get;
         public $v_upload_path, $upload;
         public $flash, $flash_func;
@@ -143,6 +143,8 @@ if (!class_exists('Omnitags')) {
                 $this->v6[$item['key']] = '_contents/' . $item['key'] . '/profil';
                 $this->v7[$item['key']] = '_contents/' . $item['key'] . '/konfirmasi';
                 $this->v8[$item['key']] = '_contents/' . $item['key'] . '/detail';
+                $this->v9[$item['key']] = '_contents/' . $item['key'] . '/archive';
+                $this->v10[$item['key']] = '_contents/' . $item['key'] . '/archive_detail';
             }
 
             $this->overload();

@@ -32,6 +32,22 @@ class M_tabel_b6 extends CI_Model
 		$this->db->order_by($this->aliases['tabel_b6_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_b6']);
 	}
+	
+	public function get_b6_by_field_archive($fields, $params)
+	{
+		if (is_array($fields) && is_array($params)) {
+			foreach ($fields as $key => $field) {
+				$param = $params[$key]; // Get the corresponding param value
+				$this->db->where($this->aliases[$field], $param);
+			}
+		} else {
+			$this->db->where($this->aliases[$fields], $params);
+		}
+		
+		$this->db->where('deleted_at IS NOT NULL');
+		$this->db->order_by($this->aliases['tabel_b6_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_b6']);
+	}
 
 	public function insert_b6($data)
 	// public function insert_b6($query)

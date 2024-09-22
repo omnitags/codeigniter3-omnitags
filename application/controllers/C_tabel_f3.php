@@ -362,7 +362,7 @@ class C_tabel_f3 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_f3->get_f3_by_field('tabel_f3_field1', $tabel_f3_field1)->result();
+		$tabel = $this->tl_f3->get_f3_by_field_archive('tabel_f3_field1', $tabel_f3_field1)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -387,7 +387,7 @@ class C_tabel_f3 extends Omnitags
 		];
 		$this->session_check($allowed_values);
 
-		$tabel_f3 = $this->tl_f3->get_f3_by_field('tabel_f3_field1', $tabel_f3_field1)->result();
+		$tabel_f3 = $this->tl_f3->get_f3_by_field_archive('tabel_f3_field1', $tabel_f3_field1)->result();
 		$this->check_data($tabel_f3);
 
 		$aksi = $this->tl_f3->delete_f3('tabel_f3_field1', $tabel_f3_field1);
@@ -395,5 +395,48 @@ class C_tabel_f3 extends Omnitags
 		$notif = $this->handle_4e($aksi, 'tabel_f3', $tabel_f3_field1);
 
 		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Archive Page
+	public function archive()
+	{
+		$this->declarew();
+		$this->page_session_3();
+
+		$data1 = array(
+			'title' => lang('tabel_f3_alias_v9_title'),
+			'konten' => $this->v9['tabel_f3'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f3']),
+			'tbl_f3' => $this->tl_f3->get_all_f3_archive(),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
+	}
+
+	// Public Pages
+	public function detail_archive($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_f3->get_f3_by_field('tabel_f3_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_f3_alias_v10_title'),
+			'konten' => $this->v10['tabel_f3'],
+			'dekor' => $this->tl_f3->dekor($this->theme_id, $this->aliases['tabel_f3']),
+			'tbl_f3' => $this->tl_f3->get_f3_by_field_archive('tabel_f3_field1', $param1),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
 	}
 }

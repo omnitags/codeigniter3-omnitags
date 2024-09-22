@@ -305,7 +305,7 @@ class C_tabel_b7 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $tabel_b7_field1)->result();
+		$tabel = $this->tl_b7->get_b7_by_field_archive('tabel_b7_field1', $tabel_b7_field1)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -326,7 +326,7 @@ class C_tabel_b7 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_b7 = $this->tl_b7->get_b7_field1($tabel_b7_field1)->result();
+		$tabel_b7 = $this->tl_b7->get_b7_field1_archive($tabel_b7_field1)->result();
 		$this->check_data($tabel_b7);
 
 		$tabel_b7_field3 = $tabel_b7[0]->favicon;
@@ -345,5 +345,48 @@ class C_tabel_b7 extends Omnitags
 		$notif = $this->handle_4e($aksi, 'tabel_b7', $tabel_b7_field1);
 
 		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Archive Page
+	public function archive()
+	{
+		$this->declarew();
+		$this->page_session_3();
+
+		$data1 = array(
+			'title' => lang('tabel_b7_alias_v9_title'),
+			'konten' => $this->v9['tabel_b7'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b7']),
+			'tbl_b7' => $this->tl_b7->get_all_b7_archive(),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
+	}
+
+	// Public Pages
+	public function detail_archive($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_b7_alias_v10_title'),
+			'konten' => $this->v10['tabel_b7'],
+			'dekor' => $this->tl_b7->dekor($this->theme_id, $this->aliases['tabel_b7']),
+			'tbl_b7' => $this->tl_b7->get_b7_by_field_archive('tabel_b7_field1', $param1),
+		);
+
+		$data = array_merge($data1, $this->package);
+
+		set_userdata('previous_url', current_url());
+		$this->track_page();
+		load_view_data('_layouts/template', $data);
 	}
 }
