@@ -193,6 +193,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_c2', $tl_c2->$tabel_c2_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>

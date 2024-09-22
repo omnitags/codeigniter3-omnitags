@@ -84,6 +84,7 @@ foreach ($myData1 as $item) {
     $lang[$item['key'] . '_v8_title'] = '详情' . $item['value']; // "Detail" -> "详情"
     $lang[$item['key'] . '_v9_title'] = $item['value'] . ' Archive';
     $lang[$item['key'] . '_v10_title'] = 'Details of ' . $item['value'] . ' Archive';
+    $lang[$item['key'] . '_v11_title'] = 'History of ' . $item['value'];
     
     // List of messages
     $lang[$item['key'] . '_v1_msg'] = $item['value'];
@@ -96,6 +97,7 @@ foreach ($myData1 as $item) {
     $lang[$item['key'] . '_v8_msg'] = $item['value'] . '不可用。';
     $lang[$item['key'] . '_v9_msg'] = $item['value'];
     $lang[$item['key'] . '_v10_msg'] = $item['value'];
+    $lang[$item['key'] . '_v11_msg'] = $item['value'];
     
     // Flash messages
     $lang[$item['key'] . '_flash1_msg_1'] = $item['value'] . ' 保存成功！';

@@ -31,7 +31,9 @@ if (!class_exists('Omnitags')) {
         public $spreadsheet_lib, $uri, $db;
         public $aliases, $views, $flashdatas, $tempdatas, $show, $package;
         public $v1, $v2, $v3, $v4, $v5, $v6, $v7, $v8, $v9, $v10;
+        public $v11;
         public $v1_title, $v2_title, $v3_title, $v4_title, $v5_title, $v6_title, $v7_title, $v8_title, $v9_title, $v10_title;
+        public $v11_title;
         public $v_input, $v_post, $v_get;
         public $v_upload_path, $upload;
         public $flash, $flash_func;
@@ -54,6 +56,7 @@ if (!class_exists('Omnitags')) {
         public $myData1, $myData2, $reverse;
 
         // Below are the keys that you need to remember
+        public $tl_ot;
         public $tl_a1;
         public $tl_b1, $tl_b2, $tl_b3, $tl_b4, $tl_b5, $tl_b6, $tl_b7, $tl_b8, $tl_b9, $tl_b10, $tl_b11;
         public $tl_c1, $tl_c2;
@@ -145,6 +148,7 @@ if (!class_exists('Omnitags')) {
                 $this->v8[$item['key']] = '_contents/' . $item['key'] . '/detail';
                 $this->v9[$item['key']] = '_contents/' . $item['key'] . '/archive';
                 $this->v10[$item['key']] = '_contents/' . $item['key'] . '/archive_detail';
+                $this->v11[$item['key']] = '_contents/' . $item['key'] . '/history';
             }
 
             $this->overload();
@@ -218,6 +222,16 @@ if (!class_exists('Omnitags')) {
                     return;
                 }
             }
+        }
+
+        public function load_page($tabel, $view_name, $data1) {
+            if(!empty($tabel)) {
+                $this->tl_ot->create_or_update_history_table($tabel);
+            }
+            $data = array_merge($data1, $this->package);
+            set_userdata('previous_url', current_url());
+            $this->track_page();
+            load_view_data($view_name, $data);
         }
 
         // Session userdata handling for loading pages
@@ -765,6 +779,10 @@ if (!class_exists('Omnitags')) {
             }
 
             return sprintf($kode . "%0" . $digits . "d", $next_number); // Generates a code like MED00001, MED00002, etc.
+        }
+
+        public function insert_history($tabel_name, $data) {
+            return $this->tl_ot->insert_history($tabel_name, $data);
         }
 
         // adding the actual notif to all user based on c2_field1

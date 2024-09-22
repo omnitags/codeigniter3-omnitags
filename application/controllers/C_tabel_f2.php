@@ -46,12 +46,7 @@ class C_tabel_f2 extends Omnitags
 				break;
 		}
 
-		$data = array_merge($data1, $this->package);
-
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data($halaman, $data);
+		$this->load_page('tabel_f2', $halaman, $data1);
 	}
 
 	// Account Only Pages
@@ -91,11 +86,7 @@ class C_tabel_f2 extends Omnitags
 
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
 	}
 
 
@@ -133,11 +124,7 @@ class C_tabel_f2 extends Omnitags
 			// 'tabel_f2_field11_filter2_value' => $param4
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
 	}
 
 	// Print all data
@@ -153,11 +140,7 @@ class C_tabel_f2 extends Omnitags
 			'tbl_f2' => $this->tl_f2->get_f2_with_e4(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/printpage', $data);
+		$this->load_page('tabel_f2', '_layouts/printpage', $data1);
 	}
 
 	// Print one data
@@ -180,11 +163,7 @@ class C_tabel_f2 extends Omnitags
 			'tbl_f2' => $this->tl_f2->get_f2_with_e4_by_f2_field1($tabel_f2_field1),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/printpage', $data);
+		$this->load_page('tabel_f2', '_layouts/printpage', $data1);
 	}
 
 
@@ -224,11 +203,7 @@ class C_tabel_f2 extends Omnitags
 			'tbl_e3' => $this->tl_e3->get_all_e3(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
 	}
 
 
@@ -248,11 +223,7 @@ class C_tabel_f2 extends Omnitags
 			'tbl_f2' => $this->tl_f2->get_f2_by_field('tabel_c2_field3', $tabel_c2_field3)->last_row(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/blank', $data);
+		$this->load_page('tabel_f2', '_layouts/blank', $data1);
 	}
 
 	// Functions
@@ -415,9 +386,11 @@ class C_tabel_f2 extends Omnitags
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_f2->update_f2($data, $tabel_f2_field1);
+		$this->insert_history('tabel_f2', $data);
 
 		$notif = $this->handle_4e($aksi, 'tabel_f2', $tabel_f2_field1);
 
@@ -436,9 +409,11 @@ class C_tabel_f2 extends Omnitags
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => NULL,
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_f2->update_f2($data, $tabel_f2_field1);
+		$this->insert_history('tabel_f2', $data);
 
 		$notif = $this->handle_4e($aksi, 'tabel_f2', $tabel_f2_field1);
 
@@ -516,6 +491,7 @@ class C_tabel_f2 extends Omnitags
 			$this->aliases['tabel_e3_field4'] => $this->aliases['tabel_e3_field4_value3'],
 		);
 		$aksi = $this->tl_e3->update_e3($data2, $param);
+		$this->insert_history('tabel_f2', $data);
 
 		$notif = $this->handle_4c($aksi, 'tabel_f2', $tabel_f2_field1);
 
@@ -535,11 +511,7 @@ class C_tabel_f2 extends Omnitags
 			'tbl_f2' => $this->tl_f2->get_all_f2_archive(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -558,10 +530,25 @@ class C_tabel_f2 extends Omnitags
 			'tbl_f2' => $this->tl_f2->get_f2_by_field_archive('tabel_f2_field1', $param1),
 		);
 
-		$data = array_merge($data1, $this->package);
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
+	}
+	
+	public function history($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
 
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'table_id' => $param1,
+			'title' => lang('tabel_f2_alias_v11_title'),
+			'konten' => $this->v11['tabel_f2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
+			'tbl_f2' => $this->tl_ot->get_by_field_history('tabel_f2', 'tabel_f2_field1', $param1),
+		);
+
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
 	}
 }

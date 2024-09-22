@@ -22,11 +22,7 @@ class C_tabel_b7 extends Omnitags
 			'tbl_b7' => $this->tl_b7->get_b7_by_field('tabel_b7_field1', $param1),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_b7', '_layouts/template', $data1);
 	}
 
 	// Account Only Pages
@@ -45,11 +41,7 @@ class C_tabel_b7 extends Omnitags
 			'tbl_b7' => $this->tl_b7->get_all_b7(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_b7', '_layouts/template', $data1);
 	}
 
 	// Print all data
@@ -65,11 +57,7 @@ class C_tabel_b7 extends Omnitags
 			'tbl_b7' => $this->tl_b7->get_all_b7(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/printpage', $data);
+		$this->load_page('tabel_b7', '_layouts/printpage', $data1);
 	}
 
 	// Print one data
@@ -106,9 +94,11 @@ class C_tabel_b7 extends Omnitags
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_b7->insert_b7($data);
+		$this->insert_history('tabel_b7', $data);
 
 		$notif = $this->handle_4b($aksi, 'tabel_b7');
 
@@ -144,9 +134,11 @@ class C_tabel_b7 extends Omnitags
 			$this->aliases['tabel_b7_field6'] => $this->v_post['tabel_b7_field6'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_b7->update_b7($data, $tabel_b7_field1);
+		$this->insert_history('tabel_b7', $data);
 
 		$notif = $this->handle_4c($aksi, 'tabel_b7', $tabel_b7_field1);
 
@@ -187,9 +179,11 @@ class C_tabel_b7 extends Omnitags
 			$this->aliases['tabel_b7_field3'] => $gambar,
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_b7->update_b7($data, $tabel_b7_field1);
+		$this->insert_history('tabel_b7', $data);
 
 		$notif = $this->handle_4d($aksi, 'tabel_b7_field3', $tabel_b7_field1);
 
@@ -230,6 +224,7 @@ class C_tabel_b7 extends Omnitags
 		);
 
 		$aksi = $this->tl_b7->update_b7($data, $tabel_b7_field1);
+		$this->insert_history('tabel_b7', $data);
 
 		$notif = $this->handle_4d($aksi, 'tabel_b7_field4', $tabel_b7_field1);
 
@@ -269,9 +264,11 @@ class C_tabel_b7 extends Omnitags
 			$this->aliases['tabel_b7_field5'] => $gambar,
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_b7->update_b7($data, $tabel_b7_field1);
+		$this->insert_history('tabel_b7', $data);
 
 		$notif = $this->handle_4d($aksi, 'tabel_b7_field5', $tabel_b7_field1);
 
@@ -290,9 +287,11 @@ class C_tabel_b7 extends Omnitags
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_b7->update_b7($data, $tabel_b7_field1);
+		$this->insert_history('tabel_b7', $data);
 
 		$notif = $this->handle_4e($aksi, 'tabel_b7', $tabel_b7_field1);
 
@@ -311,9 +310,11 @@ class C_tabel_b7 extends Omnitags
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => NULL,
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_b7->update_b7($data, $tabel_b7_field1);
+		$this->insert_history('tabel_b7', $data);
 
 		$notif = $this->handle_4e($aksi, 'tabel_b7', $tabel_b7_field1);
 
@@ -360,11 +361,7 @@ class C_tabel_b7 extends Omnitags
 			'tbl_b7' => $this->tl_b7->get_all_b7_archive(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_b7', '_layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -383,10 +380,25 @@ class C_tabel_b7 extends Omnitags
 			'tbl_b7' => $this->tl_b7->get_b7_by_field_archive('tabel_b7_field1', $param1),
 		);
 
-		$data = array_merge($data1, $this->package);
+		$this->load_page('tabel_b7', '_layouts/template', $data1);
+	}
+	
+	public function history($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
 
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'table_id' => $param1,
+			'title' => lang('tabel_b7_alias_v11_title'),
+			'konten' => $this->v11['tabel_b7'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b7']),
+			'tbl_b7' => $this->tl_ot->get_by_field_history('tabel_b7', 'tabel_b7_field1', $param1),
+		);
+
+		$this->load_page('tabel_b7', '_layouts/template', $data1);
 	}
 }

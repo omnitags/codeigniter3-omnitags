@@ -149,6 +149,17 @@ if (!function_exists('tampil_dekor')) {
 }
 
 // Generates an image with a tooltip
+if (!function_exists('tampil_dekor_history')) {
+    function tampil_dekor_history($size, $tabel_class, $value)
+    {
+        return <<<HTML
+        <img style="max-height: {$size}; transform: scale(0.9);" alt="image"
+            class="img-fluid archived" src="img/{$tabel_class}/{$value}">
+        HTML;
+    }
+}
+
+// Generates an image with a tooltip
 if (!function_exists('tampil_dekor_archive')) {
     function tampil_dekor_archive($size, $tabel_class, $value)
     {

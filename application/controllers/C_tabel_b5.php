@@ -7,26 +7,22 @@ class C_tabel_b5 extends Omnitags
 {
 	// Pages
 	// Public Pages
-	public function detail($param1 = null)
+	public function detail($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $param1)->result();
+		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
 			'title' => lang('tabel_b5_alias_v8_title'),
 			'konten' => $this->v8['tabel_b5'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b5']),
-			'tbl_b5' => $this->tl_b5->get_b5_by_field('tabel_b5_field1', $param1),
+			'tbl_b5' => $this->tl_b5->get_b5_by_field('tabel_b5_field1', $code),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_b5', '_layouts/template', $data1);
 	}
 
 	// Account Only Pages
@@ -57,11 +53,7 @@ class C_tabel_b5 extends Omnitags
 			'tabel_b5_field7_value' => $param1,
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_b5', '_layouts/template', $data1);
 	}
 
 	// Print all data
@@ -77,11 +69,7 @@ class C_tabel_b5 extends Omnitags
 			'tbl_b5' => $this->tl_b5->get_all_b5(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/printpage', $data);
+		$this->load_page('tabel_b5', '_layouts/printpage', $data1);
 	}
 
 	// Print one data
@@ -120,11 +108,10 @@ class C_tabel_b5 extends Omnitags
 				$method
 			);
 
-			// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
-			// $this->aliases['tabel_e1_field1'] => $id,
+			$code = $this->add_code('tabel_b5', $this->aliases['tabel_b5_field1'], 5, '05');
 
 			$data = array(
-				$this->aliases['tabel_b5_field1'] => '',
+				$this->aliases['tabel_b5_field1'] => $code,
 				$this->aliases['tabel_b5_field2'] => $this->v_post['tabel_b5_field2'],
 				$this->aliases['tabel_b5_field3'] => htmlspecialchars($this->v_post['tabel_b5_field3']),
 				$this->aliases['tabel_b5_field4'] => $gambar,
@@ -134,6 +121,7 @@ class C_tabel_b5 extends Omnitags
 
 				'created_at' => date("Y-m-d\TH:i:s"),
 				'updated_at' => date("Y-m-d\TH:i:s"),
+				'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 			);
 
 			$aksi = $this->tl_b5->insert_b5($data);
@@ -154,9 +142,9 @@ class C_tabel_b5 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_b5_field1 = $this->v_post['tabel_b5_field1'];
+		$code = $this->v_post['tabel_b5_field1'];
 
-		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $tabel_b5_field1)->result();
+		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $code)->result();
 		$this->check_data($tabel);
 
 		validate_all(
@@ -169,7 +157,7 @@ class C_tabel_b5 extends Omnitags
 				$this->v_post['tabel_b5_field7'],
 			),
 			$this->views['flash3'],
-			'ubah' . $tabel_b5_field1
+			'ubah' . $code
 		);
 
 		$gambar = $this->change_image_advanced(
@@ -183,6 +171,7 @@ class C_tabel_b5 extends Omnitags
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
+			$this->aliases['tabel_b5_field1'] => $code,
 			$this->aliases['tabel_b5_field2'] => $this->v_post['tabel_b5_field2'],
 			$this->aliases['tabel_b5_field3'] => htmlspecialchars($this->v_post['tabel_b5_field3']),
 			$this->aliases['tabel_b5_field4'] => $gambar,
@@ -190,11 +179,13 @@ class C_tabel_b5 extends Omnitags
 			$this->aliases['tabel_b5_field7'] => $this->v_post['tabel_b5_field7'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b5->update_b5($data, $tabel_b5_field1);
+		$aksi = $this->tl_b5->update_b5($data, $code);
+		$this->insert_history('tabel_b5', $data);
 
-		$notif = $this->handle_4c($aksi, 'tabel_b5', $tabel_b5_field1);
+		$notif = $this->handle_4c($aksi, 'tabel_b5', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -211,42 +202,46 @@ class C_tabel_b5 extends Omnitags
 			$this->aliases['tabel_b5_field7'] => $tabel_b5_field7,
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_b5->update_all_b5($data);
+		$this->insert_history('tabel_b5', $data);
 
 		$notif = $this->handle_4c($aksi, 'tabel_b5', $tabel_b5_field7);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
-	public function aktifkan($tabel_b5_field1 = null) //update tidak diperlukan di sini
+	public function aktifkan($code = null) //update tidak diperlukan di sini
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $tabel_b5_field1)->result();
+		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $code)->result();
 		$this->check_data($tabel);
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			$this->aliases['tabel_b5_field6'] => $this->aliases['tabel_b5_field6_value1'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b5->update_b5($data, $tabel_b5_field1);
+		$aksi = $this->tl_b5->update_b5($data, $code);
+		$this->insert_history('tabel_b5', $data);
 
-		$notif = $this->handle_4c($aksi, 'tabel_b5_field6', $tabel_b5_field1);
+		$notif = $this->handle_4c($aksi, 'tabel_b5_field6', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
-	public function nonaktifkan($tabel_b5_field1 = null) //update tidak diperlukan di sini
+	public function nonaktifkan($code = null) //update tidak diperlukan di sini
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $tabel_b5_field1)->result();
+		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -254,72 +249,78 @@ class C_tabel_b5 extends Omnitags
 			$this->aliases['tabel_b5_field6'] => $this->aliases['tabel_b5_field6_value2'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b5->update_b5($data, $tabel_b5_field1);
+		$aksi = $this->tl_b5->update_b5($data, $code);
+		$this->insert_history('tabel_b5', $data);
 
-		$notif = $this->handle_4c($aksi, 'tabel_b5_field6', $tabel_b5_field1);
+		$notif = $this->handle_4c($aksi, 'tabel_b5_field6', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Soft Delete data
-	public function restore($tabel_b5_field1 = null)
+	public function restore($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b5->get_b5_by_field_archive('tabel_b5_field1', $tabel_b5_field1)->result();
+		$tabel = $this->tl_b5->get_b5_by_field_archive('tabel_b5_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => NULL,
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b5->update_b5($data, $tabel_b5_field1);
+		$aksi = $this->tl_b5->update_b5($data, $code);
+		$this->insert_history('tabel_b5', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_b5', $tabel_b5_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_b5', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	//Soft Delete Data
-	public function soft_delete($tabel_b5_field1 = null)
+	public function soft_delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $tabel_b5_field1)->result();
+		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b5->update_b5($data, $tabel_b5_field1);
+		$aksi = $this->tl_b5->update_b5($data, $code);
+		$this->insert_history('tabel_b5', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_b5', $tabel_b5_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_b5', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Delete data
-	public function delete($tabel_b5_field1 = null)
+	public function delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_b5 = $this->tl_b5->get_b5_by_field_archive('tabel_b5_field1', $tabel_b5_field1)->result();
+		$tabel_b5 = $this->tl_b5->get_b5_by_field_archive('tabel_b5_field1', $code)->result();
 		$this->check_data($tabel_b5);
 		$img = $tabel_b5[0]->img;
 
 		unlink($this->v_upload_path['tabel_b5'] . $img);
 
-		$aksi = $this->tl_b5->delete_b5_by_field('tabel_b5_field1', $tabel_b5_field1);
+		$aksi = $this->tl_b5->delete_b5_by_field('tabel_b5_field1', $code);
 
-		$notif = $this->handle_4e($aksi, 'tabel_b5', $tabel_b5_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_b5', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -337,33 +338,44 @@ class C_tabel_b5 extends Omnitags
 			'tbl_b5' => $this->tl_b5->get_all_b5_archive(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_b5', '_layouts/template', $data1);
 	}
 
 	// Public Pages
-	public function detail_archive($param1 = null)
+	public function detail_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $param1)->result();
+		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
 			'title' => lang('tabel_b5_alias_v10_title'),
 			'konten' => $this->v10['tabel_b5'],
 			'dekor' => $this->tl_b5->dekor($this->theme_id, $this->aliases['tabel_b5']),
-			'tbl_b5' => $this->tl_b5->get_b5_by_field_archive('tabel_b5_field1', $param1),
+			'tbl_b5' => $this->tl_b5->get_b5_by_field_archive('tabel_b5_field1', $code),
 		);
 
-		$data = array_merge($data1, $this->package);
+		$this->load_page('tabel_b5', '_layouts/template', $data1);
+	}
+	
+	public function history($code = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
 
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$tabel = $this->tl_b5->get_b5_by_field('tabel_b5_field1', $code)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'table_id' => $code,
+			'title' => lang('tabel_b5_alias_v11_title'),
+			'konten' => $this->v11['tabel_b5'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b5']),
+			'tbl_b5' => $this->tl_ot->get_by_field_history('tabel_b5', 'tabel_b5_field1', $code),
+		);
+
+		$this->load_page('tabel_b5', '_layouts/template', $data1);
 	}
 }

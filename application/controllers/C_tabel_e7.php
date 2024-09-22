@@ -18,12 +18,8 @@ class C_tabel_e7 extends Omnitags
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e7']),
 			'tbl_e7' => $this->tl_e7->get_all_e7(),
 		);
-		
-		$data = array_merge($data1, $this->package);
-		
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+
+		$this->load_page('tabel_e7', '_layouts/template', $data1);
 	}
 
 	// Account Only Pages
@@ -42,11 +38,7 @@ class C_tabel_e7 extends Omnitags
 			'tbl_c1' => $this->tl_c1->get_all_c1(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_e7', '_layouts/template', $data1);
 	}
 
 	// Print all data
@@ -62,11 +54,7 @@ class C_tabel_e7 extends Omnitags
 			'tbl_e7' => $this->tl_e7->get_all_e7(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/printpage', $data);
+		$this->load_page('tabel_e7', '_layouts/printpage', $data1);
 	}
 
 	/**
@@ -101,9 +89,11 @@ class C_tabel_e7 extends Omnitags
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_e7->insert_e7($data);
+		$this->insert_history('tabel_e7', $data);
 
 		$notif = $this->handle_4b($aksi, 'tabel_e7');
 
@@ -141,9 +131,11 @@ class C_tabel_e7 extends Omnitags
 			$this->aliases['tabel_e7_field3'] => $this->v_post['tabel_e7_field3'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_e7->update_e7($data, $tabel_e7_field1);
+		$this->insert_history('tabel_e7', $data);
 
 		$notif = $this->handle_4c($aksi, 'tabel_e7', $tabel_e7_field1);
 
@@ -162,9 +154,11 @@ class C_tabel_e7 extends Omnitags
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_e7->update_e7($data, $tabel_e7_field1);
+		$this->insert_history('tabel_e7', $data);
 
 		$notif = $this->handle_4e($aksi, 'tabel_e7', $tabel_e7_field1);
 
@@ -183,9 +177,11 @@ class C_tabel_e7 extends Omnitags
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => NULL,
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_e7->update_e7($data, $tabel_e7_field1);
+		$this->insert_history('tabel_e7', $data);
 
 		$notif = $this->handle_4e($aksi, 'tabel_e7', $tabel_e7_field1);
 
@@ -223,11 +219,7 @@ class C_tabel_e7 extends Omnitags
 			'tbl_e7' => $this->tl_e7->get_all_e7_archive(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_e7', '_layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -246,11 +238,26 @@ class C_tabel_e7 extends Omnitags
 			'tbl_e7' => $this->tl_e7->get_e7_by_field_archive('tabel_e7_field1', $param1),
 		);
 
-		$data = array_merge($data1, $this->package);
+		$this->load_page('tabel_e7', '_layouts/template', $data1);
+	}
+	
+	public function history($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
 
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$tabel = $this->tl_e7->get_e7_by_field('tabel_e7_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'table_id' => $param1,
+			'title' => lang('tabel_e7_alias_v11_title'),
+			'konten' => $this->v11['tabel_e7'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e7']),
+			'tbl_e7' => $this->tl_ot->get_by_field_history('tabel_e7', 'tabel_e7_field1', $param1),
+		);
+
+		$this->load_page('tabel_e7', '_layouts/template', $data1);
 	}
 
 }

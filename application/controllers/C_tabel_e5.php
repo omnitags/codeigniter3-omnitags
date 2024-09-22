@@ -21,11 +21,7 @@ class C_tabel_e5 extends Omnitags
 			'tbl_e1' => $this->tl_e1->get_all_e1(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_e5', '_layouts/template', $data1);
 	}
 
 	// Account Only Pages
@@ -45,11 +41,7 @@ class C_tabel_e5 extends Omnitags
 			'tbl_e1' => $this->tl_e1->get_all_e1(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_e5', '_layouts/template', $data1);
 	}
 
 	// Print all data
@@ -67,9 +59,7 @@ class C_tabel_e5 extends Omnitags
 
 		$data = array_merge($data1, $this->package);
 
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/printpage_landscape', $data);
+		$this->load_page('tabel_e5', '_layouts/printpage_landscape', $data1);
 	}
 
 	/**
@@ -109,9 +99,11 @@ class C_tabel_e5 extends Omnitags
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_e5->insert_e5($data);
+		$this->insert_history('tabel_e5', $data);
 
 		$notif = $this->handle_4b($aksi, 'tabel_e5');
 
@@ -154,9 +146,11 @@ class C_tabel_e5 extends Omnitags
 			$this->aliases['tabel_e5_field8'] => $this->v_post['tabel_e5_field8'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_e5->update_e5($data, $tabel_e5_field1);
+		$this->insert_history('tabel_e5', $data);
 
 		$notif = $this->handle_4c($aksi, 'tabel_e5', $tabel_e5_field1);
 
@@ -175,9 +169,11 @@ class C_tabel_e5 extends Omnitags
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_e5->update_e5($data, $tabel_e5_field1);
+		$this->insert_history('tabel_e5', $data);
 
 		$notif = $this->handle_4e($aksi, 'tabel_e5', $tabel_e5_field1);
 
@@ -196,9 +192,11 @@ class C_tabel_e5 extends Omnitags
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => NULL,
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_e5->update_e5($data, $tabel_e5_field1);
+		$this->insert_history('tabel_e5', $data);
 
 		$notif = $this->handle_4e($aksi, 'tabel_e5', $tabel_e5_field1);
 
@@ -258,11 +256,7 @@ class C_tabel_e5 extends Omnitags
 			'tbl_e5' => $this->tl_e5->get_all_e5_archive(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_e5', '_layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -281,11 +275,26 @@ class C_tabel_e5 extends Omnitags
 			'tbl_e5' => $this->tl_e5->get_e5_by_field_archive('tabel_e5_field1', $param1),
 		);
 
-		$data = array_merge($data1, $this->package);
+		$this->load_page('tabel_e5', '_layouts/template', $data1);
+	}
+	
+	public function history($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
 
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$tabel = $this->tl_e5->get_e5_by_field('tabel_e5_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'table_id' => $param1,
+			'title' => lang('tabel_e5_alias_v11_title'),
+			'konten' => $this->v11['tabel_e5'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e5']),
+			'tbl_e5' => $this->tl_ot->get_by_field_history('tabel_e5', 'tabel_e5_field1', $param1),
+		);
+
+		$this->load_page('tabel_e5', '_layouts/template', $data1);
 	}
 
 

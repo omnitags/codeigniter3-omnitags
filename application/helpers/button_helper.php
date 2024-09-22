@@ -450,6 +450,54 @@ if (!function_exists('btn_restore')) {
     }
 }
 
+if (!function_exists('btn_push')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_push($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/push'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-primary" onclick="return confirm('apakah data {$alias} ingin dikembalikan?')"
+              href="{$url}">
+              <i class="fas fa-arrow_up"></i></a>
+        HTML;
+    }
+}
+
+if (!function_exists('btn_history')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_history($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/history'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-primary"
+              href="{$url}">
+              <i class="fas fa-history"></i></a>
+        HTML;
+    }
+}
+
 if (!function_exists('btn_hapus_full')) {
     // Creates a button to delete specific data with a confirmation prompt
     function btn_hapus_full($tabel, $value)

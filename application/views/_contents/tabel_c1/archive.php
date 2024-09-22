@@ -92,18 +92,19 @@
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>
-          <form class="modal-body">
+          <div class="modal-body">
             <?= table_data(
               row_data('tabel_c1_field1', $tl_c1->$tabel_c1_field1) .
               row_data('tabel_c1_field2', $tl_c1->$tabel_c1_field2),
               'table-light'
             ) ?>
-          </form>
+          </div>
 
           <!-- memunculkan notifikasi modal -->
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_c1', $tl_c1->$tabel_c1_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>
