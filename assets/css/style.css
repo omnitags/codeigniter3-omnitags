@@ -195,8 +195,24 @@ a.sidebar-link.logout {
 	text-align: center;
 }
 
-.archived {
+.dekor {
+	position: relative; /* Allows overlay to be positioned relative to this container */
+    display: inline-block; /* Adjust as necessary for your layout */
+}
+
+.dekor img {
 	filter: brightness(70%);
+    display: block; /* Ensure the image behaves as a block element */
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;   /* Position at the vertical center */
+    left: 50%;  /* Position at the horizontal center */
+    transform: translate(-50%, -50%); /* Offset by 50% of its own dimensions to perfectly center */
+    color: rgba(255, 255, 255, 0.8); /* Slight transparency for the icon */
+    font-size: 3rem; /* Adjust size as needed */
+    pointer-events: none; /* Ensure clicks pass through the overlay */
 }
 
 /* input[type='date'] {

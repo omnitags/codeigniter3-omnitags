@@ -1,6 +1,6 @@
 <div class="row mb-2 align-items-center">
   <div class="col-md-9 d-flex align-items-center">
-    <h1><?= $title ?> (ID = <?= $table_id ?>)<?= count_data($tbl_a1) ?><?= $phase ?></h1>
+    <h1><?= $title ?> (ID = <?= $table_id ?>)<?= count_data($tbl_a1_alt) ?><?= $phase ?></h1>
   </div>
   <div class="col-md-3 text-right">
     <?php foreach ($dekor->result() as $dk):
@@ -27,7 +27,18 @@
     </thead>
 
     <tbody>
-      <?php foreach ($tbl_a1->result() as $tl_a1): ?>
+      <?php foreach ($current->result() as $tl_cr): ?>
+        <tr class="bg-light">
+          <td></td>
+          <td>[current]</td>
+          <td><?= $tl_cr->$tabel_a1_field1 ?></td>
+          <td><?= $tl_cr->$tabel_a1_field2 ?></td>
+          <td><?= $tl_cr->updated_at ?></td>
+          <td><?= $tl_cr->updated_by ?></td>
+          <td></td>
+        </tr>
+      <?php endforeach; ?>
+      <?php foreach ($tbl_a1_alt->result() as $tl_a1): ?>
         <tr>
           <td></td>
           <td><?= $tl_a1->id_history; ?></td>
@@ -37,6 +48,7 @@
           <td><?= $tl_a1->updated_by ?></td>
           <td>
             <?= btn_lihat($tl_a1->id_history) ?>
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>
@@ -46,7 +58,7 @@
 </div>
 
 <!-- modal lihat-->
-<?php foreach ($tbl_a1->result() as $tl_a1): ?>
+<?php foreach ($tbl_a1_alt->result() as $tl_a1): ?>
   <div id="lihat<?= $tl_a1->id_history; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -56,7 +68,7 @@
         <form>
           <div class="modal-body">
             <?= table_data(
-              row_data('tabel_a1_field1', $tl_a1->$tabel_a1_field1) . 
+              row_data('tabel_a1_field1', $tl_a1->$tabel_a1_field1) .
               row_data('tabel_a1_field2', $tl_a1->$tabel_a1_field2),
               'table-light'
             ) ?>

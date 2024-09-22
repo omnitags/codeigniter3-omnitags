@@ -37,6 +37,7 @@
           <td><?= $tl_f3->updated_by ?></td>
           <td>
             <?= btn_lihat($tl_f3->id_history) ?>
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>

@@ -71,6 +71,7 @@ class C_tabel_b1 extends Omnitags
 			'title' => lang('tabel_b1_alias_v11_title'),
 			'konten' => $this->v11['tabel_b1'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b1']),
+			'current' => $this->tl_ot->get_by_field('tabel_b1', 'tabel_b1_field1', $param1),
 			'tbl_b1' => $this->tl_ot->get_by_field_history('tabel_b1', 'tabel_b1_field1', $param1),
 		);
 

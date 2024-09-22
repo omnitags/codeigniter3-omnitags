@@ -105,6 +105,7 @@
           <td><?= $tl_b10->$tabel_b10_field4 ?></td>
           <td>
             <?= btn_lihat($tl_b10->$tabel_b10_field1) ?>
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>

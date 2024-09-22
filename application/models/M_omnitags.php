@@ -34,7 +34,7 @@ class M_omnitags extends CI_Model
         $id = $this->aliases[$table_name . '_field1'];
         $table_name = $this->aliases[$table_name];
 
-        $this->db->order_by($id, 'DESC');
+        $this->db->order_by('id_history', 'DESC');
         return $this->db->get($table_name);
     }
 
@@ -90,7 +90,7 @@ class M_omnitags extends CI_Model
             $this->db->where($this->aliases[$fields], $params);
         }
 
-        $this->db->order_by($id, 'DESC');
+        $this->db->order_by('id_history', 'DESC');
         return $this->db->get($table_name . '_history');
     }
 

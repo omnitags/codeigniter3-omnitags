@@ -27,6 +27,17 @@
     </thead>
 
     <tbody>
+    <?php foreach ($current->result() as $tl_cr): ?>
+        <tr class="bg-light">
+          <td></td>
+          <td>[current]</td>
+          <td><?= $tl_cr->$tabel_e3_field1 ?></td>
+          <td><?= $tl_cr->$tabel_e3_field2 ?></td>
+          <td><?= $tl_cr->updated_at ?></td>
+          <td><?= $tl_cr->updated_by ?></td>
+          <td></td>
+        </tr>
+      <?php endforeach; ?>
       <?php foreach ($tbl_e3->result() as $tl_e3): ?>
         <tr>
           <td></td>
@@ -37,6 +48,7 @@
           <td><?= $tl_e3->updated_by ?></td>
           <td>
             <?= btn_lihat($tl_e3->id_history) ?>
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>

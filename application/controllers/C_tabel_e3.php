@@ -262,6 +262,7 @@ class C_tabel_e3 extends Omnitags
 			'title' => lang('tabel_e3_alias_v11_title'),
 			'konten' => $this->v11['tabel_e3'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e3']),
+			'current' => $this->tl_ot->get_by_field('tabel_e3', 'tabel_e3_field1', $param1),
 			'tbl_e3' => $this->tl_ot->get_by_field_history('tabel_e3', 'tabel_e3_field1', $param1),
 		);
 

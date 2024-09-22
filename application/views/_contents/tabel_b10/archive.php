@@ -75,6 +75,7 @@
             <?= btn_lihat($tl_b10->$tabel_b10_field1) ?>
             <?= btn_restore('tabel_b10', $tl_b10->$tabel_b10_field1) ?>
             <?= btn_hapus_full('tabel_b10', $tl_b10->$tabel_b10_field1) ?>
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>

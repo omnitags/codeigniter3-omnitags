@@ -142,7 +142,8 @@ class C_tabel_a1 extends Omnitags
 			'title' => lang('tabel_a1_alias_v11_title'),
 			'konten' => $this->v11['tabel_a1'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_a1']),
-			'tbl_a1' => $this->tl_ot->get_by_field_history('tabel_a1', 'tabel_a1_field1', $param1),
+			'current' => $this->tl_ot->get_by_field('tabel_a1', 'tabel_a1_field1', $param1),
+			'tbl_a1_alt' => $this->tl_ot->get_by_field_history('tabel_a1', 'tabel_a1_field1', $param1),
 		);
 
 		$this->load_page('tabel_a1', '_layouts/template', $data1);

@@ -157,7 +157,7 @@ class C_tabel_e4 extends Omnitags
 			$this->v_post['tabel_e4_field2'] . "_" . $this->aliases['tabel_e4_field3'],
 			$tabel[0]->img,
 			$this->v_upload_path['tabel_e4'],
-			'tabel_e4_field5',
+			'tabel_e4_field3',
 			$this->file_type1,
 			$tabel
 		);

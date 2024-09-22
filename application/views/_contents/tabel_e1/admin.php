@@ -106,6 +106,7 @@
           <td>
             <?= btn_lihat($tl_e1->$tabel_e1_field1) ?>
             <?= btn_edit($tl_e1->$tabel_e1_field1) ?>
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>
