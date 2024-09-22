@@ -142,24 +142,10 @@ class M_omnitags extends CI_Model
         return $this->db->delete($table_name);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function create_or_update_history_table($table_name)
     {
         $table_name = $this->aliases[$table_name];
+        $history_table_name = "{$table_name}_history";
 
         // Load the database forge library
         $this->load->dbforge();
@@ -170,14 +156,15 @@ class M_omnitags extends CI_Model
             return false;  // Main table doesn't exist
         }
 
-        // Create the history table if it doesn't exist
-        $history_table_name = "{$table_name}_history";
+        // Create or update the history table
         if (!$this->db->table_exists($history_table_name)) {
             $this->create_history_table($table_name);
         } else {
-            // Update the history table if it already exists
             $this->update_history_table($table_name);
         }
+
+        // Add the trigger for inserting into the history table before updates
+        $this->create_trigger_for_history($table_name);
 
         return true;
     }
@@ -272,6 +259,48 @@ class M_omnitags extends CI_Model
         }
         return $field_definitions;
     }
+
+    // Function to create the trigger for maintaining history records
+    private function create_trigger_for_history($table_name)
+    {
+        $trigger_name = "before_update_{$table_name}_history";
+        $history_table_name = "{$table_name}_history";
+
+        // Drop the existing trigger if it exists
+        $this->db->query("DROP TRIGGER IF EXISTS {$trigger_name}");
+
+        // Define the trigger to insert data into the history table before an update
+        $trigger_sql = "
+        CREATE TRIGGER {$trigger_name}
+        BEFORE UPDATE ON {$table_name}
+        FOR EACH ROW
+        BEGIN
+            INSERT INTO {$history_table_name} 
+            SET 
+                id_history = NULL,
+                " . implode(", ", $this->get_trigger_field_mappings($table_name)) . ";
+        END;
+    ";
+
+        // Execute the trigger creation query
+        $this->db->query($trigger_sql);
+    }
+
+    // Helper function to map field names for the trigger
+    private function get_trigger_field_mappings($table_name)
+    {
+        $fields = $this->db->query("SHOW COLUMNS FROM {$table_name}")->result();
+        $field_mappings = [];
+
+        foreach ($fields as $field) {
+            if ($field->Field != 'id_history') {  // Exclude id_history field
+                $field_mappings[] = "{$field->Field} = OLD.{$field->Field}";
+            }
+        }
+
+        return $field_mappings;
+    }
+
 
 
 }

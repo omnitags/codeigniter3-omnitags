@@ -492,7 +492,7 @@ if (!function_exists('btn_history')) {
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-primary"
-              href="{$url}">
+              href="{$url}" target="_blank">
               <i class="fas fa-history"></i></a>
         HTML;
     }

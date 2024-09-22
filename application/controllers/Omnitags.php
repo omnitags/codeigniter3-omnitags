@@ -782,7 +782,7 @@ if (!class_exists('Omnitags')) {
         }
 
         public function insert_history($tabel_name, $data) {
-            return $this->tl_ot->insert_history($tabel_name, $data);
+            return $this->tl_ot->create_or_update_history_table($tabel_name);
         }
 
         // adding the actual notif to all user based on c2_field1

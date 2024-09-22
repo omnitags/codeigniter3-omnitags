@@ -212,7 +212,6 @@ class C_tabel_b1 extends Omnitags
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
-			$this->aliases['tabel_b1_field1'] => $code,
 			$this->aliases['tabel_b1_field2'] => $this->v_post['tabel_b1_field2'],
 			$this->aliases['tabel_b1_field3'] => $this->v_post['tabel_b1_field3'],
 			$this->aliases['tabel_b1_field4'] => $gambar,

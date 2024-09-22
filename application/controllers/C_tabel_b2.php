@@ -168,7 +168,6 @@ class C_tabel_b2 extends Omnitags
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
-			$this->aliases['tabel_b2_field1'] => $code,
 			$this->aliases['tabel_b2_field2'] => $this->v_post['tabel_b2_field2'],
 			$this->aliases['tabel_b2_field3'] => $this->v_post['tabel_b2_field3'],
 			$this->aliases['tabel_b2_field4'] => $gambar,

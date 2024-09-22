@@ -20,8 +20,8 @@
         <th>ID History</th>
         <th><?= lang('tabel_e8_field1_alias') ?></th>
         <th><?= lang('tabel_e8_field2_alias') ?></th>
-        <th>Update At</th>
-        <th>Update By</th>
+        <th>Updated At</th>
+        <th>Updated By</th>
         <th><?= lang('action') ?></th>
       </tr>
     </thead>
@@ -33,8 +33,8 @@
           <td><?= $tl_e8->id_history; ?></td>
           <td><?= $tl_e8->$tabel_e8_field1 ?></td>
           <td><?= $tl_e8->$tabel_e8_field2 ?></td>
-          <td><?= $tl_e8->update_at ?></td>
-          <td><?= $tl_e8->update_by ?></td>
+          <td><?= $tl_e8->updated_at ?></td>
+          <td><?= $tl_e8->updated_by ?></td>
           <td>
             <?= btn_lihat($tl_e8->id_history) ?>
         </tr>

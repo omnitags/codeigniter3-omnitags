@@ -128,6 +128,7 @@ class C_tabel_e3 extends Omnitags
 				$this->v_post['tabel_e3_field2'],
 				$this->v_post['tabel_e3_field3'],
 				$this->v_post['tabel_e3_field4'],
+				$this->v_post['tabel_e3_field5'],
 			),
 			$this->views['flash3'],
 			'ubah' . $tabel_e3_field1
@@ -137,6 +138,7 @@ class C_tabel_e3 extends Omnitags
 			$this->aliases['tabel_e3_field2'] => $this->v_post['tabel_e3_field2'],
 			$this->aliases['tabel_e3_field3'] => $this->v_post['tabel_e3_field3'],
 			$this->aliases['tabel_e3_field4'] => $this->v_post['tabel_e3_field4'],
+			$this->aliases['tabel_e3_field5'] => $this->v_post['tabel_e3_field5'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
