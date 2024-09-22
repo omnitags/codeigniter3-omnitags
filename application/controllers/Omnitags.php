@@ -65,42 +65,18 @@ if (!class_exists('Omnitags')) {
         {
             parent::__construct();
 
-            //Menampilkan media
-            $this->load->helper('tampil');
-            // Tampil button
-            $this->load->helper('button');
-            // Kelola teks
-            $this->load->helper('media');
-            // Tampil input
-            $this->load->helper('input');
-            // Tampil modal
-            $this->load->helper('modal');
-            // Kelola API
-            $this->load->helper('load_api');
-            // Kelola URL
-            $this->load->helper('move_url');
-            // Kelola List Group
-            $this->load->helper('list_group');
-            // Kelola Database Firebase
-            $this->load->helper('firebase');
-            // Tampil card
-            $this->load->helper('card');
-            // Tampil dropdown
-            $this->load->helper('dropdown');
-            // Kelola validation
-            $this->load->helper('validate');
-            // Kelola js
-            $this->load->helper('js');
-            // Kelola url
-            $this->load->helper('url');
-            // Kelola views
-            $this->load->helper('views');
-            // Kelola upload
-            $this->load->helper('uplod');
-            // Kelola session
-            $this->load->helper('session');
-            $this->load->library('session');
-            $this->load->library('user_agent');
+           //Menampilkan komponen html : teks, button, input, modal, dropdown
+           $this->load->helper(['tampil', 'button', 'input', 'modal', 'list_group', 'card', 'dropdown']);
+           // Kelola media dan javascript
+           $this->load->helper(['media', 'js']);
+           // Kelola API dan firebase
+           $this->load->helper(['load_api', 'firebase']);
+           // Kelola URL
+           $this->load->helper(['views', 'url', 'move_url']);
+           // Kelola validation
+           $this->load->helper(['session', 'validate', 'uplod']);
+           // Load library
+           $this->load->library(['session', 'user_agent']);
 
             // Get the language code from the URL segment
             $this->language_code = $this->uri->segment(1);
