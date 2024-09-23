@@ -150,9 +150,9 @@ class C_tabel_e2 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_e2_field1 = $this->v_post['tabel_e2_field1'];
+		$code = $this->v_post['tabel_e2_field1'];
 
-		$tabel_e2 = $this->tl_e2->get_e2_by_field('tabel_e2_field1', $tabel_e2_field1)->result();
+		$tabel_e2 = $this->tl_e2->get_e2_by_field('tabel_e2_field1', $code)->result();
 		$this->check_data($tabel_e2);
 
 		validate_all(
@@ -165,7 +165,7 @@ class C_tabel_e2 extends Omnitags
 				$this->v_post['tabel_e2_field6'],
 			),
 			$this->views['flash3'],
-			'ubah' . $tabel_e2_field1
+			'ubah' . $code
 		);
 
 		$data = array(
@@ -179,21 +179,21 @@ class C_tabel_e2 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_e2->update_e2($data, $tabel_e2_field1);
+		$aksi = $this->tl_e2->update_e2($data, $code);
 		$this->insert_history('tabel_e2', $data);
 
-		$notif = $this->handle_4c($aksi, 'tabel_e2', $tabel_e2_field1);
+		$notif = $this->handle_4c($aksi, 'tabel_e2', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 	
 	//Soft Delete Data
-	public function soft_delete($tabel_e2_field1 = null)
+	public function soft_delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_e2->get_e2_by_field('tabel_e2_field1', $tabel_e2_field1)->result();
+		$tabel = $this->tl_e2->get_e2_by_field('tabel_e2_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -202,21 +202,21 @@ class C_tabel_e2 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_e2->update_e2($data, $tabel_e2_field1);
+		$aksi = $this->tl_e2->update_e2($data, $code);
 		$this->insert_history('tabel_e2', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_e2', $tabel_e2_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_e2', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Soft Delete data
-	public function restore($tabel_e2_field1 = null)
+	public function restore($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_e2->get_e2_by_field_archive('tabel_e2_field1', $tabel_e2_field1)->result();
+		$tabel = $this->tl_e2->get_e2_by_field_archive('tabel_e2_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -225,26 +225,26 @@ class C_tabel_e2 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_e2->update_e2($data, $tabel_e2_field1);
+		$aksi = $this->tl_e2->update_e2($data, $code);
 		$this->insert_history('tabel_e2', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_e2', $tabel_e2_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_e2', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Delete data
-	public function delete($tabel_e2_field1 = null)
+	public function delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_e2 = $this->tl_e2->get_e2_by_field_archive('tabel_e2_field1', $tabel_e2_field1)->result();
+		$tabel_e2 = $this->tl_e2->get_e2_by_field_archive('tabel_e2_field1', $code)->result();
 		$this->check_data($tabel_e2);
 
-		$aksi = $this->tl_e2->delete_e2_by_field('tabel_e2_field1', $tabel_e2_field1);
+		$aksi = $this->tl_e2->delete_e2_by_field('tabel_e2_field1', $code);
 
-		$notif = $this->handle_4e($aksi, 'tabel_e2', $tabel_e2_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_e2', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}

@@ -118,9 +118,9 @@ class C_tabel_e6 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_e6_field1 = $this->v_post['tabel_e6_field1'];
+		$code = $this->v_post['tabel_e6_field1'];
 
-		$tabel_e6 = $this->tl_e6->get_e6_by_field('tabel_e6_field1', $tabel_e6_field1)->result();
+		$tabel_e6 = $this->tl_e6->get_e6_by_field('tabel_e6_field1', $code)->result();
 		$this->check_data($tabel_e6);
 
 		validate_all(
@@ -129,7 +129,7 @@ class C_tabel_e6 extends Omnitags
 				$this->v_post['tabel_e6_field2'],
 			),
 			$this->views['flash3'],
-			'ubah' . $tabel_e6_field1
+			'ubah' . $code
 		);
 
 		$data = array(
@@ -145,21 +145,21 @@ class C_tabel_e6 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_e6->update_e6($data, $tabel_e6_field1);
+		$aksi = $this->tl_e6->update_e6($data, $code);
 		$this->insert_history('tabel_e6', $data);
 
-		$notif = $this->handle_4c($aksi, 'tabel_e6', $tabel_e6_field1);
+		$notif = $this->handle_4c($aksi, 'tabel_e6', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 	
 	//Soft Delete Data
-	public function soft_delete($tabel_e6_field1 = null)
+	public function soft_delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_e6->get_e6_by_field('tabel_e6_field1', $tabel_e6_field1)->result();
+		$tabel = $this->tl_e6->get_e6_by_field('tabel_e6_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -168,21 +168,21 @@ class C_tabel_e6 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_e6->update_e6($data, $tabel_e6_field1);
+		$aksi = $this->tl_e6->update_e6($data, $code);
 		$this->insert_history('tabel_e6', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_e6', $tabel_e6_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_e6', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Soft Delete data
-	public function restore($tabel_e6_field1 = null)
+	public function restore($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_e6->get_e6_by_field_archive('tabel_e6_field1', $tabel_e6_field1)->result();
+		$tabel = $this->tl_e6->get_e6_by_field_archive('tabel_e6_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -191,26 +191,26 @@ class C_tabel_e6 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_e6->update_e6($data, $tabel_e6_field1);
+		$aksi = $this->tl_e6->update_e6($data, $code);
 		$this->insert_history('tabel_e6', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_e6', $tabel_e6_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_e6', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Delete data
-	public function delete($tabel_e6_field1 = null)
+	public function delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_e6 = $this->tl_e6->get_e6_by_field_archive('tabel_e6_field1', $tabel_e6_field1)->result();
+		$tabel_e6 = $this->tl_e6->get_e6_by_field_archive('tabel_e6_field1', $code)->result();
 		$this->check_data($tabel_e6);
 
-		$aksi = $this->tl_e6->delete_e6_by_field('tabel_e6_field1', $tabel_e6_field1);
+		$aksi = $this->tl_e6->delete_e6_by_field('tabel_e6_field1', $code);
 
-		$notif = $this->handle_4e($aksi, 'tabel_e6', $tabel_e6_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_e6', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -256,38 +256,38 @@ class C_tabel_e6 extends Omnitags
 	}
 
 	// Public Pages
-	public function detail_archive($param1 = null)
+	public function detail_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_e6->get_e6_by_field('tabel_e6_field1', $param1)->result();
+		$tabel = $this->tl_e6->get_e6_by_field('tabel_e6_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
 			'title' => lang('tabel_e6_alias_v10_title'),
 			'konten' => $this->v10['tabel_e6'],
 			'dekor' => $this->tl_e6->dekor($this->theme_id, $this->aliases['tabel_e6']),
-			'tbl_e6' => $this->tl_e6->get_e6_by_field_archive('tabel_e6_field1', $param1),
+			'tbl_e6' => $this->tl_e6->get_e6_by_field_archive('tabel_e6_field1', $code),
 		);
 
 		$this->load_page('tabel_e6', '_layouts/template', $data1);
 	}
 	
-	public function history($param1 = null)
+	public function history($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_e6->get_e6_by_field('tabel_e6_field1', $param1)->result();
+		$tabel = $this->tl_e6->get_e6_by_field('tabel_e6_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'table_id' => $param1,
+			'table_id' => $code,
 			'title' => lang('tabel_e6_alias_v11_title'),
 			'konten' => $this->v11['tabel_e6'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e6']),
-			'tbl_e6' => $this->tl_ot->get_by_field_history('tabel_e6', 'tabel_e6_field1', $param1),
+			'tbl_e6' => $this->tl_ot->get_by_field_history('tabel_e6', 'tabel_e6_field1', $code),
 		);
 
 		$this->load_page('tabel_e6', '_layouts/template', $data1);

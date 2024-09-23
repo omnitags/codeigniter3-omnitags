@@ -7,12 +7,12 @@ class C_tabel_b9 extends Omnitags
 {
 	// Pages
 	// Public Pages
-	public function detail($tabel_b9_field1 = NULL)
+	public function detail($code = NULL)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$tabel_b9_field1, userdata($this->aliases['tabel_c2_field1'])])->result();
+		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$code, userdata($this->aliases['tabel_c2_field1'])])->result();
 
 		if ($tabel_b9) {
 			$tabel_b9_field2 = userdata($this->aliases['tabel_c2_field1']);
@@ -22,14 +22,14 @@ class C_tabel_b9 extends Omnitags
 				'read_at' => date("Y-m-d\TH:i:s"),
 			);
 
-			$aksi = $this->tl_b9->update_satu($notif, $tabel_b9_field1, $tabel_b9_field2);
+			$aksi = $this->tl_b9->update_satu($notif, $code, $tabel_b9_field2);
 
 			if ($aksi) {
 				$data1 = array(
 					'title' => lang('tabel_b9_alias_v8_title'),
 					'konten' => $this->v8['tabel_b9'],
 					'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b9']),
-					'tbl_b9' => $this->tl_b9->get_b9_by_field('tabel_b9_field1', $tabel_b9_field1),
+					'tbl_b9' => $this->tl_b9->get_b9_by_field('tabel_b9_field1', $code),
 				);
 
 
@@ -109,7 +109,7 @@ class C_tabel_b9 extends Omnitags
 
 	// Functions
 	// Read the notification
-	public function lihat($tabel_b9_field1 = NULL)
+	public function lihat($code = NULL)
 	{
 		$this->declarew();
 		$allowed_values = [
@@ -120,7 +120,7 @@ class C_tabel_b9 extends Omnitags
 		];
 		$this->session_check($allowed_values);
 
-		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$tabel_b9_field1, userdata($this->aliases['tabel_c2_field1'])])->result();
+		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$code, userdata($this->aliases['tabel_c2_field1'])])->result();
 
 		if ($tabel_b9) {
 
@@ -131,7 +131,7 @@ class C_tabel_b9 extends Omnitags
 				'read_at' => date("Y-m-d\TH:i:s"),
 			);
 
-			$aksi = $this->tl_b9->update_satu($notif, $tabel_b9_field1, $tabel_b9_field2);
+			$aksi = $this->tl_b9->update_satu($notif, $code, $tabel_b9_field2);
 			redirect($_SERVER['HTTP_REFERER']);
 
 		} else {
@@ -190,7 +190,7 @@ class C_tabel_b9 extends Omnitags
 	}
 
 	//Soft Delete Data
-	public function soft_delete($tabel_b9_field1 = null)
+	public function soft_delete($code = null)
 	{
 		$this->declarew();
 		$allowed_values = [
@@ -200,7 +200,7 @@ class C_tabel_b9 extends Omnitags
 			$this->aliases['tabel_c2_field6_value5']
 		];
 
-		$tabel = $this->tl_b9->get_b9_by_field('tabel_b9_field1', $tabel_b9_field1)->result();
+		$tabel = $this->tl_b9->get_b9_by_field('tabel_b9_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -209,7 +209,7 @@ class C_tabel_b9 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b9->update_b9($data, $tabel_b9_field1);
+		$aksi = $this->tl_b9->update_b9($data, $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -238,12 +238,12 @@ class C_tabel_b9 extends Omnitags
 	}
 
 	// Soft Delete data
-	public function restore($tabel_b9_field1 = null)
+	public function restore($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b9->get_b9_by_field_archive('tabel_b9_field1', $tabel_b9_field1)->result();
+		$tabel = $this->tl_b9->get_b9_by_field_archive('tabel_b9_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -252,22 +252,22 @@ class C_tabel_b9 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b9->update_b9($data, $tabel_b9_field1);
+		$aksi = $this->tl_b9->update_b9($data, $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Delete data
-	public function delete($tabel_b9_field1 = null)
+	public function delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b9->get_b9_by_field_archive('tabel_b9_field1', $tabel_b9_field1);
+		$tabel = $this->tl_b9->get_b9_by_field_archive('tabel_b9_field1', $code);
 		$this->check_data($tabel);
-		$aksi = $this->tl_b9->delete_b9_by_field('tabel_b9_field1', $tabel_b9_field1);
+		$aksi = $this->tl_b9->delete_b9_by_field('tabel_b9_field1', $code);
 
-		$notif = $this->handle_4e($aksi, 'tabel_b9', $tabel_b9_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_b9', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}

@@ -59,7 +59,7 @@ class C_tabel_a1 extends Omnitags
 		// Call to session_3 method
 		$this->session_3();
 
-		$tabel_a1_field1 = $this->v_post['tabel_a1_field1'];
+		$code = $this->v_post['tabel_a1_field1'];
 
 		// Validate fields
 		validate_all(
@@ -71,7 +71,7 @@ class C_tabel_a1 extends Omnitags
 				$this->v_post['tabel_a1_field5'],
 			),
 			$this->views['flash3'],
-			'ubah' . $tabel_a1_field1
+			'ubah' . $code
 		);
 
 		$data = array(
@@ -84,10 +84,10 @@ class C_tabel_a1 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_a1->update_a1($data, $tabel_a1_field1);
+		$aksi = $this->tl_a1->update_a1($data, $code);
 		$this->insert_history('tabel_a1', $data);
 
-		$notif = $this->handle_4c($aksi, 'tabel_a1', $tabel_a1_field1);
+		$notif = $this->handle_4c($aksi, 'tabel_a1', $code);
 
 		// Redirect to previous page
 		redirect($_SERVER['HTTP_REFERER']);
@@ -101,7 +101,7 @@ class C_tabel_a1 extends Omnitags
 		// Call to session_3 method
 		$this->session_3();
 
-		$tabel_a1_field1 = $this->v_post['tabel_a1_field1'];
+		$code = $this->v_post['tabel_a1_field1'];
 
 		// Validate fields
 		validate_all(
@@ -110,7 +110,7 @@ class C_tabel_a1 extends Omnitags
 				$this->v_post['tabel_a1_field6'],
 			),
 			$this->views['flash3'],
-			'tema' . $tabel_a1_field1
+			'tema' . $code
 		);
 
 		$data = array(
@@ -120,10 +120,10 @@ class C_tabel_a1 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_a1->update_a1($data, $tabel_a1_field1);
+		$aksi = $this->tl_a1->update_a1($data, $code);
 		$this->insert_history('tabel_a1', $data);
 
-		$notif = $this->handle_4d($aksi, 'tabel_b7', $tabel_a1_field1);
+		$notif = $this->handle_4d($aksi, 'tabel_b7', $code);
 
 		 // Redirect to previous page
 		redirect($_SERVER['HTTP_REFERER']);

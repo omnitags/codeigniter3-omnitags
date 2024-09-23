@@ -105,9 +105,9 @@ class C_tabel_e1 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_e1_field1 = $this->v_post['tabel_e1_field1'];
+		$code = $this->v_post['tabel_e1_field1'];
 
-		$tabel_e1 = $this->tl_e1->get_e1_by_field('tabel_e1_field1', $tabel_e1_field1)->result();
+		$tabel_e1 = $this->tl_e1->get_e1_by_field('tabel_e1_field1', $code)->result();
 		$this->check_data($tabel_e1);
 
 		validate_all(
@@ -119,7 +119,7 @@ class C_tabel_e1 extends Omnitags
 				$this->v_post['tabel_e1_field5'],
 			),
 			$this->views['flash3'],
-			'ubah' . $tabel_e1_field1
+			'ubah' . $code
 		);
 
 		// Functional requirement: Construct data array from validated view inputs
@@ -133,10 +133,10 @@ class C_tabel_e1 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_e1->update_e1($data, $tabel_e1_field1);
+		$aksi = $this->tl_e1->update_e1($data, $code);
 		$this->insert_history('tabel_e1', $data);
 
-		$notif = $this->handle_4c($aksi, 'tabel_e1', $tabel_e1_field1);
+		$notif = $this->handle_4c($aksi, 'tabel_e1', $code);
 
 		// Functional requirement: Redirect user to 'tabel_e1' page
 		redirect($_SERVER['HTTP_REFERER']);
@@ -146,12 +146,12 @@ class C_tabel_e1 extends Omnitags
 	}
 	
 	//Soft Delete Data
-	public function soft_delete($tabel_e1_field1 = null)
+	public function soft_delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_e1->get_e1_by_field('tabel_e1_field1', $tabel_e1_field1)->result();
+		$tabel = $this->tl_e1->get_e1_by_field('tabel_e1_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -160,21 +160,21 @@ class C_tabel_e1 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_e1->update_e1($data, $tabel_e1_field1);
+		$aksi = $this->tl_e1->update_e1($data, $code);
 		$this->insert_history('tabel_e1', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_e1', $tabel_e1_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_e1', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Soft Delete data
-	public function restore($tabel_e1_field1 = null)
+	public function restore($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_e1->get_e1_by_field_archive('tabel_e1_field1', $tabel_e1_field1)->result();
+		$tabel = $this->tl_e1->get_e1_by_field_archive('tabel_e1_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -183,23 +183,23 @@ class C_tabel_e1 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_e1->update_e1($data, $tabel_e1_field1);
+		$aksi = $this->tl_e1->update_e1($data, $code);
 		$this->insert_history('tabel_e1', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_e1', $tabel_e1_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_e1', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 
 	// Delete data
-	public function delete($tabel_e1_field1 = null)
+	public function delete($code = null)
 	{
 		// Functional requirement: Declare necessary configurations
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_e1 = $this->tl_e1->get_e1_by_field_archive('tabel_e1_field1', $tabel_e1_field1)->result();
+		$tabel_e1 = $this->tl_e1->get_e1_by_field_archive('tabel_e1_field1', $code)->result();
 		$this->check_data($tabel_e1);
 
 		// Define the folder and file paths
@@ -215,9 +215,9 @@ class C_tabel_e1 extends Omnitags
 
 		try {
 			// Functional requirement: Delete data from the database
-			$aksi = $this->tl_e1->delete_e1_by_field('tabel_e1_field1', $tabel_e1_field1);
+			$aksi = $this->tl_e1->delete_e1_by_field('tabel_e1_field1', $code);
 
-			$notif = $this->handle_4e($aksi, 'tabel_e1', $tabel_e1_field1);
+			$notif = $this->handle_4e($aksi, 'tabel_e1', $code);
 
 		} catch (Exception $e) {
 			// Error Handling: Handle database operation errors

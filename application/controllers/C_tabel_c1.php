@@ -56,12 +56,12 @@ class C_tabel_c1 extends Omnitags
 		];
 		$this->page_session_check($allowed_values);
 
-		$tabel_c1_field1 = userdata($this->aliases['tabel_c1_field1']);
+		$code = userdata($this->aliases['tabel_c1_field1']);
 		$data1 = array(
 			'title' => lang('tabel_c1_alias2_v6_title'),
 			'konten' => $this->v6['tabel_c1'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c1']),
-			'tbl_c1' => $this->tl_c1->get_c1_by_field('tabel_c1_field1', $tabel_c1_field1),
+			'tbl_c1' => $this->tl_c1->get_c1_by_field('tabel_c1_field1', $code),
 		);
 
 		$this->load_page('tabel_c1', '_layouts/template', $data1);
@@ -155,9 +155,9 @@ class C_tabel_c1 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_c1_field1 = $this->v_post['tabel_c1_field1'];
+		$code = $this->v_post['tabel_c1_field1'];
 
-		$tabel_c1 = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $tabel_c1_field1)->result();
+		$tabel_c1 = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $code)->result();
 		$this->check_data($tabel_c1);
 
 		validate_all(
@@ -169,10 +169,10 @@ class C_tabel_c1 extends Omnitags
 				$this->v_post['tabel_c1_field6'],
 			),
 			$this->views['flash3'],
-			'ubah' . $tabel_c1_field1
+			'ubah' . $code
 		);
 
-		$tabel_c1 = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $tabel_c1_field1)->result();
+		$tabel_c1 = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $code)->result();
 
 		$data = array(
 			$this->aliases['tabel_c1_field2'] => $this->v_post['tabel_c1_field2'],
@@ -185,21 +185,21 @@ class C_tabel_c1 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_c1->update_c1($data, $tabel_c1_field1);
+		$aksi = $this->tl_c1->update_c1($data, $code);
 		$this->insert_history('tabel_c1', $data);
 
-		$notif = $this->handle_4c($aksi, 'tabel_c1', $tabel_c1_field1);
+		$notif = $this->handle_4c($aksi, 'tabel_c1', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 	
 	//Soft Delete Data
-	public function soft_delete($tabel_c1_field1 = null)
+	public function soft_delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $tabel_c1_field1)->result();
+		$tabel = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -208,21 +208,21 @@ class C_tabel_c1 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_c1->update_c1($data, $tabel_c1_field1);
+		$aksi = $this->tl_c1->update_c1($data, $code);
 		$this->insert_history('tabel_c1', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_c1', $tabel_c1_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_c1', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Soft Delete data
-	public function restore($tabel_c1_field1 = null)
+	public function restore($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_c1->get_c1_by_field_archive('tabel_c1_field1', $tabel_c1_field1)->result();
+		$tabel = $this->tl_c1->get_c1_by_field_archive('tabel_c1_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -231,26 +231,26 @@ class C_tabel_c1 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_c1->update_c1($data, $tabel_c1_field1);
+		$aksi = $this->tl_c1->update_c1($data, $code);
 		$this->insert_history('tabel_c1', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_c1', $tabel_c1_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_c1', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Delete data
-	public function delete($tabel_c1_field1 = null)
+	public function delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_c1->get_c1_by_field_archive('tabel_c1_field1', $tabel_c1_field1)->result();
+		$tabel = $this->tl_c1->get_c1_by_field_archive('tabel_c1_field1', $code)->result();
 		$this->check_data($tabel);
 
-		$aksi = $this->tl_c1->delete_c1_by_field('tabel_c1_field1', $tabel_c1_field1);
+		$aksi = $this->tl_c1->delete_c1_by_field('tabel_c1_field1', $code);
 
-		$notif = $this->handle_4e($aksi, 'tabel_c1', $tabel_c1_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_c1', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -268,9 +268,9 @@ class C_tabel_c1 extends Omnitags
 		];
 		$this->session_check($allowed_values);
 
-		$tabel_c1_field1 = $this->v_post['tabel_c1_field1'];
+		$code = $this->v_post['tabel_c1_field1'];
 
-		$tabel = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $tabel_c1_field1)->result();
+		$tabel = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data = array(
@@ -283,13 +283,13 @@ class C_tabel_c1 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_c1->update_c1($data, $tabel_c1_field1);
+		$aksi = $this->tl_c1->update_c1($data, $code);
 		$this->insert_history('tabel_c1', $data);
 
-		$notif = $this->handle_4d($aksi, 'tabel_c1', $tabel_c1_field1);
+		$notif = $this->handle_4d($aksi, 'tabel_c1', $code);
 
 		// mengambil data profil yang baru dirubah
-		$tabel_c1 = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $tabel_c1_field1)->result();
+		$tabel_c1 = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $code)->result();
 
 		$tabel_c1_field2 = $tabel_c1[0]->nama;
 		$tabel_c1_field3 = $tabel_c1[0]->email;
@@ -317,9 +317,9 @@ class C_tabel_c1 extends Omnitags
 		];
 		$this->session_check($allowed_values);
 
-		$tabel_c1_field1 = $this->v_post['tabel_c1_field1'];
+		$code = $this->v_post['tabel_c1_field1'];
 
-		$cek_id = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $tabel_c1_field1);
+		$cek_id = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $code);
 
 		// mencari apakah jumlah data lebih dari 0
 		if ($cek_id->num_rows() > 0) {
@@ -341,7 +341,7 @@ class C_tabel_c1 extends Omnitags
 						$this->aliases['tabel_c1_field4'] => password_hash($tabel_c1_field4, PASSWORD_DEFAULT),
 					);
 
-					$aksi = $this->tl_c1->update_c1($data, $tabel_c1_field1);
+					$aksi = $this->tl_c1->update_c1($data, $code);
 
 					redirect($_SERVER['HTTP_REFERER']);
 
@@ -375,10 +375,10 @@ class C_tabel_c1 extends Omnitags
 		$this->declarew();
 		$this->session_all();
 
-		$tabel_c1_field1 = $this->v_post['tabel_c1_field1'];
+		$code = $this->v_post['tabel_c1_field1'];
 		$param8 = $this->v_post['tabel_c1_field8'];
 
-		$method1 = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $tabel_c1_field1);
+		$method1 = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $code);
 
 		// mencari apakah jumlah data kurang dari 0
 		if ($method1->num_rows() > 0) {
@@ -387,14 +387,14 @@ class C_tabel_c1 extends Omnitags
 
 			// memverifikasi password dengan password di database
 			if (password_verify($param8, $method8)) {
-				$tabel_c1_field1 = $tabel_c1[0]->id_petugas;
+				$code = $tabel_c1[0]->id_petugas;
 				$tabel_c1_field2 = $tabel_c1[0]->nama;
 				$tabel_c1_field3 = $tabel_c1[0]->email;
 				$tabel_c1_field5 = $tabel_c1[0]->hp;
 				$tabel_c1_field7 = $tabel_c1[0]->role;
 				// $tabel_c2_field6 = $this->aliases['tabel_c2_field6_value5'];
 
-				set_userdata($this->aliases['tabel_c1_field1'], $tabel_c1_field1);
+				set_userdata($this->aliases['tabel_c1_field1'], $code);
 				set_userdata($this->aliases['tabel_c1_field2'], $tabel_c1_field2);
 				set_userdata($this->aliases['tabel_c1_field3'], $tabel_c1_field3);
 				set_userdata($this->aliases['tabel_c1_field5'], $tabel_c1_field5);
@@ -439,15 +439,15 @@ class C_tabel_c1 extends Omnitags
 
 		// 	// memverifikasi password dengan password di database
 		// 	if (password_verify($password, $cekpass)) {
-		// 		$tabel_c1_field1user = $tabel_c1[0]->id_petugas;
+		// 		$codeuser = $tabel_c1[0]->id_petugas;
 		// 		$nama = $tabel_c1[0]->nama;
-		// 		$tabel_c1_field1 = $tabel_c1[0]->email;
+		// 		$code = $tabel_c1[0]->email;
 		// 		$hp = $tabel_c1[0]->hp;
 		// 		$level = $tabel_c1[0]->level;
 
-		// 		set_userdata('id_petugas', $tabel_c1_field1user);
+		// 		set_userdata('id_petugas', $codeuser);
 		// 		set_userdata('nama', $nama);
-		// 		set_userdata('email', $tabel_c1_field1);
+		// 		set_userdata('email', $code);
 		// 		set_userdata('hp', $hp);
 		// 		set_userdata('level', $level);
 

@@ -103,9 +103,9 @@ class C_tabel_f4 extends Omnitags
 		$this->declarew();
 		$this->session_4();
 
-		$tabel_f4_field1 = $this->v_post['tabel_f4_field1'];
+		$code = $this->v_post['tabel_f4_field1'];
 
-		$tabel = $this->tl_f4->get_f4_by_field('tabel_f4_field1', $tabel_f4_field1)->result();
+		$tabel = $this->tl_f4->get_f4_by_field('tabel_f4_field1', $code)->result();
 		$this->check_data($tabel);
 
 		validate_all(
@@ -115,7 +115,7 @@ class C_tabel_f4 extends Omnitags
 				$this->v_post['tabel_f4_field3'],
 			),
 			$this->views['flash3'],
-			'ubah' . $tabel_f4_field1
+			'ubah' . $code
 		);
 
 		$data = array(
@@ -126,21 +126,21 @@ class C_tabel_f4 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_f4->update_f4($data, $tabel_f4_field1);
+		$aksi = $this->tl_f4->update_f4($data, $code);
 		$this->insert_history('tabel_f4', $data);
 
-		$notif = $this->handle_4c($aksi, 'tabel_f4', $tabel_f4_field1);
+		$notif = $this->handle_4c($aksi, 'tabel_f4', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 	
 	//Soft Delete Data
-	public function soft_delete($tabel_f4_field1 = null)
+	public function soft_delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_f4->get_f4_by_field('tabel_f4_field1', $tabel_f4_field1)->result();
+		$tabel = $this->tl_f4->get_f4_by_field('tabel_f4_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -149,21 +149,21 @@ class C_tabel_f4 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_f4->update_f4($data, $tabel_f4_field1);
+		$aksi = $this->tl_f4->update_f4($data, $code);
 		$this->insert_history('tabel_f4', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_f4', $tabel_f4_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_f4', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Soft Delete data
-	public function restore($tabel_f4_field1 = null)
+	public function restore($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_f4->get_f4_by_field_archive('tabel_f4_field1', $tabel_f4_field1)->result();
+		$tabel = $this->tl_f4->get_f4_by_field_archive('tabel_f4_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -172,26 +172,26 @@ class C_tabel_f4 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_f4->update_f4($data, $tabel_f4_field1);
+		$aksi = $this->tl_f4->update_f4($data, $code);
 		$this->insert_history('tabel_f4', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_f4', $tabel_f4_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_f4', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Delete data
-	public function delete($tabel_f4_field1 = null)
+	public function delete($code = null)
 	{
 		$this->declarew();
 		$this->session_4();
 
-		$tabel = $this->tl_f4->get_f4_by_field_archive('tabel_f4_field1', $tabel_f4_field1)->result();
+		$tabel = $this->tl_f4->get_f4_by_field_archive('tabel_f4_field1', $code)->result();
 		$this->check_data($tabel);
 
-		$aksi = $this->tl_f4->delete_f4_by_field('tabel_f4_field1', $tabel_f4_field1);
+		$aksi = $this->tl_f4->delete_f4_by_field('tabel_f4_field1', $code);
 
-		$notif = $this->handle_4e($aksi, 'tabel_f4', $tabel_f4_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_f4', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -213,38 +213,38 @@ class C_tabel_f4 extends Omnitags
 	}
 
 	// Public Pages
-	public function detail_archive($param1 = null)
+	public function detail_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_f4->get_f4_by_field('tabel_f4_field1', $param1)->result();
+		$tabel = $this->tl_f4->get_f4_by_field('tabel_f4_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
 			'title' => lang('tabel_f4_alias_v10_title'),
 			'konten' => $this->v10['tabel_f4'],
 			'dekor' => $this->tl_f4->dekor($this->theme_id, $this->aliases['tabel_f4']),
-			'tbl_f4' => $this->tl_f4->get_f4_by_field_archive('tabel_f4_field1', $param1),
+			'tbl_f4' => $this->tl_f4->get_f4_by_field_archive('tabel_f4_field1', $code),
 		);
 
 		$this->load_page('tabel_f4', '_layouts/template', $data1);
 	}
 	
-	public function history($param1 = null)
+	public function history($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_f4->get_f4_by_field('tabel_f4_field1', $param1)->result();
+		$tabel = $this->tl_f4->get_f4_by_field('tabel_f4_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'table_id' => $param1,
+			'table_id' => $code,
 			'title' => lang('tabel_f4_alias_v11_title'),
 			'konten' => $this->v11['tabel_f4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f4']),
-			'tbl_f4' => $this->tl_ot->get_by_field_history('tabel_f4', 'tabel_f4_field1', $param1),
+			'tbl_f4' => $this->tl_ot->get_by_field_history('tabel_f4', 'tabel_f4_field1', $code),
 		);
 
 		$this->load_page('tabel_f4', '_layouts/template', $data1);

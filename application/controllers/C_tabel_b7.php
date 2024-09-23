@@ -112,9 +112,9 @@ class C_tabel_b7 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_b7_field1 = $this->v_post['tabel_b7_field1'];
+		$code = $this->v_post['tabel_b7_field1'];
 
-		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $tabel_b7_field1)->result();
+		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $code)->result();
 		$this->check_data($tabel);
 
 		validate_all(
@@ -124,7 +124,7 @@ class C_tabel_b7 extends Omnitags
 				$this->v_post['tabel_b7_field6'],
 			),
 			$this->views['flash3'],
-			'ubah' . $tabel_b7_field1
+			'ubah' . $code
 		);
 
 
@@ -137,10 +137,10 @@ class C_tabel_b7 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b7->update_b7($data, $tabel_b7_field1);
+		$aksi = $this->tl_b7->update_b7($data, $code);
 		$this->insert_history('tabel_b7', $data);
 
-		$notif = $this->handle_4c($aksi, 'tabel_b7', $tabel_b7_field1);
+		$notif = $this->handle_4c($aksi, 'tabel_b7', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -151,9 +151,9 @@ class C_tabel_b7 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_b7_field1 = $this->v_post['tabel_b7_field1'];
+		$code = $this->v_post['tabel_b7_field1'];
 
-		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $tabel_b7_field1)->result();
+		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $code)->result();
 		$this->check_data($tabel);
 
 		validate_all(
@@ -162,7 +162,7 @@ class C_tabel_b7 extends Omnitags
 				$this->v_post['tabel_b7_field2'],
 			),
 			$this->views['flash3'],
-			$this->aliases['tabel_b7_field3'] . $tabel_b7_field1
+			$this->aliases['tabel_b7_field3'] . $code
 		);
 
 		$gambar = $this->change_image(
@@ -182,10 +182,10 @@ class C_tabel_b7 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b7->update_b7($data, $tabel_b7_field1);
+		$aksi = $this->tl_b7->update_b7($data, $code);
 		$this->insert_history('tabel_b7', $data);
 
-		$notif = $this->handle_4d($aksi, 'tabel_b7_field3', $tabel_b7_field1);
+		$notif = $this->handle_4d($aksi, 'tabel_b7_field3', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -195,9 +195,9 @@ class C_tabel_b7 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_b7_field1 = $this->v_post['tabel_b7_field1'];
+		$code = $this->v_post['tabel_b7_field1'];
 
-		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $tabel_b7_field1)->result();
+		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $code)->result();
 		$this->check_data($tabel);
 
 		validate_all(
@@ -206,7 +206,7 @@ class C_tabel_b7 extends Omnitags
 				$this->v_post['tabel_b7_field2'],
 			),
 			$this->views['flash3'],
-			$this->aliases['tabel_b7_field4'] . $tabel_b7_field1
+			$this->aliases['tabel_b7_field4'] . $code
 		);
 
 		$gambar = $this->change_image(
@@ -223,10 +223,10 @@ class C_tabel_b7 extends Omnitags
 			$this->aliases['tabel_b7_field4'] => $gambar
 		);
 
-		$aksi = $this->tl_b7->update_b7($data, $tabel_b7_field1);
+		$aksi = $this->tl_b7->update_b7($data, $code);
 		$this->insert_history('tabel_b7', $data);
 
-		$notif = $this->handle_4d($aksi, 'tabel_b7_field4', $tabel_b7_field1);
+		$notif = $this->handle_4d($aksi, 'tabel_b7_field4', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -236,9 +236,9 @@ class C_tabel_b7 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_b7_field1 = $this->v_post['tabel_b7_field1'];
+		$code = $this->v_post['tabel_b7_field1'];
 
-		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $tabel_b7_field1)->result();
+		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $code)->result();
 		$this->check_data($tabel);
 
 		validate_all(
@@ -247,7 +247,7 @@ class C_tabel_b7 extends Omnitags
 				$this->v_post['tabel_b7_field2'],
 			),
 			$this->views['flash3'],
-			$this->aliases['tabel_b7_field5'] . $tabel_b7_field1
+			$this->aliases['tabel_b7_field5'] . $code
 		);
 
 		$gambar = $this->change_image(
@@ -267,21 +267,21 @@ class C_tabel_b7 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b7->update_b7($data, $tabel_b7_field1);
+		$aksi = $this->tl_b7->update_b7($data, $code);
 		$this->insert_history('tabel_b7', $data);
 
-		$notif = $this->handle_4d($aksi, 'tabel_b7_field5', $tabel_b7_field1);
+		$notif = $this->handle_4d($aksi, 'tabel_b7_field5', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	//Soft Delete Data
-	public function soft_delete($tabel_b7_field1 = null)
+	public function soft_delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $tabel_b7_field1)->result();
+		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -290,21 +290,21 @@ class C_tabel_b7 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b7->update_b7($data, $tabel_b7_field1);
+		$aksi = $this->tl_b7->update_b7($data, $code);
 		$this->insert_history('tabel_b7', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_b7', $tabel_b7_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_b7', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Soft Delete data
-	public function restore($tabel_b7_field1 = null)
+	public function restore($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b7->get_b7_by_field_archive('tabel_b7_field1', $tabel_b7_field1)->result();
+		$tabel = $this->tl_b7->get_b7_by_field_archive('tabel_b7_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -313,21 +313,21 @@ class C_tabel_b7 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b7->update_b7($data, $tabel_b7_field1);
+		$aksi = $this->tl_b7->update_b7($data, $code);
 		$this->insert_history('tabel_b7', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_b7', $tabel_b7_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_b7', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Delete data
-	public function delete($tabel_b7_field1 = null)
+	public function delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_b7 = $this->tl_b7->get_b7_field1_archive($tabel_b7_field1)->result();
+		$tabel_b7 = $this->tl_b7->get_b7_field1_archive($code)->result();
 		$this->check_data($tabel_b7);
 
 		$tabel_b7_field3 = $tabel_b7[0]->{$this->aliases['tabel_b7_field3']};
@@ -337,13 +337,13 @@ class C_tabel_b7 extends Omnitags
 		unlink($this->v_upload_path['tabel_b7'] . $tabel_b7_field4);
 		unlink($this->v_upload_path['tabel_b7'] . $tabel_b7_field5);
 
-		$aksi = $this->tl_b7->delete_b7_by_field('tabel_b7_field1', $tabel_b7_field1);
-		$tabel_b1 = $this->tl_b1->delete_b1_by_field('tabel_b7_field1', $tabel_b7_field1);
-		$tabel_b2 = $this->tl_b2->delete_b2_by_field('tabel_b7_field1', $tabel_b7_field1);
-		$tabel_b5 = $this->tl_b5->delete_b5_by_field('tabel_b7_field1', $tabel_b7_field1);
-		$tabel_b6 = $this->tl_b6->delete_b6_by_field('tabel_b7_field1', $tabel_b7_field1);
+		$aksi = $this->tl_b7->delete_b7_by_field('tabel_b7_field1', $code);
+		$tabel_b1 = $this->tl_b1->delete_b1_by_field('tabel_b7_field1', $code);
+		$tabel_b2 = $this->tl_b2->delete_b2_by_field('tabel_b7_field1', $code);
+		$tabel_b5 = $this->tl_b5->delete_b5_by_field('tabel_b7_field1', $code);
+		$tabel_b6 = $this->tl_b6->delete_b6_by_field('tabel_b7_field1', $code);
 
-		$notif = $this->handle_4e($aksi, 'tabel_b7', $tabel_b7_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_b7', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
