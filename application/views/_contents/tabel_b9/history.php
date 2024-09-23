@@ -27,6 +27,17 @@
     </thead>
 
     <tbody>
+      <?php foreach ($current->result() as $tl_cr): ?>
+        <tr class="bg-light">
+          <td></td>
+          <td>[current]</td>
+          <td><?= $tl_cr->$tabel_b9_field1 ?></td>
+          <td><?= $tl_cr->$tabel_b9_field2 ?></td>
+          <td><?= $tl_cr->updated_at ?></td>
+          <td><?= $tl_cr->updated_by ?></td>
+          <td></td>
+        </tr>
+      <?php endforeach; ?>
       <?php foreach ($tbl_b9->result() as $tl_b9): ?>
         <tr>
           <td></td>
@@ -57,7 +68,7 @@
         <form>
           <div class="modal-body">
             <?= table_data(
-              row_data('tabel_b9_field1', $tl_b9->$tabel_b9_field1) . 
+              row_data('tabel_b9_field1', $tl_b9->$tabel_b9_field1) .
               row_data('tabel_b9_field2', $tl_b9->$tabel_b9_field2),
               'table-light'
             ) ?>
