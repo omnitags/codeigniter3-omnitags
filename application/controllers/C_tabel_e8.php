@@ -20,7 +20,7 @@ class C_tabel_e8 extends Omnitags
 		);
 
 		$this->load_page('tabel_e8', '_layouts/template', $data1);
-		}
+	}
 
 	// Account Only Pages
 
@@ -29,7 +29,7 @@ class C_tabel_e8 extends Omnitags
 	{
 		$this->declarew();
 		$this->page_session_3();
-		
+
 		$data1 = array(
 			'title' => lang('tabel_e8_alias_v3_title'),
 			'konten' => $this->v3['tabel_e8'],
@@ -142,7 +142,7 @@ class C_tabel_e8 extends Omnitags
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
-	
+
 	//Soft Delete Data
 	public function soft_delete($tabel_e8_field1 = null)
 	{
@@ -241,7 +241,7 @@ class C_tabel_e8 extends Omnitags
 
 		$this->load_page('tabel_e8', '_layouts/template', $data1);
 	}
-	
+
 	public function history($param1 = null)
 	{
 		$this->declarew();

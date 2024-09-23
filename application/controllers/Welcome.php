@@ -228,6 +228,5 @@ class Welcome extends Omnitags
 			show_error('Invalid language selected.');
 		}
 	}
-
-
 }
+ 
