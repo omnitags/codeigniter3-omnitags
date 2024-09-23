@@ -10,13 +10,7 @@ class C_tabel_b9 extends Omnitags
 	public function detail($tabel_b9_field1 = NULL)
 	{
 		$this->declarew();
-		$allowed_values = [
-                $this->aliases['tabel_c2_field6_value2'],
-                $this->aliases['tabel_c2_field6_value3'],
-                $this->aliases['tabel_c2_field6_value4'],
-                $this->aliases['tabel_c2_field6_value5']
-            ];
-            $this->page_session_check($allowed_values);
+		$this->page_session_all();
 
 		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$tabel_b9_field1, userdata($this->aliases['tabel_c2_field1'])])->result();
 
@@ -25,7 +19,7 @@ class C_tabel_b9 extends Omnitags
 
 			// menggunakan nama khusus sama dengan konfigurasi
 			$notif = array(
-				$this->aliases['tabel_b9_field6'] => date("Y-m-d\TH:i:s"),
+				'read_at' => date("Y-m-d\TH:i:s"),
 			);
 
 			$aksi = $this->tl_b9->update_satu($notif, $tabel_b9_field1, $tabel_b9_field2);
@@ -38,14 +32,13 @@ class C_tabel_b9 extends Omnitags
 					'tbl_b9' => $this->tl_b9->get_b9_by_field('tabel_b9_field1', $tabel_b9_field1),
 				);
 
-				$data = array_merge($data1, $this->package);
 
 				if (get('refresh') !== 'true') {
 					// Redirect to the same method with a refresh parameter
-					load_view_data('_layouts/template', $data);
+					$this->load_page('tabel_b9', '_layouts/template', $data1);
 					redirect(current_url() . '?refresh=true');
 				} else {
-					load_view_data('_layouts/template', $data);
+					$this->load_page('tabel_b9', '_layouts/template', $data1);
 				}
 
 			} else {
@@ -61,12 +54,12 @@ class C_tabel_b9 extends Omnitags
 	{
 		$this->declarew();
 		$allowed_values = [
-                $this->aliases['tabel_c2_field6_value2'],
-                $this->aliases['tabel_c2_field6_value3'],
-                $this->aliases['tabel_c2_field6_value4'],
-                $this->aliases['tabel_c2_field6_value5']
-            ];
-            $this->page_session_check($allowed_values);
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->page_session_check($allowed_values);
 
 		$tabel_b9_field2 = userdata($this->aliases['tabel_c2_field1']);
 
@@ -77,10 +70,7 @@ class C_tabel_b9 extends Omnitags
 			'tbl_b9' => $this->tl_b9->get_b9_with_b8_by_b9_field2($tabel_b9_field2),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_b9', '_layouts/template', $data1);
 	}
 
 	// Admin Pages
@@ -96,10 +86,7 @@ class C_tabel_b9 extends Omnitags
 			'tbl_b9' => $this->tl_b9->get_all_b9(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_b9', '_layouts/template', $data1);
 	}
 
 	// Print all data
@@ -115,10 +102,7 @@ class C_tabel_b9 extends Omnitags
 			'tbl_b9' => $this->tl_b9->get_all_b9(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		load_view_data('_layouts/printpage', $data);
+		$this->load_page('tabel_b9', '_layouts/printpage', $data1);
 	}
 
 	// Print one data
@@ -129,12 +113,12 @@ class C_tabel_b9 extends Omnitags
 	{
 		$this->declarew();
 		$allowed_values = [
-                $this->aliases['tabel_c2_field6_value2'],
-                $this->aliases['tabel_c2_field6_value3'],
-                $this->aliases['tabel_c2_field6_value4'],
-                $this->aliases['tabel_c2_field6_value5']
-            ];
-            $this->session_check($allowed_values);
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->session_check($allowed_values);
 
 		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$tabel_b9_field1, userdata($this->aliases['tabel_c2_field1'])])->result();
 
@@ -144,7 +128,7 @@ class C_tabel_b9 extends Omnitags
 
 			// menggunakan nama khusus sama dengan konfigurasi
 			$notif = array(
-				$this->aliases['tabel_b9_field6'] => date("Y-m-d\TH:i:s"),
+				'read_at' => date("Y-m-d\TH:i:s"),
 			);
 
 			$aksi = $this->tl_b9->update_satu($notif, $tabel_b9_field1, $tabel_b9_field2);
@@ -167,13 +151,13 @@ class C_tabel_b9 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_b9_field1'] => '',
 			$this->aliases['tabel_b9_field2'] => $this->v_post['tabel_b9_field2'],
-			$this->aliases['tabel_b9_field6'] => htmlspecialchars($this->v_post['tabel_b9_field6']),
 
 			'created_at' => date("Y-m-d\TH:i:s"),
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			'read_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b9->insert_b9($data);
+		$this->insert_history('tabel_b9', $data);
 
 		$notif = $this->handle_4b($aksi, 'tabel_b9');
 
@@ -186,23 +170,89 @@ class C_tabel_b9 extends Omnitags
 	{
 		$this->declarew();
 		$allowed_values = [
-                $this->aliases['tabel_c2_field6_value2'],
-                $this->aliases['tabel_c2_field6_value3'],
-                $this->aliases['tabel_c2_field6_value4'],
-                $this->aliases['tabel_c2_field6_value5']
-            ];
-            $this->session_check($allowed_values);
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->session_check($allowed_values);
 
 		$tabel_b9_field2 = userdata($this->aliases['tabel_c2_field1']);
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
-			$this->aliases['tabel_b9_field6'] => date("Y-m-d\TH:i:s"),
-
-			'updated_at' => date("Y-m-d\TH:i:s"),
+			'read_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		$aksi = $this->tl_b9->update_null($data, $tabel_b9_field2);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	//Soft Delete Data
+	public function soft_delete($tabel_b9_field1 = null)
+	{
+		$this->declarew();
+		$allowed_values = [
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value3'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+
+		$tabel = $this->tl_b9->get_b9_by_field('tabel_b9_field1', $tabel_b9_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_b9->update_b9($data, $tabel_b9_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	//Push History Data into current data
+	public function push($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_ot->get_by_id_history('tabel_b9', $code)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			$this->aliases['tabel_b9_field1'] => $tabel[0]->{$this->aliases['tabel_b9_field1']},
+			$this->aliases['tabel_b9_field2'] => $tabel[0]->{$this->aliases['tabel_b9_field2']},
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_b9->update_b9($data, $tabel[0]->{$this->aliases['tabel_b9_field1']});
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Soft Delete data
+	public function restore($tabel_b9_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_b9->get_b9_by_field_archive('tabel_b9_field1', $tabel_b9_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => NULL,
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_b9->update_b9($data, $tabel_b9_field1);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -213,12 +263,66 @@ class C_tabel_b9 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b9->get_b9_by_field('tabel_b9_field1', $tabel_b9_field1);
+		$tabel = $this->tl_b9->get_b9_by_field_archive('tabel_b9_field1', $tabel_b9_field1);
 		$this->check_data($tabel);
 		$aksi = $this->tl_b9->delete_b9_by_field('tabel_b9_field1', $tabel_b9_field1);
 
 		$notif = $this->handle_4e($aksi, 'tabel_b9', $tabel_b9_field1);
 
 		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Archive Page
+	public function archive()
+	{
+		$this->declarew();
+		$this->page_session_3();
+
+		$data1 = array(
+			'title' => lang('tabel_b9_alias_v9_title'),
+			'konten' => $this->v9['tabel_b9'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b9']),
+			'tbl_b9' => $this->tl_b9->get_all_b9_archive(),
+		);
+
+		$this->load_page('tabel_b9', '_layouts/template', $data1);
+	}
+
+	// Public Pages
+	public function detail_archive($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_b9->get_b9_by_field('tabel_b9_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_b9_alias_v10_title'),
+			'konten' => $this->v10['tabel_b9'],
+			'dekor' => $this->tl_b9->dekor($this->theme_id, $this->aliases['tabel_b9']),
+			'tbl_b9' => $this->tl_b9->get_b9_by_field_archive('tabel_b9_field1', $param1),
+		);
+
+		$this->load_page('tabel_b9', '_layouts/template', $data1);
+	}
+
+	public function history($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_b9->get_b9_by_field('tabel_b9_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'table_id' => $param1,
+			'title' => lang('tabel_b9_alias_v11_title'),
+			'konten' => $this->v11['tabel_b9'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b9']),
+			'tbl_b9' => $this->tl_ot->get_by_field_history('tabel_b9', 'tabel_b9_field1', $param1),
+		);
+
+		$this->load_page('tabel_b9', '_layouts/template', $data1);
 	}
 }

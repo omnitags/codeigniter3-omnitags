@@ -5,7 +5,8 @@ include 'Omnitags.php';
 
 class C_tabel_e2 extends Omnitags
 {
-	// Halaman publik
+	// Pages
+	// Public Pages
 	public function index()
 	{
 		$this->declarew();
@@ -16,36 +17,82 @@ class C_tabel_e2 extends Omnitags
 			'konten' => $this->v1['tabel_e2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e2']),
 			'tbl_e2' => $this->tl_e2->get_all_e2(),
+			'tbl_e4' => $this->tl_e4->get_all_e4(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_e2', '_layouts/template', $data1);
 	}
 
-	// Halaman khusus akun
+	public function detail($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_e2->get_e2_by_field('tabel_e2_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_e2_alias_v8_title'),
+			'konten' => $this->v8['tabel_e2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b2']),
+			'tbl_e2' => $this->tl_e2->get_e2_by_field('tabel_e2_field1', $param1),
+		);
+
+		$this->load_page('tabel_e2', '_layouts/template', $data1);
+	}
+
+	// Account Only Pages
 
 
-	// Halaman admin
+	// Admin Pages
 	public function admin()
 	{
 		$this->declarew();
 		$this->page_session_3();
 
+		$param1 = $this->v_get['tabel_e2_field3'];
+
+		$filter = $this->tl_e2->get_e2_by_field('tabel_e2_field3', $param1);
+
+		if (empty($param1)) {
+			$result = $this->tl_e2->get_all_e2();
+		} else {
+			$result = $filter;
+		}
+
 		$data1 = array(
 			'title' => lang('tabel_e2_alias_v3_title'),
 			'konten' => $this->v3['tabel_e2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e2']),
+			'tbl_e2' => $result,
+			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			'tabel_e2_field3_value' => $param1,
+			'stuff' => firebase_get_data('/teachers')
+		);
+
+		$this->load_page('tabel_e2', '_layouts/template', $data1);
+	}
+
+	// Print all data
+	public function laporan()
+	{
+		$this->declarew();
+		$this->page_session_3();
+
+		$data1 = array(
+			'title' => lang('tabel_e2_alias_v4_title'),
+			'konten' => $this->v4['tabel_e2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e2']),
 			'tbl_e2' => $this->tl_e2->get_all_e2(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_e2', '_layouts/printpage', $data1);
 	}
 
+	// Print one data
+
+	// Functions
+	// Add data
 	public function tambah()
 	{
 		$this->declarew();
@@ -55,27 +102,43 @@ class C_tabel_e2 extends Omnitags
 			array(
 				$this->v_post['tabel_e2_field2'],
 				$this->v_post['tabel_e2_field3'],
+				$this->v_post['tabel_e2_field4'],
+				$this->v_post['tabel_e2_field5'],
+				$this->v_post['tabel_e2_field6'],
 			),
 			$this->views['flash2'],
 			'tambah'
 		);
 
+		// $id = get_next_code($this->aliases['tabel_e2'], $this->aliases['tabel_e2_field1'], 'FH');
+
+		$code = $this->add_code('tabel_e2', $this->aliases['tabel_e2_field1'], 5, '02');
+
 		$data = array(
-			$this->aliases['tabel_e2_field1'] => '',
+			// $this->aliases['tabel_e2_field1'] => $id,
+			$this->aliases['tabel_e2_field1'] => $code,
 			$this->aliases['tabel_e2_field2'] => $this->v_post['tabel_e2_field2'],
 			$this->aliases['tabel_e2_field3'] => $this->v_post['tabel_e2_field3'],
+			$this->aliases['tabel_e2_field4'] => $this->v_post['tabel_e2_field4'],
+			$this->aliases['tabel_e2_field5'] => $this->v_post['tabel_e2_field5'],
+			$this->aliases['tabel_e2_field6'] => $this->v_post['tabel_e2_field6'],
+
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
 		// $query = 'INSERT INTO tabel_e2 VALUES('.$data.')';
 
 		$aksi = $this->tl_e2->insert_e2($data);
 		// $aksi = $this->tl_e2->insert_e2($query);
+		$this->insert_history('tabel_e2', $data);
 
 		$notif = $this->handle_4b($aksi, 'tabel_e2');
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
+	// Update data
 	public function update()
 	{
 		// Di sini aku masih ada perdebatan apakah akan menggunakan gambar dengan nama file yang sama atau tidak
@@ -89,7 +152,7 @@ class C_tabel_e2 extends Omnitags
 
 		$tabel_e2_field1 = $this->v_post['tabel_e2_field1'];
 
-		$tabel_e2 = $this->tl_e2->get_e2_by_e2_field1($tabel_e2_field1)->result();
+		$tabel_e2 = $this->tl_e2->get_e2_by_field('tabel_e2_field1', $tabel_e2_field1)->result();
 		$this->check_data($tabel_e2);
 
 		validate_all(
@@ -97,6 +160,9 @@ class C_tabel_e2 extends Omnitags
 				$this->v_post['tabel_e2_field1'],
 				$this->v_post['tabel_e2_field2'],
 				$this->v_post['tabel_e2_field3'],
+				$this->v_post['tabel_e2_field4'],
+				$this->v_post['tabel_e2_field5'],
+				$this->v_post['tabel_e2_field6'],
 			),
 			$this->views['flash3'],
 			'ubah' . $tabel_e2_field1
@@ -105,58 +171,158 @@ class C_tabel_e2 extends Omnitags
 		$data = array(
 			$this->aliases['tabel_e2_field2'] => $this->v_post['tabel_e2_field2'],
 			$this->aliases['tabel_e2_field3'] => $this->v_post['tabel_e2_field3'],
+			$this->aliases['tabel_e2_field4'] => $this->v_post['tabel_e2_field4'],
+			$this->aliases['tabel_e2_field5'] => $this->v_post['tabel_e2_field5'],
+			$this->aliases['tabel_e2_field6'] => $this->v_post['tabel_e2_field6'],
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_e2->update_e2($data, $tabel_e2_field1);
+		$this->insert_history('tabel_e2', $data);
 
 		$notif = $this->handle_4c($aksi, 'tabel_e2', $tabel_e2_field1);
 
 		redirect($_SERVER['HTTP_REFERER']);
+	}
+	
+	//Soft Delete Data
+	public function soft_delete($tabel_e2_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
 
+		$tabel = $this->tl_e2->get_e2_by_field('tabel_e2_field1', $tabel_e2_field1)->result();
+		$this->check_data($tabel);
 
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
 
+		$aksi = $this->tl_e2->update_e2($data, $tabel_e2_field1);
+		$this->insert_history('tabel_e2', $data);
+
+		$notif = $this->handle_4e($aksi, 'tabel_e2', $tabel_e2_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
+	// Soft Delete data
+	public function restore($tabel_e2_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_e2->get_e2_by_field_archive('tabel_e2_field1', $tabel_e2_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => NULL,
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_e2->update_e2($data, $tabel_e2_field1);
+		$this->insert_history('tabel_e2', $data);
+
+		$notif = $this->handle_4e($aksi, 'tabel_e2', $tabel_e2_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Delete data
 	public function delete($tabel_e2_field1 = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_e2 = $this->tl_e2->get_e2_by_e2_field1($tabel_e2_field1)->result();
+		$tabel_e2 = $this->tl_e2->get_e2_by_field_archive('tabel_e2_field1', $tabel_e2_field1)->result();
 		$this->check_data($tabel_e2);
 
-		$tabel_e2_field3 = $tabel_e2[0]->img;
-
-		unlink($this->v_upload_path['tabel_e2'] . $tabel_e2_field3);
-		$aksi = $this->tl_e2->delete_e2($tabel_e2_field1);
+		$aksi = $this->tl_e2->delete_e2_by_field('tabel_e2_field1', $tabel_e2_field1);
 
 		$notif = $this->handle_4e($aksi, 'tabel_e2', $tabel_e2_field1);
 
 		redirect($_SERVER['HTTP_REFERER']);
-
-
 	}
 
-	// Cetak semua data
-	public function laporan()
+	// Archive Page
+	public function archive()
 	{
 		$this->declarew();
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_e2_alias_v4_title'),
-			'konten' => $this->v4['tabel_e2'],
+			'title' => lang('tabel_e2_alias_v9_title'),
+			'konten' => $this->v9['tabel_e2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e2']),
-			'tbl_e2' => $this->tl_e2->get_all_e2(),
+			'tbl_e2' => $this->tl_e2->get_all_e2_archive(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		load_view_data('_layouts/printpage', $data);
+		$this->load_page('tabel_e2', '_layouts/template', $data1);
 	}
 
-	// Cetak satu data
+	// Public Pages
+	public function detail_archive($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
 
+		$tabel = $this->tl_e2->get_e2_by_field('tabel_e2_field1', $param1)->result();
+		$this->check_data($tabel);
 
+		$data1 = array(
+			'title' => lang('tabel_e2_alias_v10_title'),
+			'konten' => $this->v10['tabel_e2'],
+			'dekor' => $this->tl_e2->dekor($this->theme_id, $this->aliases['tabel_e2']),
+			'tbl_e2' => $this->tl_e2->get_e2_by_field_archive('tabel_e2_field1', $param1),
+		);
+
+		$this->load_page('tabel_e2', '_layouts/template', $data1);
+	}
+	
+	public function history($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_e2->get_e2_by_field('tabel_e2_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'table_id' => $param1,
+			'title' => lang('tabel_e2_alias_v11_title'),
+			'konten' => $this->v11['tabel_e2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e2']),
+			'tbl_e2' => $this->tl_ot->get_by_field_history('tabel_e2', 'tabel_e2_field1', $param1),
+		);
+
+		$this->load_page('tabel_e2', '_layouts/template', $data1);
+	}
+
+	//Push History Data into current data
+	public function push($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_ot->get_by_id_history('tabel_e2', $code)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			$this->aliases['tabel_e2_field1'] => $tabel[0]->{$this->aliases['tabel_e2_field1']},
+			$this->aliases['tabel_e2_field2'] => $tabel[0]->{$this->aliases['tabel_e2_field2']},
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_e2->update_e2($data, $tabel[0]->{$this->aliases['tabel_e2_field1']});
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
 }

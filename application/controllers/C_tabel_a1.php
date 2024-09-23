@@ -16,18 +16,15 @@ class C_tabel_a1 extends Omnitags
 		// Call to page_session_3 method
 		$this->page_session_3();
 
+		
+
 		$data1 = array(
 			'title' => 'Testing Page',
 			'konten' => '_contents/tabel_a1/testing',
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_a1']),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		// Set previous URL in session
-		set_userdata('previous_url', current_url());
-		// Load view data with template
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_a1', '_layouts/template', $data1);
 	}
 
 	// Page for 1 data
@@ -50,12 +47,7 @@ class C_tabel_a1 extends Omnitags
 			'tbl_b7' => $this->tl_b7->get_all_b7(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		// Set previous URL in session
-		set_userdata('previous_url', current_url());
-		// Load view data with template
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_a1', '_layouts/template', $data1);
 	}
 
 	// Functions
@@ -89,9 +81,11 @@ class C_tabel_a1 extends Omnitags
 			$this->aliases['tabel_a1_field5'] => $this->v_post['tabel_a1_field5'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_a1->update_a1($data, $tabel_a1_field1);
+		$this->insert_history('tabel_a1', $data);
 
 		$notif = $this->handle_4c($aksi, 'tabel_a1', $tabel_a1_field1);
 
@@ -123,14 +117,36 @@ class C_tabel_a1 extends Omnitags
 			$this->aliases['tabel_a1_field6'] => $this->v_post['tabel_a1_field6'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_a1->update_a1($data, $tabel_a1_field1);
+		$this->insert_history('tabel_a1', $data);
 
 		$notif = $this->handle_4d($aksi, 'tabel_b7', $tabel_a1_field1);
 
 		 // Redirect to previous page
 		redirect($_SERVER['HTTP_REFERER']);
+	}
+	
+	public function history($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_a1->get_a1_by_field('tabel_a1_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'table_id' => $param1,
+			'title' => lang('tabel_a1_alias_v11_title'),
+			'konten' => $this->v11['tabel_a1'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_a1']),
+			'current' => $this->tl_ot->get_by_field('tabel_a1', 'tabel_a1_field1', $param1),
+			'tbl_a1_alt' => $this->tl_ot->get_by_field_history('tabel_a1', 'tabel_a1_field1', $param1),
+		);
+
+		$this->load_page('tabel_a1', '_layouts/template', $data1);
 	}
 
 }

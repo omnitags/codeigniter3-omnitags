@@ -44,10 +44,7 @@ class C_tabel_f1 extends Omnitags
 			'tabel_f1_field12_filter2_value' => $param4,
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_f1', '_layouts/template', $data1);
 	}
 
 	// Admin Pages
@@ -83,10 +80,7 @@ class C_tabel_f1 extends Omnitags
 			'tabel_f1_field12_filter2_value' => $param4,
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_f1', '_layouts/template', $data1);
 	}
 
 	// public function delete($tabel_f1_field1 = null)
@@ -111,10 +105,7 @@ class C_tabel_f1 extends Omnitags
 			'tbl_f1' => $this->tl_f1->get_f1_with_e4(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		load_view_data('_layouts/printpage', $data);
+		$this->load_page('tabel_f1', '_layouts/printpage', $data1);
 	}
 
 	public function print($tabel_f1_field1 = null)
@@ -136,9 +127,83 @@ class C_tabel_f1 extends Omnitags
 			'tbl_f1' => $this->tl_f1->get_f1_with_e4_by_f1_field1($tabel_f1_field1),
 		);
 
-		$data = array_merge($data1, $this->package);
+		$this->load_page('tabel_f1', '_layouts/printpage', $data1);
+	}
 
-		set_userdata('previous_url', current_url());
-		load_view_data('_layouts/printpage', $data);
+	// Archive Page
+	public function archive()
+	{
+		$this->declarew();
+		$this->page_session_3();
+
+		$data1 = array(
+			'title' => lang('tabel_f1_alias_v9_title'),
+			'konten' => $this->v9['tabel_f1'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f1']),
+			'tbl_f1' => $this->tl_f1->get_all_f1_archive(),
+		);
+
+		$this->load_page('tabel_f1', '_layouts/template', $data1);
+	}
+
+	// Public Pages
+	public function detail_archive($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_f1->get_f1_by_field('tabel_f1_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_f1_alias_v10_title'),
+			'konten' => $this->v10['tabel_f1'],
+			'dekor' => $this->tl_f1->dekor($this->theme_id, $this->aliases['tabel_f1']),
+			'tbl_f1' => $this->tl_f1->get_f1_by_field_archive('tabel_f1_field1', $param1),
+		);
+
+		$this->load_page('tabel_f1', '_layouts/template', $data1);
+	}
+	
+	public function history($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_f1->get_f1_by_field('tabel_f1_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'table_id' => $param1,
+			'title' => lang('tabel_f1_alias_v11_title'),
+			'konten' => $this->v11['tabel_f1'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f1']),
+			'tbl_f1' => $this->tl_ot->get_by_field_history('tabel_f1', 'tabel_f1_field1', $param1),
+		);
+
+		$this->load_page('tabel_f1', '_layouts/template', $data1);
+	}
+
+	//Push History Data into current data
+	public function push($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_ot->get_by_id_history('tabel_f1', $code)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			$this->aliases['tabel_f1_field1'] => $tabel[0]->{$this->aliases['tabel_f1_field1']},
+			$this->aliases['tabel_f1_field2'] => $tabel[0]->{$this->aliases['tabel_f1_field2']},
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_f1->update_f1($data, $tabel[0]->{$this->aliases['tabel_f1_field1']});
+
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
