@@ -330,9 +330,9 @@ class C_tabel_b7 extends Omnitags
 		$tabel_b7 = $this->tl_b7->get_b7_field1_archive($tabel_b7_field1)->result();
 		$this->check_data($tabel_b7);
 
-		$tabel_b7_field3 = $tabel_b7[0]->favicon;
-		$tabel_b7_field4 = $tabel_b7[0]->logo;
-		$tabel_b7_field5 = $tabel_b7[0]->foto;
+		$tabel_b7_field3 = $tabel_b7[0]->{$this->aliases['tabel_b7_field3']};
+		$tabel_b7_field4 = $tabel_b7[0]->{$this->aliases['tabel_b7_field4']};
+		$tabel_b7_field5 = $tabel_b7[0]->{$this->aliases['tabel_b7_field5']};
 		unlink($this->v_upload_path['tabel_b7'] . $tabel_b7_field3);
 		unlink($this->v_upload_path['tabel_b7'] . $tabel_b7_field4);
 		unlink($this->v_upload_path['tabel_b7'] . $tabel_b7_field5);

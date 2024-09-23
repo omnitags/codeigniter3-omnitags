@@ -318,6 +318,4 @@ class C_tabel_e4 extends Omnitags
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
-
-
 }

@@ -157,7 +157,7 @@ if (!class_exists('Omnitags')) {
             $this->tabel_a1_field1 = 1;
 
             $this->theme = $this->tl_b7->tema($this->tabel_a1_field1)->result();
-            $this->theme_id = $this->theme[0]->id_theme;
+            $this->theme_id = $this->theme[0]->{$this->aliases['tabel_b7_field1']};
 
             $this->notif_limit = $this->tl_b9->get_b9_with_b8_limit(userdata($this->aliases['tabel_c2_field1']))->result();
             $this->notif_null = $this->tl_b9->get_b9_by_field(['tabel_b9_field2', 'tabel_b9_field6'], [userdata($this->aliases['tabel_c2_field1']), NULL]);

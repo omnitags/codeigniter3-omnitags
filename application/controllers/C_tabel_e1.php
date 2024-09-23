@@ -202,12 +202,11 @@ class C_tabel_e1 extends Omnitags
 		$tabel_e1 = $this->tl_e1->get_e1_by_field_archive('tabel_e1_field1', $tabel_e1_field1)->result();
 		$this->check_data($tabel_e1);
 
-		$tabel_e1_field2 = $tabel_e1[0]->tipe;
-		$tabel_e1_field4 = $tabel_e1[0]->img;
-
 		// Define the folder and file paths
-		$folder_name = $tabel_e1_field2; // Assuming the folder name is stored in img
-		$file_path = $this->v_upload_path['tabel_e1'] . '/' . $folder_name . '/' . $tabel_e1_field4;
+		$folder_name = $tabel_e1[0]->{$this->aliases['tabel_e1_field2']};
+		$img = $tabel_e1[0]->{$this->aliases['tabel_e1_field4']};
+
+		$file_path = $this->v_upload_path['tabel_e1'] . '/' . $folder_name . '/' . $img;
 
 		// Delete the image file if it exists
 		if (file_exists($file_path)) {

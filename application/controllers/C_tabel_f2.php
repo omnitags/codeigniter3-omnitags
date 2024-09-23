@@ -268,7 +268,7 @@ class C_tabel_f2 extends Omnitags
 		$tabel_e4 = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
 
 		// Calculate total price
-		$harga_total = ($numberdays * $tabel_e4[0]->harga);
+		$harga_total = ($numberdays * $tabel_e4[0]->{$this->aliases['tabel_f2_field9']});
 
 		// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
 		// $this->aliases['tabel_e1_field1'] => $id,

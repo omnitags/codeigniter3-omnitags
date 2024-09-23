@@ -312,9 +312,9 @@ class C_tabel_c2 extends Omnitags
 
 		// mengambil data profil yang baru dirubah
 		$tabel_c2 = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $tabel_c2_field1)->result();
-		$tabel_c2_field2 = $tabel_c2[0]->nama;
-		$tabel_c2_field3 = $tabel_c2[0]->email;
-		$tabel_c2_field4 = $tabel_c2[0]->hp;
+		$tabel_c2_field2 = $tabel_c2[0]->{$this->aliases['tabel_c2_field2']};
+		$tabel_c2_field3 = $tabel_c2[0]->{$this->aliases['tabel_c2_field3']};
+		$tabel_c2_field5 = $tabel_c2[0]->{$this->aliases['tabel_c2_field5']};
 
 		// membuat session baru berdasarkan data yang telah diupdate
 		set_userdata($this->aliases['tabel_c2_field2'], $tabel_c2_field2);
@@ -429,11 +429,11 @@ class C_tabel_c2 extends Omnitags
 			// Verify password
 			if (password_verify($tabel_c2_field4, $method4)) {
 				// Set user session data
-				$tabel_c2_field1 = $tabel_c2[0]->id_user;
-				$tabel_c2_field2 = $tabel_c2[0]->nama;
-				$tabel_c2_field3 = $tabel_c2[0]->email;
-				$tabel_c2_field5 = $tabel_c2[0]->hp;
-				$tabel_c2_field6 = $tabel_c2[0]->level;
+				$tabel_c2_field1 = $tabel_c2[0]->{$this->aliases['tabel_c2_field1']};
+				$tabel_c2_field2 = $tabel_c2[0]->{$this->aliases['tabel_c2_field2']};
+				$tabel_c2_field3 = $tabel_c2[0]->{$this->aliases['tabel_c2_field3']};
+				$tabel_c2_field5 = $tabel_c2[0]->{$this->aliases['tabel_c2_field5']};
+				$tabel_c2_field6 = $tabel_c2[0]->{$this->aliases['tabel_c2_field6']};
 
 				set_userdata($this->aliases['tabel_c2_field1'], $tabel_c2_field1);
 				set_userdata($this->aliases['tabel_c2_field2'], $tabel_c2_field2);

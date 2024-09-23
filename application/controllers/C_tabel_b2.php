@@ -290,7 +290,7 @@ class C_tabel_b2 extends Omnitags
 		$tabel_b2 = $this->tl_b2->get_b2_by_field_archive('tabel_b2_field1', $code)->result();
 		$this->check_data($tabel_b2);
 
-		$img = $tabel_b2[0]->img;
+		$img = $tabel_b2[0]->{$this->aliases['tabel_b2_field4']};
 
 		unlink($this->v_upload_path['tabel_b2'] . $img);
 
