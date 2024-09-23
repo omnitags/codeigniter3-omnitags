@@ -14,6 +14,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_e2') ?>
+    <?= btn_archive('tabel_e2') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">
@@ -67,6 +68,7 @@
           <td>
             <?= btn_lihat($tl_e2->$tabel_e2_field1) ?>
             <?= btn_edit($tl_e2->$tabel_e2_field1) ?>
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>
@@ -151,6 +153,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_e2', $tl_e2->$tabel_e2_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>

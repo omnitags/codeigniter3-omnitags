@@ -3,14 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class M_tabel_f3 extends CI_Model
 {
-	
-	public function get_all_f3_archive()
-	{
-		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_f3_field1'], 'DESC');
-		return $this->db->get($this->aliases['tabel_f3']);
-	}
-	
 	// 4 fungsi di bawah ini bisa dibilang pengganti fungsi get_all_ atau ambil atau get_c2_field1
 	public function get_f3_with_f2_with_e4()
 	{
@@ -58,6 +50,13 @@ class M_tabel_f3 extends CI_Model
 		return $this->db->get($this->aliases['tabel_f3']);
 	}
 
+	public function get_all_f3_archive()
+	{
+		$this->db->where('deleted_at IS NOT NULL');
+		$this->db->order_by($this->aliases['tabel_f3_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_f3']);
+	}
+
 	public function get_f3_by_field($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
@@ -68,8 +67,24 @@ class M_tabel_f3 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-
+		
 		$this->db->where('deleted_at', NULL);
+		$this->db->order_by($this->aliases['tabel_f3_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_f3']);
+	}
+	
+	public function get_f3_by_field_archive($fields, $params)
+	{
+		if (is_array($fields) && is_array($params)) {
+			foreach ($fields as $key => $field) {
+				$param = $params[$key]; // Get the corresponding param value
+				$this->db->where($this->aliases[$field], $param);
+			}
+		} else {
+			$this->db->where($this->aliases[$fields], $params);
+		}
+
+		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by($this->aliases['tabel_f3_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_f3']);
 	}

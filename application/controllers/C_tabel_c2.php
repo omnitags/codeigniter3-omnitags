@@ -21,11 +21,7 @@ class C_tabel_c2 extends Omnitags
 			'tbl_c2' => $this->tl_c2->get_all_c2(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_c2', '_layouts/template', $data1);
 	}
 
 	// Print all data
@@ -41,11 +37,7 @@ class C_tabel_c2 extends Omnitags
 			'tbl_c2' => $this->tl_c2->get_all_c2(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/printpage', $data);
+		$this->load_page('tabel_c2', '_layouts/printpage', $data1);
 	}
 
 	// Profile page
@@ -69,11 +61,7 @@ class C_tabel_c2 extends Omnitags
 			'tbl_d3' => $this->tl_d3->get_d3_by_field('tabel_c2_field1', $tabel_c2_field1),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_c2', '_layouts/template', $data1);
 	}
 
 	// Login Page
@@ -88,11 +76,7 @@ class C_tabel_c2 extends Omnitags
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'login'),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/logpage', $data);
+		$this->load_page('', '_layouts/logpage', $data1);
 	}
 
 	// Sign Up Page
@@ -107,11 +91,7 @@ class C_tabel_c2 extends Omnitags
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'signup'),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/logpage', $data);
+		$this->load_page('', '_layouts/logpage', $data1);
 	}
 
 	// Functions
@@ -222,9 +202,11 @@ class C_tabel_c2 extends Omnitags
 			$this->aliases['tabel_c2_field6'] => $this->v_post['tabel_c2_field6'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_c2->update_c2($data, $tabel_c2_field1);
+		$this->insert_history('tabel_c2', $data);
 
 		$notif = $this->handle_4c($aksi, 'tabel_c2', $tabel_c2_field1);
 
@@ -244,9 +226,11 @@ class C_tabel_c2 extends Omnitags
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_c2->update_c2($data, $tabel_c2_field1);
+		$this->insert_history('tabel_c2', $data);
 
 		$notif = $this->handle_4e($aksi, 'tabel_c2', $tabel_c2_field1);
 
@@ -259,15 +243,17 @@ class C_tabel_c2 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $tabel_c2_field1)->result();
+		$tabel = $this->tl_c2->get_c2_by_field_archive('tabel_c2_field1', $tabel_c2_field1)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => NULL,
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_c2->update_c2($data, $tabel_c2_field1);
+		$this->insert_history('tabel_c2', $data);
 
 		$notif = $this->handle_4e($aksi, 'tabel_c2', $tabel_c2_field1);
 
@@ -280,7 +266,7 @@ class C_tabel_c2 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $tabel_c2_field1)->result();
+		$tabel = $this->tl_c2->get_c2_by_field_archive('tabel_c2_field1', $tabel_c2_field1)->result();
 		$this->check_data($tabel);
 		$aksi = $this->tl_c2->delete_c2_by_field('tabel_c2_field1', $tabel_c2_field1);
 
@@ -316,17 +302,19 @@ class C_tabel_c2 extends Omnitags
 			$this->aliases['tabel_c2_field5'] => $this->v_post['tabel_c2_field5'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
 		$aksi = $this->tl_c2->update_c2($data, $tabel_c2_field1);
+		$this->insert_history('tabel_c2', $data);
 
 		$notif = $this->handle_4c($aksi, 'tabel_c2', $tabel_c2_field1);
 
 		// mengambil data profil yang baru dirubah
 		$tabel_c2 = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $tabel_c2_field1)->result();
-		$tabel_c2_field2 = $tabel_c2[0]->nama;
-		$tabel_c2_field3 = $tabel_c2[0]->email;
-		$tabel_c2_field4 = $tabel_c2[0]->hp;
+		$tabel_c2_field2 = $tabel_c2[0]->{$this->aliases['tabel_c2_field2']};
+		$tabel_c2_field3 = $tabel_c2[0]->{$this->aliases['tabel_c2_field3']};
+		$tabel_c2_field5 = $tabel_c2[0]->{$this->aliases['tabel_c2_field5']};
 
 		// membuat session baru berdasarkan data yang telah diupdate
 		set_userdata($this->aliases['tabel_c2_field2'], $tabel_c2_field2);
@@ -436,16 +424,16 @@ class C_tabel_c2 extends Omnitags
 		// Check if user data exists
 		if ($method3->num_rows() > 0) {
 			$tabel_c2 = $method3->result();
-			$method4 = $tabel_c2[0]->password;
+			$method4 = $tabel_c2[0]->{$this->aliases['tabel_c2_field4']};
 
 			// Verify password
 			if (password_verify($tabel_c2_field4, $method4)) {
 				// Set user session data
-				$tabel_c2_field1 = $tabel_c2[0]->id_user;
-				$tabel_c2_field2 = $tabel_c2[0]->nama;
-				$tabel_c2_field3 = $tabel_c2[0]->email;
-				$tabel_c2_field5 = $tabel_c2[0]->hp;
-				$tabel_c2_field6 = $tabel_c2[0]->level;
+				$tabel_c2_field1 = $tabel_c2[0]->{$this->aliases['tabel_c2_field1']};
+				$tabel_c2_field2 = $tabel_c2[0]->{$this->aliases['tabel_c2_field2']};
+				$tabel_c2_field3 = $tabel_c2[0]->{$this->aliases['tabel_c2_field3']};
+				$tabel_c2_field5 = $tabel_c2[0]->{$this->aliases['tabel_c2_field5']};
+				$tabel_c2_field6 = $tabel_c2[0]->{$this->aliases['tabel_c2_field6']};
 
 				set_userdata($this->aliases['tabel_c2_field1'], $tabel_c2_field1);
 				set_userdata($this->aliases['tabel_c2_field2'], $tabel_c2_field2);
@@ -498,5 +486,82 @@ class C_tabel_c2 extends Omnitags
 		// menghapus session
 		session_destroy();
 		redirect(site_url($this->language_code . '/' . 'home'));
+	}
+
+	// Archive Page
+	public function archive()
+	{
+		$this->declarew();
+		$this->page_session_3();
+
+		$data1 = array(
+			'title' => lang('tabel_c2_alias_v9_title'),
+			'konten' => $this->v9['tabel_c2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c2']),
+			'tbl_c2' => $this->tl_c2->get_all_c2_archive(),
+		);
+
+		$this->load_page('tabel_c2', '_layouts/template', $data1);
+	}
+
+	// Public Pages
+	public function detail_archive($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_c2_alias_v10_title'),
+			'konten' => $this->v10['tabel_c2'],
+			'dekor' => $this->tl_c2->dekor($this->theme_id, $this->aliases['tabel_c2']),
+			'tbl_c2' => $this->tl_c2->get_c2_by_field_archive('tabel_c2_field1', $param1),
+		);
+
+		$this->load_page('tabel_c2', '_layouts/template', $data1);
+	}
+	
+	public function history($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'table_id' => $param1,
+			'title' => lang('tabel_c2_alias_v11_title'),
+			'konten' => $this->v11['tabel_c2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c2']),
+			'tbl_c2' => $this->tl_ot->get_by_field_history('tabel_c2', 'tabel_c2_field1', $param1),
+		);
+
+		$this->load_page('tabel_c2', '_layouts/template', $data1);
+	}
+
+	//Push History Data into current data
+	public function push($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_ot->get_by_id_history('tabel_c2', $code)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			$this->aliases['tabel_c2_field1'] => $tabel[0]->{$this->aliases['tabel_c2_field1']},
+			$this->aliases['tabel_c2_field2'] => $tabel[0]->{$this->aliases['tabel_c2_field2']},
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_c2->update_c2($data, $tabel[0]->{$this->aliases['tabel_c2_field1']});
+
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 }

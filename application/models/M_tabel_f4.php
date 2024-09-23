@@ -33,6 +33,22 @@ class M_tabel_f4 extends CI_Model
 		return $this->db->get($this->aliases['tabel_f4']);
 	}
 
+	public function get_f4_by_field_archive($fields, $params)
+	{
+		if (is_array($fields) && is_array($params)) {
+			foreach ($fields as $key => $field) {
+				$param = $params[$key]; // Get the corresponding param value
+				$this->db->where($this->aliases[$field], $param);
+			}
+		} else {
+			$this->db->where($this->aliases[$fields], $params);
+		}
+
+		$this->db->where('deleted_at IS NOT NULL');
+		$this->db->order_by($this->aliases['tabel_f4_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_f4']);
+	}
+
 	public function insert_f4($data)
 	// public function insert_f4($query)
 	{

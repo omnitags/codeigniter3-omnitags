@@ -50,7 +50,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_b1') ?>
-
+    <?= btn_archive('tabel_b1') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">
@@ -123,6 +123,7 @@
             <?= btn_lihat($tl_b1->$tabel_b1_field1) ?>
             <?= btn_edit($tl_b1->$tabel_b1_field1) ?>
             <?= btn_hapus('tabel_b1', $tl_b1->$tabel_b1_field1) ?>
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>
@@ -246,7 +247,7 @@
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>
-          <form class="modal-body">
+          <div class="modal-body">
             <?= table_data(
               row_data('tabel_b1_field1', $tl_b1->$tabel_b1_field1) .
               row_data('tabel_b1_field2', $tl_b1->$tabel_b1_field2) .
@@ -257,12 +258,13 @@
               row_data('tabel_b1_field7', $tl_b1->$tabel_b1_field7),
               'table-light'
             ) ?>
-          </form>
+          </div>
 
           <!-- memunculkan notifikasi modal -->
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_b1', $tl_b1->$tabel_b1_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>

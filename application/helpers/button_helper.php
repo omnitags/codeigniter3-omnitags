@@ -289,6 +289,28 @@ if (!function_exists('btn_laporan')) {
     }
 }
 
+if (!function_exists('btn_archive')) {
+    // Generates a button to print a report for a specific table
+    function btn_archive($tabel)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+        $controller = xss_clean($data[$tabel]);
+
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/archive'));
+
+        return <<<HTML
+        <a class="btn mr-1 btn-outline-secondary mb-4" href="{$url}" target="_blank">
+            <i class="fas fa-trash"></i> Trash</a>
+        HTML;
+    }
+}
+
 if (!function_exists('btn_print')) {
     // Generates a button to print specific data
     function btn_print($tabel, $value)
@@ -424,6 +446,54 @@ if (!function_exists('btn_restore')) {
         <a class="btn mr-1 mb-2 btn-light border border-dark text-primary" onclick="return confirm('apakah data {$alias} ingin dikembalikan?')"
               href="{$url}">
               <i class="fas fa-trash-restore"></i></a>
+        HTML;
+    }
+}
+
+if (!function_exists('btn_push')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_push($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/push'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-primary" onclick="return confirm('apakah data {$alias} ingin dikembalikan?')"
+              href="{$url}">
+              <i class="fas fa-arrow-up"></i></a>
+        HTML;
+    }
+}
+
+if (!function_exists('btn_history')) {
+    // Creates a button to delete specific data with a confirmation prompt
+    function btn_history($tabel, $value)
+    {
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+
+        $controller = xss_clean($data[$tabel]);
+        $alias = xss_clean(lang($tabel . '_alias'));
+        $lang = xss_clean($data['language']);
+
+        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/history'));
+
+        return <<<HTML
+        <a class="btn mr-1 mb-2 btn-light border border-dark text-primary"
+              href="{$url}" target="_blank">
+              <i class="fas fa-history"></i></a>
         HTML;
     }
 }

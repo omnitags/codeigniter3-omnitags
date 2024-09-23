@@ -126,6 +126,7 @@ Jadi tidak perlu menambahkan foreach pesanan lagi -->
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_f3', $tl_f3->$tabel_f3_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </div>
