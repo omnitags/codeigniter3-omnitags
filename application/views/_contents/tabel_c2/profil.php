@@ -79,7 +79,7 @@
       <tr>
         <th><?= lang('no') ?></th>
         <th><?= lang('tabel_d3_field3_alias') ?></th>
-        <th><?= lang('created_at_alias') ?></th>
+        <th><?= lang('created_at') ?></th>
       </tr>
     </thead>
 
@@ -88,7 +88,7 @@
         <tr>
           <td></td>
           <td><?= $tl_d3->$tabel_d3_field3 ?></td>
-          <td><?= $tl_d3->$created_at ?></td>
+          <td><?= $tl_d3->created_at ?></td>
         </tr>
       <?php endforeach; ?>
     </tbody>

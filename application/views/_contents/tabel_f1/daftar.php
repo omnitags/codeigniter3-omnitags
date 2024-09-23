@@ -15,6 +15,7 @@
 <div class="row">
   <div class="col-md-10">
     <?= btn_field('filter', '<i class="fas fa-filter"></i> Filter') ?>
+    <?= btn_archive('tabel_f1') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">
@@ -22,12 +23,15 @@
   </div>
 </div>
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_f1->result())) {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_f1->result())) {
     load_view('_partials/no_data');
   } else {
+    $counter = 1;
     foreach ($tbl_f1->result() as $tl_f1):
       echo card_regular(
+        $counter,
         $tl_f1->$tabel_f1_field1,
         $tl_f1->$tabel_f1_field1 . ' | ' . $tl_f1->$tabel_e4_field2,
         card_content('40%', 'tabel_f1_field11', $tl_f1->$tabel_f1_field11) .
@@ -39,8 +43,14 @@
         'col-md-3',
         $tabel_f1,
       );
+    $counter++;
     endforeach;
   } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
 
 

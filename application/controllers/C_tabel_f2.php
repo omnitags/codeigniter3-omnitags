@@ -46,12 +46,7 @@ class C_tabel_f2 extends Omnitags
 				break;
 		}
 
-		$data = array_merge($data1, $this->package);
-
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data($halaman, $data);
+		$this->load_page('tabel_f2', $halaman, $data1);
 	}
 
 	// Account Only Pages
@@ -91,11 +86,7 @@ class C_tabel_f2 extends Omnitags
 
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
 	}
 
 
@@ -124,7 +115,7 @@ class C_tabel_f2 extends Omnitags
 			'konten' => $this->v3['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 			'tbl_f2' => $this->tl_f2->get_all_f2(),
-			'tbl_f2' => $this->tl_f2->get_all_f2(),
+			'tbl_e3' => $this->tl_e3->get_all_e3(),
 
 			// menggunakan nilai $min dan $max sebagai bagian dari $data
 			// 'tabel_f2_field10_filter1_value' => $param1,
@@ -133,11 +124,7 @@ class C_tabel_f2 extends Omnitags
 			// 'tabel_f2_field11_filter2_value' => $param4
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
 	}
 
 	// Print all data
@@ -153,11 +140,7 @@ class C_tabel_f2 extends Omnitags
 			'tbl_f2' => $this->tl_f2->get_f2_with_e4(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/printpage', $data);
+		$this->load_page('tabel_f2', '_layouts/printpage', $data1);
 	}
 
 	// Print one data
@@ -180,11 +163,7 @@ class C_tabel_f2 extends Omnitags
 			'tbl_f2' => $this->tl_f2->get_f2_with_e4_by_f2_field1($tabel_f2_field1),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/printpage', $data);
+		$this->load_page('tabel_f2', '_layouts/printpage', $data1);
 	}
 
 
@@ -220,15 +199,11 @@ class C_tabel_f2 extends Omnitags
 
 			// mencari dan menampilkan id pesanan berdasarkan id_pesanan yang telah diinput
 			'tbl_f2' => $this->tl_f2->cari($param1, $param2),
-			// 'tbl_e4' => $this->tl_e4->get_all_e4(),
-			'tbl_f2' => $this->tl_f2->get_all_f2(),
+			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			'tbl_e3' => $this->tl_e3->get_all_e3(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
 	}
 
 
@@ -248,11 +223,7 @@ class C_tabel_f2 extends Omnitags
 			'tbl_f2' => $this->tl_f2->get_f2_by_field('tabel_c2_field3', $tabel_c2_field3)->last_row(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/blank', $data);
+		$this->load_page('tabel_f2', '_layouts/blank', $data1);
 	}
 
 	// Functions
@@ -263,17 +234,44 @@ class C_tabel_f2 extends Omnitags
 		$this->declarew();
 		$this->session_5();
 
-		validate_all(
-			array(
-				$this->v_post['tabel_f2_field2'],
-				$this->v_post['tabel_f2_field3'],
-				$this->v_post['tabel_f2_field4'],
-				$this->v_post['tabel_f2_field5'],
-				$this->v_post['tabel_f2_field6'],
-			),
-			$this->views['flash2'],
-			'tambah'
-		);
+		// Security: Input Sanitization and Validation
+		$inputs = [
+			'tabel_f2_field4',
+			'tabel_f2_field8',
+			'tabel_f2_field10',
+			'tabel_f2_field11',
+			'tabel_f2_field2',
+			'tabel_f2_field3',
+			'tabel_f2_field5',
+			'tabel_f2_field6',
+			'tabel_f2_field7'
+		];
+
+		foreach ($inputs as $input) {
+			$input_value = htmlspecialchars(trim($this->v_post[$input]));
+			if (empty($input_value)) {
+				// Error Handling: Set error flash message for invalid input
+				set_flashdata($this->views['flash1'], "Invalid input. Please provide valid data.");
+				set_flashdata($this->views['flash1'], $this->views['flash1_func1']);
+				// Functional requirement: Redirect user to 'tabel_f2' confirmation page
+				redirect(site_url($this->language_code . '/' . $this->aliases['tabel_f2'] . '/konfirmasi'));
+			}
+		}
+
+		// Calculate total price based on date difference
+		$startTimeStamp = strtotime($this->v_post['tabel_f2_field10']);
+		$endTimeStamp = strtotime($this->v_post['tabel_f2_field11']);
+		$timedif = $endTimeStamp - $startTimeStamp;
+		$numberdays = $timedif / 60 / 60 / 24; // 86400 seconds in one day
+
+		$tabel_e4_field1 = $this->v_post['tabel_f2_field7'];
+		$tabel_e4 = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
+
+		// Calculate total price
+		$harga_total = ($numberdays * $tabel_e4[0]->{$this->aliases['tabel_f2_field9']});
+
+		// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
+		// $this->aliases['tabel_e1_field1'] => $id,
 
 		$data = [
 			$this->aliases['tabel_f2_field1'] => '',
@@ -282,15 +280,33 @@ class C_tabel_f2 extends Omnitags
 			$this->aliases['tabel_f2_field4'] => $this->v_post['tabel_f2_field4'],
 			$this->aliases['tabel_f2_field5'] => $this->v_post['tabel_f2_field5'],
 			$this->aliases['tabel_f2_field6'] => $this->v_post['tabel_f2_field6'],
+			$this->aliases['tabel_f2_field7'] => $this->v_post['tabel_f2_field7'],
+			$this->aliases['tabel_f2_field8'] => $this->v_post['tabel_f2_field8'],
+			$this->aliases['tabel_f2_field9'] => $harga_total,
+			$this->aliases['tabel_f2_field10'] => $this->v_post['tabel_f2_field10'],
+			$this->aliases['tabel_f2_field11'] => $this->v_post['tabel_f2_field11'],
+			$this->aliases['tabel_f2_field12'] => $this->aliases['tabel_f2_field12_value1'],
 
-			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
-			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		];
 
-		$aksi = $this->tl_f2->insert_f2($data);
+		// Create temporary session for a specific duration
+		set_userdata($this->aliases['tabel_c2_field3'] . '_' . $this->aliases['tabel_f2'], $this->v_post['tabel_f2_field4']);
 
-		$notif = $this->handle_4b($aksi, 'tabel_f2');
-		
+		try {
+			// Security: Prepared Statements to prevent SQL injection
+			// Functional requirement: Save data to the database
+			$aksi = $this->tl_f2->insert_f2($data);
+
+			$notif = $this->handle_4b($aksi, 'tabel_f2');
+
+		} catch (Exception $e) {
+			// Error Handling: Handle database operation errors
+			set_flashdata($this->views['flash2'], "Error occurred while adding data: " . $e->getMessage());
+			set_flashdata('modal', $this->views['flash2_func1']);
+		}
+
 		// Functional requirement: Redirect user to 'tabel_f2' confirmation page
 		redirect($this->language_code . '/' . $this->aliases['tabel_f2'] . '/konfirmasi');
 	}
@@ -299,44 +315,8 @@ class C_tabel_f2 extends Omnitags
 	// Update data
 	public function update()
 	{
-		$this->declarew();
-		$this->session_3();
-
-		$tabel_f2_field1 = $this->v_post['tabel_f2_field1'];
-
-		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $tabel_f2_field1)->result();
-		$this->check_data($tabel);
-
-		validate_all(
-			array(
-				$this->v_post['tabel_f2_field1'],
-				$this->v_post['tabel_f2_field2'],
-				$this->v_post['tabel_f2_field3'],
-				$this->v_post['tabel_f2_field4'],
-				$this->v_post['tabel_f2_field5'],
-				$this->v_post['tabel_f2_field6'],
-			),
-			$this->views['flash3'],
-			'ubah' . $tabel_f2_field1
-		);
-
-		$data = array(
-			$this->aliases['tabel_f2_field2'] => $this->v_post['tabel_f2_field2'],
-			$this->aliases['tabel_f2_field3'] => $this->v_post['tabel_f2_field3'],
-			$this->aliases['tabel_f2_field4'] => $this->v_post['tabel_f2_field4'],
-			$this->aliases['tabel_f2_field5'] => $this->v_post['tabel_f2_field5'],
-			$this->aliases['tabel_f2_field6'] => $this->v_post['tabel_f2_field6'],
-
-			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
-		);
-
-		$aksi = $this->tl_f2->update_f2($data, $tabel_f2_field1);
-
-		$notif = $this->handle_4c($aksi, 'tabel_f2', $tabel_f2_field1);
-
-		redirect($_SERVER['HTTP_REFERER']);
+		// this function is not really reccessary since only status that can be changed
 	}
-
 
 	// bagian update status untuk sementara kubiarkan tidak menggunakan variabel untuk sementara waktu
 	// hal ini ditujukan untuk keperluan penelitian penggunaan array
@@ -393,6 +373,52 @@ class C_tabel_f2 extends Omnitags
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
+	
+	//Soft Delete Data
+	public function soft_delete($tabel_f2_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $tabel_f2_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_f2->update_f2($data, $tabel_f2_field1);
+		$this->insert_history('tabel_f2', $data);
+
+		$notif = $this->handle_4e($aksi, 'tabel_f2', $tabel_f2_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Soft Delete data
+	public function restore($tabel_f2_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_f2->get_f2_by_field_archive('tabel_f2_field1', $tabel_f2_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => NULL,
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_f2->update_f2($data, $tabel_f2_field1);
+		$this->insert_history('tabel_f2', $data);
+
+		$notif = $this->handle_4e($aksi, 'tabel_f2', $tabel_f2_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
 
 
 	// Delete data
@@ -401,7 +427,7 @@ class C_tabel_f2 extends Omnitags
 		$this->declarew();
 		$this->session_4();
 
-		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $tabel_f2_field1)->result();
+		$tabel = $this->tl_f2->get_f2_by_field_archive('tabel_f2_field1', $tabel_f2_field1)->result();
 		$this->check_data($tabel);
 
 		$tabel_f2_field1 = $this->v_post['tabel_f2_field1'];
@@ -461,12 +487,90 @@ class C_tabel_f2 extends Omnitags
 		// hanya merubah id pesanan di tabel kamar berdasarkan no kamar
 		$param = $this->v_post['tabel_f2_field13'];
 		$data2 = array(
-			$this->aliases['tabel_f2_field3'] => $this->v_post['tabel_f2_field1'],
-			$this->aliases['tabel_f2_field4'] => $this->aliases['tabel_f2_field4_valuf2'],
+			$this->aliases['tabel_e3_field3'] => $this->v_post['tabel_f2_field1'],
+			$this->aliases['tabel_e3_field4'] => $this->aliases['tabel_e3_field4_value3'],
 		);
-		$aksi = $this->tl_f2->update_f2($data2, $param);
+		$aksi = $this->tl_e3->update_e3($data2, $param);
+		$this->insert_history('tabel_f2', $data);
 
 		$notif = $this->handle_4c($aksi, 'tabel_f2', $tabel_f2_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Archive Page
+	public function archive()
+	{
+		$this->declarew();
+		$this->page_session_3();
+
+		$data1 = array(
+			'title' => lang('tabel_f2_alias_v9_title'),
+			'konten' => $this->v9['tabel_f2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
+			'tbl_f2' => $this->tl_f2->get_all_f2_archive(),
+		);
+
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
+	}
+
+	// Public Pages
+	public function detail_archive($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_f2_alias_v10_title'),
+			'konten' => $this->v10['tabel_f2'],
+			'dekor' => $this->tl_f2->dekor($this->theme_id, $this->aliases['tabel_f2']),
+			'tbl_f2' => $this->tl_f2->get_f2_by_field_archive('tabel_f2_field1', $param1),
+		);
+
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
+	}
+	
+	public function history($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'table_id' => $param1,
+			'title' => lang('tabel_f2_alias_v11_title'),
+			'konten' => $this->v11['tabel_f2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
+			'tbl_f2' => $this->tl_ot->get_by_field_history('tabel_f2', 'tabel_f2_field1', $param1),
+		);
+
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
+	}
+
+	//Push History Data into current data
+	public function push($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_ot->get_by_id_history('tabel_f2', $code)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			$this->aliases['tabel_f2_field1'] => $tabel[0]->{$this->aliases['tabel_f2_field1']},
+			$this->aliases['tabel_f2_field2'] => $tabel[0]->{$this->aliases['tabel_f2_field2']},
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_f2->update_f2($data, $tabel[0]->{$this->aliases['tabel_f2_field1']});
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}

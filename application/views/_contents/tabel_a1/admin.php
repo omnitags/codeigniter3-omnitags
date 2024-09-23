@@ -15,6 +15,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_a1') ?>
+    <?= btn_archive('tabel_a1') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">
@@ -25,12 +26,15 @@
 
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_a1->result())) {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_a1->result())) {
     load_view('_partials/no_data');
   } else {
+    $counter = 1;
     foreach ($tbl_a1 as $tl_a1):
       echo card_file(
+        $counter,
         $tl_a1->$tabel_a1_field1,
         $tl_a1->$tabel_a1_field2,
         $tl_a1->$tabel_a1_field4,
@@ -42,8 +46,14 @@
         $tabel_a1,
         $tl_a1->$tabel_a1_field3,
       );
+    $counter++;
     endforeach;
   } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
 
 
@@ -124,6 +134,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_a1', $tl_a1->$tabel_a1_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>

@@ -30,8 +30,10 @@ if (!class_exists('Omnitags')) {
         // Variables that functions as soft code later on
         public $spreadsheet_lib, $uri, $db;
         public $aliases, $views, $flashdatas, $tempdatas, $show, $package;
-        public $v1, $v2, $v3, $v4, $v5, $v6, $v7, $v8;
-        public $v1_title, $v2_title, $v3_title, $v4_title, $v5_title, $v6_title, $v7_title, $v8_title;
+        public $v1, $v2, $v3, $v4, $v5, $v6, $v7, $v8, $v9, $v10;
+        public $v11;
+        public $v1_title, $v2_title, $v3_title, $v4_title, $v5_title, $v6_title, $v7_title, $v8_title, $v9_title, $v10_title;
+        public $v11_title;
         public $v_input, $v_post, $v_get;
         public $v_upload_path, $upload;
         public $flash, $flash_func;
@@ -52,6 +54,9 @@ if (!class_exists('Omnitags')) {
         public $flash_msg5;
         public $tabel_a1, $tabel_a1_field1;
         public $myData1, $myData2, $reverse;
+
+        // Below are the keys that you need to remember
+        public $tl_ot;
         public $tl_a1;
         public $tl_b1, $tl_b2, $tl_b3, $tl_b4, $tl_b5, $tl_b6, $tl_b7, $tl_b8, $tl_b9, $tl_b10, $tl_b11;
         public $tl_c1, $tl_c2, $tl_c3, $tl_c4;
@@ -63,40 +68,18 @@ if (!class_exists('Omnitags')) {
         {
             parent::__construct();
 
-            //Menampilkan media
-            $this->load->helper('tampil');
-            // Tampil button
-            $this->load->helper('button');
-            // Kelola teks
-            $this->load->helper('media');
-            // Tampil input
-            $this->load->helper('input');
-            // Tampil modal
-            $this->load->helper('modal');
-            // Kelola API
-            $this->load->helper('load_api');
-            // Kelola URL
-            $this->load->helper('move_url');
-            // Kelola Database Firebase
-            $this->load->helper('firebase');
-            // Tampil card
-            $this->load->helper('card');
-            // Tampil dropdown
-            $this->load->helper('dropdown');
-            // Kelola validation
-            $this->load->helper('validate');
-            // Kelola js
-            $this->load->helper('js');
-            // Kelola url
-            $this->load->helper('url');
-            // Kelola views
-            $this->load->helper('views');
-            // Kelola upload
-            $this->load->helper('uplod');
-            // Kelola session
-            $this->load->helper('session');
-            $this->load->library('session');
-            $this->load->library('user_agent');
+           //Menampilkan komponen html : teks, button, input, modal, dropdown
+           $this->load->helper(['tampil', 'button', 'input', 'modal', 'list_group', 'card', 'dropdown']);
+           // Kelola media dan javascript
+           $this->load->helper(['media', 'js']);
+           // Kelola API dan firebase
+           $this->load->helper(['load_api', 'firebase']);
+           // Kelola URL
+           $this->load->helper(['views', 'url', 'move_url']);
+           // Kelola validation
+           $this->load->helper(['session', 'validate', 'uplod']);
+           // Load library
+           $this->load->library(['session', 'user_agent']);
 
             // Get the language code from the URL segment
             $this->language_code = $this->uri->segment(1);
@@ -163,6 +146,9 @@ if (!class_exists('Omnitags')) {
                 $this->v6[$item['key']] = '_contents/' . $item['key'] . '/profil';
                 $this->v7[$item['key']] = '_contents/' . $item['key'] . '/konfirmasi';
                 $this->v8[$item['key']] = '_contents/' . $item['key'] . '/detail';
+                $this->v9[$item['key']] = '_contents/' . $item['key'] . '/archive';
+                $this->v10[$item['key']] = '_contents/' . $item['key'] . '/archive_detail';
+                $this->v11[$item['key']] = '_contents/' . $item['key'] . '/history';
             }
 
             $this->overload();
@@ -171,10 +157,10 @@ if (!class_exists('Omnitags')) {
             $this->tabel_a1_field1 = 1;
 
             $this->theme = $this->tl_b7->tema($this->tabel_a1_field1)->result();
-            $this->theme_id = $this->theme[0]->id_theme;
+            $this->theme_id = $this->theme[0]->{$this->aliases['tabel_b7_field1']};
 
             $this->notif_limit = $this->tl_b9->get_b9_with_b8_limit(userdata($this->aliases['tabel_c2_field1']))->result();
-            $this->notif_null = $this->tl_b9->get_b9_by_field(['tabel_b9_field2', 'read_at'], [userdata($this->aliases['tabel_c2_field1']), NULL]);
+            $this->notif_null = $this->tl_b9->get_b9_by_field(['tabel_b9_field2', 'tabel_b9_field6'], [userdata($this->aliases['tabel_c2_field1']), NULL]);
 
             $this->views = array(
                 'head' => '_partials/head',
@@ -236,6 +222,16 @@ if (!class_exists('Omnitags')) {
                     return;
                 }
             }
+        }
+
+        public function load_page($tabel, $view_name, $data1) {
+            if(!empty($tabel)) {
+                $this->tl_ot->create_or_update_history_table($tabel);
+            }
+            $data = array_merge($data1, $this->package);
+            set_userdata('previous_url', current_url());
+            $this->track_page();
+            load_view_data($view_name, $data);
         }
 
         // Session userdata handling for loading pages
@@ -632,6 +628,7 @@ if (!class_exists('Omnitags')) {
             return [];
         }
 
+        // Function to simplify upload new image
         public function upload_new_image($new_name, $path, $field, $allowed_types, $tabel)
         {
             $config['upload_path'] = $path;
@@ -654,8 +651,9 @@ if (!class_exists('Omnitags')) {
             }
         }
 
+        // Function to simplify change image
         public function change_image($new_name, $old_name, $path, $field, $allowed_types, $tabel)
-        {
+        {            
             $config['upload_path'] = $path;
             // nama file dan ekstensi telah ditetapkan dan dapat diganti dengan file bernama sama
             $config['allowed_types'] = $allowed_types;
@@ -677,10 +675,13 @@ if (!class_exists('Omnitags')) {
             }
         }
 
-        public function change_image_advanced($new_name, $old_name, $path, $field, $allowed_types, $tabel)
+        // Function to simplify change image but has advanced features
+        public function change_image_advanced($name_field, $path, $field, $allowed_types, $tabel)
         {
             $img = $this->v_post[$field . '_old'];
             $extension = '.' . getExtension($path . $img);
+            $new_name = $this->v_post[$name_field];
+            $old_name = $tabel[0]->{$this->aliases[$name_field]};
 
             $config['upload_path'] = $path;
             // nama file telah ditetapkan dan hanya berekstensi jpg dan dapat diganti dengan file bernama sama
@@ -756,7 +757,8 @@ if (!class_exists('Omnitags')) {
                 $this->aliases['tabel_b9_field3'] => $type,
                 $this->aliases['tabel_b9_field4'] => $msg . $extra,
 
-                $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+                'created_at' => date("Y-m-d\TH:i:s"),
+                'action_url' => current_full_url(),
             );
 
             $ambil = $this->tl_b9->insert_b9($notif);
@@ -781,6 +783,10 @@ if (!class_exists('Omnitags')) {
             return sprintf($kode . "%0" . $digits . "d", $next_number); // Generates a code like MED00001, MED00002, etc.
         }
 
+        public function insert_history($tabel_name, $data) {
+            return $this->tl_ot->create_or_update_history_table($tabel_name);
+        }
+
         // adding the actual notif to all user based on c2_field1
         public function add_notif_all($msg, $type, $extra)
         {
@@ -792,7 +798,7 @@ if (!class_exists('Omnitags')) {
                     $this->aliases['tabel_b9_field3'] => $type,
                     $this->aliases['tabel_b9_field4'] => $msg . $extra,
 
-                    $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+                    'created_at' => date("Y-m-d\TH:i:s"),
                 );
 
                 $ambil = $this->tl_b9->insert_b9($notif);
@@ -801,6 +807,7 @@ if (!class_exists('Omnitags')) {
             }
         }
 
+        // Function to track page
         public function track_page()
         {
             $tabel = $this->tl_b11->get_b11_by_field('tabel_b11_field2', current_full_url());
@@ -812,7 +819,7 @@ if (!class_exists('Omnitags')) {
                     'page_url' => current_full_url(),
                     'page_name' => uri_string(),
 
-                    $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+                    'created_at' => date("Y-m-d\TH:i:s"),
                 );
 
                 $aksi = $this->tl_b11->insert_b11($data);
@@ -825,10 +832,23 @@ if (!class_exists('Omnitags')) {
                 'user_id' => userdata($this->aliases['tabel_c2_field1']),
                 'page_id' => $tabel[0]->page_id,
 
-                $this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
+                'created_at' => date("Y-m-d\TH:i:s"),
             );
 
-            $aksi = $this->tl_d4->insert_d4($data1);
+            return $aksi = $this->tl_d4->insert_d4($data1);
+        }
+
+        public function track_action()
+        {
+            $data = array(
+                'id_activity' => '',
+                'page_url' => current_full_url(),
+                'page_name' => uri_string(),
+
+                'created_at' => date("Y-m-d\TH:i:s"),
+            );
+
+            return $aksi = $this->tl_b11->insert_b11($data);
         }
     }
 } else {

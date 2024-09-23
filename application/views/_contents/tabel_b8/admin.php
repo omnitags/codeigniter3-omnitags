@@ -14,6 +14,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_b8') ?>
+    <?= btn_archive('tabel_b8') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">
@@ -24,12 +25,15 @@
 
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_b8->result())) {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_b8->result())) {
     load_view('_partials/no_data');
   } else {
+    $counter = 1;
     foreach ($tbl_b8->result() as $tl_b8):
       echo card_regular(
+        $counter,
         $tl_b8->$tabel_b8_field1,
         $tl_b8->$tabel_b8_field2,
         '<div style="width: 100%;">' .
@@ -43,8 +47,14 @@
         'col-md-4',
         $tabel_b8,
       );
+    $counter++;
     endforeach;
   } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
 
 
@@ -161,6 +171,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_b8', $tl_b8->$tabel_b8_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>
@@ -171,3 +182,4 @@
 <?php endforeach; ?>
 
 <?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_b8->num_rows(), 28) ?>

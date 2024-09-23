@@ -20,8 +20,9 @@
 </div>
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_f3->result())) { ?>
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_f3->result())) { ?>
     <div class="col-md-12">
       <div class="text-center">
         <?php foreach ($no_data->result() as $nd): ?>
@@ -125,6 +126,7 @@ Jadi tidak perlu menambahkan foreach pesanan lagi -->
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_f3', $tl_f3->$tabel_f3_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </div>

@@ -16,6 +16,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_e4') ?>
+    <?= btn_archive('tabel_e4') ?>
     <!-- <button class="btn btn-info   b-4" type="button" data-toggle="modal" data-target="#import">+ Import</button>
     <button type="button" class="btn btn-info mb-4" id="export-btn" target="_blank">
       <i class="fas fa-print"></i> Cetak Excel</button> -->
@@ -28,12 +29,15 @@
 </div>
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_e4->result())) {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_e4->result())) {
     load_view('_partials/no_data');
   } else {
+    $counter = 1;
     foreach ($tbl_e4->result() as $tl_e4):
       echo card_file(
+        $counter,
         $tl_e4->$tabel_e4_field1,
         $tabel_e4_field1_alias . ": " . $tl_e4->$tabel_e4_field1,
         $tl_e4->$tabel_e4_field2,
@@ -44,8 +48,14 @@
         $tabel_e4,
         $tl_e4->$tabel_e4_field3
       );
+    $counter++;
     endforeach;
   } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
 
 
@@ -149,6 +159,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_e4', $tl_e4->$tabel_e4_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>
@@ -159,3 +170,4 @@
 <?php endforeach; ?>
 
 <?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_e4->num_rows(), 28) ?>
