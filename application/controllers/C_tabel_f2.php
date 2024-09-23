@@ -560,17 +560,22 @@ class C_tabel_f2 extends Omnitags
 		$tabel = $this->tl_ot->get_by_id_history('tabel_f2', $code)->result();
 		$this->check_data($tabel);
 
+		$code = $tabel[0]->{$this->aliases['tabel_f2_field1']};
+
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
-			$this->aliases['tabel_f2_field1'] => $tabel[0]->{$this->aliases['tabel_f2_field1']},
+			$this->aliases['tabel_f2_field1'] => $code,
 			$this->aliases['tabel_f2_field2'] => $tabel[0]->{$this->aliases['tabel_f2_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_f2->update_f2($data, $tabel[0]->{$this->aliases['tabel_f2_field1']});
+		$aksi = $this->tl_f2->update_f2($data, $code);
+
+		$notif = $this->handle_4c($aksi, 'tabel_f2', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
+

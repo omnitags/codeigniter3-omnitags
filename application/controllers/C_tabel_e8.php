@@ -270,17 +270,22 @@ class C_tabel_e8 extends Omnitags
 		$tabel = $this->tl_ot->get_by_id_history('tabel_e8', $code)->result();
 		$this->check_data($tabel);
 
+		$code = $tabel[0]->{$this->aliases['tabel_e8_field1']};
+
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
-			$this->aliases['tabel_e8_field1'] => $tabel[0]->{$this->aliases['tabel_e8_field1']},
+			$this->aliases['tabel_e8_field1'] => $code,
 			$this->aliases['tabel_e8_field2'] => $tabel[0]->{$this->aliases['tabel_e8_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_e8->update_e8($data, $tabel[0]->{$this->aliases['tabel_e8_field1']});
+		$aksi = $this->tl_e8->update_e8($data, $code);
+
+		$notif = $this->handle_4c($aksi, 'tabel_e8', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
+

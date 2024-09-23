@@ -178,9 +178,11 @@ class C_tabel_b11 extends Omnitags
 		$tabel = $this->tl_ot->get_by_id_history('tabel_b11', $code)->result();
 		$this->check_data($tabel);
 
+		$code = $tabel[0]->{$this->aliases['tabel_b11_field1']};
+
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
-			$this->aliases['tabel_b11_field1'] => $tabel[0]->{$this->aliases['tabel_b11_field1']},
+			$this->aliases['tabel_b11_field1'] => $code,
 			$this->aliases['tabel_b11_field2'] => $tabel[0]->{$this->aliases['tabel_b11_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
@@ -189,6 +191,9 @@ class C_tabel_b11 extends Omnitags
 
 		$aksi = $this->tl_b11->update_b11($data, $tabel[0]->{$this->aliases['tabel_b11_field1']});
 
+		$notif = $this->handle_4c($aksi, 'tabel_b11', $code);
+
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
+
