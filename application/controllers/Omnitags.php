@@ -653,7 +653,7 @@ if (!class_exists('Omnitags')) {
 
         // Function to simplify change image
         public function change_image($new_name, $old_name, $path, $field, $allowed_types, $tabel)
-        {
+        {            
             $config['upload_path'] = $path;
             // nama file dan ekstensi telah ditetapkan dan dapat diganti dengan file bernama sama
             $config['allowed_types'] = $allowed_types;
@@ -676,10 +676,12 @@ if (!class_exists('Omnitags')) {
         }
 
         // Function to simplify change image but has advanced features
-        public function change_image_advanced($new_name, $old_name, $path, $field, $allowed_types, $tabel)
+        public function change_image_advanced($name_field, $path, $field, $allowed_types, $tabel)
         {
             $img = $this->v_post[$field . '_old'];
             $extension = '.' . getExtension($path . $img);
+            $new_name = $this->v_post[$name_field];
+            $old_name = $tabel[0]->{$this->aliases[$name_field]};
 
             $config['upload_path'] = $path;
             // nama file telah ditetapkan dan hanya berekstensi jpg dan dapat diganti dengan file bernama sama

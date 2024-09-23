@@ -67,6 +67,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_push('tabel_b9', $tl_b9->id_history) ?>
             <?= btn_tutup() ?>
           </div>
         </form>

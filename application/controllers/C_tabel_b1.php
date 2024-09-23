@@ -203,8 +203,7 @@ class C_tabel_b1 extends Omnitags
 		);
 
 		$gambar = $this->change_image_advanced(
-			$this->v_post['tabel_b1_field2'],
-			$tabel[0]->kode,
+			'tabel_b1_field2',
 			$this->v_upload_path['tabel_b1'],
 			'tabel_b1_field4',
 			$this->file_type1,
@@ -317,6 +316,29 @@ class C_tabel_b1 extends Omnitags
 		$aksi = $this->tl_b1->delete_b1_by_field('tabel_b1_field1', $code);
 
 		$notif = $this->handle_4e($aksi, 'tabel_b1', $code);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	//Push History Data into current data
+	public function push($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_ot->get_by_id_history('tabel_b1', $code)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			$this->aliases['tabel_b1_field1'] => $tabel[0]->{$this->aliases['tabel_b1_field1']},
+			$this->aliases['tabel_b1_field2'] => $tabel[0]->{$this->aliases['tabel_b1_field2']},
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_b1->update_b1($data, $tabel[0]->{$this->aliases['tabel_b1_field1']});
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}

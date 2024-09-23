@@ -188,7 +188,7 @@ class C_tabel_b9 extends Omnitags
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
-	
+
 	//Soft Delete Data
 	public function soft_delete($tabel_b9_field1 = null)
 	{
@@ -210,7 +210,30 @@ class C_tabel_b9 extends Omnitags
 		);
 
 		$aksi = $this->tl_b9->update_b9($data, $tabel_b9_field1);
-		
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	//Push History Data into current data
+	public function push($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_ot->get_by_id_history('tabel_b9', $code)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			$this->aliases['tabel_b9_field1'] => $tabel[0]->{$this->aliases['tabel_b9_field1']},
+			$this->aliases['tabel_b9_field2'] => $tabel[0]->{$this->aliases['tabel_b9_field2']},
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_b9->update_b9($data, $tabel[0]->{$this->aliases['tabel_b9_field1']});
+
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
@@ -283,7 +306,7 @@ class C_tabel_b9 extends Omnitags
 
 		$this->load_page('tabel_b9', '_layouts/template', $data1);
 	}
-	
+
 	public function history($param1 = null)
 	{
 		$this->declarew();

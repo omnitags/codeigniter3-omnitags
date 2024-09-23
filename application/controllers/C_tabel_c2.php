@@ -424,7 +424,7 @@ class C_tabel_c2 extends Omnitags
 		// Check if user data exists
 		if ($method3->num_rows() > 0) {
 			$tabel_c2 = $method3->result();
-			$method4 = $tabel_c2[0]->password;
+			$method4 = $tabel_c2[0]->{$this->aliases['tabel_c2_field4']};
 
 			// Verify password
 			if (password_verify($tabel_c2_field4, $method4)) {
@@ -540,5 +540,28 @@ class C_tabel_c2 extends Omnitags
 		);
 
 		$this->load_page('tabel_c2', '_layouts/template', $data1);
+	}
+
+	//Push History Data into current data
+	public function push($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_ot->get_by_id_history('tabel_c2', $code)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			$this->aliases['tabel_c2_field1'] => $tabel[0]->{$this->aliases['tabel_c2_field1']},
+			$this->aliases['tabel_c2_field2'] => $tabel[0]->{$this->aliases['tabel_c2_field2']},
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_c2->update_c2($data, $tabel[0]->{$this->aliases['tabel_c2_field1']});
+
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 }

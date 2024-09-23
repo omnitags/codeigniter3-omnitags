@@ -57,7 +57,7 @@
         <form>
           <div class="modal-body">
             <?= table_data(
-              row_data('tabel_b10_field1', $tl_b10->$tabel_b10_field1) . 
+              row_data('tabel_b10_field1', $tl_b10->$tabel_b10_field1) .
               row_data('tabel_b10_field2', $tl_b10->$tabel_b10_field2),
               'table-light'
             ) ?>
@@ -67,6 +67,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_push('tabel_b10', $tl_b10->id_history) ?>
             <?= btn_tutup() ?>
           </div>
         </form>

@@ -180,8 +180,7 @@ class C_tabel_b10 extends Omnitags
 		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $tabel_b10_field1)->result();
 
 		$gambar = $this->change_image_advanced(
-			$this->v_post['tabel_b10_field3'],
-			$tabel[0]->nama,
+			'tabel_b10_field3',
 			$this->v_upload_path['tabel_b10'],
 			'tabel_b10_field2',
 			$this->file_type1,
@@ -326,5 +325,28 @@ class C_tabel_b10 extends Omnitags
 		);
 
 		$this->load_page('tabel_b10', '_layouts/template', $data1);
+	}
+
+	//Push History Data into current data
+	public function push($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_ot->get_by_id_history('tabel_b10', $code)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			$this->aliases['tabel_b10_field1'] => $tabel[0]->{$this->aliases['tabel_b10_field1']},
+			$this->aliases['tabel_b10_field2'] => $tabel[0]->{$this->aliases['tabel_b10_field2']},
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_b10->update_b10($data, $tabel[0]->{$this->aliases['tabel_b10_field1']});
+
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 }

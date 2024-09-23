@@ -35,7 +35,7 @@ class M_omnitags extends CI_Model
         $table_name = $this->aliases[$table_name];
 
         $this->db->order_by('id_history', 'DESC');
-        return $this->db->get($table_name);
+        return $this->db->get($table_name . '_history');
     }
 
     public function get_by_field($table_name, $fields, $params)
@@ -90,6 +90,14 @@ class M_omnitags extends CI_Model
             $this->db->where($this->aliases[$fields], $params);
         }
 
+        $this->db->order_by('id_history', 'DESC');
+        return $this->db->get($table_name . '_history');
+    }
+
+    public function get_by_id_history($table_name, $params)
+    {
+        $table_name = $this->aliases[$table_name];
+        $this->db->where('id_history', $params);
         $this->db->order_by('id_history', 'DESC');
         return $this->db->get($table_name . '_history');
     }

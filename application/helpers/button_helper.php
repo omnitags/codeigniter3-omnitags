@@ -469,7 +469,7 @@ if (!function_exists('btn_push')) {
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-primary" onclick="return confirm('apakah data {$alias} ingin dikembalikan?')"
               href="{$url}">
-              <i class="fas fa-arrow_up"></i></a>
+              <i class="fas fa-arrow-up"></i></a>
         HTML;
     }
 }
