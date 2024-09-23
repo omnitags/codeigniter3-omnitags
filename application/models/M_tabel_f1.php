@@ -35,6 +35,22 @@ class M_tabel_f1 extends CI_Model
 		return $this->db->get($this->aliases['tabel_f1']);
 	}
 
+	public function get_f1_by_field_archive($fields, $params)
+	{
+		if (is_array($fields) && is_array($params)) {
+			foreach ($fields as $key => $field) {
+				$param = $params[$key]; // Get the corresponding param value
+				$this->db->where($this->aliases[$field], $param);
+			}
+		} else {
+			$this->db->where($this->aliases[$fields], $params);
+		}
+		
+		$this->db->where('deleted_at IS NOT NULL');
+		$this->db->order_by($this->aliases['tabel_f1_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_f1']);
+	}
+
 	// Retrieves records from the tabel_f1 table joined with tabel_e4 table, ordered by tabel_f1_field1 in descending order
 	public function get_f1_with_e4()
 	{

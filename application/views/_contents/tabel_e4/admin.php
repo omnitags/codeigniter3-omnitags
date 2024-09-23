@@ -1,47 +1,86 @@
-<?php switch ($this->session->userdata($tabel_c2_field6)) {
-  case $tabel_c2_field6_value3:
-  case $tabel_c2_field6_value4:
-    break;
+<div class="row mb-2 align-items-center">
+  <div class="col-md-9 d-flex align-items-center">
+    <h1><?= $title ?><?= count_data($tbl_e4) ?><?= $phase ?></h1>
 
-  default:
-    redirect(site_url('welcome/no_level'));
-}
-?>
-
-<h1><?= $title ?><?= $phase ?></h1>
+  </div>
+  <div class="col-md-3 text-right">
+    <?php foreach ($dekor->result() as $dk):
+      echo tampil_dekor('175px', $tabel_b1, $dk->$tabel_b1_field4);
+    endforeach ?>
+  </div>
+</div>
 <hr>
 
-<button class="btn btn-primary mb-4" type="button" data-toggle="modal" data-target="#tambah">+ Tambah</button>
-<button class="btn btn-info mb-4" type="button" data-toggle="modal" data-target="#import">+ Import</button>
-<a class="btn btn-info mb-4" href="<?= site_url($tabel_e4 . '/laporan') ?>" target="_blank">
-  <i class="fas fa-print"></i> Cetak Laporan</a>
-<button type="button" class="btn btn-info mb-4" id="export-btn" target="_blank">
-  <i class="fas fa-print"></i> Cetak Excel</button>
+
+<div class="row">
+  <div class="col-md-10">
+    <?= btn_tambah() ?>
+    <?= btn_laporan('tabel_e4') ?>
+    <?= btn_archive('tabel_e4') ?>
+    <!-- <button class="btn btn-info   b-4" type="button" data-toggle="modal" data-target="#import">+ Import</button>
+    <button type="button" class="btn btn-info mb-4" id="export-btn" target="_blank">
+      <i class="fas fa-print"></i> Cetak Excel</button> -->
+
+  </div>
+
+  <div class="col-md-2 d-flex justify-content-end">
+    <?= view_switcher() ?>
+  </div>
+</div>
 
 
-<div class="table-responsive">
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_e4->result())) {
+    load_view('_partials/no_data');
+  } else {
+    $counter = 1;
+    foreach ($tbl_e4->result() as $tl_e4):
+      echo card_file(
+        $counter,
+        $tl_e4->$tabel_e4_field1,
+        $tabel_e4_field1_alias . ": " . $tl_e4->$tabel_e4_field1,
+        $tl_e4->$tabel_e4_field2,
+        btn_lihat($tl_e4->$tabel_e4_field1) . ' ' .
+        btn_edit($tl_e4->$tabel_e4_field1),
+        'text-white bg-danger',
+        'col-md-3',
+        $tabel_e4,
+        $tl_e4->$tabel_e4_field3
+      );
+    $counter++;
+    endforeach;
+  } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
+</div>
+
+
+<div id="table-view" class="table-responsive data-view" style="display: none;">
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th>No</th>
-        <th><?= $tabel_e4_field1_alias ?></th>
-        <th><?= $tabel_e4_field2_alias ?></th>
-        <th><?= $tabel_e4_field3_alias ?></th>
-        <th>Aksi</th>
+        <th><?= lang('no') ?></th>
+        <th><?= lang('tabel_e4_field1_alias') ?></th>
+        <th><?= lang('tabel_e4_field2_alias') ?></th>
+        <th><?= lang('tabel_e4_field3_alias') ?></th>
+        <th><?= lang('action') ?></th>
       </tr>
     </thead>
 
     <tbody>
-      <?php foreach ($tbl_e4 as $tl_e4) : ?>
+      <?php foreach ($tbl_e4->result() as $tl_e4): ?>
         <tr>
           <td></td>
           <td><?= $tl_e4->$tabel_e4_field1; ?></td>
           <td><?= $tl_e4->$tabel_e4_field2 ?></td>
           <td><?= $tl_e4->$tabel_e4_field3 ?></td>
-          <td><a class="btn btn-light text-info" type="button" data-toggle="modal" data-target="#lihat<?= $tl_e4->$tabel_e4_field1; ?>">
-              <i class="fas fa-eye"></i></a>
-            <a class="btn btn-light text-warning" type="button" data-toggle="modal" data-target="#ubah<?= $tl_e4->$tabel_e4_field1; ?>">
-              <i class="fas fa-edit"></i></a>
+          <td>
+            <?= btn_lihat($tl_e4->$tabel_e4_field1) ?>
+            <?= btn_edit($tl_e4->$tabel_e4_field1) ?>
 
           </td>
         </tr>
@@ -52,83 +91,20 @@
 </div>
 
 
-<!-- modal import -->
-<div id="import" class="modal fade import">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Import <?= $tabel_e4_alias ?></h5>
-
-        <button class="close" data-dismiss="modal">
-          <span>&times;</span>
-        </button>
-      </div>
-
-      <form action="<?= site_url($tabel_e4 . '/import') ?>" enctype="multipart/form-data" method="post">
-        <div class="modal-body">
-          
-        <div class="form-group">
-          <label for="excel">Import Excel</label>
-          <input type="file" class="form-control-file" name="import" id="excel" placeholder="Masukkan" aria-describedby="fileHelpId">
-        </div>
-
-
-        </div>
-
-        <!-- memunculkan notifikasi modal -->
-        <p class="small text-center text-danger"><?= $this->session->flashdata('pesan_import') ?></p>
-
-        <div class="modal-footer">
-          <button class="btn btn-success" type="submit">Simpan</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
 <!-- modal tambah -->
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Tambah <?= $tabel_e4_alias ?></h5>
-
-        <button class="close" data-dismiss="modal">
-          <span>&times;</span>
-        </button>
-      </div>
-
-      <form action="<?= site_url($tabel_e4 . '/tambah') ?>" method="post">
+      <?= modal_header(lang('add') . ' ' . lang('tabel_e4_alias'), '') ?>
+      <form action="<?= site_url($language . '/' . $tabel_e4 . '/tambah') ?>" method="post" enctype="multipart/form-data">
         <div class="modal-body">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
-            </div>
-            <input class="form-control" type="text" required name="<?= $tabel_e4_field1_input ?>" placeholder="Masukkan <?= $tabel_e4_field1_alias ?>">
-          </div>
-
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
-            </div>
-            <input class="form-control" type="text" required name="<?= $tabel_e4_field2_input ?>" placeholder="Masukkan <?= $tabel_e4_field2_alias ?>">
-          </div>
-
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
-            </div>
-            <input class="form-control" type="text" required name="<?= $tabel_e4_field3_input ?>" placeholder="Masukkan <?= $tabel_e4_field3_alias ?>">
-          </div>
-
-
+          <?= input_add('text', 'tabel_e4_field2', 'required') ?>
+          <?= add_file('tabel_e4_field3', 'required') ?>
         </div>
-
         <!-- memunculkan notifikasi modal -->
-        <p class="small text-center text-danger"><?= $this->session->flashdata('pesan_tambah') ?></p>
-
+        <p class="small text-center text-danger"><?= get_flashdata('pesan_tambah') ?></p>
         <div class="modal-footer">
-          <button class="btn btn-success" type="submit">Simpan</button>
+          <?= btn_simpan() ?>
         </div>
       </form>
     </div>
@@ -136,91 +112,55 @@
 </div>
 
 <!-- modal edit -->
-<?php foreach ($tbl_e4 as $tl_e4) : ?>
+<?php foreach ($tbl_e4->result() as $tl_e4): ?>
   <div id="ubah<?= $tl_e4->$tabel_e4_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Edit <?= $tabel_e4_alias ?> <?= $tl_e4->$tabel_e4_field1; ?></h5>
-
-          <button class="close" data-dismiss="modal">
-            <span>&times;</span>
-          </button>
-        </div>
+        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_e4_alias'), $tl_e4->$tabel_e4_field1) ?>
 
         <!-- administrator tidak dapat mengubah password akun lain -->
-        <form action="<?= site_url($tabel_e4 . '/update') ?>" method="post" enctype="multipart/form-data">
+        <form action="<?= site_url($language . '/' . $tabel_e4 . '/update') ?>" method="post"
+          enctype="multipart/form-data">
           <div class="modal-body">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
-              </div>
-              <input class="form-control" type="text" required name="<?= $tabel_e4_field2_input ?>" placeholder="Masukkan <?= $tabel_e4_field2_alias ?>" value="<?= $tl_e4->$tabel_e4_field2 ?>">
-              <input type="hidden" name="<?= $tabel_e4_field1_input ?>" value="<?= $tl_e4->$tabel_e4_field1 ?>">
-            </div>
-
-            <!-- administrator dapat menentukan password untuk akun baru -->
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-user"></i></span>
-              </div>
-              <input class="form-control" type="text" required name="<?= $tabel_e4_field3_input ?>" placeholder="Masukkan <?= $tabel_e4_field3_alias ?>" value="<?= $tl_e4->$tabel_e4_field3 ?>">
-            </div>
-
+            <?= input_hidden('tabel_e4_field1', $tl_e4->$tabel_e4_field1, 'required') ?>
+            <?= input_edit('text', 'tabel_e4_field2', $tl_e4->$tabel_e4_field2, 'required') ?>
+            <?= edit_file($tabel_e4, 'tabel_e4_field3', $tl_e4->$tabel_e4_field3, 'required') ?>
           </div>
 
           <!-- memunculkan notifikasi modal -->
-          <p class="small text-center text-danger"><?= $this->session->flashdata('pesan_ubah') ?></p>
+          <p class="small text-center text-danger"><?= get_flashdata('pesan_ubah') ?></p>
 
           <div class="modal-footer">
-            <button class="btn btn-success" type="submit">Simpan Perubahan</button>
+            <?= btn_update() ?>
           </div>
         </form>
       </div>
     </div>
   </div>
-<?php endforeach; ?>
 
-<!-- modal lihat -->
-<?php foreach ($tbl_e4 as $tl_e4) : ?>
+
   <div id="lihat<?= $tl_e4->$tabel_e4_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title"><?= $tabel_e4_alias ?> <?= $tl_e4->$tabel_e4_field1; ?></h5>
-
-          <button class="close" data-dismiss="modal">
-            <span>&times;</span>
-          </button>
-        </div>
+        <?= modal_header_id(lang('tabel_e4_alias'), $tl_e4->$tabel_e4_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>
           <div class="modal-body">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label><?= $tabel_e4_field2_alias ?> : </label>
-                  <p><?= $tl_e4->$tabel_e4_field2; ?></p>
-                </div>
-                <hr>
+            <?= table_data(
+              row_data('tabel_e4_field2', $tl_e4->$tabel_e4_field2) . 
+              row_file($tabel_e4, 'tabel_e4_field3', $tl_e4->$tabel_e4_field3),
+              'table-light'
+            ) ?>
 
-                <div class="form-group">
-                  <label><?= $tabel_e4_field3_alias ?> : </label>
-                  <p><?= $tl_e4->$tabel_e4_field3; ?></p>
-                </div>
-                <hr>
-
-              </div>
-
-            </div>
           </div>
-          
+
           <!-- memunculkan notifikasi modal -->
-          <p class="small text-center text-danger"><?= $this->session->flashdata('pesan_lihat') ?></p>
+          <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
-            <button class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            <?= btn_history('tabel_e4', $tl_e4->$tabel_e4_field1) ?>
+            <?= btn_tutup() ?>
           </div>
         </form>
 
@@ -228,3 +168,6 @@
     </div>
   </div>
 <?php endforeach; ?>
+
+<?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_e4->num_rows(), 28) ?>

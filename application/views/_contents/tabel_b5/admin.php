@@ -49,8 +49,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_b5') ?>
-
-
+    <?= btn_archive('tabel_b5') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">
@@ -252,6 +251,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_b5', $tl_b5->$tabel_b5_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>

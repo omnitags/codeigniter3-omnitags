@@ -105,6 +105,7 @@
           <td><?= $tl_b10->$tabel_b10_field4 ?></td>
           <td>
             <?= btn_lihat($tl_b10->$tabel_b10_field1) ?>
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>
@@ -136,6 +137,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_b10', $tl_b10->$tabel_b10_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>
