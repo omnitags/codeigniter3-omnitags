@@ -27,7 +27,7 @@ class C_tabel_f2 extends Omnitags
 					'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 					'tbl_b5' => $this->tl_b5->get_all_b5(),
 					'tbl_b7' => $this->tl_b7->get_all_b7(),
-					'tbl_a1' => $this->tl_a1->get_a1_by_a1_field1($this->tabel_a1_field1),
+					'tbl_a1' => $this->tl_a1->get_a1_by_field('tabel_a1_field1', $this->tabel_a1_field1),
 					'tbl_e4' => $this->tl_e4->get_all_e4(),
 
 					'tabel_f2_field10_value' => $this->v_get['tabel_f2_field10'],
@@ -46,12 +46,7 @@ class C_tabel_f2 extends Omnitags
 				break;
 		}
 
-		$data = array_merge($data1, $this->package);
-
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data($halaman, $data);
+		$this->load_page('tabel_f2', $halaman, $data1);
 	}
 
 	// Account Only Pages
@@ -91,11 +86,7 @@ class C_tabel_f2 extends Omnitags
 
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
 	}
 
 
@@ -103,48 +94,44 @@ class C_tabel_f2 extends Omnitags
 	public function admin()
 	{
 		$this->declarew();
-		$this->page_session_4();
+		$this->page_session_3();
 
 		// nilai min dan max di sini belum ada
-		$param1 = $this->v_get['tabel_f2_field10_filter1'];
-		$param2 = $this->v_get['tabel_f2_field10_filter2'];
-		$param3 = $this->v_get['tabel_f2_field11_filter1'];
-		$param4 = $this->v_get['tabel_f2_field11_filter2'];
+		// $param1 = $this->v_get['tabel_f2_field10_filter1'];
+		// $param2 = $this->v_get['tabel_f2_field10_filter2'];
+		// $param3 = $this->v_get['tabel_f2_field11_filter1'];
+		// $param4 = $this->v_get['tabel_f2_field11_filter2'];
 
-		$filter = $this->tl_f2->filter_with_e4($param1, $param2, $param3, $param4);
+		// $filter = $this->tl_f2->filter_with_e4($param1, $param2, $param3, $param4);
 
-		if (empty($param1)) {
-			$result = $this->tl_f2->get_f2_with_e4();
-		} else {
-			$result = $filter;
-		}
+		// if (empty($param1)) {
+		// 	$result = $this->tl_f2->get_f2_with_e4();
+		// } else {
+		// 	$result = $filter;
+		// }
 
 		$data1 = array(
 			'title' => lang('tabel_f2_alias_v3_title'),
 			'konten' => $this->v3['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
-			'tbl_f2' => $result,
+			'tbl_f2' => $this->tl_f2->get_all_f2(),
 			'tbl_e3' => $this->tl_e3->get_all_e3(),
 
 			// menggunakan nilai $min dan $max sebagai bagian dari $data
-			'tabel_f2_field10_filter1_value' => $param1,
-			'tabel_f2_field10_filter2_value' => $param2,
-			'tabel_f2_field11_filter1_value' => $param3,
-			'tabel_f2_field11_filter2_value' => $param4
+			// 'tabel_f2_field10_filter1_value' => $param1,
+			// 'tabel_f2_field10_filter2_value' => $param2,
+			// 'tabel_f2_field11_filter1_value' => $param3,
+			// 'tabel_f2_field11_filter2_value' => $param4
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
 	}
 
 	// Print all data
 	public function laporan()
 	{
 		$this->declarew();
-		$this->page_session_4();
+		$this->page_session_3();
 
 		$data1 = array(
 			'title' => lang('tabel_f2_alias_v4_title'),
@@ -153,11 +140,7 @@ class C_tabel_f2 extends Omnitags
 			'tbl_f2' => $this->tl_f2->get_f2_with_e4(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/printpage', $data);
+		$this->load_page('tabel_f2', '_layouts/printpage', $data1);
 	}
 
 	// Print one data
@@ -170,7 +153,7 @@ class C_tabel_f2 extends Omnitags
             ];
             $this->page_session_check($allowed_values);
 
-		$tabel = $this->tl_f2->get_f2_by_f2_field1($tabel_f2_field1);
+		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $tabel_f2_field1);
 		$this->check_data($tabel);
 
 		$data1 = array(
@@ -180,11 +163,7 @@ class C_tabel_f2 extends Omnitags
 			'tbl_f2' => $this->tl_f2->get_f2_with_e4_by_f2_field1($tabel_f2_field1),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/printpage', $data);
+		$this->load_page('tabel_f2', '_layouts/printpage', $data1);
 	}
 
 
@@ -224,11 +203,7 @@ class C_tabel_f2 extends Omnitags
 			'tbl_e3' => $this->tl_e3->get_all_e3(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
 	}
 
 
@@ -245,14 +220,10 @@ class C_tabel_f2 extends Omnitags
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 
 			// mengembalikan data baris terakhir/terbaru sesuai ketentuan dalam database untuk ditampilkan
-			'tbl_f2' => $this->tl_f2->get_f2_by_c2_field3($tabel_c2_field3)->last_row(),
+			'tbl_f2' => $this->tl_f2->get_f2_by_field('tabel_c2_field3', $tabel_c2_field3)->last_row(),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		set_userdata('previous_url', current_url());
-		$this->track_page();
-		load_view_data('_layouts/blank', $data);
+		$this->load_page('tabel_f2', '_layouts/blank', $data1);
 	}
 
 	// Functions
@@ -297,7 +268,7 @@ class C_tabel_f2 extends Omnitags
 		$tabel_e4 = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
 
 		// Calculate total price
-		$harga_total = ($numberdays * $tabel_e4[0]->harga);
+		$harga_total = ($numberdays * $tabel_e4[0]->{$this->aliases['tabel_f2_field9']});
 
 		// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
 		// $this->aliases['tabel_e1_field1'] => $id,
@@ -316,8 +287,8 @@ class C_tabel_f2 extends Omnitags
 			$this->aliases['tabel_f2_field11'] => $this->v_post['tabel_f2_field11'],
 			$this->aliases['tabel_f2_field12'] => $this->aliases['tabel_f2_field12_value1'],
 
-			$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
-			$this->aliases['updated_at'] => date("Y-m-d\TH:i:s"),
+			'created_at' => date("Y-m-d\TH:i:s"),
+			'updated_at' => date("Y-m-d\TH:i:s"),
 		];
 
 		// Create temporary session for a specific duration
@@ -360,7 +331,7 @@ class C_tabel_f2 extends Omnitags
 
 		$tabel_f2_field1 = $this->v_post['tabel_f2_field1'];
 
-		$tabel_f2 = $this->tl_f2->get_f2_by_f2_field1($tabel_f2_field1)->result();
+		$tabel_f2 = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $tabel_f2_field1)->result();
 		$this->check_data($tabel_f2);
 
 		validate_all(
@@ -387,7 +358,7 @@ class C_tabel_f2 extends Omnitags
 		} elseif ($this->v_post['tabel_f2_field12'] == $this->aliases['tabel_f2_field12_value5']) {
 
 			// menghapus data pesanan supaya trigger tambah_kamar dapat berjalan
-			$aksi = $this->tl_f2->delete_f2($tabel_f2_field1);
+			$aksi = $this->tl_f2->delete_f2_by_field('tabel_f2_field1', $tabel_f2_field1);
 
 			// memasukkan nama resepsionis yang melakukan operasi
 			$data = array(
@@ -402,6 +373,52 @@ class C_tabel_f2 extends Omnitags
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
+	
+	//Soft Delete Data
+	public function soft_delete($tabel_f2_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $tabel_f2_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_f2->update_f2($data, $tabel_f2_field1);
+		$this->insert_history('tabel_f2', $data);
+
+		$notif = $this->handle_4e($aksi, 'tabel_f2', $tabel_f2_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Soft Delete data
+	public function restore($tabel_f2_field1 = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_f2->get_f2_by_field_archive('tabel_f2_field1', $tabel_f2_field1)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => NULL,
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_f2->update_f2($data, $tabel_f2_field1);
+		$this->insert_history('tabel_f2', $data);
+
+		$notif = $this->handle_4e($aksi, 'tabel_f2', $tabel_f2_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
 
 
 	// Delete data
@@ -410,13 +427,13 @@ class C_tabel_f2 extends Omnitags
 		$this->declarew();
 		$this->session_4();
 
-		$tabel = $this->tl_f2->get_f2_by_f2_field1($tabel_f2_field1)->result();
+		$tabel = $this->tl_f2->get_f2_by_field_archive('tabel_f2_field1', $tabel_f2_field1)->result();
 		$this->check_data($tabel);
 
 		$tabel_f2_field1 = $this->v_post['tabel_f2_field1'];
 		$status = $this->v_post['tabel_f2_field12'];
 
-		$hapus = $this->tl_f2->delete_f2($tabel_f2_field1);
+		$hapus = $this->tl_f2->delete_f2_by_field('tabel_f2_field1', $tabel_f2_field1);
 
 		// memasukkan nama resepsionis yang melakukan operasi
 		$data = array(
@@ -445,7 +462,7 @@ class C_tabel_f2 extends Omnitags
 
 		$tabel_f2_field1 = $this->v_post['tabel_f2_field1'];
 
-		$tabel = $this->tl_f2->get_f2_by_f2_field1($tabel_f2_field1)->result();
+		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $tabel_f2_field1)->result();
 		$this->check_data($tabel);
 
 		validate_all(
@@ -474,8 +491,86 @@ class C_tabel_f2 extends Omnitags
 			$this->aliases['tabel_e3_field4'] => $this->aliases['tabel_e3_field4_value3'],
 		);
 		$aksi = $this->tl_e3->update_e3($data2, $param);
+		$this->insert_history('tabel_f2', $data);
 
 		$notif = $this->handle_4c($aksi, 'tabel_f2', $tabel_f2_field1);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Archive Page
+	public function archive()
+	{
+		$this->declarew();
+		$this->page_session_3();
+
+		$data1 = array(
+			'title' => lang('tabel_f2_alias_v9_title'),
+			'konten' => $this->v9['tabel_f2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
+			'tbl_f2' => $this->tl_f2->get_all_f2_archive(),
+		);
+
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
+	}
+
+	// Public Pages
+	public function detail_archive($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => lang('tabel_f2_alias_v10_title'),
+			'konten' => $this->v10['tabel_f2'],
+			'dekor' => $this->tl_f2->dekor($this->theme_id, $this->aliases['tabel_f2']),
+			'tbl_f2' => $this->tl_f2->get_f2_by_field_archive('tabel_f2_field1', $param1),
+		);
+
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
+	}
+	
+	public function history($param1 = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $param1)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'table_id' => $param1,
+			'title' => lang('tabel_f2_alias_v11_title'),
+			'konten' => $this->v11['tabel_f2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
+			'tbl_f2' => $this->tl_ot->get_by_field_history('tabel_f2', 'tabel_f2_field1', $param1),
+		);
+
+		$this->load_page('tabel_f2', '_layouts/template', $data1);
+	}
+
+	//Push History Data into current data
+	public function push($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_ot->get_by_id_history('tabel_f2', $code)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			$this->aliases['tabel_f2_field1'] => $tabel[0]->{$this->aliases['tabel_f2_field1']},
+			$this->aliases['tabel_f2_field2'] => $tabel[0]->{$this->aliases['tabel_f2_field2']},
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_f2->update_f2($data, $tabel[0]->{$this->aliases['tabel_f2_field1']});
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}

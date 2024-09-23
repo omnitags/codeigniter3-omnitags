@@ -50,6 +50,21 @@ if (!function_exists('card_text')) {
     }
 }
 
+// Generates a card text with a tooltip
+if (!function_exists('card_paragraph')) {
+    function card_paragraph($title, $length)
+    {
+        $truncated = truncateText($title, $length);
+        
+        return <<<HTML
+        <span class="card-text" style="font-size: 16px;"
+        data-toggle="tooltip" data-placement="left" title="{$title}">
+            {$truncated}
+        </span>
+        HTML;
+    }
+}
+
 // Generates a card content with a field alias and value
 if (!function_exists('card_content')) {
     function card_content($size, $field, $value)
@@ -70,12 +85,13 @@ if (!function_exists('card_content')) {
 
 // Generates a regular card with a title, detail, actions, theme, size, and table
 if (!function_exists('card_regular')) {
-    function card_regular($id, $title, $detail, $actions, $theme, $size, $table)
+    function card_regular($counter, $id, $title, $detail, $actions, $theme, $size, $table)
     {
         $title = card_title($title);
+        $card_id = 'card-' . $counter;
         
         return <<<HTML
-        <div class="{$size} mt-2">
+        <div id="{$card_id}" class="{$size} mt-2">
             <div class="card {$theme}">
             <div class="card-body">
                 {$title}
@@ -91,16 +107,18 @@ if (!function_exists('card_regular')) {
 
 // Generates a card with a file/image and a title, detail, actions, theme, size, table, and picture
 if (!function_exists('card_file')) {
-    function card_file($id, $title, $detail, $actions, $theme, $size, $table, $picture)
+    function card_file($counter, $id, $title, $detail, $actions, $theme, $size, $table, $picture)
     {
         // Get CodeIgniter instance
         $CI =& get_instance();
         // Fetch the view variables
         $data = $CI->load->get_vars();
         $truncated = truncateText($title, 18);
+
+        $card_id = 'card-' . $counter;
         
         return <<<HTML
-        <div class="{$size} mt-2">
+        <div id="{$card_id}" class="{$size} mt-2">
             <div class="card {$theme}">
             <img src="img/{$table}/{$picture}" class="card-img-top img-fluid" style="max-height: 150px" alt="...">
             <div class="card-body">
@@ -128,7 +146,7 @@ if (!function_exists('card_event')) {
         $data = $CI->load->get_vars();
         
         return <<<HTML
-        <div class="col-md-4 mt-2">
+        <div id="card-{$id}" class="col-md-4 mt-2">
             <div class="card text-white {$theme}">
             <img src="img/{$table}/{$picture}" class="card-img-top img-fluid" style="max-height: 150px" alt="...">
             <div class="card-body">

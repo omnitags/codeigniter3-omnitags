@@ -71,12 +71,7 @@ class Welcome extends Omnitags
 					'tbl_b2' => $this->tl_b2->get_b2_by_field(['tabel_b2_field7', 'tabel_b2_field6'], [$this->theme_id, $this->aliases['tabel_b2_field6_value1']]),
 				);
 
-				// Combining data1 with the package
-				$data = array_merge($data1, $this->package);
-
-				//Loading the page
-				$this->track_page();
-				load_view_data('_layouts/template', $data);
+				$this->load_page('', '_layouts/template', $data1);
 				break;
 		}
 	}
@@ -96,45 +91,36 @@ class Welcome extends Omnitags
 		$this->page_session_check($allowed_values);
 
 		// initialize the charts from each table with specific model function
-		$chart_tabel_f1 = $this->tl_e4->getCharttabel_f1();
-		$chart_tabel_f2 = $this->tl_e4->getCharttabel_f2();
+		// $chart_tabel_f1 = $this->tl_e4->getCharttabel_f1();
+		// $chart_tabel_f2 = $this->tl_e4->getCharttabel_f2();
 
 		// setting the array for data1
 		$data1 = array(
 			'title' => lang('dashboard'),
 			'konten' => 'dashboard',
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'dashboard'),
-			'tbl_e1' => $this->tl_e1->get_all_e1()->num_rows(),
-			'tbl_e2' => $this->tl_e2->get_all_e2()->num_rows(),
-			'tbl_c1' => $this->tl_c1->get_all_c1()->num_rows(),
+			// 'tbl_e1' => $this->tl_e1->get_all_e1()->num_rows(),
+			// 'tbl_e2' => $this->tl_e2->get_all_e2()->num_rows(),
+			// 'tbl_c1' => $this->tl_c1->get_all_c1()->num_rows(),
 			'tbl_e3' => $this->tl_e3->get_all_e3()->num_rows(),
 			'tbl_e4' => $this->tl_e4->get_all_e4()->num_rows(),
-			'tbl_f1' => $this->tl_f1->get_all_f1()->num_rows(),
+			// 'tbl_f1' => $this->tl_f1->get_all_f1()->num_rows(),
 			'tbl_f2' => $this->tl_f2->get_all_f2()->num_rows(),
 			'tbl_c2' => $this->tl_c2->get_all_c2()->num_rows(),
-			'tbl_f3' => $this->tl_f3->get_all_f3()->num_rows(),
+			// 'tbl_f3' => $this->tl_f3->get_all_f3()->num_rows(),
 			'tbl_d3' => $this->tl_d3->get_all_d3()->num_rows(),
 
-			'chart_tabel_f1' => json_encode($chart_tabel_f1),
-			'chart_tabel_f2' => json_encode($chart_tabel_f2),
+			// 'chart_tabel_f1' => json_encode($chart_tabel_f1),
+			// 'chart_tabel_f2' => json_encode($chart_tabel_f2),
 		);
 
 		// setting the flashdata
 		set_flashdata($this->views['flash1'], $this->views['flash1_note1']);
 		set_flashdata('toast', $this->views['flash1_func1']);
 
-		// combining the data and package from Omnitags
-		$data = array_merge($data1, $this->package);
-
-		// handling the notification
-		$notif = $this->handle_2a();
-
-		// set the session for this function to be called if there's an error page
-		set_userdata('previous_url', current_url());
-
-		// load the view with data
-		$this->track_page();
-		load_view_data('_layouts/template', $data);
+		$notif = $this->handle_2a();		
+		
+		$this->load_page('', '_layouts/template', $data1);
 	}
 
 	// Page that will be loaded if a function is performed by a user with the wrong level
@@ -147,9 +133,7 @@ class Welcome extends Omnitags
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'invalid'),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		$this->load->view('errors/invalid', $data);
+		$this->load_page('', 'errors/invalid', $data1);
 	}
 
 	// Page that will be loaded if a page is visisted by a user with the wrong level
@@ -162,9 +146,7 @@ class Welcome extends Omnitags
 			'dekor' => "",
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		$this->load->view('errors/overload', $data);
+		$this->load_page('', 'errors/overload', $data1);
 	}
 
 	// Page that will be loaded if a page is visisted by a user with the wrong level
@@ -177,9 +159,7 @@ class Welcome extends Omnitags
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'no_level'),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		$this->load->view('errors/no_level', $data);
+		$this->load_page('', 'errors/no_level', $data1);
 	}
 
 	// Page that will be loaded when the page is not found/404
@@ -192,9 +172,7 @@ class Welcome extends Omnitags
 			'dekor' => $this->tl_b1->dekor($this->theme_id, '404'),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		$this->load->view('errors/404', $data);
+		$this->load_page('', 'errors/404', $data1);
 	}
 
 	// Setting the language for the website, pretty complicated indeed
@@ -250,6 +228,5 @@ class Welcome extends Omnitags
 			show_error('Invalid language selected.');
 		}
 	}
-
-
 }
+ 

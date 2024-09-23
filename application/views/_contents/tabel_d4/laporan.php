@@ -4,7 +4,7 @@
       <th><?= lang('tabel_d4_field1_alias') ?></th>
       <th><?= lang('tabel_d4_field2_alias') ?></th>
       <th><?= lang('tabel_d4_field3_alias') ?></th>
-      <th><?= lang('created_at_alias') ?></th>
+      <th><?= lang('created_at') ?></th>
     </tr>
   </thead>
   <tbody>
@@ -13,7 +13,7 @@
         <td width=""><?= $tl_d4->$tabel_d4_field1 ?></td>
         <td width=""><?= $tl_d4->$tabel_d4_field2 ?></td>
         <td width=""><?= $tl_d4->$tabel_d4_field3 ?></td>
-        <td width=""><?= $tl_d4->$created_at ?></td>
+        <td width=""><?= $tl_d4->created_at ?></td>
       </tr>
     <?php endforeach ?>
   </tbody>

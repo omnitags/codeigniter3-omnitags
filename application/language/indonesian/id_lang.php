@@ -40,6 +40,11 @@ $lang['order_now'] = 'Pesan sekarang';
 $lang['reservations'] = 'Reservasi';
 $lang['history'] = 'Riwayat';
 
+$lang['created_at'] = 'Created At';
+$lang['read_at'] = 'Read At';
+$lang['updated_at'] = 'Updated At';
+$lang['deleted_at'] = 'Deleted At';
+
 $lang['invalid'] = "Tidak dapat melakukan tindakan!";
 $lang['no_access'] = "Anda tidak memiliki akses ke halaman ini!";
 $lang['page_not_found'] = "Halaman Tidak Ada!";
@@ -85,6 +90,9 @@ foreach ($myData1 as $item) {
     $lang[$item['key'] . '_v6_title'] = 'Profil ' . $item['value'];
     $lang[$item['key'] . '_v7_title'] = $item['value'] . ' Berhasil!';
     $lang[$item['key'] . '_v8_title'] = 'Detail ' . $item['value'];
+    $lang[$item['key'] . '_v9_title'] = $item['value'] . ' Archive';
+    $lang[$item['key'] . '_v10_title'] = 'Details of ' . $item['value'] . ' Archive';
+    $lang[$item['key'] . '_v11_title'] = 'History of ' . $item['value'];
 
     // List of messages
     $lang[$item['key'] . '_v1_msg'] = $item['value'];
@@ -95,5 +103,8 @@ foreach ($myData1 as $item) {
     $lang[$item['key'] . '_v6_msg'] = $item['value'];
     $lang[$item['key'] . '_v7_msg'] = $item['value'];
     $lang[$item['key'] . '_v8_msg'] = $item['value'] . ' tidak tersedia.';
+    $lang[$item['key'] . '_v9_msg'] = $item['value'];
+    $lang[$item['key'] . '_v10_msg'] = $item['value'];
+    $lang[$item['key'] . '_v11_msg'] = $item['value'];
 
 }
