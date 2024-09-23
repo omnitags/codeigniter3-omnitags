@@ -32,6 +32,22 @@ class M_tabel_b9 extends CI_Model
 		$this->db->order_by($this->aliases['tabel_b9_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_b9']);
 	}
+	
+	public function get_b9_by_field_archive($fields, $params)
+	{
+		if (is_array($fields) && is_array($params)) {
+			foreach ($fields as $key => $field) {
+				$param = $params[$key]; // Get the corresponding param value
+				$this->db->where($this->aliases[$field], $param);
+			}
+		} else {
+			$this->db->where($this->aliases[$fields], $params);
+		}
+		
+		$this->db->where('deleted_at IS NOT NULL');
+		$this->db->order_by($this->aliases['tabel_b9_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_b9']);
+	}
 
 	// 	This is a method in a PHP model class that retrieves a limited number of records 
 	// from two related tables (tabel_b9 and tabel_b8) based on a given parameter _by_field($fields, $params).
@@ -48,8 +64,8 @@ class M_tabel_b9 extends CI_Model
 		JOIN {$this->aliases['tabel_b8']} 
 		ON {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field3']} = {$this->aliases['tabel_b8']}.{$this->aliases['tabel_b8_field2']}
 		WHERE {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field2']} = '$param1'
-		ORDER BY CASE WHEN {$this->aliases['read_at']} IS NULL THEN 0
-		ELSE 1 END, {$this->aliases['read_at']} DESC, {$this->aliases['tabel_b9_field1']} DESC LIMIT 15";
+		ORDER BY CASE WHEN read_at IS NULL THEN 0
+		ELSE 1 END, read_at DESC, {$this->aliases['tabel_b9_field1']} DESC LIMIT 15";
 		return $this->db->query($sql);
 	}
 	

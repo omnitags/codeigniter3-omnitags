@@ -18,8 +18,8 @@ class M_tabel_a1 extends CI_Model
 		$this->db->order_by($this->aliases['tabel_a1_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_a1']);
 	}
-
-	public function get_a1_by_field($params, $fields)
+	
+	public function get_a1_by_field($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
 			foreach ($fields as $key => $field) {
@@ -31,6 +31,22 @@ class M_tabel_a1 extends CI_Model
 		}
 
 		$this->db->where('deleted_at', NULL);
+		$this->db->order_by($this->aliases['tabel_a1_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_a1']);
+	}
+	
+	public function get_a1_by_field_archive($params, $fields)
+	{
+		if (is_array($fields) && is_array($params)) {
+			foreach ($fields as $key => $field) {
+				$param = $params[$key]; // Get the corresponding param value
+				$this->db->where($this->aliases[$field], $param);
+			}
+		} else {
+			$this->db->where($this->aliases[$fields], $params);
+		}
+		
+		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by($this->aliases['tabel_a1_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_a1']);
 	}
