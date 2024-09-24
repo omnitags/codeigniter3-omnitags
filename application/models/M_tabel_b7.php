@@ -5,10 +5,18 @@ class M_tabel_b7 extends CI_Model
 {
 	public function get_all_b7()
 	{
+		$this->db->where('deleted_at', NULL);
 		$this->db->order_by($this->aliases['tabel_b7_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_b7']);
 	}
-
+	
+	public function get_all_b7_archive()
+	{
+		$this->db->where('deleted_at IS NOT NULL');
+		$this->db->order_by($this->aliases['tabel_b7_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_b7']);
+	}
+	
 	public function get_b7_by_field($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
@@ -19,7 +27,24 @@ class M_tabel_b7 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-
+		
+		$this->db->where('deleted_at', NULL);
+		$this->db->order_by($this->aliases['tabel_b7_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_b7']);
+	}
+	
+	public function get_b7_by_field_archive($fields, $params)
+	{
+		if (is_array($fields) && is_array($params)) {
+			foreach ($fields as $key => $field) {
+				$param = $params[$key]; // Get the corresponding param value
+				$this->db->where($this->aliases[$field], $param);
+			}
+		} else {
+			$this->db->where($this->aliases[$fields], $params);
+		}
+		
+		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by($this->aliases['tabel_b7_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_b7']);
 	}

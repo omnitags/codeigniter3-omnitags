@@ -2,10 +2,10 @@
 <form action="<?= site_url($language . '/' . $tabel_c2 . '/tambah') ?>" method="post">
   <?= input_hidden('tabel_c2_field6', $tabel_c2_field6_value5, 'required') ?>
   <?= input_add('text', 'tabel_c2_field2', 'required') ?>
-  <?= input_add('email', 'tabel_c2_field3', 'required') ?>
-  <?= add_new_password('tabel_c2_field4', 'required') ?>
+  <?= input_add('email', 'tabel_c2_field3', 'required autocomplete="username"') ?>
+  <?= add_new_password('tabel_c2_field4', 'required autocomplete="new-password"') ?>
   <?= password_req() ?>
-  <?= add_confirm('password', 'tabel_c2_field4', 'required') ?>
+  <?= add_confirm('password', 'tabel_c2_field4', 'required autocomplete="new-password"') ?>
   <?= input_add('text', 'tabel_c2_field5', 'required') ?>
 
   <!-- pesan untuk pengguna yang signup -->

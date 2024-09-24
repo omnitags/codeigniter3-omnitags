@@ -5,6 +5,14 @@ class M_tabel_e3 extends CI_Model
 {
 	public function get_all_e3()
 	{
+		$this->db->where('deleted_at', NULL);
+		$this->db->order_by($this->aliases['tabel_e3_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_e3']);
+	}
+	
+	public function get_all_e3_archive()
+	{
+		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by($this->aliases['tabel_e3_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_e3']);
 	}
@@ -19,7 +27,24 @@ class M_tabel_e3 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-
+		
+		$this->db->where('deleted_at', NULL);
+		$this->db->order_by($this->aliases['tabel_e3_field1'], 'DESC');
+		return $this->db->get($this->aliases['tabel_e3']);
+	}
+	
+	public function get_e3_by_field_archive($fields, $params)
+	{
+		if (is_array($fields) && is_array($params)) {
+			foreach ($fields as $key => $field) {
+				$param = $params[$key]; // Get the corresponding param value
+				$this->db->where($this->aliases[$field], $param);
+			}
+		} else {
+			$this->db->where($this->aliases[$fields], $params);
+		}
+		
+		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by($this->aliases['tabel_e3_field1'], 'DESC');
 		return $this->db->get($this->aliases['tabel_e3']);
 	}
@@ -29,6 +54,7 @@ class M_tabel_e3 extends CI_Model
 		$sql = "SELECT * FROM {$this->aliases['tabel_e3']} 
 		JOIN {$this->aliases['tabel_e4']} 
 		ON {$this->aliases['tabel_e3']}.{$this->aliases['tabel_e3_field2']} = {$this->aliases['tabel_e4']}.{$this->aliases['tabel_e3_field2']}
+		WHERE {$this->aliases['tabel_e3']}.deleted_at IS NULL
 		ORDER BY {$this->aliases['tabel_e3']}.{$this->aliases['tabel_e3_field1']} DESC";
 		return $this->db->query($sql);
 	}
