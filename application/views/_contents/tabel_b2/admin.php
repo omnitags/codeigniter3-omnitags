@@ -3,9 +3,9 @@
     <h1><?= $title ?><?= count_data($tbl_b2) ?><?= $phase ?></h1>
   </div>
   <div class="col-md-3 text-right">
-    <?php foreach ($dekor->result() as $dk): ?>
-      <img src="img/<?= $tabel_b1 ?>/<?= $dk->$tabel_b1_field4 ?>" width="200" alt="Image">
-    <?php endforeach ?>
+    <?php foreach ($dekor->result() as $dk):
+      echo tampil_dekor('175px', $tabel_b1, $dk->$tabel_b1_field4);
+    endforeach ?>
   </div>
 </div>
 <hr>
@@ -44,7 +44,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_b2') ?>
-
+    <?= btn_archive('tabel_b2') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">
@@ -55,19 +55,22 @@
 
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_b2->result())) {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_b2->result())) {
     load_view('_partials/no_data');
   } else {
+    $counter = 1;
     foreach ($tbl_b2->result() as $tl_b2): ?>
       <?php
       $btn_class = '';
       if ($tl_b2->$tabel_b2_field6 == $tabel_b2_field6_value1) {
-        $btn_class = btn_action('tabel_b2', '/nonaktifkan/' . $tl_b2->$tabel_b2_field1, '<i class="fas fa-toggle-on fa-lg"></i>', 'text-warning');
+        $btn_class = btn_action('tabel_b2', 'nonaktifkan',  $tl_b2->$tabel_b2_field1, '<i class="fas fa-toggle-on fa-lg"></i>', 'text-warning');
       } elseif ($tl_b2->$tabel_b2_field6 == $tabel_b2_field6_value2) {
-        $btn_class = btn_action('tabel_b2', '/aktifkan/' . $tl_b2->$tabel_b2_field1, '<i class="fas fa-toggle-off fa-lg"></i>', 'text-warning');
+        $btn_class = btn_action('tabel_b2', 'aktifkan',  $tl_b2->$tabel_b2_field1, '<i class="fas fa-toggle-off fa-lg"></i>', 'text-warning');
       }
       echo card_file(
+        $counter,
         $tl_b2->$tabel_b2_field1,
         $tl_b2->$tabel_b2_field2,
         $btn_class,
@@ -79,10 +82,15 @@
         $tabel_b2,
         $tl_b2->$tabel_b2_field4,
       );
-      ?>
-    <?php endforeach;
-  } ?>
+        $counter++;
+      endforeach;
+    } ?>
+  </div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
+
 
 
 <div id="table-view" class="table-responsive data-view" style="display: none;">
@@ -111,9 +119,9 @@
           <td><?= truncateText($tl_b2->$tabel_b2_field5, 100) ?></td>
           <td>
             <?php if ($tl_b2->$tabel_b2_field6 == $tabel_b2_field6_value1) { ?>
-              <?= btn_action('tabel_b2', '/nonaktifkan/' . $tl_b2->$tabel_b2_field1, '<i class="fas fa-toggle-on fa-lg"></i>', 'text-warning') ?>
+              <?= btn_action('tabel_b2', 'nonaktifkan',  $tl_b2->$tabel_b2_field1, '<i class="fas fa-toggle-on fa-lg"></i>', 'text-warning') ?>
             <?php } elseif ($tl_b2->$tabel_b2_field6 == $tabel_b2_field6_value2) { ?>
-              <?= btn_action('tabel_b2', '/aktifkan/' . $tl_b2->$tabel_b2_field1, '<i class="fas fa-toggle-off fa-lg"></i>', 'text-warning') ?>
+              <?= btn_action('tabel_b2', 'aktifkan',  $tl_b2->$tabel_b2_field1, '<i class="fas fa-toggle-off fa-lg"></i>', 'text-warning') ?>
             <?php } else { ?>
 
             <?php } ?>
@@ -122,6 +130,7 @@
             <?= btn_lihat($tl_b2->$tabel_b2_field1) ?>
             <?= btn_edit($tl_b2->$tabel_b2_field1) ?>
             <?= btn_hapus('tabel_b2', $tl_b2->$tabel_b2_field1) ?>
+          </td>
         </tr>
       <?php endforeach; ?>
     </tbody>
@@ -192,7 +201,7 @@
                 <small><?= lang('reupload_image_even_for_name_change') ?></small>
 
 
-                <?= input_edit('text', 'tabel_b2_field2', $tl_b2->$tabel_b2_field2, 'required') ?>
+                <?= input_edit($tl_b2->$tabel_b2_field1, 'text', 'tabel_b2_field2', $tl_b2->$tabel_b2_field2, 'required') ?>
                 <?= edit_file('tabel_b2', 'tabel_b2_field4', $tl_b2->$tabel_b2_field4, '') ?>
 
                 <?= select_edit(
@@ -206,7 +215,7 @@
 
               </div>
               <div class="col-md-8">
-                <?= input_edit('text', 'tabel_b2_field3', $tl_b2->$tabel_b2_field3, 'required') ?>
+                <?= input_edit($tl_b2->$tabel_b2_field1, 'text', 'tabel_b2_field3', $tl_b2->$tabel_b2_field3, 'required') ?>
                 <?= input_ckeditor('tabel_b2_field5', $tl_b2->$tabel_b2_field5, 'required') ?>
 
               </div>
@@ -259,6 +268,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_b2', $tl_b2->$tabel_b2_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>
@@ -268,4 +278,5 @@
   </div>
 <?php endforeach; ?>
 
-<?= adjust_col_js() ?>
+<?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_b2->num_rows(), 28) ?>

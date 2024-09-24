@@ -4,8 +4,8 @@
       <th><?= lang('tabel_d3_field1_alias') ?></th>
       <th><?= lang('tabel_d3_field2_alias') ?></th>
       <th><?= lang('tabel_d3_field3_alias') ?></th>
-      <th><?= lang('tabel_d3_field4_alias') ?></th>
-      <th><?= lang('tabel_d3_field5_alias') ?></th>
+      <th><?= lang('created_at') ?></th>
+      <th><?= lang('updated_at') ?></th>
     </tr>
   </thead>
   <tbody>
@@ -14,8 +14,8 @@
         <td width=""><?= $tl_d3->$tabel_d3_field1 ?></td>
         <td width=""><?= $tl_d3->$tabel_d3_field2 ?></td>
         <td width=""><?= $tl_d3->$tabel_d3_field3 ?></td>
-        <td width=""><?= $tl_d3->$tabel_d3_field4 ?></td>
-        <td width=""><?= $tl_d3->$tabel_d3_field5 ?></td>
+        <td width=""><?= $tl_d3->created_at ?></td>
+        <td width=""><?= $tl_d3->updated_at ?></td>
       </tr>
     <?php endforeach ?>
   </tbody>

@@ -14,6 +14,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_b7') ?>
+    <?= btn_archive('tabel_b7') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">
@@ -24,12 +25,15 @@
 
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_b7->result())) {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_b7->result())) {
     load_view('_partials/no_data');
   } else {
+    $counter = 1;
     foreach ($tbl_b7->result() as $tl_b7):
       echo card_file(
+        $counter,
         $tl_b7->$tabel_b7_field1,
         $tl_b7->$tabel_b7_field2,
         btn_field($tabel_b7_field3 . $tl_b7->$tabel_b7_field1, '<i class="fas fa-globe"></i>') . ' ' .
@@ -40,7 +44,7 @@
         ($tl_b7->$tabel_b7_field2 != $database ?
           '<a class="btn mr-1 mb-2 btn-light text-danger"
           onclick="return confirm(\'Tindakan anda akan menghapus hal-hal berikut:\n' . $tabel_b7_alias . '\n' . $tabel_b1_alias . '\n' . $tabel_b2_alias . '\n' . $tabel_b5_alias . '\n' . $tabel_b6_alias . '\nHapus data?\')"
-          href="' . site_url($language . '/' . $tabel_b7 . '/delete/' . $tl_b7->$tabel_b7_field1) . '">
+          href="' . site_url($language . '/' . $tabel_b7 . $tl_b7->$tabel_b7_field1 . '/delete') . '">
           <i class="fas fa-trash"></i></a>' : ''
         ),
         'text-white bg-danger',
@@ -48,8 +52,14 @@
         $tabel_b7,
         $tl_b7->$tabel_b7_field3,
       );
+    $counter++;
     endforeach;
   } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
 
 
@@ -92,7 +102,7 @@
             <?php if ($tl_b7->$tabel_b7_field2 != $database) { ?>
               <a class="btn btn-light text-danger"
                 onclick="return confirm('Tindakan anda akan menghapus hal-hal berikut:\n<?= xss_clean($tabel_b7_alias) ?>\n<?= xss_clean($tabel_b1_alias) ?>\n<?= xss_clean($tabel_b2_alias) ?>\n<?= xss_clean($tabel_b5_alias) ?>\n<?= xss_clean($tabel_b6_alias) ?>\nHapus data?')"
-                href="<?= site_url($language . '/' . $tabel_b7 . '/delete/' . $tl_b7->$tabel_b7_field1) ?>">
+                href="<?= site_url($language . '/' . $tabel_b7 . '/' . $tl_b7->$tabel_b7_field1 . '/delete') ?>">
                 <i class="fas fa-trash"></i></a>
             <?php } ?>
           </td>
@@ -113,7 +123,7 @@
       <form action="<?= site_url($language . '/' . $tabel_b7 . '/tambah') ?>" enctype="multipart/form-data"
         method="post">
         <div class="modal-body">
-          <?= input_edit('text', 'tabel_b7_field2', $database, 'required') ?>
+          <?= input_edit($tl_b7->$tabel_b7_field1, 'text', 'tabel_b7_field2', $database, 'required') ?>
           <?= input_ckeditor('tabel_b7_field6', '', 'required') ?>
         </div>
 
@@ -141,7 +151,7 @@
           <div class="modal-body">
 
             <?= input_hidden('tabel_b7_field1', $tl_b7->$tabel_b7_field1, 'required') ?>
-            <?= input_edit('text', 'tabel_b7_field2', $tl_b7->$tabel_b7_field2, 'required') ?>
+            <?= input_edit($tl_b7->$tabel_b7_field1, 'text', 'tabel_b7_field2', $tl_b7->$tabel_b7_field2, 'required') ?>
             <?= input_ckeditor('tabel_b7_field6', $tl_b7->$tabel_b7_field6, 'required') ?>
 
           </div>
@@ -262,6 +272,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_b7', $tl_b7->$tabel_b7_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>
@@ -271,4 +282,5 @@
   </div>
 <?php endforeach; ?>
 
-<?= adjust_col_js() ?>
+<?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_b7->num_rows(), 28) ?>

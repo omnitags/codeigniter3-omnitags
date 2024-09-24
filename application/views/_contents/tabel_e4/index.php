@@ -24,7 +24,7 @@ terima kasih pada link di atas -->
 
             <li>
               <a class="text-decoration-none"
-                href="<?= site_url($language . '/' . $tabel_e2 . '/detail/' . $tl_e2->$tabel_e2_field1) ?>">
+                href="<?= site_url($language . '/' . $tabel_e2 . '/' . $tl_e2->$tabel_e2_field1 .'/detail') ?>">
                 <?= $tl_e2->$tabel_e2_field2 ?></a>
             </li>
 

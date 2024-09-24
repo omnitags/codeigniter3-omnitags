@@ -2,8 +2,8 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 // Generates a dropdown menu item for a specific table and place
-if (!function_exists('dropdown_menu')) {
-    function dropdown_menu($tabel, $place)
+if (!function_exists('dropdown_nav')) {
+    function dropdown_nav($tabel, $place)
     {
         // Get CodeIgniter instance
         $CI =& get_instance();
@@ -11,7 +11,7 @@ if (!function_exists('dropdown_menu')) {
         $data = $CI->load->get_vars();
 
         $alias = lang($tabel . '_alias');
-        $url = site_url($data['language'] . '/' . $data[$tabel] . $place);
+        $url = nav_url($data['language'] . '/' . $data[$tabel] . $place);
 
         return <<<HTML
         <a class="dropdown-item" href="{$url}">
@@ -22,15 +22,15 @@ if (!function_exists('dropdown_menu')) {
 }
 
 // Generates a dropdown menu item with a unique title, controller, and place
-if (!function_exists('dropdown_menu_unique')) {
-    function dropdown_menu_unique($title, $controller, $place)
+if (!function_exists('dropdown_nav_unique')) {
+    function dropdown_nav_unique($title, $controller, $place)
     {
         // Get CodeIgniter instance
         $CI =& get_instance();
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = site_url($data['language'] . '/' . $controller . $place);
+        $url = nav_url($data['language'] . '/' . $controller . $place);
 
         return <<<HTML
         <a class="dropdown-item" href="{$url}">
@@ -61,10 +61,10 @@ if (!function_exists('nav_item')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = site_url($data['language'] . '/' . $controller . $place);
+        $url = nav_url($data['language'] . '/' . $controller . $place);
 
         return <<<HTML
-            <li class="nav-item pb-2">
+            <li class="nav-item d-flex align-items-center pb-2">
                 <a class="nav-link text-light text-decoration-none" href="{$url}">
                     {$title}
                 </a>
