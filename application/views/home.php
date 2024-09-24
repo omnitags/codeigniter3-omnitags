@@ -100,4 +100,4 @@
 <?= newsapi_apple('news-container') ?>
 
 <!-- ?= adjust_date1($tabel_f2_field10_input, $tabel_f2_field11_input) ?> -->
-<?= adjust_col_js() ?>
+<?= adjust_col_js('col-md-3', 'col-md-4') ?>
