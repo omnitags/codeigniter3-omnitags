@@ -123,7 +123,7 @@
       <form action="<?= site_url($language . '/' . $tabel_b7 . '/tambah') ?>" enctype="multipart/form-data"
         method="post">
         <div class="modal-body">
-          <?= input_edit('text', 'tabel_b7_field2', $database, 'required') ?>
+          <?= input_edit($tl_b7->$tabel_b7_field1, 'text', 'tabel_b7_field2', $database, 'required') ?>
           <?= input_ckeditor('tabel_b7_field6', '', 'required') ?>
         </div>
 
@@ -151,7 +151,7 @@
           <div class="modal-body">
 
             <?= input_hidden('tabel_b7_field1', $tl_b7->$tabel_b7_field1, 'required') ?>
-            <?= input_edit('text', 'tabel_b7_field2', $tl_b7->$tabel_b7_field2, 'required') ?>
+            <?= input_edit($tl_b7->$tabel_b7_field1, 'text', 'tabel_b7_field2', $tl_b7->$tabel_b7_field2, 'required') ?>
             <?= input_ckeditor('tabel_b7_field6', $tl_b7->$tabel_b7_field6, 'required') ?>
 
           </div>

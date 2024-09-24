@@ -186,10 +186,10 @@
           <div class="modal-body">
 
             <?= input_hidden('tabel_b6_field1', $tl_b6->$tabel_b6_field1, 'required') ?>
-            <?= input_edit('text', 'tabel_b6_field2', $tl_b6->$tabel_b6_field2, 'required') ?>
-            <?= input_edit('text', 'tabel_b6_field3', $tl_b6->$tabel_b6_field3, 'required') ?>
-            <?= input_edit('text', 'tabel_b6_field4', $tl_b6->$tabel_b6_field4, 'required') ?>
-            <?= input_edit('text', 'tabel_b6_field5', htmlspecialchars($tl_b6->$tabel_b6_field5), 'required') ?>
+            <?= input_edit($tl_b6->$tabel_b6_field1, 'text', 'tabel_b6_field2', $tl_b6->$tabel_b6_field2, 'required') ?>
+            <?= input_edit($tl_b6->$tabel_b6_field1, 'text', 'tabel_b6_field3', $tl_b6->$tabel_b6_field3, 'required') ?>
+            <?= input_edit($tl_b6->$tabel_b6_field1, 'text', 'tabel_b6_field4', $tl_b6->$tabel_b6_field4, 'required') ?>
+            <?= input_edit($tl_b6->$tabel_b6_field1, 'text', 'tabel_b6_field5', htmlspecialchars($tl_b6->$tabel_b6_field5), 'required') ?>
 
             <?= select_edit(
               'tabel_b6_field7',

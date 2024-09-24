@@ -75,6 +75,7 @@ if (!function_exists('detect_preferred_language')) {
         return 'id';
     }
 }
+
 // Sets security headers for the application
 if (!function_exists('set_security_headers')) {
     function set_security_headers()
@@ -90,7 +91,7 @@ if (!function_exists('set_security_headers')) {
             "X-Frame-Options: SAMEORIGIN",
             "X-Content-Type-Options: nosniff",
             "Referrer-Policy: strict-origin-when-cross-origin",
-            "Permissions-Policy: geolocation=(self 'http://localhost/me/omnitags')"
+            "Permissions-Policy: geolocation=self http://localhost/me/omnitags, camera=self, microphone=none"
         ];
 
         foreach ($headers as $header) {
@@ -98,6 +99,7 @@ if (!function_exists('set_security_headers')) {
         }
     }
 }
+
 
 
 // Determines the device type and operating system based on the user agent

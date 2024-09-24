@@ -201,7 +201,7 @@
                 <small><?= lang('reupload_image_even_for_name_change') ?></small>
 
 
-                <?= input_edit('text', 'tabel_b2_field2', $tl_b2->$tabel_b2_field2, 'required') ?>
+                <?= input_edit($tl_b2->$tabel_b2_field1, 'text', 'tabel_b2_field2', $tl_b2->$tabel_b2_field2, 'required') ?>
                 <?= edit_file('tabel_b2', 'tabel_b2_field4', $tl_b2->$tabel_b2_field4, '') ?>
 
                 <?= select_edit(
@@ -215,7 +215,7 @@
 
               </div>
               <div class="col-md-8">
-                <?= input_edit('text', 'tabel_b2_field3', $tl_b2->$tabel_b2_field3, 'required') ?>
+                <?= input_edit($tl_b2->$tabel_b2_field1, 'text', 'tabel_b2_field3', $tl_b2->$tabel_b2_field3, 'required') ?>
                 <?= input_ckeditor('tabel_b2_field5', $tl_b2->$tabel_b2_field5, 'required') ?>
 
               </div>

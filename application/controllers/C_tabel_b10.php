@@ -5,7 +5,7 @@ include 'Omnitags.php';
 
 class C_tabel_b10 extends Omnitags
 {
-	// Admin Pages
+	// Public Pages
 	public function index()
 	{
 		$this->declarew();
@@ -35,19 +35,19 @@ class C_tabel_b10 extends Omnitags
 
 	// Pages
 	// Public Pages
-	public function detail($param1 = null)
+	public function detail($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $param1)->result();
+		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
 			'title' => lang('tabel_b10_alias_v8_title'),
 			'konten' => $this->v8['tabel_b10'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b10']),
-			'tbl_b10' => $this->tl_b10->get_b10_by_field('tabel_b10_field1', $param1),
+			'tbl_b10' => $this->tl_b10->get_b10_by_field('tabel_b10_field1', $code),
 		);
 
 		$this->load_page('tabel_b10', '_layouts/template', $data1);
@@ -161,9 +161,9 @@ class C_tabel_b10 extends Omnitags
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_b10_field1 = $this->v_post['tabel_b10_field1'];
+		$code = $this->v_post['tabel_b10_field1'];
 
-		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $tabel_b10_field1)->result();
+		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $code)->result();
 		$this->check_data($tabel);
 
 		validate_all(
@@ -174,10 +174,10 @@ class C_tabel_b10 extends Omnitags
 				$this->v_post['tabel_b10_field4'],
 			),
 			$this->views['flash3'],
-			'ubah' . $tabel_b10_field1,
+			'ubah' . $code,
 		);
 
-		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $tabel_b10_field1)->result();
+		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $code)->result();
 
 		$gambar = $this->change_image_advanced(
 			'tabel_b10_field3',
@@ -197,21 +197,21 @@ class C_tabel_b10 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b10->update_b10($data, $tabel_b10_field1);
+		$aksi = $this->tl_b10->update_b10($data, $code);
 		$this->insert_history('tabel_b10', $data);
 
-		$notif = $this->handle_4c($aksi, 'tabel_b10', $tabel_b10_field1);
+		$notif = $this->handle_4c($aksi, 'tabel_b10', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 	
 	//Soft Delete Data
-	public function soft_delete($tabel_b10_field1 = null)
+	public function soft_delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $tabel_b10_field1)->result();
+		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -220,21 +220,21 @@ class C_tabel_b10 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b10->update_b10($data, $tabel_b10_field1);
+		$aksi = $this->tl_b10->update_b10($data, $code);
 		$this->insert_history('tabel_b10', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_b10', $tabel_b10_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_b10', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Soft Delete data
-	public function restore($tabel_b10_field1 = null)
+	public function restore($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b10->get_b10_by_field_archive('tabel_b10_field1', $tabel_b10_field1)->result();
+		$tabel = $this->tl_b10->get_b10_by_field_archive('tabel_b10_field1', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -243,30 +243,30 @@ class C_tabel_b10 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b10->update_b10($data, $tabel_b10_field1);
+		$aksi = $this->tl_b10->update_b10($data, $code);
 		$this->insert_history('tabel_b10', $data);
 
-		$notif = $this->handle_4e($aksi, 'tabel_b10', $tabel_b10_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_b10', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 	// Delete data
-	public function delete($tabel_b10_field1 = null)
+	public function delete($code = null)
 	{
 		$this->declarew();
 		$this->session_3();
 
-		$tabel_b10 = $this->tl_b10->get_b10_by_field_archive('tabel_b10_field1', $tabel_b10_field1)->result();
+		$tabel_b10 = $this->tl_b10->get_b10_by_field_archive('tabel_b10_field1', $code)->result();
 		$this->check_data($tabel_b10);
 
 		$img = $tabel_b10[0]->{$this->aliases['tabel_b10_field2']};
 
 		unlink($this->v_upload_path['tabel_b10'] . $img);
 
-		$aksi = $this->tl_b10->delete_b10_by_field('tabel_b10_field1', $tabel_b10_field1);
+		$aksi = $this->tl_b10->delete_b10_by_field('tabel_b10_field1', $code);
 
-		$notif = $this->handle_4e($aksi, 'tabel_b10', $tabel_b10_field1);
+		$notif = $this->handle_4e($aksi, 'tabel_b10', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -290,38 +290,39 @@ class C_tabel_b10 extends Omnitags
 	}
 
 	// Public Pages
-	public function detail_archive($param1 = null)
+	public function detail_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $param1)->result();
+		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
 			'title' => lang('tabel_b10_alias_v10_title'),
 			'konten' => $this->v10['tabel_b10'],
 			'dekor' => $this->tl_b10->dekor($this->theme_id, $this->aliases['tabel_b10']),
-			'tbl_b10' => $this->tl_b10->get_b10_by_field_archive('tabel_b10_field1', $param1),
+			'tbl_b10' => $this->tl_b10->get_b10_by_field_archive('tabel_b10_field1', $code),
 		);
 
 		$this->load_page('tabel_b10', '_layouts/template', $data1);
 	}
 	
-	public function history($param1 = null)
+	public function history($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $param1)->result();
+		$tabel = $this->tl_b10->get_b10_by_field('tabel_b10_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'table_id' => $param1,
+			'table_id' => $code,
 			'title' => lang('tabel_b10_alias_v11_title'),
 			'konten' => $this->v11['tabel_b10'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b10']),
-			'tbl_b10' => $this->tl_ot->get_by_field_history('tabel_b10', 'tabel_b10_field1', $param1),
+			'tbl_b10' => $this->tl_ot->get_by_field_history('tabel_b10', 'tabel_b10_field1', $code),
+			'current' => $this->tl_ot->get_by_field('tabel_b10', 'tabel_b10_field1', $code),
 		);
 
 		$this->load_page('tabel_b10', '_layouts/template', $data1);
@@ -336,17 +337,21 @@ class C_tabel_b10 extends Omnitags
 		$tabel = $this->tl_ot->get_by_id_history('tabel_b10', $code)->result();
 		$this->check_data($tabel);
 
+		$code = $tabel[0]->{$this->aliases['tabel_b10_field1']};
+
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
-			$this->aliases['tabel_b10_field1'] => $tabel[0]->{$this->aliases['tabel_b10_field1']},
 			$this->aliases['tabel_b10_field2'] => $tabel[0]->{$this->aliases['tabel_b10_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b10->update_b10($data, $tabel[0]->{$this->aliases['tabel_b10_field1']});
+		$aksi = $this->tl_b10->update_b10($data, $code);
+
+		$notif = $this->handle_4c($aksi, 'tabel_b10', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
+
