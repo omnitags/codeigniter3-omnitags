@@ -5,6 +5,7 @@
     <hr>
 
   <?php } else {
+    $counter = 1;
     foreach ($tbl_b5->result() as $tl_b5): ?>
 
       <img src="img/<?= $tabel_b7 ?>/<?= $tl_a1->$tabel_b7_field5 ?>" class="img-fluid rounded">

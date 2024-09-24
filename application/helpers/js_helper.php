@@ -368,7 +368,7 @@ if (!function_exists('adjust_date4')) {
 
 if (!function_exists('adjust_col_js')) {
     // Generates JavaScript code to adjust column sizes based on screen width
-    function adjust_col_js()
+    function adjust_col_js($current_size, $new_size)
     {
         return <<<HTML
         <script>
@@ -380,18 +380,18 @@ if (!function_exists('adjust_col_js')) {
             const breakpoint = 1024; // You can adjust this value based on your needs
 
             // Select all elements with the class "col-md-3"
-            const colMd3Elements = document.querySelectorAll(".col-md-3");
+            const colMd3Elements = document.querySelectorAll(".{$current_size}");
 
             // Loop through each element
             colMd3Elements.forEach(element => {
             if (screenWidth >= breakpoint) {
                 // If screen size is greater than or equal to breakpoint, set class to col-md-4
-                element.classList.add("col-md-3");
-                element.classList.remove("col-md-4");
+                element.classList.add("{$current_size}");
+                element.classList.remove("{$new_size}");
             } else {
                 // If screen size is less than breakpoint, set class to col-md-3
-                element.classList.remove("col-md-3");
-                element.classList.add("col-md-4");
+                element.classList.remove("{$current_size}");
+                element.classList.add("{$new_size}");
             }
             });
         }
@@ -477,4 +477,64 @@ if (!function_exists('password_js')) {
     }
 }
 
+if ( ! function_exists('load_card_pagination_js')) {
+    function load_card_pagination_js($totalCards, $cardsPerPage) {
+        $js = '
+        <script>
+            const totalCards = ' . $totalCards . ';
+            const cardsPerPage = ' . $cardsPerPage . ';
+            let currentPage = 1;
+            let totalPages = Math.ceil(totalCards / cardsPerPage);
 
+            function displayCards() {
+                // Hide all cards first
+                for (let i = 1; i <= totalCards; i++) {
+                    document.getElementById("card-" + i).style.display = "none";
+                }
+
+                // Calculate the range of cards to display
+                const start = (currentPage - 1) * cardsPerPage + 1;
+                const end = Math.min(start + cardsPerPage - 1, totalCards);
+
+                // Show the cards for the current page
+                for (let i = start; i <= end; i++) {
+                    document.getElementById("card-" + i).style.display = "block";
+                }
+
+                // Update page info
+                document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages}`;
+                updateButtonStates();
+                localStorage.setItem("currentPage", currentPage);
+            }
+
+            const prevBtn = document.getElementById("prev-btn");
+            const nextBtn = document.getElementById("next-btn");
+
+            function updateButtonStates() {
+                prevBtn.disabled = currentPage === 1;
+                nextBtn.disabled = currentPage === totalPages;
+            }
+
+            function nextPage() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayCards();
+                }
+            }
+
+            function prevPage() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayCards();
+                }
+            }
+
+            window.onload = function() {
+                displayCards();
+            }
+        </script>
+        ';
+
+        return $js;
+    }
+}
