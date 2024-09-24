@@ -47,12 +47,27 @@ if (!function_exists('row_data')) {
     }
 }
 
+// Generates a table row with a field alias and value
+if (!function_exists('row_data_crud')) {
+    function row_data_crud($field, $value)
+    {
+        $alias = lang($field);
+
+        return <<<HTML
+        <tr>
+              <td width="40%" class="table-active">{$alias}</td>
+              <td width="">{$value}</td>
+            </tr>
+        HTML;
+    }
+}
+
 // Generates a table row with a field alias and an image
 if (!function_exists('row_file')) {
     function row_file($tabel_class, $field, $value)
     {
         $alias = lang($field . '_alias');
-        $img = tampil_image($tabel_class, $value, $alias);
+        $img = tampil_image('125px', $tabel_class, $value, $alias);
 
         return <<<HTML
         <tr>
@@ -106,7 +121,7 @@ if (!function_exists('password_req')) {
 
 // Generates an image with a tooltip
 if (!function_exists('tampil_image')) {
-    function tampil_image($tabel_class, $value, $konten)
+    function tampil_image($size, $tabel_class, $value, $konten)
     {
         // Get CodeIgniter instance
         $CI =& get_instance();
@@ -114,10 +129,49 @@ if (!function_exists('tampil_image')) {
         $data = $CI->load->get_vars();
 
         return <<<HTML
-        <img style="max-height: 125px" role="button" data-toggle="tooltip" data-placement="right" 
+        <img style="max-height: {$size}" role="button" data-toggle="tooltip" data-placement="right" 
             class="img-thumbnail img-fluid" src="img/{$tabel_class}/{$value}" 
             title="<img class='img-thumbnail' src='img/{$tabel_class}/{$value}' />
             <br>{$konten}">
+        HTML;
+    }
+}
+
+// Generates an image with a tooltip
+if (!function_exists('tampil_dekor')) {
+    function tampil_dekor($size, $tabel_class, $value)
+    {
+        return <<<HTML
+        <img style="max-height: {$size}; transform: scale(0.9);" alt="image"
+            class="img-fluid" src="img/{$tabel_class}/{$value}">
+        HTML;
+    }
+}
+
+// Generates an image with a tooltip
+if (!function_exists('tampil_dekor_history')) {
+    function tampil_dekor_history($size, $tabel_class, $value)
+    {
+        return <<<HTML
+        <div class="dekor">
+            <img style="max-height: {$size}; transform: scale(0.9);" alt="image"
+                class="img-fluid archived" src="img/{$tabel_class}/{$value}">
+            <div class="overlay"><i class="fas fa-history"></i></div>
+        </div>
+        HTML;
+    }
+}
+
+// Generates an image with a tooltip
+if (!function_exists('tampil_dekor_archive')) {
+    function tampil_dekor_archive($size, $tabel_class, $value)
+    {
+        return <<<HTML
+        <div class="dekor">
+            <img style="max-height: {$size}; transform: scale(0.9);" alt="image"
+                class="img-fluid archived" src="img/{$tabel_class}/{$value}">
+            <div class="overlay"><i class="fas fa-trash"></i></div>
+        </div>
         HTML;
     }
 }
