@@ -129,21 +129,21 @@ class C_tabel_a1 extends Omnitags
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 	
-	public function history($param1 = null)
+	public function history($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_a1->get_a1_by_field('tabel_a1_field1', $param1)->result();
+		$tabel = $this->tl_a1->get_a1_by_field('tabel_a1_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'table_id' => $param1,
+			'table_id' => $code,
 			'title' => lang('tabel_a1_alias_v11_title'),
 			'konten' => $this->v11['tabel_a1'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_a1']),
-			'current' => $this->tl_ot->get_by_field('tabel_a1', 'tabel_a1_field1', $param1),
-			'tbl_a1_alt' => $this->tl_ot->get_by_field_history('tabel_a1', 'tabel_a1_field1', $param1),
+			'tbl_a1_alt' => $this->tl_ot->get_by_field_history('tabel_a1', 'tabel_a1_field1', $code),
+			'current' => $this->tl_ot->get_by_field('tabel_a1', 'tabel_a1_field1', $code),
 		);
 
 		$this->load_page('tabel_a1', '_layouts/template', $data1);

@@ -7,19 +7,19 @@ class C_tabel_b7 extends Omnitags
 {
 	// Pages
 	// Public Pages
-	public function detail($param1 = null)
+	public function detail($code = null)
 	{
 		$this->declarew();
 		$this->page_session_3();
 
-		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $param1)->result();
+		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
 			'title' => lang('tabel_b7_alias_v8_title'),
 			'konten' => $this->v8['tabel_b7'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b7']),
-			'tbl_b7' => $this->tl_b7->get_b7_by_field('tabel_b7_field1', $param1),
+			'tbl_b7' => $this->tl_b7->get_b7_by_field('tabel_b7_field1', $code),
 		);
 
 		$this->load_page('tabel_b7', '_layouts/template', $data1);
@@ -365,38 +365,39 @@ class C_tabel_b7 extends Omnitags
 	}
 
 	// Public Pages
-	public function detail_archive($param1 = null)
+	public function detail_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $param1)->result();
+		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
 			'title' => lang('tabel_b7_alias_v10_title'),
 			'konten' => $this->v10['tabel_b7'],
 			'dekor' => $this->tl_b7->dekor($this->theme_id, $this->aliases['tabel_b7']),
-			'tbl_b7' => $this->tl_b7->get_b7_by_field_archive('tabel_b7_field1', $param1),
+			'tbl_b7' => $this->tl_b7->get_b7_by_field_archive('tabel_b7_field1', $code),
 		);
 
 		$this->load_page('tabel_b7', '_layouts/template', $data1);
 	}
 	
-	public function history($param1 = null)
+	public function history($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $param1)->result();
+		$tabel = $this->tl_b7->get_b7_by_field('tabel_b7_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'table_id' => $param1,
+			'table_id' => $code,
 			'title' => lang('tabel_b7_alias_v11_title'),
 			'konten' => $this->v11['tabel_b7'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b7']),
-			'tbl_b7' => $this->tl_ot->get_by_field_history('tabel_b7', 'tabel_b7_field1', $param1),
+			'tbl_b7' => $this->tl_ot->get_by_field_history('tabel_b7', 'tabel_b7_field1', $code),
+			'current' => $this->tl_ot->get_by_field('tabel_b7', 'tabel_b7_field1', $code),
 		);
 
 		$this->load_page('tabel_b7', '_layouts/template', $data1);

@@ -372,6 +372,7 @@ class C_tabel_b5 extends Omnitags
 			'konten' => $this->v11['tabel_b5'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b5']),
 			'tbl_b5' => $this->tl_ot->get_by_field_history('tabel_b5', 'tabel_b5_field1', $code),
+			'current' => $this->tl_ot->get_by_field('tabel_b5', 'tabel_b5_field1', $code),
 		);
 
 		$this->load_page('tabel_b5', '_layouts/template', $data1);

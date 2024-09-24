@@ -245,6 +245,7 @@ class C_tabel_f4 extends Omnitags
 			'konten' => $this->v11['tabel_f4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f4']),
 			'tbl_f4' => $this->tl_ot->get_by_field_history('tabel_f4', 'tabel_f4_field1', $code),
+			'current' => $this->tl_ot->get_by_field('tabel_f4', 'tabel_f4_field1', $code),
 		);
 
 		$this->load_page('tabel_f4', '_layouts/template', $data1);

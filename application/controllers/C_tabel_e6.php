@@ -288,6 +288,7 @@ class C_tabel_e6 extends Omnitags
 			'konten' => $this->v11['tabel_e6'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e6']),
 			'tbl_e6' => $this->tl_ot->get_by_field_history('tabel_e6', 'tabel_e6_field1', $code),
+			'current' => $this->tl_ot->get_by_field('tabel_e6', 'tabel_e6_field1', $code),
 		);
 
 		$this->load_page('tabel_e6', '_layouts/template', $data1);

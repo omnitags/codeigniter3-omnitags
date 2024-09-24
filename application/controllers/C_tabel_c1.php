@@ -104,9 +104,9 @@ class C_tabel_c1 extends Omnitags
 		$this->declarew();
 		$this->session_all();
 
-		$param1 = $this->v_post['tabel_c1_field5'];
+		$param = $this->v_post['tabel_c1_field5'];
 
-		$tabel = $this->tl_c1->get_c1_by_field('tabel_c1_field5', $param1)->result();
+		$tabel = $this->tl_c1->get_c1_by_field('tabel_c1_field5', $param)->result();
 		$this->check_null($tabel);
 
 		validate_all(
@@ -506,38 +506,39 @@ class C_tabel_c1 extends Omnitags
 	}
 
 	// Public Pages
-	public function detail_archive($param1 = null)
+	public function detail_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $param1)->result();
+		$tabel = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
 			'title' => lang('tabel_c1_alias_v10_title'),
 			'konten' => $this->v10['tabel_c1'],
 			'dekor' => $this->tl_c1->dekor($this->theme_id, $this->aliases['tabel_c1']),
-			'tbl_c1' => $this->tl_c1->get_c1_by_field_archive('tabel_c1_field1', $param1),
+			'tbl_c1' => $this->tl_c1->get_c1_by_field_archive('tabel_c1_field1', $code),
 		);
 
 		$this->load_page('tabel_c1', '_layouts/template', $data1);
 	}
 	
-	public function history($param1 = null)
+	public function history($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $param1)->result();
+		$tabel = $this->tl_c1->get_c1_by_field('tabel_c1_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'table_id' => $param1,
+			'table_id' => $code,
 			'title' => lang('tabel_c1_alias_v11_title'),
 			'konten' => $this->v11['tabel_c1'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c1']),
-			'tbl_c1' => $this->tl_ot->get_by_field_history('tabel_c1', 'tabel_c1_field1', $param1),
+			'tbl_c1' => $this->tl_ot->get_by_field_history('tabel_c1', 'tabel_c1_field1', $code),
+			'current' => $this->tl_ot->get_by_field('tabel_c1', 'tabel_c1_field1', $code),
 		);
 
 		$this->load_page('tabel_c1', '_layouts/template', $data1);

@@ -546,6 +546,7 @@ class C_tabel_f2 extends Omnitags
 			'konten' => $this->v11['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 			'tbl_f2' => $this->tl_ot->get_by_field_history('tabel_f2', 'tabel_f2_field1', $code),
+			'current' => $this->tl_ot->get_by_field('tabel_f2', 'tabel_f2_field1', $code),
 		);
 
 		$this->load_page('tabel_f2', '_layouts/template', $data1);

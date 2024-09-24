@@ -291,6 +291,7 @@ class C_tabel_e4 extends Omnitags
 			'konten' => $this->v11['tabel_e4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e4']),
 			'tbl_e4' => $this->tl_ot->get_by_field_history('tabel_e4', 'tabel_e4_field1', $code),
+			'current' => $this->tl_ot->get_by_field('tabel_e4', 'tabel_e4_field1', $code),
 		);
 
 		$this->load_page('tabel_e4', '_layouts/template', $data1);

@@ -256,6 +256,7 @@ class C_tabel_e8 extends Omnitags
 			'konten' => $this->v11['tabel_e8'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e8']),
 			'tbl_e8' => $this->tl_ot->get_by_field_history('tabel_e8', 'tabel_e8_field1', $code),
+			'current' => $this->tl_ot->get_by_field('tabel_e8', 'tabel_e8_field1', $code),
 		);
 
 		$this->load_page('tabel_e8', '_layouts/template', $data1);
