@@ -3,9 +3,9 @@
     <h1><?= $title ?><?= count_data($tbl_c2) ?><?= $phase ?></h1>
   </div>
   <div class="col-md-3 text-right">
-    <?php foreach ($dekor->result() as $dk): ?>
-      <img src="img/<?= $tabel_b1 ?>/<?= $dk->$tabel_b1_field4 ?>" width="200" alt="Image">
-    <?php endforeach ?>
+    <?php foreach ($dekor->result() as $dk):
+      echo tampil_dekor('175px', $tabel_b1, $dk->$tabel_b1_field4);
+    endforeach ?>
   </div>
 </div>
 <hr>
@@ -14,6 +14,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_c2') ?>
+    <?= btn_archive('tabel_c2') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">
@@ -21,20 +22,15 @@
   </div>
 </div>
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_c2->result())) { ?>
-    <div class="col-md-12">
-      <div class="text-center">
-        <?php foreach ($no_data->result() as $nd): ?>
-          <img src="img/<?= $tabel_b1 ?>/<?= $nd->$tabel_b1_field4 ?>" width="200" alt="Image">
-        <?php endforeach ?>
-        <h3>NO DATA</h3>
-      </div>
-    </div>
-
-  <?php } else {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_c2->result())) {
+    load_view('_partials/no_data');
+  } else {
+    $counter = 1;
     foreach ($tbl_c2->result() as $tl_c2):
       echo card_regular(
+        $counter,
         $tl_c2->$tabel_c2_field1,
         $tl_c2->$tabel_c2_field2,
         $tl_c2->$tabel_c2_field5,
@@ -45,8 +41,14 @@
         'col-md-3',
         $tabel_c2,
       );
+    $counter++;
     endforeach;
   } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
 
 
@@ -99,15 +101,15 @@
       <form action="<?= site_url($language . '/' . $tabel_c2 . '/tambah') ?>" method="post">
         <div class="modal-body">
           <?= input_add('text', 'tabel_c2_field2', 'required') ?>
-          <?= input_add('email', 'tabel_c2_field3', 'required') ?>
-          <?= add_new_password('tabel_c2_field4', 'required') ?>
+          <?= input_add('email', 'tabel_c2_field3', 'required autocomplete="username"') ?>
+          <?= add_new_password('tabel_c2_field4', 'required autocomplete="new-password"') ?>
           <?= password_req() ?>
-          <?= add_confirm('password', 'tabel_c2_field4', 'required') ?>
+          <?= add_confirm('password', 'tabel_c2_field4', 'required autocomplete="new-password"') ?>
           <?= input_add('text', 'tabel_c2_field5', 'required') ?>
 
           <div class="form-group">
             <!-- hanya admin yang bisa menentukan level user -->
-            <select class="form-control float" required name="<?= $tabel_c2_field6_input ?>" id="tabel_c2_field6_input">
+            <select class="form-control float" required name="<?= $tabel_c2_field6_input ?>" id="<?= $tabel_c2_field6_input ?>">
               <option value="" selected hidden><?= lang('select') ?> <?= $tabel_c2_field6_alias ?></option>
               <option value="<?= $tabel_c2_field6_value5 ?>"><?= $tabel_c2_field6_value5_alias ?></option>
               <option value="<?= $tabel_c2_field6_value4 ?>"><?= $tabel_c2_field6_value4_alias ?></option>
@@ -141,19 +143,19 @@
           enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_c2_field1', $tl_c2->$tabel_c2_field1, 'required') ?>
-            <?= input_edit('text', 'tabel_c2_field2', $tl_c2->$tabel_c2_field2, 'required') ?>
-            <?= input_edit('text', 'tabel_c2_field3', $tl_c2->$tabel_c2_field3, 'required') ?>
-            <?= input_edit('text', 'tabel_c2_field5', $tl_c2->$tabel_c2_field5, 'required') ?>
+            <?= input_edit($tl_c2->$tabel_c2_field1, 'text', 'tabel_c2_field2', $tl_c2->$tabel_c2_field2, 'required') ?>
+            <?= input_edit($tl_c2->$tabel_c2_field1, 'text', 'tabel_c2_field3', $tl_c2->$tabel_c2_field3, 'required') ?>
+            <?= input_edit($tl_c2->$tabel_c2_field1, 'text', 'tabel_c2_field5', $tl_c2->$tabel_c2_field5, 'required') ?>
 
             <div class="form-group">
-              <select class="form-control float" required name="<?= $tabel_c2_field6_input ?>" id="tabel_c2_field6_input">
+              <select class="form-control float" required name="<?= $tabel_c2_field6_input ?>" id="<?= $tabel_c2_field6_input . $tl_c2->$tabel_c2_field1 ?>">
                 <option selected hidden><?= $tl_c2->$tabel_c2_field6; ?></option>
                 <option value="<?= $tabel_c2_field6_value5 ?>"><?= $tabel_c2_field6_value5_alias ?></option>
                 <option value="<?= $tabel_c2_field6_value4 ?>"><?= $tabel_c2_field6_value4_alias ?></option>
                 <option value="<?= $tabel_c2_field6_value2 ?>"><?= $tabel_c2_field6_value2_alias ?></option>
                 <option value="<?= $tabel_c2_field6_value3 ?>"><?= $tabel_c2_field6_value3_alias ?></option>
               </select>
-              <label class="form-label" for="$tabel_c2_field6_input"><?= $tabel_c2_field6_alias ?></label>
+              <label class="form-label" for="<?= $tabel_c2_field6_input . $tl_c2->$tabel_c2_field1 ?>"><?= $tabel_c2_field6_alias ?></label>
             </div>
           </div>
 
@@ -191,6 +193,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_c2', $tl_c2->$tabel_c2_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>

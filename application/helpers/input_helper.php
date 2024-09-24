@@ -186,7 +186,7 @@ if (!function_exists('add_new_password')) {
         return <<<HTML
         <div class="form-group">
             <input class="form-control float" type="password" {$required} name="{$input}" placeholder="" id="psw"
-            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" autocomplete="new-password"
             title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
             <label for="psw" class="form-label">{$alias} {$msg}</label>
         </div>
@@ -314,7 +314,7 @@ if (!function_exists('input_hidden')) {
 }
 
 if (!function_exists('input_edit')) {
-    function input_edit($type, $field, $value, $required)
+    function input_edit($identifier, $type, $field, $value, $required)
     {
         // Get CodeIgniter instance
         $CI =& get_instance();
@@ -332,9 +332,9 @@ if (!function_exists('input_edit')) {
 
         return <<<HTML
         <div class="form-group">
-            <input id="{$input}" class="form-control float" type="{$type}" {$required} name="{$input}" placeholder=""
+            <input id="{$input}{$identifier}" class="form-control float" type="{$type}" {$required} name="{$input}" placeholder=""
             value="{$value}">
-            <label for="{$input}" class="form-label">{$alias} {$msg}</label>
+            <label for="{$input}{$identifier}" class="form-label">{$alias} {$msg}</label>
         </div>
         HTML;
     }
@@ -432,7 +432,7 @@ if (!function_exists('edit_file')) {
         $alias = lang($field . '_alias');
         $input = $data[$field . '_input'];
         $old = $data[$field . "_old"];
-        $img = tampil_image($tabel, $value, $alias);
+        $img = tampil_image('125px', $tabel, $value, $alias);
 
         if (strpos($required, 'required') !== false) {
             $msg = '';

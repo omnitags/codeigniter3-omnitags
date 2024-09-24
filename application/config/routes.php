@@ -32,16 +32,13 @@ foreach ($myData2 as $item2) {
 
     $routeKey = '(' . $languages . ')/' . $item2['value'];
     $controller = $prefix;
+    $route[$routeKey] = $controller;
 
-    if (!isset($cachedControllers[$routeKey])) {
-        $cachedControllers[$routeKey] = class_exists($routeKey);
-    }
 
-    if (!$cachedControllers[$routeKey]) {
-        $route[$routeKey] = $controller;
-    } else {
-        $route[$routeKey] = $routeKey;
-    }
+    $routeId = '(' . $languages . ')/' . $item2['value'] . '/(:num)';
+    $controller = $prefix . '/detail/$2';
+    $route[$routeId] = $controller;
+
 
     // Define routes for different functionality groups
 
@@ -50,6 +47,7 @@ foreach ($myData2 as $item2) {
         'index' => 'index',
         'daftar' => 'daftar',
         'admin' => 'admin',
+        'archive' => 'archive',
         'laporan' => 'laporan',
         'konfirmasi' => 'konfirmasi',
         'profil' => 'profil',
@@ -67,7 +65,12 @@ foreach ($myData2 as $item2) {
         'aktifkan' => 'aktifkan',
         'nonaktifkan' => 'nonaktifkan',
         'detail' => 'detail',
+        'detail_archive' => 'detail_archive',
         'lihat' => 'lihat',
+        'soft_delete' => 'soft_delete',
+        'restore' => 'restore',
+        'history' => 'history',
+        'push' => 'push',
         'delete' => 'delete',
         'print' => 'print',
         'sync_theme' => 'sync_theme',
@@ -101,59 +104,27 @@ foreach ($myData2 as $item2) {
         $routeKey1 = '(' . $languages . ')/' . $item2['value'] . '/' . $key;
         $controller1 = $prefix . '/' . $value;
 
-        if (!isset($cachedControllers[$routeKey1])) {
-            $cachedControllers[$routeKey1] = class_exists($routeKey1);
-        }
-
-        if (!$cachedControllers[$routeKey1]) {
-            $route[$routeKey1] = $controller1;
-        } else {
-            $route[$routeKey1] = $item2['value'] . '/' . $key;
-        }
+        $route[$routeKey1] = $controller1;
     }
 
     foreach ($commonFunctionRoutes as $key => $value) {
         $routeKey1 = '(' . $languages . ')/' . $item2['value'] . '/' . $key;
         $controller1 = $prefix . '/' . $value;
 
-        if (!isset($cachedControllers[$routeKey1])) {
-            $cachedControllers[$routeKey1] = class_exists($routeKey1);
-        }
-
-        if (!$cachedControllers[$routeKey1]) {
-            $route[$routeKey1] = $controller1;
-        } else {
-            $route[$routeKey1] = $item2['value'] . '/' . $key;
-        }
+        $route[$routeKey1] = $controller1;
     }
 
     foreach ($uncommonFunctionRoutes as $key => $value) {
-        $routeKey1 = '(' . $languages . ')/' . $item2['value'] . '/' . $key . '/(:num)';
+        $routeKey1 = '(' . $languages . ')/' . $item2['value'] . '/(:num)' . '/' . $key;
         $controller1 = $prefix . '/' . $value . '/$2';
 
-        if (!isset($cachedControllers[$routeKey1])) {
-            $cachedControllers[$routeKey1] = class_exists($routeKey1);
-        }
-
-        if (!$cachedControllers[$routeKey1]) {
-            $route[$routeKey1] = $controller1;
-        } else {
-            $route[$routeKey1] = $item2['value'] . '/' . $key . '/$2';
-        }
+        $route[$routeKey1] = $controller1;
     }
 
     foreach ($uniqueFunctionRoutes as $key => $value) {
         $routeKey1 = '(' . $languages . ')/' .  $item2['value'] . '/' . $key;
         $controller1 = $prefix . '/' . $value;
-
-        if (!isset($cachedControllers[$routeKey1])) {
-            $cachedControllers[$routeKey1] = class_exists($routeKey1);
-        }
-
-        if (!$cachedControllers[$routeKey1]) {
-            $route[$routeKey1] = $controller1;
-        } else {
-            $route[$routeKey1] = $item2['value'] . '/' . $key;
-        }
+        
+        $route[$routeKey1] = $controller1;
     }
 }

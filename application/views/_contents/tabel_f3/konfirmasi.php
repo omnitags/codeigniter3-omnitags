@@ -8,7 +8,8 @@
 
       <div class="d-flex justify-content-center">
         <a class="btn btn-success text-light"
-          href="<?= site_url($language . '/' . $tabel_f3 . '/print/' . $tbl_f3->$tabel_f3_field1) ?>" target="_blank">
+          href="<?= confirm_url($language . '/' . $tabel_f3 . '/' . $tbl_f3->$tabel_f3_field1 . '/print') ?>"
+          target="_blank">
           Cetak Bukti <?= $tabel_f3_alias ?></i></a>
       </div>
 

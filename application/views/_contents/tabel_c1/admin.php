@@ -3,9 +3,9 @@
     <h1><?= $title ?><?= count_data($tbl_c1) ?><?= $phase ?></h1>
   </div>
   <div class="col-md-3 text-right">
-    <?php foreach ($dekor->result() as $dk): ?>
-      <img src="img/<?= $tabel_b1 ?>/<?= $dk->$tabel_b1_field4 ?>" width="200" alt="Image">
-    <?php endforeach ?>
+    <?php foreach ($dekor->result() as $dk):
+      echo tampil_dekor('175px', $tabel_b1, $dk->$tabel_b1_field4);
+    endforeach ?>
   </div>
 </div>
 <hr>
@@ -14,6 +14,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_c1') ?>
+    <?= btn_archive('tabel_c1') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">
@@ -22,20 +23,15 @@
 </div>
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_c1->result())) { ?>
-    <div class="col-md-12">
-      <div class="text-center">
-        <?php foreach ($no_data->result() as $nd): ?>
-          <img src="img/<?= $tabel_b1 ?>/<?= $nd->$tabel_b1_field4 ?>" width="200" alt="Image">
-        <?php endforeach ?>
-        <h3>NO DATA</h3>
-      </div>
-    </div>
-
-  <?php } else {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_c1->result())) {
+    load_view('_partials/no_data');
+  } else {
+    $counter = 1;
     foreach ($tbl_c1->result() as $tl_c1):
       echo card_regular(
+        $counter,
         $tl_c1->$tabel_c1_field1,
         $tl_c1->$tabel_c1_field2,
         $tl_c1->$tabel_c1_field5,
@@ -46,8 +42,14 @@
         'col-md-3',
         $tabel_c1,
       );
+    $counter++;
     endforeach;
   } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
 
 
@@ -78,10 +80,6 @@
             <?= btn_lihat($tl_c1->$tabel_c1_field1) ?>
             <?= btn_edit($tl_c1->$tabel_c1_field1) ?>
             <?= btn_hapus('tabel_c1', $tl_c1->$tabel_c1_field1) ?>
-            <!-- Sebelumnya saya sudah membahas ini di v_admin_spp
-          Saya akan mempending fitur ini dengan alasan yang sama dalam waktu yang belum ditentukan -->
-            <!-- <a class="btn btn-light text-danger" onclick="return confirm('Hapus user?')" href="< site_url($tabel_c2 . '/hapus/' . $tl_c1->$tabel_c1_field1) ?>">
-            <i class="fas fa-trash"></i></a> -->
 
           </td>
         </tr>
@@ -108,7 +106,7 @@
 
           <?= input_add('text', 'tabel_c1_field2', 'required') ?>
           <?= input_add('text', 'tabel_c1_field3', 'required') ?>
-          <?= input_add('email', 'tabel_c1_field4', 'required') ?>
+          <?= input_add('email', 'tabel_c1_field4', 'required autocomplete="username"') ?>
           <?= input_add('text', 'tabel_c1_field5', 'required') ?>
 
           <?= select_add(
@@ -143,10 +141,10 @@
           enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_c1_field1', $tl_c1->$tabel_c1_field1, 'required') ?>
-            <?= input_edit('text', 'tabel_c1_field2', $tl_c1->$tabel_c1_field2, 'required') ?>
-            <?= input_edit('text', 'tabel_c1_field3', $tl_c1->$tabel_c1_field3, 'required') ?>
-            <?= input_edit('email', 'tabel_c1_field4', $tl_c1->$tabel_c1_field4, 'required') ?>
-            <?= input_edit('text', 'tabel_c1_field5', $tl_c1->$tabel_c1_field5, 'required') ?>
+            <?= input_edit($tl_c1->$tabel_c1_field1, 'text', 'tabel_c1_field2', $tl_c1->$tabel_c1_field2, 'required') ?>
+            <?= input_edit($tl_c1->$tabel_c1_field1, 'text', 'tabel_c1_field3', $tl_c1->$tabel_c1_field3, 'required') ?>
+            <?= input_edit($tl_c1->$tabel_c1_field1, 'email', 'tabel_c1_field4', $tl_c1->$tabel_c1_field4, 'required') ?>
+            <?= input_edit($tl_c1->$tabel_c1_field1, 'text', 'tabel_c1_field5', $tl_c1->$tabel_c1_field5, 'required') ?>
 
             <?= select_edit(
               'tabel_c1_field6',
@@ -192,6 +190,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_c1', $tl_c1->$tabel_c1_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>
@@ -202,4 +201,5 @@
 <?php endforeach; ?>
 
 <?= password_js() ?>
-<?= adjust_col_js() ?>
+<?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_c1->num_rows(), 28) ?>

@@ -1,8 +1,8 @@
 <!-- form login -->
 <form action="<?= site_url($language . '/' . $tabel_c1 . '/ceklogin') ?>" method="post">
 
-  <?= input_add('email', 'tabel_c1_field3', 'required') ?>
-  <?= input_add('password', 'tabel_c1_field4', 'required') ?>
+  <?= input_add('email', 'tabel_c1_field3', 'required autocomplete="username"') ?>
+  <?= input_add('password', 'tabel_c1_field4', 'required autocomplete="current-password"') ?>
 
   <!-- <p class="text-center"><a class="text-decoration-none" href="<?= site_url($language . '/' . $tabel_c1 . '/login') ?>">Login sebagai <?= $tabel_c1_alias ?></a></p> -->
 
