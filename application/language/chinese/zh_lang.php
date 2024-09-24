@@ -44,6 +44,7 @@ $lang['id_history'] = 'ID History';
 $lang['created_at'] = 'Created At';
 $lang['read_at'] = 'Read At';
 $lang['updated_at'] = 'Updated At';
+$lang['updated_by'] = 'Updated By';
 $lang['deleted_at'] = 'Deleted At';
 
 $lang['invalid'] = "无法执行操作!";

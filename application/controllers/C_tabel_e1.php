@@ -72,7 +72,8 @@ class C_tabel_e1 extends Omnitags
 		// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
 		// $this->aliases['tabel_e1_field1'] => $id,
 
-		$code = $this->add_code('tabel_e1', $this->aliases['tabel_e1_field1'], 5, '01');
+		$code = generate_uuid();
+		$code2 = $this->add_code('tabel_e1', $this->aliases['tabel_e1_field1'], 5, '01');
 
 		// Functional requirement: Construct data array from validated view inputs
 		$data = array(

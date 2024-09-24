@@ -81,7 +81,8 @@ class C_tabel_e6 extends Omnitags
 			'tambah'
 		);
 
-		$code = $this->add_code('tabel_e6', $this->aliases['tabel_e6_field1'], 5, '06');
+		$code = generate_uuid();
+		$code2 = $this->add_code('tabel_e6', $this->aliases['tabel_e6_field1'], 5, '06');
 
 		$data = array(
 			$this->aliases['tabel_e6_field1'] => $code,

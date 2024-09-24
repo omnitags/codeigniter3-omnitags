@@ -60,6 +60,10 @@ class M_tabel_b9 extends CI_Model
 
 	public function get_b9_with_b8_limit($param1)
 	{
+		if (empty($param1)) {
+			return []; // or handle this case appropriately
+		}
+		
 		$sql = "SELECT * FROM {$this->aliases['tabel_b9']} 
 		JOIN {$this->aliases['tabel_b8']} 
 		ON {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field3']} = {$this->aliases['tabel_b8']}.{$this->aliases['tabel_b8_field2']}

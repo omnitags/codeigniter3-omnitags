@@ -112,7 +112,8 @@ class C_tabel_e2 extends Omnitags
 
 		// $id = get_next_code($this->aliases['tabel_e2'], $this->aliases['tabel_e2_field1'], 'FH');
 
-		$code = $this->add_code('tabel_e2', $this->aliases['tabel_e2_field1'], 5, '02');
+		$code = generate_uuid();
+		$code2 = $this->add_code('tabel_e2', $this->aliases['tabel_e2_field1'], 5, '02');
 
 		$data = array(
 			// $this->aliases['tabel_e2_field1'] => $id,

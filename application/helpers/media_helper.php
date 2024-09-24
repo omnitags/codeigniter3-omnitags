@@ -95,3 +95,19 @@ if (!function_exists('get_next_code')) {
         return $new_code;
     }
 }
+
+function generate_uuid() {
+    if (function_exists('com_create_guid')) {
+        return trim(com_create_guid(), '{}'); // removes the curly braces
+    } else {
+        // If com_create_guid is not available on the system
+        return sprintf(
+            '%04X%04X-%04X-%04X-%04X-%04X%04X%04X',
+            mt_rand(0, 65535), mt_rand(0, 65535), // 32 bits for "time_low"
+            mt_rand(0, 65535),                    // 16 bits for "time_mid"
+            mt_rand(0, 4095) | 0x4000,            // 16 bits for "time_hi_and_version"
+            mt_rand(0, 16383) | 0x8000,           // 16 bits for "clk_seq_hi_res"
+            mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535) // 48 bits for "node"
+        );
+    }
+}

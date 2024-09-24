@@ -121,7 +121,8 @@ class C_tabel_c1 extends Omnitags
 			'tambah'
 		);
 
-		$code = $this->add_code('tabel_c1', $this->aliases['tabel_c1_field1'], 5, '01');
+		$code = generate_uuid();
+		$code2 = $this->add_code('tabel_c1', $this->aliases['tabel_c1_field1'], 5, '01');
 
 		$data = array(
 			// $this->aliases['tabel_c1_field1'] => $id,

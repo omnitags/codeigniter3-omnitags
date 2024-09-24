@@ -89,7 +89,8 @@ class C_tabel_e3 extends Omnitags
 		// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
 		// $this->aliases['tabel_e1_field1'] => $id,
 
-		$code = $this->add_code('tabel_e3', $this->aliases['tabel_e3_field1'], 5, '03');
+		$code = generate_uuid();
+		$code2 = $this->add_code('tabel_e3', $this->aliases['tabel_e3_field1'], 5, '03');
 
 		$data = array(
 			$this->aliases['tabel_e3_field1'] => $code,
@@ -295,4 +296,3 @@ class C_tabel_e3 extends Omnitags
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
-
