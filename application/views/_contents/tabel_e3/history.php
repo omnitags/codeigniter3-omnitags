@@ -27,7 +27,7 @@
     </thead>
 
     <tbody>
-    <?php foreach ($current->result() as $tl_cr): ?>
+      <?php foreach ($current->result() as $tl_cr): ?>
         <tr class="bg-light">
           <td></td>
           <td>[current]</td>
@@ -68,7 +68,7 @@
         <form>
           <div class="modal-body">
             <?= table_data(
-              row_data('tabel_e3_field1', $tl_e3->$tabel_e3_field1) . 
+              row_data('tabel_e3_field1', $tl_e3->$tabel_e3_field1) .
               row_data('tabel_e3_field2', $tl_e3->$tabel_e3_field2),
               'table-light'
             ) ?>

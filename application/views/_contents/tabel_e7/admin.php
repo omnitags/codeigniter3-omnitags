@@ -124,7 +124,7 @@
           enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_e7_field1', $tl_e7->$tabel_e7_field1, 'required') ?>
-            <?= input_edit('text', 'tabel_e7_field2', $tl_e7->$tabel_e7_field2, 'required') ?>
+            <?= input_edit($tl_e7->$tabel_e7_field1, 'text', 'tabel_e7_field2', $tl_e7->$tabel_e7_field2, 'required') ?>
             <?= input_ckeditor('tabel_e7_field3', $tl_e7->$tabel_e7_field3, 'required') ?>
           </div>
 

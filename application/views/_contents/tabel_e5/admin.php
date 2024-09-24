@@ -164,7 +164,7 @@
                   'required'
                 ); ?>
 
-                <?= input_edit('text', 'tabel_e5_field3', $tl_e5->$tabel_e5_field3, 'required') ?>
+                <?= input_edit($tl_e5->$tabel_e5_field1, 'text', 'tabel_e5_field3', $tl_e5->$tabel_e5_field3, 'required') ?>
                 <?= edit_min_max('date', 'tabel_e5_field4', $tl_e5->$tabel_e5_field4, 'required', '', '') ?>
                 <?= edit_min_max('date', 'tabel_e5_field5', $tl_e5->$tabel_e5_field5, 'required', '', '') ?>
                 <?= edit_file('tabel_e5', 'tabel_e5_field7', $tl_e5->$tabel_e5_field7, '') ?>

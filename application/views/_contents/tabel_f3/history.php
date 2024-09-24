@@ -27,6 +27,17 @@
     </thead>
 
     <tbody>
+      <?php foreach ($current->result() as $tl_cr): ?>
+        <tr class="bg-light">
+          <td></td>
+          <td>[current]</td>
+          <td><?= $tl_cr->$tabel_f3_field1 ?></td>
+          <td><?= $tl_cr->$tabel_f3_field2 ?></td>
+          <td><?= $tl_cr->updated_at ?></td>
+          <td><?= $tl_cr->updated_by ?></td>
+          <td></td>
+        </tr>
+      <?php endforeach; ?>
       <?php foreach ($tbl_f3->result() as $tl_f3): ?>
         <tr>
           <td></td>

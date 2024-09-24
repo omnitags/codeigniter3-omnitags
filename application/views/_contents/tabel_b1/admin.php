@@ -205,13 +205,13 @@
               <div class="col-md-6">
                 <small><?= lang('reupload_image_even_for_name_change') ?></small>
                 <?= input_hidden('tabel_b1_field1', $tl_b1->$tabel_b1_field1, 'required') ?>
-                <?= input_edit('text', 'tabel_b1_field2', $tl_b1->$tabel_b1_field2, 'required') ?>
-                <?= input_edit('text', 'tabel_b1_field3', $tl_b1->$tabel_b1_field3, 'required') ?>
+                <?= input_edit($tl_b1->$tabel_b1_field1, 'text', 'tabel_b1_field2', $tl_b1->$tabel_b1_field2, 'required') ?>
+                <?= input_edit($tl_b1->$tabel_b1_field1, 'text', 'tabel_b1_field3', $tl_b1->$tabel_b1_field3, 'required') ?>
                 <?= edit_file('tabel_b1', 'tabel_b1_field4', $tl_b1->$tabel_b1_field4, '') ?>
 
               </div>
               <div class="col-md-6">
-                <?= input_edit('text', 'tabel_b1_field5', htmlspecialchars($tl_b1->$tabel_b1_field5), 'required') ?>
+                <?= input_edit($tl_b1->$tabel_b1_field1, 'text', 'tabel_b1_field5', htmlspecialchars($tl_b1->$tabel_b1_field5), 'required') ?>
                 <?= select_ubah('tabel_b1_field6', option_selected($tl_b1->$tabel_b1_field6, $tl_b1->$tabel_b1_field6), option_b1(), 'required') ?>
 
                 <?= select_edit(
