@@ -11,30 +11,6 @@
 <hr>
 
 
-<table class="mb-4">
-
-  <!-- method get supaya nilai dari filter bisa tampil nanti -->
-  <form action="<?= site_url($language . '/' . $tabel_e3 . '/admin') ?>" method="get">
-    <tr>
-      <td class="pr-2">
-        <?= select_edit(
-          'tabel_e3_field4',
-          $tabel_e3_field4_value,
-          $tbl_e1,
-          $tabel_e1_field1,
-          $tabel_e1_field2,
-          'required'
-        ); ?>
-      </td>
-
-      <td>
-        <?= btn_cari() ?>
-        <?= btn_redo('tabel_e3', '/admin') ?>
-      </td>
-    </tr>
-  </form>
-</table>
-
 
 <div class="row">
   <div class="col-md-10">

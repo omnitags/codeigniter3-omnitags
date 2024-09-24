@@ -39,7 +39,7 @@ class C_tabel_e3 extends Omnitags
 			'tbl_e1' => $this->tl_e1->get_all_e1(),
 			'tbl_e2' => $this->tl_e2->get_all_e2(),
 			'tbl_e3' => $result,
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			// 'tbl_e4' => $this->tl_e4->get_all_e4(),
 			// 'tbl_c1' => $this->tl_c1->get_all_c1(),
 			'tabel_e3_field4_value' => $param1
 		);

@@ -29,7 +29,7 @@ class C_tabel_e1 extends Omnitags
 			'konten' => $this->v3['tabel_e1'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e1']),
 			'tbl_e1' => $result,
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			// 'tbl_e4' => $this->tl_e4->get_all_e4(),
 			'tabel_e1_field5_value' => $param1
 		);
 
