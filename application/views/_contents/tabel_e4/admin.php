@@ -4,9 +4,9 @@
 
   </div>
   <div class="col-md-3 text-right">
-    <?php foreach ($dekor->result() as $dk): ?>
-      <img src="img/<?= $tabel_b1 ?>/<?= $dk->$tabel_b1_field4 ?>" width="200" alt="Image">
-    <?php endforeach ?>
+    <?php foreach ($dekor->result() as $dk):
+      echo tampil_dekor('175px', $tabel_b1, $dk->$tabel_b1_field4);
+    endforeach ?>
   </div>
 </div>
 <hr>
@@ -16,6 +16,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_e4') ?>
+    <?= btn_archive('tabel_e4') ?>
     <!-- <button class="btn btn-info   b-4" type="button" data-toggle="modal" data-target="#import">+ Import</button>
     <button type="button" class="btn btn-info mb-4" id="export-btn" target="_blank">
       <i class="fas fa-print"></i> Cetak Excel</button> -->
@@ -28,20 +29,15 @@
 </div>
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_e4->result())) { ?>
-    <div class="col-md-12">
-      <div class="text-center">
-        <?php foreach ($no_data->result() as $nd): ?>
-          <img src="img/<?= $tabel_b1 ?>/<?= $nd->$tabel_b1_field4 ?>" width="200" alt="Image">
-        <?php endforeach ?>
-        <h3>NO DATA</h3>
-      </div>
-    </div>
-
-  <?php } else {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_e4->result())) {
+    load_view('_partials/no_data');
+  } else {
+    $counter = 1;
     foreach ($tbl_e4->result() as $tl_e4):
       echo card_file(
+        $counter,
         $tl_e4->$tabel_e4_field1,
         $tabel_e4_field1_alias . ": " . $tl_e4->$tabel_e4_field1,
         $tl_e4->$tabel_e4_field2,
@@ -52,8 +48,14 @@
         $tabel_e4,
         $tl_e4->$tabel_e4_field3
       );
+    $counter++;
     endforeach;
   } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
 
 
@@ -79,11 +81,6 @@
           <td>
             <?= btn_lihat($tl_e4->$tabel_e4_field1) ?>
             <?= btn_edit($tl_e4->$tabel_e4_field1) ?>
-
-            <!-- Sebelumnya saya sudah membahas ini di v_admin_spp
-          Saya akan mempending fitur ini dengan alasan yang sama dalam waktu yang belum ditentukan -->
-            <!-- <a class="btn btn-light text-danger" onclick="return confirm('Hapus user?')" href="< site_url($tabel_c2 . '/hapus/' . $tl_e4->$tabel_e4_field1) ?>">
-            <i class="fas fa-trash"></i></a> -->
 
           </td>
         </tr>
@@ -126,7 +123,7 @@
           enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_e4_field1', $tl_e4->$tabel_e4_field1, 'required') ?>
-            <?= input_edit('text', 'tabel_e4_field2', $tl_e4->$tabel_e4_field2, 'required') ?>
+            <?= input_edit($tl_e4->$tabel_e4_field1, 'text', 'tabel_e4_field2', $tl_e4->$tabel_e4_field2, 'required') ?>
             <?= edit_file($tabel_e4, 'tabel_e4_field3', $tl_e4->$tabel_e4_field3, 'required') ?>
           </div>
 
@@ -162,6 +159,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_e4', $tl_e4->$tabel_e4_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>
@@ -171,4 +169,5 @@
   </div>
 <?php endforeach; ?>
 
-<?= adjust_col_js() ?>
+<?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_e4->num_rows(), 28) ?>

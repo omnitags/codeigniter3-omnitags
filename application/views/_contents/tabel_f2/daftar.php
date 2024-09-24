@@ -3,9 +3,9 @@
     <h1><?= $title ?><?= count_data($tbl_f2) ?><?= $phase ?></h1>
   </div>
   <div class="col-md-3 text-right">
-    <?php foreach ($dekor->result() as $dk): ?>
-      <img src="img/<?= $tabel_b1 ?>/<?= $dk->$tabel_b1_field4 ?>" width="200" alt="Image">
-    <?php endforeach ?>
+    <?php foreach ($dekor->result() as $dk):
+      echo tampil_dekor('175px', $tabel_b1, $dk->$tabel_b1_field4);
+    endforeach ?>
   </div>
 </div>
 <hr>
@@ -20,18 +20,12 @@
   </div>
 </div>
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_f2->result())) { ?>
-    <div class="col-md-12">
-      <div class="text-center">
-        <?php foreach ($no_data->result() as $nd): ?>
-          <img src="img/<?= $tabel_b1 ?>/<?= $nd->$tabel_b1_field4 ?>" width="200" alt="Image">
-        <?php endforeach ?>
-        <h3>NO DATA</h3>
-      </div>
-    </div>
-
-  <?php } else {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_f2->result())) {
+    load_view('_partials/no_data');
+  } else {
+    $counter = 1;
     foreach ($tbl_f2->result() as $tl_f2):
       switch ($tl_f2->$tabel_f2_field12) {
         case $tabel_f2_field12_value2:
@@ -53,6 +47,7 @@
       }
 
       echo card_regular(
+        $counter,
         $tl_f2->$tabel_f2_field1,
         $tl_f2->$tabel_f2_field1 . ' | ' . $tl_f2->$tabel_e4_field2,
         $tl_f2->$tabel_f2_field12,
@@ -62,8 +57,14 @@
         'col-md-3',
         $tabel_f2,
       );
+    $counter++;
     endforeach;
   } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
 
 
@@ -275,7 +276,8 @@
   } ?>
 <?php endforeach ?>
 
-<?= adjust_col_js() ?>
+<?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_f2->num_rows(), 28) ?>
 
 <?= adjust_date3($tabel_f2_field10_filter1, $tabel_f2_field10_filter2, $tabel_f2_field11_filter1, $tabel_f2_field11_filter2) ?>
 <?= adjust_date2($tabel_f2_field11_filter1, $tabel_f2_field11_filter2) ?>

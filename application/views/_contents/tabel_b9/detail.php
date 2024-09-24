@@ -3,9 +3,9 @@
     <h1><?= $title ?><?= $phase ?></h1>
   </div>
   <div class="col-md-3 text-right">
-    <?php foreach ($dekor->result() as $dk): ?>
-      <img src="img/<?= $tabel_b1 ?>/<?= $dk->$tabel_b1_field4 ?>" width="200" alt="Image">
-    <?php endforeach ?>
+    <?php foreach ($dekor->result() as $dk):
+      echo tampil_dekor('175px', $tabel_b1, $dk->$tabel_b1_field4);
+    endforeach ?>
   </div>
 </div>
 <hr>
@@ -21,8 +21,8 @@
         </tr>
 
         <tr>
-          <td class="table-secondary table-active"><?= $tabel_b9_field5_alias ?></td>
-          <td class="table-light"><?= datetime_elapsed_string($tl_b9->$tabel_b9_field5) ?></td>
+          <td class="table-secondary table-active"><?= lang('created_at') ?></td>
+          <td class="table-light"><?= datetime_elapsed_string($tl_b9->created_at) ?></td>
         </tr>
       </tbody>
       <tfoot></tfoot>

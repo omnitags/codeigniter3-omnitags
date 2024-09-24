@@ -3,9 +3,9 @@
     <h1><?= $title ?><?= $phase ?></h1>
   </div>
   <div class="col-md-3 text-right">
-    <?php foreach ($dekor->result() as $dk): ?>
-      <img src="img/<?= $tabel_b1 ?>/<?= $dk->$tabel_b1_field4 ?>" width="200" alt="Image">
-    <?php endforeach ?>
+    <?php foreach ($dekor->result() as $dk):
+      echo tampil_dekor('175px', $tabel_b1, $dk->$tabel_b1_field4);
+    endforeach ?>
   </div>
 </div>
 <hr>
@@ -18,22 +18,26 @@
         <?= btn_field($tabel_b7_field3 . $tl_a1->$tabel_b7_field1, '<i class="fas fa-edit"></i> ' . lang('tabel_b7_field3_alias')) ?>
         <?= btn_field($tabel_b7_field4 . $tl_a1->$tabel_b7_field1, '<i class="fas fa-edit"></i> ' . lang('tabel_b7_field4_alias')) ?>
         <?= btn_field($tabel_b7_field5 . $tl_a1->$tabel_b7_field1, '<i class="fas fa-edit"></i> ' . lang('tabel_b7_field5_alias')) ?>
-        <?= btn_field($tabel_b7, '<i class="fas fa-edit"></i>' . lang('tabel_b7_alias')) ?>
+        <?= btn_field($tabel_b7, '<i class="fas fa-edit"></i> ' . lang('tabel_b7_alias')) ?>
+        <?= btn_field('archive' . $tl_a1->$tabel_a1_field1, '<i class="fas fa-trash"></i>' . ' Archives') ?>
         <?= btn_kelola('tabel_b1', '/admin') ?>
         <?= btn_kelola('tabel_b2', '/admin') ?>
         <?= btn_kelola('tabel_b8', '/admin') ?>
         <?= btn_kelola('tabel_b5', '/admin') ?>
         <?= btn_kelola('tabel_b6', '/admin') ?>
-        <?= btn_kelola('tabel_b10', '/admin') ?>
+        <!-- ?= btn_kelola('tabel_b10', '/admin') ?> -->
+        <?= btn_kelola('tabel_b11', '/admin') ?>
+        <?= btn_kelola('tabel_d4', '/admin') ?>
       </div>
     </div>
     <div class="col-md-6">
+      <?= btn_history('tabel_a1', $tl_a1->$tabel_a1_field1) ?>
       <form action="<?= site_url($language . '/' . $tabel_a1 . '/update') ?>" method="post" enctype="multipart/form-data">
         <?= input_hidden('tabel_a1_field1', $tl_a1->$tabel_a1_field1, 'required') ?>
-        <?= input_edit('text', 'tabel_a1_field2', $tl_a1->$tabel_a1_field2, 'required') ?>
-        <?= input_edit('text', 'tabel_a1_field3', $tl_a1->$tabel_a1_field3, 'required') ?>
-        <?= input_edit('text', 'tabel_a1_field4', $tl_a1->$tabel_a1_field4, 'required') ?>
-        <?= input_edit('text', 'tabel_a1_field5', $tl_a1->$tabel_a1_field5, 'required') ?>
+        <?= input_edit($tl_a1->$tabel_a1_field1, 'text', 'tabel_a1_field2', $tl_a1->$tabel_a1_field2, 'required') ?>
+        <?= input_edit($tl_a1->$tabel_a1_field1, 'text', 'tabel_a1_field3', $tl_a1->$tabel_a1_field3, 'required') ?>
+        <?= input_edit($tl_a1->$tabel_a1_field1, 'text', 'tabel_a1_field4', $tl_a1->$tabel_a1_field4, 'required') ?>
+        <?= input_edit($tl_a1->$tabel_a1_field1, 'text', 'tabel_a1_field5', $tl_a1->$tabel_a1_field5, 'required') ?>
 
         <div class="form-group">
           <button class="btn btn-success" onclick="return confirm('Ubah data website?')" type="submit">Simpan
@@ -89,7 +93,8 @@
 <?php endforeach; ?>
 
 <!-- modal edit favicon-->
-<?php foreach ($tbl_b7->result() as $tl_b7): ?>
+<?php foreach ($tbl_b7->result() as $tl_b7):
+  if ($tl_a1->$tabel_a1_field6 == $tl_b7->$tabel_b7_field1) { ?>
   <div id="<?= $tabel_b7_field3 . $tl_b7->$tabel_b7_field1; ?>" class="modal fade <?= $tabel_b7_field3 ?>">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -172,4 +177,45 @@
       </div>
     </div>
   </div>
-<?php endforeach; ?>
+
+  <div id="archive<?= $tl_a1->$tabel_a1_field1; ?>" class="modal fade lihat" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <?= modal_header("Archives", '') ?>
+
+        <!-- administrator tidak bisa melihat password user lain -->
+        <div>
+          <div class="modal-body">
+            <div class="form-group">
+              <?= btn_kelola('tabel_b1', '/archive') ?>
+              <?= btn_kelola('tabel_b2', '/archive') ?>
+              <?= btn_kelola('tabel_b5', '/archive') ?>
+              <?= btn_kelola('tabel_b6', '/archive') ?>
+              <?= btn_kelola('tabel_b7', '/archive') ?>
+              <?= btn_kelola('tabel_b8', '/archive') ?>
+              <?= btn_kelola('tabel_b9', '/archive') ?>
+              <?= btn_kelola('tabel_b10', '/archive') ?>
+              <?= btn_kelola('tabel_c1', '/archive') ?>
+              <?= btn_kelola('tabel_c2', '/archive') ?>
+              <?= btn_kelola('tabel_d3', '/archive') ?>
+              <?= btn_kelola('tabel_d4', '/archive') ?>
+              <?= btn_kelola('tabel_e1', '/archive') ?>
+              <?= btn_kelola('tabel_e2', '/archive') ?>
+              <?= btn_kelola('tabel_e3', '/archive') ?>
+              <?= btn_kelola('tabel_e4', '/archive') ?>
+              <?= btn_kelola('tabel_f2', '/archive') ?>
+            </div>
+          </div>
+
+          <!-- memunculkan notifikasi modal -->
+          <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
+
+          <div class="modal-footer">
+            <?= btn_tutup() ?>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<?php } endforeach; ?>
