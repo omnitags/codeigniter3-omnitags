@@ -40,6 +40,7 @@ $lang['order_now'] = '立即订购';
 $lang['reservations'] = '预订';
 $lang['history'] = '历史';
 
+$lang['id_history'] = 'ID History';
 $lang['created_at'] = 'Created At';
 $lang['read_at'] = 'Read At';
 $lang['updated_at'] = 'Updated At';

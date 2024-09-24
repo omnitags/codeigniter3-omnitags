@@ -172,6 +172,7 @@ if (!class_exists('Omnitags')) {
                 'tbl_a1' => $this->theme,
                 'notif' => $this->notif_limit,
                 'notif_count' => $this->notif_null->num_rows(),
+                'users' => $this->tl_c2->get_all_c2(),
                 'language' => $this->language_code,
                 'no_data' => $this->tl_b1->dekor($this->theme_id, 'no_data'),
 

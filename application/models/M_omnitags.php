@@ -309,7 +309,47 @@ class M_omnitags extends CI_Model
         return $field_mappings;
     }
 
+    public function get_with_joins($table_name, $joins = [], $fields = [], $params = [], $order_by = '', $order_direction = 'DESC')
+    {
+        // Build the main table alias and name
+        $table_name = $this->aliases[$table_name];
 
+        // Start building the query
+        $this->db->from($table_name);
+
+        // Loop through each JOIN definition
+        if (!empty($joins)) {
+            foreach ($joins as $join) {
+                // Extract JOIN parameters
+                $join_table = $this->aliases[$join['table']];
+                $join_type = isset($join['type']) ? $join['type'] : 'INNER'; // Default is INNER JOIN
+                $join_condition = "{$this->aliases[$join['table']]}.{$this->aliases[$join['field']]} = {$table_name}.{$this->aliases[$join['field']]}";
+
+                // Apply the JOIN
+                $this->db->join($join_table, $join_condition, $join_type);
+            }
+        }
+
+        // Apply WHERE conditions
+        if (is_array($fields) && is_array($params)) {
+            foreach ($fields as $key => $field) {
+                $param = $params[$key];
+                $this->db->where($this->aliases[$field], $param);
+            }
+        } else {
+            $this->db->where($this->aliases[$fields], $params);
+        }
+
+        // Order by specified field, defaulting to DESC
+        if ($order_by) {
+            $this->db->order_by($this->aliases[$order_by], $order_direction);
+        } else {
+            $this->db->order_by($this->aliases[$fields], 'DESC'); // Default to last field in fields array
+        }
+
+        // Return the result set
+        return $this->db->get()->result();
+    }
 
 }
 

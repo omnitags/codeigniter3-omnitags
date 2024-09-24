@@ -40,6 +40,7 @@ $lang['order_now'] = "Commandez maintenant";
 $lang['reservations'] = "Réservations";
 $lang['history'] = "Historique";
 
+$lang['id_history'] = 'ID History';
 $lang['created_at'] = 'Created At';
 $lang['read_at'] = 'Read At';
 $lang['updated_at'] = 'Updated At';

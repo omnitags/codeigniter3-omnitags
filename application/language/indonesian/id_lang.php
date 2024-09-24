@@ -40,6 +40,7 @@ $lang['order_now'] = 'Pesan sekarang';
 $lang['reservations'] = 'Reservasi';
 $lang['history'] = 'Riwayat';
 
+$lang['id_history'] = 'ID History';
 $lang['created_at'] = 'Created At';
 $lang['read_at'] = 'Read At';
 $lang['updated_at'] = 'Updated At';
