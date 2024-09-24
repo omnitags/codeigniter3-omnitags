@@ -340,7 +340,6 @@ class C_tabel_b10 extends Omnitags
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
-			$this->aliases['tabel_b10_field1'] => $code,
 			$this->aliases['tabel_b10_field2'] => $tabel[0]->{$this->aliases['tabel_b10_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),

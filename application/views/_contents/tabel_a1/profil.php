@@ -31,6 +31,7 @@
       </div>
     </div>
     <div class="col-md-6">
+      <?= btn_history('tabel_a1', $tl_a1->$tabel_a1_field1) ?>
       <form action="<?= site_url($language . '/' . $tabel_a1 . '/update') ?>" method="post" enctype="multipart/form-data">
         <?= input_hidden('tabel_a1_field1', $tl_a1->$tabel_a1_field1, 'required') ?>
         <?= input_edit('text', 'tabel_a1_field2', $tl_a1->$tabel_a1_field2, 'required') ?>
@@ -92,7 +93,8 @@
 <?php endforeach; ?>
 
 <!-- modal edit favicon-->
-<?php foreach ($tbl_b7->result() as $tl_b7): ?>
+<?php foreach ($tbl_b7->result() as $tl_b7):
+  if ($tl_a1->$tabel_a1_field6 == $tl_b7->$tabel_b7_field1) { ?>
   <div id="<?= $tabel_b7_field3 . $tl_b7->$tabel_b7_field1; ?>" class="modal fade <?= $tabel_b7_field3 ?>">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -209,7 +211,6 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
-            <?= btn_history('tabel_a1', $tl_a1->$tabel_a1_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </div>
@@ -217,4 +218,4 @@
       </div>
     </div>
   </div>
-<?php endforeach; ?>
+<?php } endforeach; ?>

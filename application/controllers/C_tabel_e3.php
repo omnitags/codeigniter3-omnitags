@@ -282,7 +282,6 @@ class C_tabel_e3 extends Omnitags
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
-			$this->aliases['tabel_e3_field1'] => $code,
 			$this->aliases['tabel_e3_field2'] => $tabel[0]->{$this->aliases['tabel_e3_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),

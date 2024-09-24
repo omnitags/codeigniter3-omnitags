@@ -149,4 +149,30 @@ class C_tabel_a1 extends Omnitags
 		$this->load_page('tabel_a1', '_layouts/template', $data1);
 	}
 
+	//Push History Data into current data
+	public function push($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_ot->get_by_id_history('tabel_a1', $code)->result();
+		$this->check_data($tabel);
+
+		$code = $tabel[0]->{$this->aliases['tabel_a1_field1']};
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			$this->aliases['tabel_a1_field2'] => $tabel[0]->{$this->aliases['tabel_a1_field2']},
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_a1->update_a1($data, $code);
+
+		$notif = $this->handle_4c($aksi, 'tabel_a1', $code);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
 }
