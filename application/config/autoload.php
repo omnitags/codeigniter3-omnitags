@@ -133,6 +133,7 @@ $autoload['language'] = array('en');
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array(
+  'M_omnitags' => 'tl_ot',
   'M_tabel_a1' => 'tl_a1',
   'M_tabel_b1' => 'tl_b1',
   'M_tabel_b2' => 'tl_b2',
@@ -142,9 +143,11 @@ $autoload['model'] = array(
   'M_tabel_b8' => 'tl_b8',
   'M_tabel_b9' => 'tl_b9',
   'M_tabel_b10' => 'tl_b10',
+  'M_tabel_b11' => 'tl_b11',
   'M_tabel_c1' => 'tl_c1',
   'M_tabel_c2' => 'tl_c2',
   'M_tabel_d3' => 'tl_d3',
+  'M_tabel_d4' => 'tl_d4',
   'M_tabel_e1' => 'tl_e1',
   'M_tabel_e2' => 'tl_e2',
   'M_tabel_e3' => 'tl_e3',
