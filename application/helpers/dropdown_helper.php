@@ -64,7 +64,7 @@ if (!function_exists('nav_item')) {
         $url = nav_url($data['language'] . '/' . $controller . $place);
 
         return <<<HTML
-            <li class="nav-item pb-2">
+            <li class="nav-item d-flex align-items-center pb-2">
                 <a class="nav-link text-light text-decoration-none" href="{$url}">
                     {$title}
                 </a>

@@ -59,7 +59,7 @@ class C_tabel_a1 extends Omnitags
 		// Call to session_3 method
 		$this->session_3();
 
-		$tabel_a1_field1 = $this->v_post['tabel_a1_field1'];
+		$code = $this->v_post['tabel_a1_field1'];
 
 		// Validate fields
 		validate_all(
@@ -71,7 +71,7 @@ class C_tabel_a1 extends Omnitags
 				$this->v_post['tabel_a1_field5'],
 			),
 			$this->views['flash3'],
-			'ubah' . $tabel_a1_field1
+			'ubah' . $code
 		);
 
 		$data = array(
@@ -84,10 +84,10 @@ class C_tabel_a1 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_a1->update_a1($data, $tabel_a1_field1);
+		$aksi = $this->tl_a1->update_a1($data, $code);
 		$this->insert_history('tabel_a1', $data);
 
-		$notif = $this->handle_4c($aksi, 'tabel_a1', $tabel_a1_field1);
+		$notif = $this->handle_4c($aksi, 'tabel_a1', $code);
 
 		// Redirect to previous page
 		redirect($_SERVER['HTTP_REFERER']);
@@ -101,7 +101,7 @@ class C_tabel_a1 extends Omnitags
 		// Call to session_3 method
 		$this->session_3();
 
-		$tabel_a1_field1 = $this->v_post['tabel_a1_field1'];
+		$code = $this->v_post['tabel_a1_field1'];
 
 		// Validate fields
 		validate_all(
@@ -110,7 +110,7 @@ class C_tabel_a1 extends Omnitags
 				$this->v_post['tabel_a1_field6'],
 			),
 			$this->views['flash3'],
-			'tema' . $tabel_a1_field1
+			'tema' . $code
 		);
 
 		$data = array(
@@ -120,33 +120,59 @@ class C_tabel_a1 extends Omnitags
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_a1->update_a1($data, $tabel_a1_field1);
+		$aksi = $this->tl_a1->update_a1($data, $code);
 		$this->insert_history('tabel_a1', $data);
 
-		$notif = $this->handle_4d($aksi, 'tabel_b7', $tabel_a1_field1);
+		$notif = $this->handle_4d($aksi, 'tabel_b7', $code);
 
 		 // Redirect to previous page
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 	
-	public function history($param1 = null)
+	public function history($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_a1->get_a1_by_field('tabel_a1_field1', $param1)->result();
+		$tabel = $this->tl_a1->get_a1_by_field('tabel_a1_field1', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'table_id' => $param1,
+			'table_id' => $code,
 			'title' => lang('tabel_a1_alias_v11_title'),
 			'konten' => $this->v11['tabel_a1'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_a1']),
-			'current' => $this->tl_ot->get_by_field('tabel_a1', 'tabel_a1_field1', $param1),
-			'tbl_a1_alt' => $this->tl_ot->get_by_field_history('tabel_a1', 'tabel_a1_field1', $param1),
+			'tbl_a1_alt' => $this->tl_ot->get_by_field_history('tabel_a1', 'tabel_a1_field1', $code),
+			'current' => $this->tl_ot->get_by_field('tabel_a1', 'tabel_a1_field1', $code),
 		);
 
 		$this->load_page('tabel_a1', '_layouts/template', $data1);
+	}
+
+	//Push History Data into current data
+	public function push($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_ot->get_by_id_history('tabel_a1', $code)->result();
+		$this->check_data($tabel);
+
+		$code = $tabel[0]->{$this->aliases['tabel_a1_field1']};
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			$this->aliases['tabel_a1_field2'] => $tabel[0]->{$this->aliases['tabel_a1_field2']},
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+		);
+
+		$aksi = $this->tl_a1->update_a1($data, $code);
+
+		$notif = $this->handle_4c($aksi, 'tabel_a1', $code);
+
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 }

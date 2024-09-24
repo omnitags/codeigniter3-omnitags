@@ -91,7 +91,7 @@ if (!function_exists('btn_tutup')) {
         $alias = xss_clean(lang('close_dialog'));
 
         return <<<HTML
-        <button class="btn btn-primary" data-dismiss="modal">{$alias}</button>
+        <button class="btn mb-2 btn-primary" data-dismiss="modal">{$alias}</button>
         HTML;
     }
 }

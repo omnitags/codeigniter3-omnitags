@@ -20,13 +20,24 @@
         <th>ID History</th>
         <th><?= lang('tabel_b9_field1_alias') ?></th>
         <th><?= lang('tabel_b9_field2_alias') ?></th>
-        <th>Updated At</th>
-        <th>Updated By</th>
+        <th><?= lang('updated_at') ?></th>
+        <th><?= lang('updated_by') ?></th>
         <th><?= lang('action') ?></th>
       </tr>
     </thead>
 
     <tbody>
+      <?php foreach ($current->result() as $tl_cr): ?>
+        <tr class="bg-light">
+          <td></td>
+          <td>[current]</td>
+          <td><?= $tl_cr->$tabel_b9_field1 ?></td>
+          <td><?= $tl_cr->$tabel_b9_field2 ?></td>
+          <td><?= $tl_cr->updated_at ?></td>
+          <td><?= show_info_user($tl_cr->updated_by, $users) ?></td>
+          <td></td>
+        </tr>
+      <?php endforeach; ?>
       <?php foreach ($tbl_b9->result() as $tl_b9): ?>
         <tr>
           <td></td>
@@ -34,7 +45,7 @@
           <td><?= $tl_b9->$tabel_b9_field1 ?></td>
           <td><?= $tl_b9->$tabel_b9_field2 ?></td>
           <td><?= $tl_b9->updated_at ?></td>
-          <td><?= $tl_b9->updated_by ?></td>
+          <td><?= show_info_user($tl_b9->updated_by, $users) ?></td>
           <td>
             <?= btn_lihat($tl_b9->id_history) ?>
           </td>
@@ -57,7 +68,7 @@
         <form>
           <div class="modal-body">
             <?= table_data(
-              row_data('tabel_b9_field1', $tl_b9->$tabel_b9_field1) . 
+              row_data('tabel_b9_field1', $tl_b9->$tabel_b9_field1) .
               row_data('tabel_b9_field2', $tl_b9->$tabel_b9_field2),
               'table-light'
             ) ?>

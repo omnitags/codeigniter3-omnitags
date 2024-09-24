@@ -24,11 +24,11 @@
         enctype="multipart/form-data">
 
         <?= input_hidden('tabel_c2_field1', $tl_c2->$tabel_c2_field1, 'required') ?>
-        <?= input_edit('text', 'tabel_c2_field2', $tl_c2->$tabel_c2_field2, 'required') ?>
+        <?= input_edit($tl_c2->$tabel_c2_field1, 'text', 'tabel_c2_field2', $tl_c2->$tabel_c2_field2, 'required') ?>
         <small>*Merubah <?= $tabel_c2_field3_alias ?> ini tidak akan merubah <?= $tabel_c2_field3_alias ?> yang ada di
           <?= $tabel_f2_alias ?></small>
-        <?= input_edit('email', 'tabel_c2_field3', $tl_c2->$tabel_c2_field3, 'required') ?>
-        <?= input_edit('text', 'tabel_c2_field5', $tl_c2->$tabel_c2_field5, 'required') ?>
+        <?= input_edit($tl_c2->$tabel_c2_field1, 'email', 'tabel_c2_field3', $tl_c2->$tabel_c2_field3, 'required autocomplete="username"') ?>
+        <?= input_edit($tl_c2->$tabel_c2_field1, 'text', 'tabel_c2_field5', $tl_c2->$tabel_c2_field5, 'required') ?>
 
         <div class="form-group">
           <?= btn_update() ?>
@@ -48,10 +48,10 @@
           <div class="modal-body">
 
             <?= input_hidden('tabel_c2_field1', $tl_c2->$tabel_c2_field1, 'required') ?>
-            <?= add_old('password', 'tabel_c2_field4', 'required') ?>
-            <?= add_new_password('tabel_c2_field4', 'required') ?>
+            <?= add_old('password', 'tabel_c2_field4', 'required autocomplete="current-password"') ?>
+            <?= add_new_password('tabel_c2_field4', 'required autocomplete="new-password"') ?>
             <?= password_req() ?>
-            <?= add_confirm('password', 'tabel_c2_field4', 'required') ?>
+            <?= add_confirm('password', 'tabel_c2_field4', 'required autocomplete="new-password"') ?>
           </div>
 
           <!-- pesan untuk pengguna yang sedang merubah password -->

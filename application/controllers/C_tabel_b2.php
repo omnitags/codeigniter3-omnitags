@@ -353,6 +353,7 @@ class C_tabel_b2 extends Omnitags
 			'konten' => $this->v11['tabel_b2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b2']),
 			'tbl_b2' => $this->tl_ot->get_by_field_history('tabel_b2', 'tabel_b2_field1', $code),
+			'current' => $this->tl_ot->get_by_field('tabel_b2', 'tabel_b2_field1', $code),
 		);
 
 		$this->load_page('tabel_b2', '_layouts/template', $data1);
@@ -367,17 +368,21 @@ class C_tabel_b2 extends Omnitags
 		$tabel = $this->tl_ot->get_by_id_history('tabel_b2', $code)->result();
 		$this->check_data($tabel);
 
+		$code = $tabel[0]->{$this->aliases['tabel_b2_field1']};
+
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
-			$this->aliases['tabel_b2_field1'] => $tabel[0]->{$this->aliases['tabel_b2_field1']},
 			$this->aliases['tabel_b2_field2'] => $tabel[0]->{$this->aliases['tabel_b2_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
 			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
 		);
 
-		$aksi = $this->tl_b2->update_b2($data, $tabel[0]->{$this->aliases['tabel_b2_field1']});
+		$aksi = $this->tl_b2->update_b2($data, $code);
+
+		$notif = $this->handle_4c($aksi, 'tabel_b2', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
+

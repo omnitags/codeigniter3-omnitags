@@ -154,8 +154,8 @@
 
             <small><?= lang('reupload_image_even_for_name_change') ?></small>
 
-            <?= input_edit('text', 'tabel_a1_field2', $tl_a1_alt->$tabel_a1_field2, 'required') ?>
-            <?= input_edit('text', 'tabel_a1_field4', $tl_a1_alt->$tabel_a1_field4, 'required') ?>
+            <?= input_edit($tl_a1->$tabel_a1_field1, 'text', 'tabel_a1_field2', $tl_a1_alt->$tabel_a1_field2, 'required') ?>
+            <?= input_edit($tl_a1->$tabel_a1_field1, 'text', 'tabel_a1_field4', $tl_a1_alt->$tabel_a1_field4, 'required') ?>
             <?= edit_file($tabel_a1, 'tabel_a1_field3', $tl_a1_alt->$tabel_a1_field3, 'required') ?>
           </div>
 
