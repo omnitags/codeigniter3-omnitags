@@ -101,15 +101,15 @@
       <form action="<?= site_url($language . '/' . $tabel_c2 . '/tambah') ?>" method="post">
         <div class="modal-body">
           <?= input_add('text', 'tabel_c2_field2', 'required') ?>
-          <?= input_add('email', 'tabel_c2_field3', 'required') ?>
-          <?= add_new_password('tabel_c2_field4', 'required') ?>
+          <?= input_add('email', 'tabel_c2_field3', 'required autocomplete="username"') ?>
+          <?= add_new_password('tabel_c2_field4', 'required autocomplete="new-password"') ?>
           <?= password_req() ?>
-          <?= add_confirm('password', 'tabel_c2_field4', 'required') ?>
+          <?= add_confirm('password', 'tabel_c2_field4', 'required autocomplete="new-password"') ?>
           <?= input_add('text', 'tabel_c2_field5', 'required') ?>
 
           <div class="form-group">
             <!-- hanya admin yang bisa menentukan level user -->
-            <select class="form-control float" required name="<?= $tabel_c2_field6_input ?>" id="tabel_c2_field6_input">
+            <select class="form-control float" required name="<?= $tabel_c2_field6_input ?>" id="<?= $tabel_c2_field6_input ?>">
               <option value="" selected hidden><?= lang('select') ?> <?= $tabel_c2_field6_alias ?></option>
               <option value="<?= $tabel_c2_field6_value5 ?>"><?= $tabel_c2_field6_value5_alias ?></option>
               <option value="<?= $tabel_c2_field6_value4 ?>"><?= $tabel_c2_field6_value4_alias ?></option>
@@ -143,19 +143,19 @@
           enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_c2_field1', $tl_c2->$tabel_c2_field1, 'required') ?>
-            <?= input_edit('text', 'tabel_c2_field2', $tl_c2->$tabel_c2_field2, 'required') ?>
-            <?= input_edit('text', 'tabel_c2_field3', $tl_c2->$tabel_c2_field3, 'required') ?>
-            <?= input_edit('text', 'tabel_c2_field5', $tl_c2->$tabel_c2_field5, 'required') ?>
+            <?= input_edit($tl_c2->$tabel_c2_field1, 'text', 'tabel_c2_field2', $tl_c2->$tabel_c2_field2, 'required') ?>
+            <?= input_edit($tl_c2->$tabel_c2_field1, 'text', 'tabel_c2_field3', $tl_c2->$tabel_c2_field3, 'required') ?>
+            <?= input_edit($tl_c2->$tabel_c2_field1, 'text', 'tabel_c2_field5', $tl_c2->$tabel_c2_field5, 'required') ?>
 
             <div class="form-group">
-              <select class="form-control float" required name="<?= $tabel_c2_field6_input ?>" id="tabel_c2_field6_input">
+              <select class="form-control float" required name="<?= $tabel_c2_field6_input ?>" id="<?= $tabel_c2_field6_input . $tl_c2->$tabel_c2_field1 ?>">
                 <option selected hidden><?= $tl_c2->$tabel_c2_field6; ?></option>
                 <option value="<?= $tabel_c2_field6_value5 ?>"><?= $tabel_c2_field6_value5_alias ?></option>
                 <option value="<?= $tabel_c2_field6_value4 ?>"><?= $tabel_c2_field6_value4_alias ?></option>
                 <option value="<?= $tabel_c2_field6_value2 ?>"><?= $tabel_c2_field6_value2_alias ?></option>
                 <option value="<?= $tabel_c2_field6_value3 ?>"><?= $tabel_c2_field6_value3_alias ?></option>
               </select>
-              <label class="form-label" for="$tabel_c2_field6_input"><?= $tabel_c2_field6_alias ?></label>
+              <label class="form-label" for="<?= $tabel_c2_field6_input . $tl_c2->$tabel_c2_field1 ?>"><?= $tabel_c2_field6_alias ?></label>
             </div>
           </div>
 

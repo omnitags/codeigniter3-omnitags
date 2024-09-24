@@ -132,9 +132,9 @@
           enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_b8_field1', $tl_b8->$tabel_b8_field1, 'required') ?>
-            <?= input_edit('text', 'tabel_b8_field2', $tl_b8->$tabel_b8_field2, 'required') ?>
-            <?= input_edit('text', 'tabel_b8_field3', $tl_b8->$tabel_b8_field3, 'required') ?>
-            <?= input_edit('text', 'tabel_b8_field4', html_entity_decode($tl_b8->$tabel_b8_field4), 'required') ?>
+            <?= input_edit($tl_b8->$tabel_b8_field1, 'text', 'tabel_b8_field2', $tl_b8->$tabel_b8_field2, 'required') ?>
+            <?= input_edit($tl_b8->$tabel_b8_field1, 'text', 'tabel_b8_field3', $tl_b8->$tabel_b8_field3, 'required') ?>
+            <?= input_edit($tl_b8->$tabel_b8_field1, 'text', 'tabel_b8_field4', html_entity_decode($tl_b8->$tabel_b8_field4), 'required') ?>
           </div>
 
           <!-- memunculkan notifikasi modal -->

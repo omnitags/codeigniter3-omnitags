@@ -137,7 +137,7 @@
           enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_e6_field1', $tl_e6->$tabel_e6_field1, 'required') ?>
-            <?= input_edit('text', 'tabel_e6_field2', $tl_e6->$tabel_e6_field2, 'required') ?>
+            <?= input_edit($tl_e6->$tabel_e6_field1, 'text', 'tabel_e6_field2', $tl_e6->$tabel_e6_field2, 'required') ?>
           </div>
 
           <!-- memunculkan notifikasi modal -->

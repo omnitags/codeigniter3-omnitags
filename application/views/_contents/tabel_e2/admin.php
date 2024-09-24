@@ -169,7 +169,7 @@
             <div class="row">
               <div class="col-md-6">
                 <?= input_hidden('tabel_e2_field1', $tl_e2->$tabel_e2_field1, 'required') ?>
-                <?= input_edit('text', 'tabel_e2_field2', $tl_e2->$tabel_e2_field2, 'required') ?>
+                <?= input_edit($tl_e2->$tabel_e2_field1, 'text', 'tabel_e2_field2', $tl_e2->$tabel_e2_field2, 'required') ?>
                 <?= select_edit(
                   'tabel_e2_field3',
                   $tl_e2->$tabel_e2_field3,

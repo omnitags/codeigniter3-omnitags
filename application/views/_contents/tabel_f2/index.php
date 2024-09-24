@@ -51,7 +51,7 @@
     <div class="col-md-6">
 
       <!-- menentukan id_user jika user sudah membuat akun atau belum -->
-      <?= input_edit('text', 'tabel_f2_field3', userdata($tabel_c2_field2), 'required') ?>
+      <?= input_edit($tl_f2->$tabel_f2_field1, 'text', 'tabel_f2_field3', userdata($tabel_c2_field2), 'required') ?>
 
 
       <?php if (userdata($tabel_c2_field1)) { ?>
@@ -60,8 +60,8 @@
         <?= input_hidden('tabel_c2_field1', '0', 'required') ?>
       <?php } ?>
       <!-- keterangan * di bawah -->
-      <?= input_edit('email', 'tabel_f2_field4', userdata($tabel_c2_field3), 'required') ?>
-      <?= input_edit('text', 'tabel_f2_field5', userdata($tabel_c2_field5), 'required') ?>
+      <?= input_edit($tl_f2->$tabel_f2_field1, 'email', 'tabel_f2_field4', userdata($tabel_c2_field3), 'required') ?>
+      <?= input_edit($tl_f2->$tabel_f2_field1, 'text', 'tabel_f2_field5', userdata($tabel_c2_field5), 'required') ?>
       <?= input_add('text', 'tabel_f2_field6', 'required') ?>
 
       <div class="form-group">

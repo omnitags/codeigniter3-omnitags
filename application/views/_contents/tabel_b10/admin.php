@@ -167,7 +167,7 @@
             <?= input_hidden('tabel_b10_field1', $tl_b10->$tabel_b10_field1, 'required') ?>
 
             <?= edit_file('tabel_b10', 'tabel_b10_field2', $tl_b10->$tabel_b10_field2, 'required') ?>
-            <?= input_edit('text', 'tabel_b10_field3', $tl_b10->$tabel_b10_field3, 'required') ?>
+            <?= input_edit($tl_b10->$tabel_b10_field1, 'text', 'tabel_b10_field3', $tl_b10->$tabel_b10_field3, 'required') ?>
 
             <?= select_edit(
               'tabel_b10_field4',

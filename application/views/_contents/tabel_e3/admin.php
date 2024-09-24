@@ -164,8 +164,8 @@
         <form action="<?= site_url($language . '/' . $tabel_e3 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
-            <?= input_edit('text', 'tabel_e3_field2', $tl_e3->$tabel_e3_field2, 'required') ?>
-            <?= input_edit('text', 'tabel_e3_field3', $tl_e3->$tabel_e3_field3, 'required') ?>
+            <?= input_edit($tl_e3->$tabel_e3_field1, 'text', 'tabel_e3_field2', $tl_e3->$tabel_e3_field2, 'required') ?>
+            <?= input_edit($tl_e3->$tabel_e3_field1, 'text', 'tabel_e3_field3', $tl_e3->$tabel_e3_field3, 'required') ?>
 
             <?= select_edit(
               'tabel_e3_field4',
