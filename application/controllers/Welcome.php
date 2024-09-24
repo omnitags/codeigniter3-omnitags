@@ -71,11 +71,7 @@ class Welcome extends Omnitags
 					'tbl_b2' => $this->tl_b2->get_b2_by_field(['tabel_b2_field7', 'tabel_b2_field6'], [$this->theme_id, $this->aliases['tabel_b2_field6_value1']]),
 				);
 
-				// Combining data1 with the package
-				$data = array_merge($data1, $this->package);
-
-				//Loading the page
-				load_view_data('_layouts/template', $data);
+				$this->load_page('', '_layouts/template', $data1);
 				break;
 		}
 	}
@@ -122,17 +118,9 @@ class Welcome extends Omnitags
 		set_flashdata($this->views['flash1'], $this->views['flash1_note1']);
 		set_flashdata('toast', $this->views['flash1_func1']);
 
-		// combining the data and package from Omnitags
-		$data = array_merge($data1, $this->package);
-
-		// handling the notification
-		$notif = $this->handle_2a();
-
-		// set the session for this function to be called if there's an error page
-		set_userdata('previous_url', current_url());
-
-		// load the view with data
-		load_view_data('_layouts/template', $data);
+		$notif = $this->handle_2a();		
+		
+		$this->load_page('', '_layouts/template', $data1);
 	}
 
 	// Page that will be loaded if a function is performed by a user with the wrong level
@@ -145,9 +133,7 @@ class Welcome extends Omnitags
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'invalid'),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		$this->load->view('errors/invalid', $data);
+		$this->load_page('', 'errors/invalid', $data1);
 	}
 
 	// Page that will be loaded if a page is visisted by a user with the wrong level
@@ -160,9 +146,7 @@ class Welcome extends Omnitags
 			'dekor' => "",
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		$this->load->view('errors/overload', $data);
+		$this->load_page('', 'errors/overload', $data1);
 	}
 
 	// Page that will be loaded if a page is visisted by a user with the wrong level
@@ -175,9 +159,7 @@ class Welcome extends Omnitags
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'no_level'),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		$this->load->view('errors/no_level', $data);
+		$this->load_page('', 'errors/no_level', $data1);
 	}
 
 	// Page that will be loaded when the page is not found/404
@@ -190,9 +172,7 @@ class Welcome extends Omnitags
 			'dekor' => $this->tl_b1->dekor($this->theme_id, '404'),
 		);
 
-		$data = array_merge($data1, $this->package);
-
-		$this->load->view('errors/404', $data);
+		$this->load_page('', 'errors/404', $data1);
 	}
 
 	// Setting the language for the website, pretty complicated indeed
@@ -248,6 +228,5 @@ class Welcome extends Omnitags
 			show_error('Invalid language selected.');
 		}
 	}
-
-
 }
+ 

@@ -3,9 +3,9 @@
     <h1><?= $title ?><?= count_data($tbl_e3) ?><?= $phase ?></h1>
   </div>
   <div class="col-md-3 text-right">
-    <?php foreach ($dekor->result() as $dk): ?>
-      <img src="img/<?= $tabel_b1 ?>/<?= $dk->$tabel_b1_field4 ?>" width="200" alt="Image">
-    <?php endforeach ?>
+    <?php foreach ($dekor->result() as $dk):
+      echo tampil_dekor('175px', $tabel_b1, $dk->$tabel_b1_field4);
+    endforeach ?>
   </div>
 </div>
 <hr>
@@ -40,6 +40,7 @@
   <div class="col-md-10">
     <?= btn_tambah() ?>
     <?= btn_laporan('tabel_e3') ?>
+    <?= btn_archive('tabel_e3') ?>
   </div>
 
   <div class="col-md-2 d-flex justify-content-end">
@@ -49,12 +50,15 @@
 
 
 
-<div id="card-view" class="row data-view active">
-  <?php if (empty($tbl_e3->result())) {
+<div id="card-view" class="data-view active">
+  <div class="row">
+    <?php if (empty($tbl_e3->result())) {
     load_view('_partials/no_data');
   } else {
+    $counter = 1;
     foreach ($tbl_e3->result() as $tl_e3):
       echo card_regular(
+        $counter,
         $tl_e3->$tabel_e3_field1,
         $tl_e3->$tabel_e3_field1 . ' | ' . $tl_e3->$tabel_e3_field3,
         $tl_e3->$tabel_e3_field2,
@@ -65,8 +69,14 @@
         'col-md-3',
         $tabel_e3
       );
+    $counter++;
     endforeach;
   } ?>
+
+</div>
+  <div class="row">
+    <?= card_pagination() ?>
+  </div>
 </div>
 
 
@@ -154,8 +164,8 @@
         <form action="<?= site_url($language . '/' . $tabel_e3 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
-            <?= input_edit('text', 'tabel_e3_field2', $tl_e3->$tabel_e3_field2, 'required') ?>
-            <?= input_edit('text', 'tabel_e3_field3', $tl_e3->$tabel_e3_field3, 'required') ?>
+            <?= input_edit($tl_e3->$tabel_e3_field1, 'text', 'tabel_e3_field2', $tl_e3->$tabel_e3_field2, 'required') ?>
+            <?= input_edit($tl_e3->$tabel_e3_field1, 'text', 'tabel_e3_field3', $tl_e3->$tabel_e3_field3, 'required') ?>
 
             <?= select_edit(
               'tabel_e3_field4',
@@ -212,6 +222,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
+            <?= btn_history('tabel_e3', $tl_e3->$tabel_e3_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>
@@ -221,3 +232,6 @@
 
 
 <?php endforeach ?>
+
+<?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_e3->num_rows(), 28) ?>
