@@ -503,6 +503,16 @@ if ( ! function_exists('load_card_pagination_js')) {
 
                 // Update page info
                 document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages}`;
+                updateButtonStates();
+                localStorage.setItem("currentPage", currentPage);
+            }
+
+            const prevBtn = document.getElementById("prev-btn");
+            const nextBtn = document.getElementById("next-btn");
+
+            function updateButtonStates() {
+                prevBtn.disabled = currentPage === 1;
+                nextBtn.disabled = currentPage === totalPages;
             }
 
             function nextPage() {
