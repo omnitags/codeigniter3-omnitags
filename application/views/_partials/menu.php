@@ -8,7 +8,6 @@
             </li>
             <?= nav_item(lang('tabel_e4_alias'), $tabel_e4, '/') ?>
             <!-- ?= nav_item(lang('tabel_b10_alias'), $tabel_b10, '/') ?> -->
-            <!-- ?= nav_item(lang('tabel_e2_alias'), $tabel_e2, '/') ?> -->
             <?= nav_item(lang('login'), 'login', '') ?>
             <?php break;
         case $tabel_c2_field6_value5:
@@ -32,42 +31,20 @@
                                 <?php switch (userdata($tabel_c2_field6)) {
                                     case $tabel_c2_field6_value2:
                                         ?>
-                                        <h6 class="dropdown-header"><?= lang('tabel_f3_alias') ?></h6>
-                                        <?= dropdown_nav('tabel_f3', '/admin') ?>
-                                        <?= dropdown_nav_unique(lang('tabel_f3_alias_past'), $tabel_f3, '/history') ?>
                                         <?php break;
 
                                     case $tabel_c2_field6_value3:
                                         ?>
                                         <h6 class="dropdown-header"><?= lang('data') ?></h6>
-                                        <?= dropdown_nav('tabel_e2', '/admin') ?>
-                                        <?= dropdown_nav('tabel_e3', '/admin') ?>
                                         <?= dropdown_nav('tabel_e4', '/admin') ?>
                                         <div class="dropdown-divider"></div>
-                                        <h6 class="dropdown-header"><?= lang('manage') ?></h6>
-                                        <?= dropdown_nav('tabel_e5', '/admin') ?>
-                                        <?= dropdown_nav('tabel_e6', '/admin') ?>
-                                        <?= dropdown_nav('tabel_e7', '/admin') ?>
-                                        <?= dropdown_nav('tabel_e8', '/admin') ?>
-                                        <div class="dropdown-divider"></div>
                                         <h6 class="dropdown-header"><?= lang('operational') ?></h6>
-                                        <?= dropdown_nav('tabel_e1', '/admin') ?>
-                                        <?= dropdown_nav('tabel_c1', '/admin') ?>
                                         <?= dropdown_nav('tabel_c2', '/admin') ?>
                                         <div class="dropdown-divider"></div>
                                         <?= dropdown_nav('tabel_a1', '/profil') ?>
                                         <?php break;
                                     case $tabel_c2_field6_value4:
                                         ?>
-
-                                        <h6 class="dropdown-header"><?= lang('manage') ?></h6>
-                                        <?= dropdown_nav('tabel_e3', '/admin') ?>
-                                        <?= dropdown_nav('tabel_f2', '/admin') ?>
-                                        <?= dropdown_nav('tabel_f1', '/admin') ?>
-                                        <div class="dropdown-divider"></div>
-                                        <h6 class="dropdown-header"><?= lang('operational') ?></h6>
-                                        <?= dropdown_nav('tabel_f4', '/admin') ?>
-
                                         <?php break;
                                     default:
                                         ?>
@@ -183,14 +160,6 @@
                                 <?= dropdown_nav_unique(lang('order_now'), '', '') ?>
                                 <?= dropdown_nav('tabel_e4', '') ?>
                                 <div class="dropdown-divider"></div>
-                                <h6 class="dropdown-header"><?= lang('reservations') ?></h6>
-                                <?= dropdown_nav('tabel_f2', '/daftar') ?>
-                                <?= dropdown_nav('tabel_f3', '/daftar') ?>
-                                <div class="dropdown-divider"></div>
-                                <h6 class="dropdown-header"><?= lang('history') ?></h6>
-                                <?= dropdown_nav('tabel_f1', '/daftar') ?>
-                                <?= dropdown_nav_unique(lang('tabel_f3_alias'), $tabel_f3, '/daftar_history') ?>
-                                <div class="dropdown-divider"></div>
                                 <?php break;
                             case $tabel_c2_field6_value2:
                             case $tabel_c2_field6_value3:
@@ -214,15 +183,4 @@
         default:
             break;
     } ?>
-
-    <!-- <li class="nav-item d-flex align-items-center">
-        <form action="<?= nav_url($language . '/welcome/set_language'); ?>" method="post" class="form-inline">
-            <select name="language" class="form-control" onchange="this.form.submit()">
-                <option value="en" <?= (userdata('site_lang') == 'en') ? 'selected' : ''; ?>>EN</option>
-                <option value="id" <?= (userdata('site_lang') == 'id') ? 'selected' : ''; ?>>ID</option>
-                <option value="fr" <?= (userdata('site_lang') == 'fr') ? 'selected' : ''; ?>>FR</option>
-                <option value="zh" <?= (userdata('site_lang') == 'zh') ? 'selected' : ''; ?>>中文</option>
-            </select>
-        </form>
-    </li> -->
 </ul>

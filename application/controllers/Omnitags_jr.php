@@ -61,8 +61,7 @@ if (!class_exists('Omnitags_jr')) {
         public $tl_b1, $tl_b2, $tl_b3, $tl_b4, $tl_b5, $tl_b6, $tl_b7, $tl_b8, $tl_b9, $tl_b10, $tl_b11;
         public $tl_c1, $tl_c2;
         public $tl_d1, $tl_d2, $tl_d3, $tl_d4;
-        public $tl_e1, $tl_e2, $tl_e3, $tl_e4, $tl_e5, $tl_e6, $tl_e7, $tl_e8;
-        public $tl_f1, $tl_f2, $tl_f3, $tl_f4;
+        public $tl_e4;
 
         public function overload()
         {
