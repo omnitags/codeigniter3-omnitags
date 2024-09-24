@@ -232,3 +232,6 @@
 
 
 <?php endforeach ?>
+
+<?= adjust_col_js('col-md-3', 'col-md-4') ?>
+<?= load_card_pagination_js($tbl_e3->num_rows(), 28) ?>

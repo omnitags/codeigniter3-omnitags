@@ -41,7 +41,7 @@ class C_tabel_b11 extends Omnitags
 			'tbl_b11' => $this->tl_b11->get_all_b11(),
 		);
 
-		$this->load_page('tabel_b11', '_layouts/printpage', $data1);
+		$this->load_page('tabel_b11', '_layouts/printpage_landscape', $data1);
 	}
 
 	// Print one data
