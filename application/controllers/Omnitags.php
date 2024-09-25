@@ -71,9 +71,9 @@ if (!class_exists('Omnitags')) {
             parent::__construct();
 
            //Menampilkan komponen html : teks, button, input, modal, dropdown
-           $this->load->helper(['tampil', 'button', 'input', 'modal', 'list_group', 'card', 'dropdown']);
+           $this->load->helper(['tampil', 'button', 'input', 'modal', 'list_group', 'card', 'dropdown', 'diagram']);
            // Kelola media dan javascript
-           $this->load->helper(['media', 'js']);
+           $this->load->helper(['media', 'js', 'graph_js']);
            // Kelola API dan firebase
            $this->load->helper(['load_api', 'firebase']);
            // Kelola URL

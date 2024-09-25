@@ -72,9 +72,8 @@
   case $tabel_c2_field6_value4:
     ?>
     <div class="row mt-4">
-      <div class="col-md-6 px-2 px-sm-3 dashboard-stat-box">
-        <canvas id="myChart_1_2" width="200" height="125"></canvas>
-      </div>
+      <?= bar_graph('myChart_1_2') ?>
+
     </div>
     <?php break;
 
@@ -128,5 +127,5 @@
   </div>
 <?php endforeach; ?>
 
-<!-- ?= chart('tabel_f1', 'tabel_f2') ?> -->
+<!-- ?= chart(''myChart_1_2'', 'tabel_f1', 'tabel_f2') ?> -->
 <?= adjust_col_js('col-md-3', 'col-md-4') ?>
