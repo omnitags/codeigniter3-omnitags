@@ -4,6 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 if (!class_exists('Omnitags_jr')) {
     class Omnitags_jr extends CI_Controller
     {
+
         protected $language_code;
 
         // Remember if you failed to load the link in this app, then you have to go to views helper where I put restrictions on 
