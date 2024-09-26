@@ -110,7 +110,7 @@ foreach ($myData2 as $item2) {
 
     foreach ($uncommonFunctionRoutes as $key => $value) {
         $routeKey1 = $item2['value'] . '/(:num)' . '/' . $key;
-        $controller1 = $prefix . '/' . $value . '/$2';
+        $controller1 = $prefix . '/' . $value . '/$1';
 
         $route[$routeKey1] = $controller1;
     }
