@@ -115,7 +115,7 @@ if (!function_exists('show_info')) {
     {
         foreach ($target_tbl->result() as $obj) {
             if ($id == $target_id) {
-                return $target_value;  // Assuming 'user_name' exists in tbl2
+                return $obj->$target_value;  // Assuming 'user_name' exists in tbl2
             }
         }
         return 'No user found';

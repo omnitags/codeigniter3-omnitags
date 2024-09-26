@@ -462,7 +462,6 @@ if (!function_exists('btn_history')) {
 
 
         $controller = $data[$tabel];
-        $alias = $data[$tabel . '_alias'];
 
         $url = xss_clean(site_url($controller . '/' . $value . '/history'));
 

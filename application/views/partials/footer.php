@@ -49,7 +49,7 @@
                                     <li>
                                         <a type="button" id="nextPage" class="text-decoration-none text-light"
                                             href="<?= footer_url($tabel_e4) ?>">
-                                            <?= $tabele4_alias ?>
+                                            <?= $tabel_e4_alias ?>
                                         </a>
                                     </li>
                                     

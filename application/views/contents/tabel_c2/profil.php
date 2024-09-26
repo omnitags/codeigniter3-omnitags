@@ -15,7 +15,7 @@
     <div class="col-md-6">
       <a class="btn btn-warning mb-4" type="button" data-toggle="modal"
         data-target="#password<?= $tl_c2->$tabel_c2_field1 ?>">
-        <i class="fas fa-edit"></i> <?= $tabelc2_field4_alias ?></a>
+        <i class="fas fa-edit"></i> <?= $tabel_c2_field4_alias ?></a>
     </div>
     <div class="col-md-4">
 
@@ -71,14 +71,14 @@
 <br>
 <br>
 
-<h1><?= $tabeld3_alias ?><?= $phase ?></h1>
+<h1><?= $tabel_d3_alias ?><?= $phase ?></h1>
 <hr>
 <div class="table-responsive">
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
         <th>No</th>
-        <th><?= $tabeld3_field3_alias ?></th>
+        <th><?= $tabel_d3_field3_alias ?></th>
         <th>Created At</th>
       </tr>
     </thead>

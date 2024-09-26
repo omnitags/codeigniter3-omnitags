@@ -11,11 +11,11 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th><?= $tabelc1_field1_alias ?></th>
-      <th><?= $tabelc1_field2_alias ?></th>
-      <th><?= $tabelc1_field3_alias ?></th>
-      <th><?= $tabelc1_field5_alias ?></th>
-      <th><?= $tabelc1_field6_alias ?></th>
+      <th><?= $tabel_c1_field1_alias ?></th>
+      <th><?= $tabel_c1_field2_alias ?></th>
+      <th><?= $tabel_c1_field3_alias ?></th>
+      <th><?= $tabel_c1_field5_alias ?></th>
+      <th><?= $tabel_c1_field6_alias ?></th>
     </tr>
   </thead>
   <tbody>

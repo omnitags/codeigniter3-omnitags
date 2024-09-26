@@ -1,9 +1,9 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th><?= $tabelb2_field1_alias ?></th>
-      <th><?= $tabelb2_field2_alias ?></th>
-      <th><?= $tabelb2_field3_alias ?></th>
+      <th><?= $tabel_b2_field1_alias ?></th>
+      <th><?= $tabel_b2_field2_alias ?></th>
+      <th><?= $tabel_b2_field3_alias ?></th>
     </tr>
   </thead>
   <tbody>

@@ -43,7 +43,6 @@ if (!function_exists('get')) {
     }
 }
 
-
 if (!function_exists('xss_clean')) {
     function xss_clean($data)
     {

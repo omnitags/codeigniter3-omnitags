@@ -71,8 +71,8 @@
     <thead class="thead-light">
       <tr>
         <th>No</th>
-        <th><?= $tabelb8_field3_alias ?></th>
-        <th><?= $tabelb9_field4_alias ?></th>
+        <th><?= $tabel_b8_field3_alias ?></th>
+        <th><?= $tabel_b9_field4_alias ?></th>
         <th>Created At</th>
         <th>Action</th>
       </tr>

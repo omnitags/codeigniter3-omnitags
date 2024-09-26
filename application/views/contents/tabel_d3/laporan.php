@@ -1,9 +1,9 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th><?= $tabeld3_field1_alias ?></th>
-      <th><?= $tabeld3_field2_alias ?></th>
-      <th><?= $tabeld3_field3_alias ?></th>
+      <th><?= $tabel_d3_field1_alias ?></th>
+      <th><?= $tabel_d3_field2_alias ?></th>
+      <th><?= $tabel_d3_field3_alias ?></th>
       <th>Created At</th>
       <th>Updated At</th>
     </tr>

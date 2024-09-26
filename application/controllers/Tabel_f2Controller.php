@@ -27,7 +27,7 @@ class Tabel_f2Controller extends OmnitagsController
 					'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 					'tbl_b5' => $this->tl_b5->get_all_b5(),
 					'tbl_b7' => $this->tl_b7->get_all_b7(),
-					'tbl_a1' => $this->tl_a1->get_a1_by_field('tabel_a1_field1', $this->tabel_a1_field1),
+					'tbl_a1_alt' => $this->tl_a1->get_a1_by_field('tabel_a1_field1', $this->tabel_a1_field1),
 					'tbl_e4' => $this->tl_e4->get_all_e4(),
 
 					'tabel_f2_field10_value' => $this->v_get['tabel_f2_field10'],

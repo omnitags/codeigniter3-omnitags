@@ -68,11 +68,11 @@
     <thead class="thead-light">
       <tr>
         <th>No</th>
-        <th><?= $tabelb7_field1_alias ?></th>
-        <th><?= $tabelb7_field2_alias ?></th>
-        <th><?= $tabelb7_field3_alias ?></th>
-        <th><?= $tabelb7_field4_alias ?></th>
-        <th><?= $tabelb7_field5_alias ?></th>
+        <th><?= $tabel_b7_field1_alias ?></th>
+        <th><?= $tabel_b7_field2_alias ?></th>
+        <th><?= $tabel_b7_field3_alias ?></th>
+        <th><?= $tabel_b7_field4_alias ?></th>
+        <th><?= $tabel_b7_field5_alias ?></th>
         <th>Action</th>
       </tr>
     </thead>

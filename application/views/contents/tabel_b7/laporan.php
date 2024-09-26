@@ -1,11 +1,11 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th><?= $tabelb7_field1_alias ?></th>
-      <th><?= $tabelb7_field2_alias ?></th>
-      <th><?= $tabelb7_field3_alias ?></th>
-      <th><?= $tabelb7_field4_alias ?></th>
-      <th><?= $tabelb7_field5_alias ?></th>
+      <th><?= $tabel_b7_field1_alias ?></th>
+      <th><?= $tabel_b7_field2_alias ?></th>
+      <th><?= $tabel_b7_field3_alias ?></th>
+      <th><?= $tabel_b7_field4_alias ?></th>
+      <th><?= $tabel_b7_field5_alias ?></th>
     </tr>
   </thead>
   <tbody>

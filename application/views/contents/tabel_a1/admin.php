@@ -62,10 +62,10 @@
     <thead class="thead-light">
       <tr>
         <th>No</th>
-        <th><?= $tabela1_field1_alias ?></th>
-        <th><?= $tabela1_field2_alias ?></th>
-        <th><?= $tabela1_field4_alias ?></th>
-        <th><?= $tabela1_field3_alias ?></th>
+        <th><?= $tabel_a1_field1_alias ?></th>
+        <th><?= $tabel_a1_field2_alias ?></th>
+        <th><?= $tabel_a1_field4_alias ?></th>
+        <th><?= $tabel_a1_field3_alias ?></th>
         <th>Action</th>
       </tr>
     </thead>

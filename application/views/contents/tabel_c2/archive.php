@@ -59,8 +59,8 @@
     <thead class="thead-light">
       <tr>
         <th>No</th>
-        <th><?= $tabelc2_field1_alias ?></th>
-        <th><?= $tabelc2_field2_alias ?></th>
+        <th><?= $tabel_c2_field1_alias ?></th>
+        <th><?= $tabel_c2_field2_alias ?></th>
         <th>Action</th>
       </tr>
     </thead>

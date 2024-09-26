@@ -18,8 +18,8 @@
       <tr>
         <th>No</th>
         <th>ID History</th>
-        <th><?= $tabelb10_field1_alias ?></th>
-        <th><?= $tabelb10_field2_alias ?></th>
+        <th><?= $tabel_b10_field1_alias ?></th>
+        <th><?= $tabel_b10_field2_alias ?></th>
         <th>Updated At</th>
         <th>Updated By</th>
         <th>Action</th>

@@ -16,8 +16,6 @@ class Tabel_a1Controller extends OmnitagsController
 		// Call to page_session_3 method
 		$this->page_session_3();
 
-		
-
 		$data1 = array(
 			'title' => 'Testing Page',
 			'konten' => 'contents/tabel_a1/testing',

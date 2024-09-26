@@ -101,11 +101,11 @@
     <thead class="thead-light">
       <tr>
         <th>No</th>
-        <th><?= $tabelb5_field1_alias ?></th>
-        <th><?= $tabelb5_field2_alias ?></th>
-        <th><?= $tabelb5_field4_alias ?> dan <?= $tabel_b5_field5_alias ?></th>
-        <th><?= $tabelb5_field6_alias ?></th>
-        <th><?= $tabelb5_field7_alias ?></th>
+        <th><?= $tabel_b5_field1_alias ?></th>
+        <th><?= $tabel_b5_field2_alias ?></th>
+        <th><?= $tabel_b5_field4_alias ?> dan <?= $tabel_b5_field5_alias ?></th>
+        <th><?= $tabel_b5_field6_alias ?></th>
+        <th><?= $tabel_b5_field7_alias ?></th>
         <th>Action</th>
       </tr>
     </thead>

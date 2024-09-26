@@ -91,13 +91,13 @@
     <thead class="thead-light">
       <tr>
         <th>No</th>
-        <th><?= $tabelb6_field1_alias ?></th>
-        <th><?= $tabelb6_field2_alias ?></th>
-        <th><?= $tabelb6_field3_alias ?></th>
-        <th><?= $tabelb6_field4_alias ?></th>
-        <th><?= $tabelb6_field5_alias ?></th>
-        <th><?= $tabelb6_field6_alias ?></th>
-        <th><?= $tabelb6_field7_alias ?></th>
+        <th><?= $tabel_b6_field1_alias ?></th>
+        <th><?= $tabel_b6_field2_alias ?></th>
+        <th><?= $tabel_b6_field3_alias ?></th>
+        <th><?= $tabel_b6_field4_alias ?></th>
+        <th><?= $tabel_b6_field5_alias ?></th>
+        <th><?= $tabel_b6_field6_alias ?></th>
+        <th><?= $tabel_b6_field7_alias ?></th>
         <th>Action</th>
       </tr>
     </thead>

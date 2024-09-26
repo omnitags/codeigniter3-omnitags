@@ -17,9 +17,9 @@
     <thead class="thead-light">
       <tr>
         <th>No</th>
-        <th><?= $tabeld4_field1_alias ?></th>
-        <th><?= $tabeld4_field2_alias ?></th>
-        <th><?= $tabeld4_field3_alias ?></th>
+        <th><?= $tabel_d4_field1_alias ?></th>
+        <th><?= $tabel_d4_field2_alias ?></th>
+        <th><?= $tabel_d4_field3_alias ?></th>
         <th>Created At</th>
       </tr>
     </thead>

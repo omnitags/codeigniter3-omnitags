@@ -5,6 +5,7 @@ $route['default_controller'] = 'WebController';
 $route['404_override'] = 'WebController/no_page';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['^(.*)/home$'] = 'WebController';
 $route['home'] = 'WebController';
 $route['login'] = 'Tabel_c2Controller/login';
 $route['signup'] = 'Tabel_c2Controller/signup';
@@ -32,7 +33,6 @@ foreach ($myData2 as $item2) {
     $routeId = $item2['value'] . '/(:num)';
     $controller = $prefix . '/detail/$2';
     $route[$routeId] = $controller;
-
 
     // Define routes for different functionality groups
 

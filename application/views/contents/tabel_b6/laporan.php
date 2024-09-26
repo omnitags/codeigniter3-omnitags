@@ -1,10 +1,10 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th><?= $tabelb6_field1_alias ?></th>
-      <th><?= $tabelb6_field2_alias ?></th>
-      <th><?= $tabelb6_field3_alias ?></th>
-      <th><?= $tabelb6_field4_alias ?></th>
+      <th><?= $tabel_b6_field1_alias ?></th>
+      <th><?= $tabel_b6_field2_alias ?></th>
+      <th><?= $tabel_b6_field3_alias ?></th>
+      <th><?= $tabel_b6_field4_alias ?></th>
     </tr>
   </thead>
   <tbody>
