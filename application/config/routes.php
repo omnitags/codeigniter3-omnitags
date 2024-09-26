@@ -25,15 +25,6 @@ foreach ($myData2 as $item2) {
     $prefix = $item2['key'] . 'Controller';
     $cachedControllers = [];
 
-    $routeKey = $item2['value'];
-    $controller = $prefix;
-    $route[$routeKey] = $controller;
-
-
-    $routeId = $item2['value'] . '/(:num)';
-    $controller = $prefix . '/detail/$1';
-    $route[$routeId] = $controller;
-
     // Define routes for different functionality groups
 
     // View routes
@@ -109,7 +100,7 @@ foreach ($myData2 as $item2) {
     }
 
     foreach ($uncommonFunctionRoutes as $key => $value) {
-        $routeKey1 = $item2['value'] . '/(:num)' . '/' . $key;
+        $routeKey1 = $item2['value'] . '/([a-zA-Z0-9\-]+)' . '/' . $key;
         $controller1 = $prefix . '/' . $value . '/$1';
 
         $route[$routeKey1] = $controller1;
@@ -121,4 +112,12 @@ foreach ($myData2 as $item2) {
         
         $route[$routeKey1] = $controller1;
     }
+
+    $routeKey = $item2['value'];
+    $controller = $prefix;
+    $route[$routeKey] = $controller;
+
+    $routeId = $item2['value'] . '/([a-zA-Z0-9\-]+)';
+    $controller = $prefix . '/detail/$1';
+    $route[$routeId] = $controller;
 }
