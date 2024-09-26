@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-if (!class_exists('Omnitags_jr')) {
+if (!class_exists('Omnitags_jrController')) {
     class Omnitags_jrController extends CI_Controller
     {
 
