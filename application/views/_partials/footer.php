@@ -26,7 +26,7 @@
                                     <?php foreach ($lisensi->result() as $ls): ?>
                                         <div class="col-md-4 mt-2">
                                             <a class="text-decoration-none text-light"
-                                                href="<?= footer_url($language . '/' . $tabel_b5 . '/' . $ls->$tabel_b5_field1 . '/detail') ?>">
+                                                href="<?= footer_url($tabel_b5 . '/' . $ls->$tabel_b5_field1 . '/detail') ?>">
                                                 <img src="img/<?= $tabel_b5 ?>/<?= $ls->$tabel_b5_field4 ?>" height="25">
                                             </a>
                                         </div>
@@ -44,12 +44,12 @@
                             </div>
 
                             <div class="col-lg-3 pt-3">
-                                <h3 class="text-light"><?= lang('explore') ?></h3>
+                                <h3 class="text-light">Explore</h3>
                                 <ul class="list-unstyled">
                                     <li>
                                         <a type="button" id="nextPage" class="text-decoration-none text-light"
-                                            href="<?= footer_url($language . '/' . $tabel_e4) ?>">
-                                            <?= lang('tabel_e4_alias') ?>
+                                            href="<?= footer_url($tabel_e4) ?>">
+                                            <?= $tabele4_alias ?>
                                         </a>
                                     </li>
                                     
@@ -57,7 +57,7 @@
                             </div>
 
                             <div class="col-lg-3 pt-3">
-                                <h3 class="text-light"><?= lang('address') ?></h3>
+                                <h3 class="text-light">Address</h3>
                                 <ul class="list-unstyled text-light">
                                     <li>
                                         <?= $tl_a1->$tabel_a1_field5 ?>
@@ -72,7 +72,7 @@
                             </div>
 
                             <div class="col-lg-2 pt-3">
-                                <h3 class="text-light"><?= lang('follow') ?></h3>
+                                <h3 class="text-light">Follow</h3>
                                 <ul class="list-unstyled">
                                     <?php foreach ($sosmed->result() as $sm): ?>
                                         <li>

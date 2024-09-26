@@ -17,7 +17,7 @@
       <?= btn_field($tabel_c1_field1 . $tl_c1->$tabel_c1_field1, '<i class="fas fa-edit"></i>' . $tabel_c1_field5_alias) ?>
 
       <!-- form ini terpisah dengan form ubah password untuk keamanan sesama :) -->
-      <form action="<?= site_url($language . '/' . $tabel_c1 . '/update_profil') ?>" method="post"
+      <form action="<?= site_url($tabel_c1 . '/update_profil') ?>" method="post"
         enctype="multipart/form-data">
         <?= input_hidden('tabel_c1_field1', $tl_c1->$tabel_c1_field1, 'required') ?>
         <?= input_edit($tl_c1->$tabel_c1_field1, 'text', 'tabel_c1_field2', $tl_c1->$tabel_c1_field2, 'required') ?>
@@ -46,9 +46,9 @@
   <div id="password<?= $tl_c1->$tabel_c1_field1 ?>" class="modal fade <?= $tabel_c1_field5 ?>">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . $tabel_c1_field5_alias, '') ?>
+        <?= modal_header_id('Make changes to ' . $tabel_c1_field5_alias, '') ?>
 
-        <form action="<?= site_url($language . '/' . $tabel_c1 . '/update_pass') ?>" method="post"
+        <form action="<?= site_url($tabel_c1 . '/update_pass') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_c1_field1', $tl_c1->$tabel_c1_field1, 'required') ?>

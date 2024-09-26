@@ -1,10 +1,10 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th><?= lang('tabel_d4_field1_alias') ?></th>
-      <th><?= lang('tabel_d4_field2_alias') ?></th>
-      <th><?= lang('tabel_d4_field3_alias') ?></th>
-      <th><?= lang('created_at') ?></th>
+      <th><?= $tabeld4_field1_alias ?></th>
+      <th><?= $tabeld4_field2_alias ?></th>
+      <th><?= $tabeld4_field3_alias ?></th>
+      <th>Created At</th>
     </tr>
   </thead>
   <tbody>

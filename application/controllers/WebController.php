@@ -65,7 +65,7 @@ class WebController extends OmnitagsController
 
 				// Preparing data to be loaded 
 				$data1 = array(
-					'title' => lang('welcome'),
+					'title' => "Welcome!",
 					'konten' => 'home',
 					'dekor' => $this->tl_b1->dekor($this->theme_id, 'home'),
 					'tbl_b2' => $this->tl_b2->get_b2_by_field(['tabel_b2_field7', 'tabel_b2_field6'], [$this->theme_id, $this->aliases['tabel_b2_field6_value1']]),
@@ -96,7 +96,7 @@ class WebController extends OmnitagsController
 
 		// setting the array for data1
 		$data1 = array(
-			'title' => lang('dashboard'),
+			'title' => "Dashboard",
 			'konten' => 'dashboard',
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'dashboard'),
 			// 'tbl_e1' => $this->tl_e1->get_all_e1()->num_rows(),
@@ -129,7 +129,7 @@ class WebController extends OmnitagsController
 		$this->declarew();
 
 		$data1 = array(
-			'title' => lang('invalid'),
+			'title' => "Cannot perform action!",
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'invalid'),
 		);
 
@@ -155,7 +155,7 @@ class WebController extends OmnitagsController
 		$this->declarew();
 
 		$data1 = array(
-			'title' => lang('no_access'),
+			'title' => "You don't have access to this page!",
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'no_level'),
 		);
 
@@ -168,65 +168,11 @@ class WebController extends OmnitagsController
 		$this->declarew();
 
 		$data1 = array(
-			'title' => lang('page_not_found'),
+			'title' => "Page Not Found!",
 			'dekor' => $this->tl_b1->dekor($this->theme_id, '404'),
 		);
 
 		$this->load_page('', 'errors/404', $data1);
-	}
-
-	// Setting the language for the website, pretty complicated indeed
-	public function set_language()
-	{
-		$language = post('language');
-		$allowed_languages = ['en', 'fr', 'id', 'zh'];
-
-		// Validate the language input
-		if (in_array($language, $allowed_languages)) {
-			// Set the selected language in session
-			set_userdata('site_lang', $language);
-
-			// Get the HTTP referer
-			$referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-
-			// Initialize the controller and function to empty
-			$controller_function = '';
-
-			if (!empty($referer)) {
-				// Parse the referer URL to get the path component
-				$parsed_url = parse_url($referer);
-				$path = isset($parsed_url['path']) ? $parsed_url['path'] : '';
-
-				// Get the base URL path without the language segment
-				$base_url_path = parse_url(base_url(), PHP_URL_PATH);
-
-				// Extract parts of the path
-				$path_parts = explode('/', trim($path, '/'));
-
-				// Remove the base URL parts from the path
-				$base_url_parts = explode('/', trim($base_url_path, '/'));
-
-				foreach ($base_url_parts as $part) {
-					if (!empty($path_parts) && $path_parts[0] === $part) {
-						array_shift($path_parts);
-					}
-				}
-
-				// Remove the current language segment if it's the first part
-				if (!empty($path_parts) && in_array($path_parts[0], $allowed_languages)) {
-					array_shift($path_parts);
-				}
-
-				// Reconstruct the remaining path as controller/function
-				$controller_function = implode('/', $path_parts);
-			}
-
-			// Redirect to the desired URL with the new language
-			redirect(site_url($language . '/' . $controller_function));
-		} else {
-			// Handle invalid language selection
-			show_error('Invalid language selected.');
-		}
 	}
 }
  

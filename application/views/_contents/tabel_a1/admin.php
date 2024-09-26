@@ -9,7 +9,7 @@
   </div>
 </div>
 <hr>
-<p><?= lang('images_not_change_immediately') ?></p>
+<p>Some images will not change immediately, cache needs to be cleared first.</p>
 
 <div class="row">
   <div class="col-md-10">
@@ -61,12 +61,12 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
-        <th><?= lang('tabel_a1_field1_alias') ?></th>
-        <th><?= lang('tabel_a1_field2_alias') ?></th>
-        <th><?= lang('tabel_a1_field4_alias') ?></th>
-        <th><?= lang('tabel_a1_field3_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>No</th>
+        <th><?= $tabela1_field1_alias ?></th>
+        <th><?= $tabela1_field2_alias ?></th>
+        <th><?= $tabela1_field4_alias ?></th>
+        <th><?= $tabela1_field3_alias ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -93,9 +93,9 @@
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog">
     <div class="modal-content">
-      <?= modal_header(lang('add') . ' ' . lang('tabel_a1_alias'), '') ?>
+      <?= modal_header('Add ' . $tabel_a1_alias, '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_a1 . '/tambah') ?>" enctype="multipart/form-data"
+      <form action="<?= site_url($tabel_a1 . '/tambah') ?>" enctype="multipart/form-data"
         method="post">
         <div class="modal-body">
           <?= input_add('text', 'tabel_a1_field2', 'required') ?>
@@ -119,7 +119,7 @@
   <div id="lihat<?= $tl_a1_alt->$tabel_a1_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_a1_alias'), $tl_a1_alt->$tabel_a1_field1) ?>
+        <?= modal_header_id($tabel_a1_alias, $tl_a1_alt->$tabel_a1_field1) ?>
         <form>
           <div class="modal-body">
             <?= table_data(
@@ -145,14 +145,14 @@
   <div id="ubah<?= $tl_a1_alt->$tabel_a1_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_a1_field1_alias'), $tl_a1_alt->$tabel_a1_field1) ?>
+        <?= modal_header_id('Make changes to ' . $tabel_a1_field1_alias, $tl_a1_alt->$tabel_a1_field1) ?>
 
-        <form action="<?= site_url($language . '/' . $tabel_a1 . '/update') ?>" method="post"
+        <form action="<?= site_url($tabel_a1 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_a1_field1', $tl_a1_alt->$tabel_a1_field1, 'required') ?>
 
-            <small><?= lang('reupload_image_even_for_name_change') ?></small>
+            <small>* Even if you only want to change the name, you still need to re-upload the image as well.</small>
 
             <?= input_edit($tl_a1->$tabel_a1_field1, 'text', 'tabel_a1_field2', $tl_a1_alt->$tabel_a1_field2, 'required') ?>
             <?= input_edit($tl_a1->$tabel_a1_field1, 'text', 'tabel_a1_field4', $tl_a1_alt->$tabel_a1_field4, 'required') ?>

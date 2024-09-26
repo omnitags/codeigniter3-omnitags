@@ -32,12 +32,11 @@ if (!function_exists('back_to_activity')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = xss_clean(lang('back_to_activity'));
         // Get the previous URL from session, fallback to home if not set
         $url = xss_clean(userdata('previous_url') ? userdata('previous_url') : site_url($data['language'] . '/home'));
 
         return <<<HTML
-        <a class="text-decoration-none" href="{$url}">{$alias}</a>
+        <a class="text-decoration-none" href="{$url}">Back to Activity</a>
         HTML;
     }
 }
@@ -64,10 +63,8 @@ if (!function_exists('btn_tambah')) {
     // Creates a button to add new content
     function btn_tambah()
     {
-        $alias = xss_clean(lang('add'));
-
         return <<<HTML
-        <button class="btn mr-1 btn-success mb-4" type="button" data-toggle="modal" data-target="#tambah">+ {$alias}</button>
+        <button class="btn mr-1 btn-success mb-4" type="button" data-toggle="modal" data-target="#tambah">+ Add</button>
         HTML;
     }
 }
@@ -76,10 +73,8 @@ if (!function_exists('btn_simpan')) {
     // Creates a button to save data
     function btn_simpan()
     {
-        $alias = xss_clean(lang('save_data'));
-
         return <<<HTML
-        <button class="btn mt-4 mb-4 mr-1 btn-success" type="submit">{$alias}</button>
+        <button class="btn mt-4 mb-4 mr-1 btn-success" type="submit">Save Data</button>
         HTML;
     }
 }
@@ -88,10 +83,8 @@ if (!function_exists('btn_tutup')) {
     // Creates a button to close a dialog or modal
     function btn_tutup()
     {
-        $alias = xss_clean(lang('close_dialog'));
-
         return <<<HTML
-        <button class="btn mb-2 btn-primary" data-dismiss="modal">{$alias}</button>
+        <button class="btn mb-2 btn-primary" data-dismiss="modal">Close</button>
         HTML;
     }
 }
@@ -100,8 +93,6 @@ if (!function_exists('btn_book')) {
     // Creates a button to book an item
     function btn_book($value)
     {
-        $alias = xss_clean(lang('input'));
-
         return <<<HTML
         <a class="btn btn-light border border-dark text-success mb-2" type="button" data-toggle="modal"
             data-target="#book{$value}">
@@ -144,10 +135,8 @@ if (!function_exists('btn_update')) {
     // Creates a button to update data
     function btn_update()
     {
-        $alias = xss_clean(lang('update_data'));
-
         return <<<HTML
-        <button class="btn mt-4 mr-1 btn-success" type="submit">{$alias}</button>
+        <button class="btn mt-4 mr-1 btn-success" type="submit">Save Changes</button>
         HTML;
     }
 }
@@ -156,13 +145,11 @@ if (!function_exists('btn_update_field')) {
     // Creates a button to update data with a confirmation prompt
     function btn_update_field($field)
     {
-        $alias = xss_clean(lang('update_data'));
-
-        $placeholder = xss_clean($alias . ' ' . lang($field));
+        $placeholder = xss_clean('Save changes to ' . lang($field));
 
         return <<<HTML
         <button class="btn mt-4 mr-1 btn-success" type="submit" 
-        onclick="return confirm({$placeholder})">{$alias}</button>
+        onclick="return confirm({$placeholder})">Save Changes</button>
         HTML;
     }
 }
@@ -241,8 +228,6 @@ if (!function_exists('btn_lihat')) {
     // Creates a button to view details
     function btn_lihat($value)
     {
-        $alias = xss_clean(lang('input'));
-
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-primary" type="button" data-toggle="modal"
             data-target="#lihat{$value}">
@@ -255,8 +240,6 @@ if (!function_exists('btn_edit')) {
     // Creates a button to edit details
     function btn_edit($value)
     {
-        $alias = xss_clean(lang('input'));
-
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-warning" type="button" data-toggle="modal"
               data-target="#ubah{$value}">
@@ -280,11 +263,10 @@ if (!function_exists('btn_laporan')) {
         $lang = xss_clean($data['language']);
 
         $url = xss_clean(site_url($lang . '/' . $controller . '/laporan'));
-        $alias = xss_clean(lang('print_report'));
 
         return <<<HTML
         <a class="btn mr-1 btn-info mb-4" href="{$url}" target="_blank">
-            <i class="fas fa-print"></i> {$alias}</a>
+            <i class="fas fa-print"></i> Print Report</a>
         HTML;
     }
 }

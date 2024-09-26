@@ -16,13 +16,13 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
+        <th>No</th>
         <th>ID History</th>
         <th><?= lang('tabel_e8_field1_alias') ?></th>
         <th><?= lang('tabel_e8_field2_alias') ?></th>
-        <th><?= lang('updated_at') ?></th>
-        <th><?= lang('updated_by') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>Updated At</th>
+        <th>Updated By</th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -62,7 +62,7 @@
   <div id="lihat<?= $tl_e8->id_history; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_e8_alias'), $tl_e8->id_history) ?>
+        <?= modal_header_id($tabel_e8_alias, $tl_e8->id_history) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>

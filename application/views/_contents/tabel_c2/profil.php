@@ -15,12 +15,12 @@
     <div class="col-md-6">
       <a class="btn btn-warning mb-4" type="button" data-toggle="modal"
         data-target="#password<?= $tl_c2->$tabel_c2_field1 ?>">
-        <i class="fas fa-edit"></i> <?= lang('tabel_c2_field4_alias') ?></a>
+        <i class="fas fa-edit"></i> <?= $tabelc2_field4_alias ?></a>
     </div>
     <div class="col-md-4">
 
       <!-- form ini terpisah dengan form ubah password untuk keamanan sesama :) -->
-      <form action="<?= site_url($language . '/' . $tabel_c2 . '/update_profil') ?>" method="post"
+      <form action="<?= site_url($tabel_c2 . '/update_profil') ?>" method="post"
         enctype="multipart/form-data">
 
         <?= input_hidden('tabel_c2_field1', $tl_c2->$tabel_c2_field1, 'required') ?>
@@ -42,8 +42,8 @@
   <div id="password<?= $tl_c2->$tabel_c2_field1 ?>" class="modal fade <?= $tabel_c2_field4 ?>">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . $tabel_c2_field4_alias, $tl_c2->$tabel_c2_field1) ?>
-        <form action="<?= site_url($language . '/' . $tabel_c2 . '/update_pass') ?>" method="post"
+        <?= modal_header_id('Make changes to ' . $tabel_c2_field4_alias, $tl_c2->$tabel_c2_field1) ?>
+        <form action="<?= site_url($tabel_c2 . '/update_pass') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
 
@@ -71,15 +71,15 @@
 <br>
 <br>
 
-<h1><?= lang('tabel_d3_alias') ?><?= $phase ?></h1>
+<h1><?= $tabeld3_alias ?><?= $phase ?></h1>
 <hr>
 <div class="table-responsive">
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
-        <th><?= lang('tabel_d3_field3_alias') ?></th>
-        <th><?= lang('created_at') ?></th>
+        <th>No</th>
+        <th><?= $tabeld3_field3_alias ?></th>
+        <th>Created At</th>
       </tr>
     </thead>
 

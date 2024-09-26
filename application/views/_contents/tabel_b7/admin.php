@@ -44,7 +44,7 @@
         ($tl_b7->$tabel_b7_field2 != $database ?
           '<a class="btn mr-1 mb-2 btn-light text-danger"
           onclick="return confirm(\'Tindakan anda akan menghapus hal-hal berikut:\n' . $tabel_b7_alias . '\n' . $tabel_b1_alias . '\n' . $tabel_b2_alias . '\n' . $tabel_b5_alias . '\n' . $tabel_b6_alias . '\nHapus data?\')"
-          href="' . site_url($language . '/' . $tabel_b7 . $tl_b7->$tabel_b7_field1 . '/delete') . '">
+          href="' . site_url($tabel_b7 . $tl_b7->$tabel_b7_field1 . '/delete') . '">
           <i class="fas fa-trash"></i></a>' : ''
         ),
         'text-white bg-danger',
@@ -67,13 +67,13 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
-        <th><?= lang('tabel_b7_field1_alias') ?></th>
-        <th><?= lang('tabel_b7_field2_alias') ?></th>
-        <th><?= lang('tabel_b7_field3_alias') ?></th>
-        <th><?= lang('tabel_b7_field4_alias') ?></th>
-        <th><?= lang('tabel_b7_field5_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>No</th>
+        <th><?= $tabelb7_field1_alias ?></th>
+        <th><?= $tabelb7_field2_alias ?></th>
+        <th><?= $tabelb7_field3_alias ?></th>
+        <th><?= $tabelb7_field4_alias ?></th>
+        <th><?= $tabelb7_field5_alias ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -102,7 +102,7 @@
             <?php if ($tl_b7->$tabel_b7_field2 != $database) { ?>
               <a class="btn btn-light text-danger"
                 onclick="return confirm('Tindakan anda akan menghapus hal-hal berikut:\n<?= xss_clean($tabel_b7_alias) ?>\n<?= xss_clean($tabel_b1_alias) ?>\n<?= xss_clean($tabel_b2_alias) ?>\n<?= xss_clean($tabel_b5_alias) ?>\n<?= xss_clean($tabel_b6_alias) ?>\nHapus data?')"
-                href="<?= site_url($language . '/' . $tabel_b7 . '/' . $tl_b7->$tabel_b7_field1 . '/delete') ?>">
+                href="<?= site_url($tabel_b7 . '/' . $tl_b7->$tabel_b7_field1 . '/delete') ?>">
                 <i class="fas fa-trash"></i></a>
             <?php } ?>
           </td>
@@ -118,9 +118,9 @@
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <?= modal_header(lang('add') . ' ' . lang('tabel_b7_alias'), '') ?>
+      <?= modal_header('Add ' . $tabel_b7_alias, '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_b7 . '/tambah') ?>" enctype="multipart/form-data"
+      <form action="<?= site_url($tabel_b7 . '/tambah') ?>" enctype="multipart/form-data"
         method="post">
         <div class="modal-body">
           <?= input_edit($tl_b7->$tabel_b7_field1, 'text', 'tabel_b7_field2', $database, 'required') ?>
@@ -145,8 +145,8 @@
   <div id="ubah<?= $tl_b7->$tabel_b7_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_b7_alias'), $tl_b7->$tabel_b7_field1) ?>
-        <form action="<?= site_url($language . '/' . $tabel_b7 . '/update') ?>" method="post"
+        <?= modal_header_id('Make changes to ' . $tabel_b7_alias, $tl_b7->$tabel_b7_field1) ?>
+        <form action="<?= site_url($tabel_b7 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
 
@@ -171,9 +171,9 @@
   <div id="<?= $tabel_b7_field3 . $tl_b7->$tabel_b7_field1; ?>" class="modal fade <?= $tabel_b7_field3 ?>">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_b7_field3_alias'), $tl_b7->$tabel_b7_field1) ?>
+        <?= modal_header_id('Make changes to ' . $tabel_b7_field3_alias, $tl_b7->$tabel_b7_field1) ?>
 
-        <form action="<?= site_url($language . '/' . $tabel_b7 . '/update_favicon') ?>" method="post"
+        <form action="<?= site_url($tabel_b7 . '/update_favicon') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
 
@@ -200,9 +200,9 @@
   <div id="<?= $tabel_b7_field4 . $tl_b7->$tabel_b7_field1; ?>" class="modal fade <?= $tabel_b7_field4 ?>">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_b7_field4_alias'), $tl_b7->$tabel_b7_field1) ?>
+        <?= modal_header_id('Make changes to ' . $tabel_b7_field4_alias, $tl_b7->$tabel_b7_field1) ?>
 
-        <form action="<?= site_url($language . '/' . $tabel_b7 . '/update_logo') ?>" method="post"
+        <form action="<?= site_url($tabel_b7 . '/update_logo') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
 
@@ -229,9 +229,9 @@
   <div id="<?= $tabel_b7_field5 . $tl_b7->$tabel_b7_field1; ?>" class="modal fade <?= $tabel_b7_field5 ?>">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_b7_field5_alias'), $tl_b7->$tabel_b7_field1) ?>
+        <?= modal_header_id('Make changes to ' . $tabel_b7_field5_alias, $tl_b7->$tabel_b7_field1) ?>
 
-        <form action="<?= site_url($language . '/' . $tabel_b7 . '/update_foto') ?>" method="post"
+        <form action="<?= site_url($tabel_b7 . '/update_foto') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
 
@@ -257,7 +257,7 @@
   <div id="lihat<?= $tl_b7->$tabel_b7_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_b7_alias'), $tl_b7->$tabel_b7_field1) ?>
+        <?= modal_header_id($tabel_b7_alias, $tl_b7->$tabel_b7_field1) ?>
         <!-- administrator tidak bisa melihat password user lain -->
         <form>
           <div class="modal-body">

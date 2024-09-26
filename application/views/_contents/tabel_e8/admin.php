@@ -64,12 +64,12 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
+        <th>No</th>
         <th><?= lang('tabel_e8_field1_alias') ?></th>
         <th><?= lang('tabel_e8_field2_alias') ?></th>
         <th><?= lang('tabel_e8_field3_alias') ?></th>
         <th><?= lang('tabel_e8_field4_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -97,7 +97,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <?= modal_header(lang('add') . ' ' . lang('tabel_e8_alias'), '') ?>
-      <form action="<?= site_url($language . '/' . $tabel_e8 . '/tambah') ?>" method="post">
+      <form action="<?= site_url($tabel_e8 . '/tambah') ?>" method="post">
         <div class="modal-body">
           <?= select_add(
               'tabel_e8_field2',
@@ -131,10 +131,10 @@
   <div id="ubah<?= $tl_e8->$tabel_e8_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_e8_alias'), $tl_e8->$tabel_e8_field1) ?>
+        <?= modal_header_id('Make changes to ' . $tabel_e8_alias, $tl_e8->$tabel_e8_field1) ?>
 
         <!-- administrator tidak dapat mengubah password akun lain -->
-        <form action="<?= site_url($language . '/' . $tabel_e8 . '/update') ?>" method="post"
+        <form action="<?= site_url($tabel_e8 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_e8_field1', $tl_e8->$tabel_e8_field1, 'required') ?>
@@ -173,7 +173,7 @@
   <div id="lihat<?= $tl_e8->$tabel_e8_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_e8_alias'), $tl_e8->$tabel_e8_field1) ?>
+        <?= modal_header_id($tabel_e8_alias, $tl_e8->$tabel_e8_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>

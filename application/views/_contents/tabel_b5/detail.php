@@ -1,7 +1,7 @@
 <?php foreach ($tbl_a1 as $tl_a1):
   if (!$tbl_b5) { ?>
     <img src="img/<?= $tabel_b7 ?>/<?= $tl_a1->$tabel_b7_field5 ?>" class="img-fluid rounded">
-    <h1 class="text-center"><?= lang('tabel_b5_alias_v8_msg') ?></h1>
+    <h1 class="text-center"><?= lang('tabelb5_alias_v8_msg') ?></h1>
     <hr>
 
   <?php } else {

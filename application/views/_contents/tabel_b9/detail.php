@@ -21,7 +21,7 @@
         </tr>
 
         <tr>
-          <td class="table-secondary table-active"><?= lang('created_at') ?></td>
+          <td class="table-secondary table-active">Created At</td>
           <td class="table-light"><?= datetime_elapsed_string($tl_b9->created_at) ?></td>
         </tr>
       </tbody>

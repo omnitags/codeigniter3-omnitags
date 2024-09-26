@@ -89,7 +89,7 @@ class Tabel_c1Controller extends OmnitagsController
 		$this->page_session_all();
 
 		$data1 = array(
-			'title' => 'Create an Account',
+			'title' => 'Create Account',
 			'konten' => 'signup',
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'signup'),
 		);

@@ -14,7 +14,7 @@
 <table class="mb-4">
 
   <!-- method get supaya nilai dari filter bisa tampil nanti -->
-  <form action="<?= site_url($language . '/' . $tabel_b5 . '/admin') ?>" method="get">
+  <form action="<?= site_url($tabel_b5 . '/admin') ?>" method="get">
     <tr>
 
       <td class="pr-2">
@@ -43,7 +43,7 @@
 </table>
 
 
-<p><?= lang('images_not_change_immediately') ?></p>
+<p>Some images will not change immediately, cache needs to be cleared first.</p>
 
 <div class="row">
   <div class="col-md-10">
@@ -100,13 +100,13 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
-        <th><?= lang('tabel_b5_field1_alias') ?></th>
-        <th><?= lang('tabel_b5_field2_alias') ?></th>
-        <th><?= lang('tabel_b5_field4_alias ?> dan <?= $tabel_b5_field5_alias') ?></th>
-        <th><?= lang('tabel_b5_field6_alias') ?></th>
-        <th><?= lang('tabel_b5_field7_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>No</th>
+        <th><?= $tabelb5_field1_alias ?></th>
+        <th><?= $tabelb5_field2_alias ?></th>
+        <th><?= $tabelb5_field4_alias ?> dan <?= $tabel_b5_field5_alias ?></th>
+        <th><?= $tabelb5_field6_alias ?></th>
+        <th><?= $tabelb5_field7_alias ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -144,9 +144,9 @@
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
-      <?= modal_header(lang('add') . ' ' . lang('tabel_b5_alias'), '') ?>
+      <?= modal_header('Add ' . $tabel_b5_alias, '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_b5 . '/tambah') ?>" enctype="multipart/form-data"
+      <form action="<?= site_url($tabel_b5 . '/tambah') ?>" enctype="multipart/form-data"
         method="post">
         <div class="modal-body">
           <div class="row">
@@ -186,9 +186,9 @@
   <div id="ubah<?= $tl_b5->$tabel_b5_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_b5_alias'), $tl_b5->$tabel_b5_field1) ?>
+        <?= modal_header_id('Make changes to ' . $tabel_b5_alias, $tl_b5->$tabel_b5_field1) ?>
 
-        <form action="<?= site_url($language . '/' . $tabel_b5 . '/update') ?>" method="post"
+        <form action="<?= site_url($tabel_b5 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
             <div class="row">
@@ -223,7 +223,7 @@
   <div id="lihat<?= $tl_b5->$tabel_b5_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_b5_alias'), $tl_b5->$tabel_b5_field1) ?>
+        <?= modal_header_id($tabel_b5_alias, $tl_b5->$tabel_b5_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>

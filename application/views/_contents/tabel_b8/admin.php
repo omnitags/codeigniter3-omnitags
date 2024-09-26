@@ -62,12 +62,12 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
-        <th><?= lang('tabel_b8_field1_alias') ?></th>
-        <th><?= lang('tabel_b8_field2_alias') ?></th>
-        <th><?= lang('tabel_b8_field3_alias') ?></th>
-        <th><?= lang('tabel_b8_field4_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>No</th>
+        <th><?= $tabelb8_field1_alias ?></th>
+        <th><?= $tabelb8_field2_alias ?></th>
+        <th><?= $tabelb8_field3_alias ?></th>
+        <th><?= $tabelb8_field4_alias ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -98,9 +98,9 @@
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog">
     <div class="modal-content">
-      <?= modal_header(lang('add') . lang('tabel_b8_alias'), '') ?>
+      <?= modal_header('Add ' . $tabel_b8_alias, '') ?>A
 
-      <form action="<?= site_url($language . '/' . $tabel_b8 . '/tambah') ?>" enctype="multipart/form-data"
+      <form action="<?= site_url($tabel_b8 . '/tambah') ?>" enctype="multipart/form-data"
         method="post">
         <div class="modal-body">
           <?= input_add('text', 'tabel_b8_field2', 'required') ?>
@@ -126,9 +126,9 @@
   <div id="ubah<?= $tl_b8->$tabel_b8_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_b8_alias'), $tl_b8->$tabel_b8_field1) ?>
+        <?= modal_header_id('Make changes to ' . $tabel_b8_alias, $tl_b8->$tabel_b8_field1) ?>
 
-        <form action="<?= site_url($language . '/' . $tabel_b8 . '/update') ?>" method="post"
+        <form action="<?= site_url($tabel_b8 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_b8_field1', $tl_b8->$tabel_b8_field1, 'required') ?>
@@ -153,7 +153,7 @@
   <div id="lihat<?= $tl_b8->$tabel_b8_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_b8_alias'), $tl_b8->$tabel_b8_field1) ?>
+        <?= modal_header_id($tabel_b8_alias, $tl_b8->$tabel_b8_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>

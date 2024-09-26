@@ -13,7 +13,7 @@
 <table class="mb-4">
 
   <!-- method get supaya nilai dari filter bisa tampil nanti -->
-  <form action="<?= site_url($language . '/' . $tabel_b6 . '/admin') ?>" method="get">
+  <form action="<?= site_url($tabel_b6 . '/admin') ?>" method="get">
     <tr>
 
       <td class="pr-2">
@@ -90,15 +90,15 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
-        <th><?= lang('tabel_b6_field1_alias') ?></th>
-        <th><?= lang('tabel_b6_field2_alias') ?></th>
-        <th><?= lang('tabel_b6_field3_alias') ?></th>
-        <th><?= lang('tabel_b6_field4_alias') ?></th>
-        <th><?= lang('tabel_b6_field5_alias') ?></th>
-        <th><?= lang('tabel_b6_field6_alias') ?></th>
-        <th><?= lang('tabel_b6_field7_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>No</th>
+        <th><?= $tabelb6_field1_alias ?></th>
+        <th><?= $tabelb6_field2_alias ?></th>
+        <th><?= $tabelb6_field3_alias ?></th>
+        <th><?= $tabelb6_field4_alias ?></th>
+        <th><?= $tabelb6_field5_alias ?></th>
+        <th><?= $tabelb6_field6_alias ?></th>
+        <th><?= $tabelb6_field7_alias ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -142,9 +142,9 @@
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog">
     <div class="modal-content">
-      <?= modal_header(lang('add') . ' ' . lang('tabel_b6_alias'), '') ?>
+      <?= modal_header('Add ' . $tabel_b6_alias, '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_b6 . '/tambah') ?>" enctype="multipart/form-data"
+      <form action="<?= site_url($tabel_b6 . '/tambah') ?>" enctype="multipart/form-data"
         method="post">
         <div class="modal-body">
           <?= input_add('text', 'tabel_b6_field2', 'required') ?>
@@ -179,9 +179,9 @@
   <div id="ubah<?= $tl_b6->$tabel_b6_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_b6_alias'), $tl_b6->$tabel_b6_field1) ?>
+        <?= modal_header_id('Make changes to ' . $tabel_b6_alias, $tl_b6->$tabel_b6_field1) ?>
 
-        <form action="<?= site_url($language . '/' . $tabel_b6 . '/update') ?>" method="post"
+        <form action="<?= site_url($tabel_b6 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
 
@@ -217,7 +217,7 @@
   <div id="lihat<?= $tl_b6->$tabel_b6_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_b6_alias'), $tl_b6->$tabel_b6_field1) ?>
+        <?= modal_header_id($tabel_b6_alias, $tl_b6->$tabel_b6_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>

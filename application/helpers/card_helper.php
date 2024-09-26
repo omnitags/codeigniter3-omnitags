@@ -174,7 +174,7 @@ if (!function_exists('card_count')) {
         $data = $CI->load->get_vars();
 
         $url = site_url($data['language'] . '/' . $data[$controller] . '/admin');
-        $detail = lang('detail') . ' >>';
+        $detail = 'Detail >>';
         
         return <<<HTML
         <div class="col-md-3 mt-2">

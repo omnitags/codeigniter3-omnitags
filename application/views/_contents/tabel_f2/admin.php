@@ -73,13 +73,13 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
+        <th>No</th>
         <th><?= lang('tabel_f2_field1_alias') ?></th>
         <th><?= lang('tabel_f2_field6_alias') ?></th>
         <th><?= lang('tabel_f2_field10_alias') ?></th>
         <th><?= lang('tabel_f2_field11_alias') ?></th>
         <th><?= lang('tabel_f2_field12_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -126,7 +126,7 @@
     <div class="modal-content">
       <?= modal_header('Filter', '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_f2 . '/admin') ?>" method="get">
+      <form action="<?= site_url($tabel_f2 . '/admin') ?>" method="get">
         <div class="modal-body">
           method get supaya nilai dari filter bisa tampil nanti -->
           <span><?= $tabel_f2_field10_alias ?></span>
@@ -169,10 +169,10 @@
       <div id="book<?= $tl_f2->$tabel_f2_field1 ?>" class="modal fade book">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
-            <?= modal_header_id(lang('tabel_f2_alias'), $tl_f2->$tabel_f2_field1) ?>
+            <?= modal_header_id($tabel_f2_alias, $tl_f2->$tabel_f2_field1) ?>
 
             <!-- form untuk mengubah nilai status sebuah pesanan -->
-            <form action="<?= site_url($language . '/' . $tabel_f2 . '/book') ?>" method="post">
+            <form action="<?= site_url($tabel_f2 . '/book') ?>" method="post">
               <div class="modal-body">
                 <div class="row">
                   <div class="col-md-6">
@@ -258,10 +258,10 @@
       <div id="ubah<?= $tl_f2->$tabel_f2_field1 ?>" class="modal fade ubah">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
-            <?= modal_header_id(lang('tabel_f2_alias'), $tl_f2->$tabel_f2_field1) ?>
+            <?= modal_header_id($tabel_f2_alias, $tl_f2->$tabel_f2_field1) ?>
 
             <!-- form untuk mengubah nilai status sebuah pesanan -->
-            <form action="<?= site_url($language . '/' . $tabel_f2 . '/update_status') ?>" method="post">
+            <form action="<?= site_url($tabel_f2 . '/update_status') ?>" method="post">
               <div class="modal-body">
                 <div class="row">
                   <div class="col-md-6">

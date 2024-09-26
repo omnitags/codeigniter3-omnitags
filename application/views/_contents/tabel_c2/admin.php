@@ -56,13 +56,13 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
-        <th><?= lang('tabel_c2_field1_alias') ?></th>
-        <th><?= lang('tabel_c2_field2_alias') ?></th>
-        <th><?= lang('tabel_c2_field3_alias') ?></th>
-        <th><?= lang('tabel_c2_field5_alias') ?></th>
-        <th><?= lang('tabel_c2_field6_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>No</th>
+        <th><?= $tabelc2_field1_alias ?></th>
+        <th><?= $tabelc2_field2_alias ?></th>
+        <th><?= $tabelc2_field3_alias ?></th>
+        <th><?= $tabelc2_field5_alias ?></th>
+        <th><?= $tabelc2_field6_alias ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -96,9 +96,9 @@
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog">
     <div class="modal-content">
-      <?= modal_header(lang('add') . ' ' . lang('tabel_c2_alias'), '') ?>
+      <?= modal_header('Add ' . $tabel_c2_alias, '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_c2 . '/tambah') ?>" method="post">
+      <form action="<?= site_url($tabel_c2 . '/tambah') ?>" method="post">
         <div class="modal-body">
           <?= input_add('text', 'tabel_c2_field2', 'required') ?>
           <?= input_add('email', 'tabel_c2_field3', 'required autocomplete="username"') ?>
@@ -110,7 +110,7 @@
           <div class="form-group">
             <!-- hanya admin yang bisa menentukan level user -->
             <select class="form-control float" required name="<?= $tabel_c2_field6_input ?>" id="<?= $tabel_c2_field6_input ?>">
-              <option value="" selected hidden><?= lang('select') ?> <?= $tabel_c2_field6_alias ?></option>
+              <option value="" selected hidden>Select <?= $tabel_c2_field6_alias ?></option>
               <option value="<?= $tabel_c2_field6_value5 ?>"><?= $tabel_c2_field6_value5_alias ?></option>
               <option value="<?= $tabel_c2_field6_value4 ?>"><?= $tabel_c2_field6_value4_alias ?></option>
               <option value="<?= $tabel_c2_field6_value2 ?>"><?= $tabel_c2_field6_value2_alias ?></option>
@@ -136,10 +136,10 @@
   <div id="ubah<?= $tl_c2->$tabel_c2_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_c2_alias'), $tl_c2->$tabel_c2_field1) ?>
+        <?= modal_header_id('Make changes to ' . $tabel_c2_alias, $tl_c2->$tabel_c2_field1) ?>
 
         <!-- administrator tidak dapat mengubah password akun lain -->
-        <form action="<?= site_url($language . '/' . $tabel_c2 . '/update') ?>" method="post"
+        <form action="<?= site_url($tabel_c2 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_c2_field1', $tl_c2->$tabel_c2_field1, 'required') ?>
@@ -175,7 +175,7 @@
   <div id="lihat<?= $tl_c2->$tabel_c2_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_c2_alias'), $tl_c2->$tabel_c2_field1) ?>
+        <?= modal_header_id($tabel_c2_alias, $tl_c2->$tabel_c2_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>

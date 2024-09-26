@@ -16,12 +16,12 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
-        <th><?= lang('tabel_d3_field1_alias') ?></th>
-        <th><?= lang('tabel_d3_field2_alias') ?></th>
-        <th><?= lang('tabel_d3_field3_alias') ?></th>
-        <th><?= lang('created_at') ?></th>
-        <th><?= lang('updated_at') ?></th>
+        <th>No</th>
+        <th><?= $tabeld3_field1_alias ?></th>
+        <th><?= $tabeld3_field2_alias ?></th>
+        <th><?= $tabeld3_field3_alias ?></th>
+        <th>Created At</th>
+        <th>Updated At</th>
       </tr>
     </thead>
 

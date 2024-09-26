@@ -70,11 +70,11 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
-        <th><?= lang('tabel_b8_field3_alias') ?></th>
-        <th><?= lang('tabel_b9_field4_alias') ?></th>
-        <th><?= lang('created_at') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>No</th>
+        <th><?= $tabelb8_field3_alias ?></th>
+        <th><?= $tabelb9_field4_alias ?></th>
+        <th>Created At</th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -114,7 +114,7 @@
   <div id="lihat<?= $tl_b9->$tabel_b9_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_b9_alias'), $tl_b9->$tabel_b9_field1) ?>
+        <?= modal_header_id($tabel_b9_alias, $tl_b9->$tabel_b9_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>

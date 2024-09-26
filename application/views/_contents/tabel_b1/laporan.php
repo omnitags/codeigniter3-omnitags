@@ -1,10 +1,10 @@
 <table class="table">
     <thead>
         <tr>
-            <th><?= lang('tabel_b1_field1_alias') ?></th>
-            <th><?= lang('tabel_b1_field2_alias') ?></th>
-            <th><?= lang('tabel_b1_field3_alias') ?></th>
-            <th><?= lang('tabel_b1_field4_alias') ?></th>
+            <th><?= $tabelb1_field1_alias ?></th>
+            <th><?= $tabelb1_field2_alias ?></th>
+            <th><?= $tabelb1_field3_alias ?></th>
+            <th><?= $tabelb1_field4_alias ?></th>
         </tr>
     </thead>
     <tbody>

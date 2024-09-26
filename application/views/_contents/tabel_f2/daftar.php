@@ -72,12 +72,12 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
+        <th>No</th>
         <th><?= lang('tabel_f2_field6_alias') ?></th>
         <th><?= lang('tabel_f2_field10_alias') ?></th>
         <th><?= lang('tabel_f2_field11_alias') ?></th>
         <th><?= lang('tabel_f2_field12_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -116,7 +116,7 @@
     <div class="modal-content">
       <?= modal_header('Filter', '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_f2 . '/daftar') ?>" method="get">
+      <form action="<?= site_url($tabel_f2 . '/daftar') ?>" method="get">
         <div class="modal-body">
           <!-- method get supaya nilai dari filter bisa tampil nanti -->
           <span><?= $tabel_f2_field10_alias ?></span>
@@ -156,7 +156,7 @@
   <div id="lihat<?= $tl_f2->$tabel_f2_field1 ?>" class="modal fade lihat">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_f2_alias'), $tl_f2->$tabel_f2_field1) ?>
+        <?= modal_header_id($tabel_f2_alias, $tl_f2->$tabel_f2_field1) ?>
 
         <div class="modal-body">
 
@@ -198,9 +198,9 @@
       <div id="<?= $tabel_f3_field6 . $tl_f2->$tabel_f2_field1 ?>" class="modal fade <?= $tabel_f3_field6 ?>">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
-            <?= modal_header_id(lang('tabel_f3_alias') . ' untuk ' . lang('tabel_f2_alias'), $tl_f2->$tabel_f2_field1) ?>
+            <?= modal_header_id($tabel_f3_alias, $tl_f2->$tabel_f2_field1) ?>
 
-            <form action="<?= site_url($language . '/' . $tabel_f3 . '/tambah') ?>" method="post"
+            <form action="<?= site_url($tabel_f3 . '/tambah') ?>" method="post"
               enctype="multipart/form-data">
 
               <div class="modal-body">

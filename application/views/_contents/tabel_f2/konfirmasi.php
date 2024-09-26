@@ -19,7 +19,7 @@
 
       <div class="d-flex justify-content-center">
         <a class="btn btn-success text-light"
-          href="<?= confirm_url($language . '/' . $tabel_f2 . '/' . $tbl_f2->$tabel_f2_field1 . '/print') ?>"
+          href="<?= confirm_url($tabel_f2 . '/' . $tbl_f2->$tabel_f2_field1 . '/print') ?>"
           target="_blank">
           Cetak Bukti <?= $tabel_f2_alias ?></i></a>
       </div>
@@ -29,7 +29,7 @@
         untuk mencetak bukti <?= $tabel_f2_alias ?></p>
 
       <div class="d-flex justify-content-center">
-        <a class="text-decoration-none" href="<?= confirm_url($language . '/home') ?>">
+        <a class="text-decoration-none" href="<?= confirm_url('home') ?>">
         </a>
 
       </div>

@@ -1,24 +1,19 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-// Redirect to English version if language is not specified
-$route['default_controller'] = 'WebController/default_language';
-$languages = 'en|fr|id|zh';
+$route['default_controller'] = 'WebController';
 $route['404_override'] = 'WebController/no_page';
 $route['translate_uri_dashes'] = FALSE;
 
-// Language routes
-$route['^(?!' . $languages . ')(.*)/home$'] = 'WebController/default_language';
-$route['(' . $languages . ')/home'] = 'WebController';
-$route['(' . $languages . ')/login'] = 'Tabel_c2Controller/login';
-$route['(' . $languages . ')/signup'] = 'Tabel_c2Controller/signup';
-$route['(' . $languages . ')/no_level'] = 'WebController/no_level';
-$route['en/overloaded'] = 'WebController/overloaded';
-$route['(' . $languages . ')/invalid'] = 'WebController/invalid';
-$route['(' . $languages . ')/dashboard'] = 'WebController/dashboard';
-$route['(' . $languages . ')/dashboard/home'] = 'WebController/dashboard';
-$route['(' . $languages . ')/WebController/set_language'] = 'WebController/set_language';
-$route['(' . $languages . ')'] = 'WebController';
+$route['home'] = 'WebController';
+$route['login'] = 'Tabel_c2Controller/login';
+$route['signup'] = 'Tabel_c2Controller/signup';
+$route['no_level'] = 'WebController/no_level';
+$route['overloaded'] = 'WebController/overloaded';
+$route['invalid'] = 'WebController/invalid';
+$route['dashboard'] = 'WebController/dashboard';
+$route['dashboard/home'] = 'WebController/dashboard';
+$route['WebController/set_language'] = 'WebController/set_language';
 
 // Define routes dynamically based on JSON data
 $jsonData2 = file_get_contents(FCPATH . ('assets/json/app.postman_environment.json'));
@@ -30,12 +25,12 @@ foreach ($myData2 as $item2) {
     $prefix = $item2['key'] . 'Controller';
     $cachedControllers = [];
 
-    $routeKey = '(' . $languages . ')/' . $item2['value'];
+    $routeKey = '' . $item2['value'];
     $controller = $prefix;
     $route[$routeKey] = $controller;
 
 
-    $routeId = '(' . $languages . ')/' . $item2['value'] . '/(:num)';
+    $routeId = '' . $item2['value'] . '/(:num)';
     $controller = $prefix . '/detail/$2';
     $route[$routeId] = $controller;
 
@@ -101,28 +96,28 @@ foreach ($myData2 as $item2) {
     // Check if any view routes don't exist
 
     foreach ($viewRoutes as $key => $value) {
-        $routeKey1 = '(' . $languages . ')/' . $item2['value'] . '/' . $key;
+        $routeKey1 = '' . $item2['value'] . '/' . $key;
         $controller1 = $prefix . '/' . $value;
 
         $route[$routeKey1] = $controller1;
     }
 
     foreach ($commonFunctionRoutes as $key => $value) {
-        $routeKey1 = '(' . $languages . ')/' . $item2['value'] . '/' . $key;
+        $routeKey1 = '' . $item2['value'] . '/' . $key;
         $controller1 = $prefix . '/' . $value;
 
         $route[$routeKey1] = $controller1;
     }
 
     foreach ($uncommonFunctionRoutes as $key => $value) {
-        $routeKey1 = '(' . $languages . ')/' . $item2['value'] . '/(:num)' . '/' . $key;
+        $routeKey1 = '' . $item2['value'] . '/(:num)' . '/' . $key;
         $controller1 = $prefix . '/' . $value . '/$2';
 
         $route[$routeKey1] = $controller1;
     }
 
     foreach ($uniqueFunctionRoutes as $key => $value) {
-        $routeKey1 = '(' . $languages . ')/' .  $item2['value'] . '/' . $key;
+        $routeKey1 = '' .  $item2['value'] . '/' . $key;
         $controller1 = $prefix . '/' . $value;
         
         $route[$routeKey1] = $controller1;

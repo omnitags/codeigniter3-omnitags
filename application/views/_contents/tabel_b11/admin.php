@@ -16,11 +16,11 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
-        <th><?= lang('tabel_b11_field1_alias') ?></th>
-        <th><?= lang('tabel_b11_field2_alias') ?></th>
-        <th><?= lang('tabel_b11_field3_alias') ?></th>
-        <th><?= lang('created_at') ?></th>
+        <th>No</th>
+        <th><?= $tabelb11_field1_alias ?></th>
+        <th><?= $tabelb11_field2_alias ?></th>
+        <th><?= $tabelb11_field3_alias ?></th>
+        <th>Created At</th>
       </tr>
     </thead>
 

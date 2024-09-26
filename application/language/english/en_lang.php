@@ -1,63 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-$lang['no'] = "No";
-$lang['action'] = "Action";
-$lang['add'] = "Add";
-$lang['print_report'] = "Print Report";
-$lang['save_data'] = "Save";
-$lang['update_data'] = "Save Changes";
-$lang['change_data'] = "Make changes to";
-$lang['close_dialog'] = "Close";
-
-$lang['new_notifications'] = "new notifications";
-$lang['show_all_notifications'] = "Show all notifications";
-$lang['no_notifications_available'] = 'No notifications available';
-
-$lang['home'] = "Home";
-$lang['login'] = "Login";
-$lang['signup'] = "Signup";
-$lang['dashboard'] = "Dashboard";
-$lang['logout'] = "Logout";
-$lang['operational'] = "Operational";
-$lang['back_to_home'] = "Back to Home";
-$lang['create_account'] = "Create Account";
-$lang['sign_in'] = "Sign In";
-$lang['create_an_account'] = "Create an Account";
-$lang['detail'] = "Detail";
-$lang['statistics'] = "Statistics";
-$lang['master_data'] = "Master Data";
-$lang['data'] = "Data";
-$lang['manage'] = "Manage";
-
-$lang['already_have_account'] = "Already have account?";
-$lang['dont_have_account'] = "Don't have account?";
-
-$lang['explore'] = 'Explore';
-$lang['address'] = 'Address';
-$lang['follow'] = 'Follow';
-$lang['order_now'] = 'Order Now';
-$lang['reservations'] = 'Reservations';
-$lang['history'] = 'History';
-
-$lang['id_history'] = 'ID History';
-$lang['created_at'] = 'Created At';
-$lang['read_at'] = 'Read At';
-$lang['updated_at'] = 'Updated At';
-$lang['deleted_at'] = 'Deleted At';
-
-$lang['invalid'] = "Cannot perform action!";
-$lang['no_access'] = "You don't have access to this page!";
-$lang['page_not_found'] = "Page Not Found!";
-$lang['welcome'] = "Welcome!";
-$lang['select'] = "Select";
-$lang['required_to_do'] = " required to do ";
-$lang['and'] = " and ";
-
-$lang['images_not_change_immediately'] = "Some images will not change immediately, cache needs to be cleared first.";
-$lang['reupload_image_even_for_name_change'] = "* Even if you only want to change the name, you still need to re-upload the image as well.";
-
-$lang['back_to_activity'] = 'Back to Activity';
 
 $jsonData1 = file_get_contents(site_url('assets/json/app.postman_environment.json'));
 $myData1 = json_decode($jsonData1, true)['values'];

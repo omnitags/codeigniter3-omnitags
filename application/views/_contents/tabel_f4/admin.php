@@ -16,14 +16,14 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
+        <th>No</th>
         <th><?= lang('tabel_f4_field1_alias') ?></th>
         <th><?= lang('tabel_f4_field2_alias') ?></th>
         <th><?= lang('tabel_f4_field3_alias') ?></th>
         <th><?= lang('tabel_f4_field4_alias') ?></th>
         <th><?= lang('tabel_f4_field5_alias') ?></th>
         <th><?= lang('tabel_f4_field6_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -54,7 +54,7 @@
   <div id="lihat<?= $tl_f4->$tabel_f4_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_f4_alias'), $tl_f4->$tabel_f4_field1) ?>
+        <?= modal_header_id($tabel_f4_alias, $tl_f4->$tabel_f4_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>

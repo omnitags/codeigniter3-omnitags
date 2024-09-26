@@ -1,9 +1,9 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th><?= lang('tabel_b11_field1_alias') ?></th>
-      <th><?= lang('tabel_b11_field3_alias') ?></th>
-      <th><?= lang('created_at') ?></th>
+      <th><?= $tabelb11_field1_alias ?></th>
+      <th><?= $tabelb11_field3_alias ?></th>
+      <th>Created At</th>
     </tr>
   </thead>
   <tbody>

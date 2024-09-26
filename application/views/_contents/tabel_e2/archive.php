@@ -58,10 +58,10 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
+        <th>No</th>
         <th><?= lang('tabel_e2_field1_alias') ?></th>
         <th><?= lang('tabel_e2_field2_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -89,7 +89,7 @@
   <div id="lihat<?= $tl_e2->$tabel_e2_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_e2_alias'), $tl_e2->$tabel_e2_field1) ?>
+        <?= modal_header_id($tabel_e2_alias, $tl_e2->$tabel_e2_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>

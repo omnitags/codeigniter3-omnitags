@@ -83,12 +83,6 @@ if (!class_exists('OmnitagsController')) {
            // Load library
            $this->load->library(['session', 'user_agent']);
 
-            // Get the language code from the URL segment
-            $this->language_code = $this->uri->segment(1);
-
-            // Load and set the language
-            load_and_set_language();
-
             // Set security headers
             set_security_headers();
         }

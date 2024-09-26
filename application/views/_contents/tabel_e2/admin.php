@@ -14,7 +14,7 @@
 <table class="mb-4">
 
   <!-- method get supaya nilai dari filter bisa tampil nanti -->
-  <form action="<?= site_url($language . '/' . $tabel_e2 . '/admin') ?>" method="get">
+  <form action="<?= site_url($tabel_e2 . '/admin') ?>" method="get">
     <tr>
 
       <td class="pr-2">
@@ -84,11 +84,11 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
+        <th>No</th>
         <th><?= lang('tabel_e2_field1_alias') ?></th>
         <th><?= lang('tabel_e2_field2_alias') ?></th>
         <th><?= lang('tabel_e2_field3_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -118,7 +118,7 @@
     <div class="modal-content">
       <?= modal_header(lang('add') . ' ' . lang('tabel_e2_alias'), '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_e2 . '/tambah') ?>" method="post">
+      <form action="<?= site_url($tabel_e2 . '/tambah') ?>" method="post">
         <div class="modal-body">
           <div class="row">
             <div class="col-md-6">
@@ -160,10 +160,10 @@
   <div id="ubah<?= $tl_e2->$tabel_e2_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_e2_alias'), $tl_e2->$tabel_e2_field1) ?>
+        <?= modal_header_id('Make changes to ' . $tabel_e2_alias, $tl_e2->$tabel_e2_field1) ?>
 
         <!-- administrator tidak dapat mengubah password akun lain -->
-        <form action="<?= site_url($language . '/' . $tabel_e2 . '/update') ?>" method="post"
+        <form action="<?= site_url($tabel_e2 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
             <div class="row">
@@ -205,7 +205,7 @@
   <div id="lihat<?= $tl_e2->$tabel_e2_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_e2_alias'), $tl_e2->$tabel_e2_field1) ?>
+        <?= modal_header_id($tabel_e2_alias, $tl_e2->$tabel_e2_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>

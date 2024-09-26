@@ -2,7 +2,7 @@
   <img src="img/<?= $tabel_b7 ?>/<?= $tl_a1->$tabel_b7_field5 ?>" class="img-fluid rounded">
 <?php endforeach; ?>
 
-<form action="<?= site_url($language . '/' . $tabel_f2 . '/tambah') ?>" method="post">
+<form action="<?= site_url($tabel_f2 . '/tambah') ?>" method="post">
 
   <!-- form ini berisi data yang sudah diinput sebelumnya dari halaman home -->
   <div class="row justify-content-center align-items-end mt-2">
@@ -99,7 +99,7 @@
 
       <div class="form-group">
         <button class="btn btn-success"
-          onclick="return confirm('Apakah Anda Ingin Memesan <?= lang('tabel_e3_alias') . '?' ?>')"
+          onclick="return confirm('Apakah Anda Ingin Memesan '<?= $tabel_e3_alias ?>' ?')"
           type="submit">Konfirmasi <?= $tabel_f2_alias ?></button>
         <a class="btn btn-danger" type="button" href="<?= site_url('/') ?>">Batal</a>
       </div>
@@ -113,9 +113,9 @@
 <div id="ubah" class="modal fade ubah">
   <div class="modal-dialog">
     <div class="modal-content">
-      <?= modal_header(lang('change_data') . ' ' . lang('tabel_f2_field8_alias'), '') ?>
+      <?= modal_header('Make changes to ' . $tabel_f2_field8_alias, '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_f2) ?>" method="get">
+      <form action="<?= site_url($tabel_f2) ?>" method="get">
         <div class="modal-body">
           <?= add_min_max('number', 'tabel_f2_field8', 'required', '1', '10') ?>
           <?= input_hidden('tabel_f2_field10', $tabel_f2_field10_value, 'required') ?>

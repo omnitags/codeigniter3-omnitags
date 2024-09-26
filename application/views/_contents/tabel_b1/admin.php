@@ -15,7 +15,7 @@
 <table class="mb-4">
 
   <!-- method get supaya nilai dari filter bisa tampil nanti -->
-  <form action="<?= site_url($language . '/' . $tabel_b1 . '/admin') ?>" method="get">
+  <form action="<?= site_url($tabel_b1 . '/admin') ?>" method="get">
     <tr>
       <td class="pr-2">
         <?= select_edit(
@@ -44,7 +44,7 @@
 
 
 
-<p><?= lang('images_not_change_immediately') ?></p>
+<p>Some images will not change immediately, cache needs to be cleared first.</p>
 
 <div class="row">
   <div class="col-md-10">
@@ -94,15 +94,15 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
-        <th><?= lang('tabel_b1_field1_alias') ?></th>
-        <th><?= lang('tabel_b1_field2_alias') ?></th>
-        <th><?= lang('tabel_b1_field3_alias') ?></th>
-        <th><?= lang('tabel_b1_field4_alias') ?></th>
-        <th><?= lang('tabel_b1_field5_alias') ?></th>
-        <th><?= lang('tabel_b1_field6_alias') ?></th>
-        <th><?= lang('tabel_b1_field7_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>No</th>
+        <th><?= $tabelb1_field1_alias ?></th>
+        <th><?= $tabelb1_field2_alias ?></th>
+        <th><?= $tabelb1_field3_alias ?></th>
+        <th><?= $tabelb1_field4_alias ?></th>
+        <th><?= $tabelb1_field5_alias ?></th>
+        <th><?= $tabelb1_field6_alias ?></th>
+        <th><?= $tabelb1_field7_alias ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -136,9 +136,9 @@
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <?= modal_header(lang('add') . ' ' . lang('tabel_b1_alias'), '') ?>
+      <?= modal_header('Add ' . $tabel_b1_alias, '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_b1 . '/tambah') ?>" enctype="multipart/form-data"
+      <form action="<?= site_url($tabel_b1 . '/tambah') ?>" enctype="multipart/form-data"
         method="post">
         <div class="modal-body">
           <div class="row">
@@ -162,7 +162,7 @@
                   <option value="f">f</option>
                   <option value="o">o</option>
                 </select>
-                <label for="<?= $tabel_b1_field6_input ?>" class="form-label"><?= lang('select') ?>
+                <label for="<?= $tabel_b1_field6_input ?>" class="form-label">Select
                   <?= $tabel_b1_field6_alias ?></label>
               </div>
 
@@ -196,14 +196,14 @@
   <div id="ubah<?= $tl_b1->$tabel_b1_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_b1_alias'), $tl_b1->$tabel_b1_field1) ?>
+        <?= modal_header_id('Make changes to ' . $tabel_b1_alias, $tl_b1->$tabel_b1_field1) ?>
 
-        <form action="<?= site_url($language . '/' . $tabel_b1 . '/update') ?>" method="post"
+        <form action="<?= site_url($tabel_b1 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
             <div class="row">
               <div class="col-md-6">
-                <small><?= lang('reupload_image_even_for_name_change') ?></small>
+                <small>* Even if you only want to change the name, you still need to re-upload the image as well.</small>
                 <?= input_hidden('tabel_b1_field1', $tl_b1->$tabel_b1_field1, 'required') ?>
                 <?= input_edit($tl_b1->$tabel_b1_field1, 'text', 'tabel_b1_field2', $tl_b1->$tabel_b1_field2, 'required') ?>
                 <?= input_edit($tl_b1->$tabel_b1_field1, 'text', 'tabel_b1_field3', $tl_b1->$tabel_b1_field3, 'required') ?>
@@ -243,7 +243,7 @@
   <div id="lihat<?= $tl_b1->$tabel_b1_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_b1_alias'), $tl_b1->$tabel_b1_field1) ?>
+        <?= modal_header_id($tabel_b1_alias, $tl_b1->$tabel_b1_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>

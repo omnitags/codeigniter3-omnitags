@@ -58,7 +58,7 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
+        <th>No</th>
         <th><?= lang('tabel_f1_field2_alias') ?></th>
         <th><?= lang('tabel_f1_field3_alias') ?></th>
         <th><?= lang('tabel_f1_field4_alias') ?></th>
@@ -67,7 +67,7 @@
         <th><?= lang('tabel_f1_field7_alias') ?></th>
         <th><?= lang('tabel_f1_field8_alias') ?></th>
         <th><?= lang('tabel_f1_field9_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -100,7 +100,7 @@
     <div class="modal-content">
       <?= modal_header('Filter', '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_f1 . '/daftar') ?>" method="get">
+      <form action="<?= site_url($tabel_f1 . '/daftar') ?>" method="get">
         <div class="modal-body">
           <!-- method get supaya nilai dari filter bisa tampil nanti -->
           <span><?= $tabel_f1_field11_alias ?></span>
@@ -141,7 +141,7 @@
   <div id="lihat<?= $tl_f1->$tabel_f1_field1 ?>" class="modal fade lihat">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_f1_alias'), $tl_f1->$tabel_f1_field1) ?>
+        <?= modal_header_id($tabel_f1_alias, $tl_f1->$tabel_f1_field1) ?>
 
         <div class="modal-body">
           <div class="row">

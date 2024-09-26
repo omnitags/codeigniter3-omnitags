@@ -2,9 +2,9 @@
 <table class="table">
     <thead class="thead">
         <tr>
-            <th><?= lang('tabel_b9_field1_alias') ?></th>
-            <th><?= lang('tabel_b9_field2_alias') ?></th>
-            <th><?= lang('tabel_b9_field3_alias') ?></th>
+            <th><?= $tabelb9_field1_alias ?></th>
+            <th><?= $tabelb9_field2_alias ?></th>
+            <th><?= $tabelb9_field3_alias ?></th>
         </tr>
     </thead>
     <tbody>

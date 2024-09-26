@@ -1,9 +1,9 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th><?= lang('tabel_e4_field1_alias') ?></th>
-      <th><?= lang('tabel_e4_field2_alias') ?></th>
-      <th><?= lang('tabel_e4_field3_alias') ?></th>
+      <th><?= $tabele4_field1_alias ?></th>
+      <th><?= $tabele4_field2_alias ?></th>
+      <th><?= $tabele4_field3_alias ?></th>
     </tr>
     </tr>
   </thead>

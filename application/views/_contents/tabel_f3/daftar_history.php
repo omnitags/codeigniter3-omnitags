@@ -58,13 +58,13 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
+        <th>No</th>
         <th><?= lang('tabel_f3_field1_alias') ?></th>
         <th><?= lang('tabel_f1_field1_alias') ?></th>
         <th><?= lang('tabel_f3_field5_alias') ?></th>
         <th><?= lang('tabel_f3_field6_alias') ?></th>
         <th><?= lang('tabel_f3_field7_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -96,7 +96,7 @@
     <div class="modal-content">
       <?= modal_header('Filter', '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_f3 . '/daftar_history') ?>" method="get">
+      <form action="<?= site_url($tabel_f3 . '/daftar_history') ?>" method="get">
         <div class="modal-body">
           <!-- method get supaya nilai dari filter bisa tampil nanti -->
           <span><?= $tabel_f3_field7_alias ?></span>
@@ -131,7 +131,7 @@ Jadi tidak perlu menambahkan foreach hitory lagi -->
   <div id="lihat<?= $tl_f3->$tabel_f3_field1 ?>" class="modal fade lihat">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <?= modal_header_id(lang('tabel_f3_alias'), $tl_f3->$tabel_f3_field1) ?>
+        <?= modal_header_id($tabel_f3_alias, $tl_f3->$tabel_f3_field1) ?>
 
         <div class="modal-body">
           <div class="row">
