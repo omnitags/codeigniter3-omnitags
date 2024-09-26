@@ -16,7 +16,7 @@ class Tabel_b2Controller extends OmnitagsController
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'title' => lang('tabel_b2_alias_v8_title'),
+			'title' => $this->title['tabel_b2_alias_v8'],
 			'konten' => $this->v8['tabel_b2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b2']),
 			'tbl_b2' => $this->tl_b2->get_b2_by_field('tabel_b2_field1', $code),
@@ -46,7 +46,7 @@ class Tabel_b2Controller extends OmnitagsController
 		}
 
 		$data1 = array(
-			'title' => lang('tabel_b2_alias_v3_title'),
+			'title' => $this->title['tabel_b2_alias_v3'],
 			'konten' => $this->v3['tabel_b2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b2']),
 			'tbl_b2' => $result,
@@ -64,7 +64,7 @@ class Tabel_b2Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_b2_alias_v4_title'),
+			'title' => $this->title['tabel_b2_alias_v4'],
 			'konten' => $this->v4['tabel_b2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b2']),
 			'tbl_b2' => $this->tl_b2->get_all_b2(),
@@ -311,7 +311,7 @@ class Tabel_b2Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_b2_alias_v9_title'),
+			'title' => $this->title['tabel_b2_alias_v9'],
 			'konten' => $this->v9['tabel_b2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b2']),
 			'tbl_b2' => $this->tl_b2->get_all_b2_archive(),
@@ -330,7 +330,7 @@ class Tabel_b2Controller extends OmnitagsController
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'title' => lang('tabel_b2_alias_v10_title'),
+			'title' => $this->title['tabel_b2_alias_v10'],
 			'konten' => $this->v10['tabel_b2'],
 			'dekor' => $this->tl_b2->dekor($this->theme_id, $this->aliases['tabel_b2']),
 			'tbl_b2' => $this->tl_b2->get_b2_by_field_archive('tabel_b2_field1', $code),
@@ -349,7 +349,7 @@ class Tabel_b2Controller extends OmnitagsController
 
 		$data1 = array(
 			'table_id' => $code,
-			'title' => lang('tabel_b2_alias_v11_title'),
+			'title' => $this->title['tabel_b2_alias_v11'],
 			'konten' => $this->v11['tabel_b2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b2']),
 			'tbl_b2' => $this->tl_ot->get_by_field_history('tabel_b2', 'tabel_b2_field1', $code),

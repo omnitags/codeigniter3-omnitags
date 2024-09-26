@@ -16,7 +16,7 @@ class Tabel_b7Controller extends OmnitagsController
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'title' => lang('tabel_b7_alias_v8_title'),
+			'title' => $this->title['tabel_b7_alias_v8'],
 			'konten' => $this->v8['tabel_b7'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b7']),
 			'tbl_b7' => $this->tl_b7->get_b7_by_field('tabel_b7_field1', $code),
@@ -35,7 +35,7 @@ class Tabel_b7Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_b7_alias_v3_title'),
+			'title' => $this->title['tabel_b7_alias_v3'],
 			'konten' => $this->v3['tabel_b7'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b7']),
 			'tbl_b7' => $this->tl_b7->get_all_b7(),
@@ -51,7 +51,7 @@ class Tabel_b7Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_b7_alias_v4_title'),
+			'title' => $this->title['tabel_b7_alias_v4'],
 			'konten' => $this->v4['tabel_b7'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b7']),
 			'tbl_b7' => $this->tl_b7->get_all_b7(),
@@ -355,7 +355,7 @@ class Tabel_b7Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_b7_alias_v9_title'),
+			'title' => $this->title['tabel_b7_alias_v9'],
 			'konten' => $this->v9['tabel_b7'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b7']),
 			'tbl_b7' => $this->tl_b7->get_all_b7_archive(),
@@ -374,7 +374,7 @@ class Tabel_b7Controller extends OmnitagsController
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'title' => lang('tabel_b7_alias_v10_title'),
+			'title' => $this->title['tabel_b7_alias_v10'],
 			'konten' => $this->v10['tabel_b7'],
 			'dekor' => $this->tl_b7->dekor($this->theme_id, $this->aliases['tabel_b7']),
 			'tbl_b7' => $this->tl_b7->get_b7_by_field_archive('tabel_b7_field1', $code),
@@ -393,7 +393,7 @@ class Tabel_b7Controller extends OmnitagsController
 
 		$data1 = array(
 			'table_id' => $code,
-			'title' => lang('tabel_b7_alias_v11_title'),
+			'title' => $this->title['tabel_b7_alias_v11'],
 			'konten' => $this->v11['tabel_b7'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b7']),
 			'tbl_b7' => $this->tl_ot->get_by_field_history('tabel_b7', 'tabel_b7_field1', $code),

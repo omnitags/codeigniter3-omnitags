@@ -13,7 +13,7 @@ class Tabel_e4Controller extends OmnitagsController
 		$this->session_all();
 
 		$data1 = array(
-			'title' => lang('tabel_e4_alias_v1_title'),
+			'title' => $this->title['tabel_e4_alias_v1'],
 			'konten' => $this->v1['tabel_e4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e4']),
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
@@ -32,7 +32,7 @@ class Tabel_e4Controller extends OmnitagsController
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'title' => lang('tabel_e4_alias_v8_title'),
+			'title' => $this->title['tabel_e4_alias_v8'],
 			'konten' => $this->v8['tabel_e4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_b2']),
 			'tbl_e4' => $this->tl_e4->get_e4_by_field('tabel_e4_field1', $code),
@@ -50,7 +50,7 @@ class Tabel_e4Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_e4_alias_v3_title'),
+			'title' => $this->title['tabel_e4_alias_v3'],
 			'konten' => $this->v3['tabel_e4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e4']),
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
@@ -66,7 +66,7 @@ class Tabel_e4Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_e4_alias_v4_title'),
+			'title' => $this->title['tabel_e4_alias_v4'],
 			'konten' => $this->v4['tabel_e4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e4']),
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
@@ -248,7 +248,7 @@ class Tabel_e4Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_e4_alias_v9_title'),
+			'title' => $this->title['tabel_e4_alias_v9'],
 			'konten' => $this->v9['tabel_e4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e4']),
 			'tbl_e4' => $this->tl_e4->get_all_e4_archive(),
@@ -267,7 +267,7 @@ class Tabel_e4Controller extends OmnitagsController
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'title' => lang('tabel_e4_alias_v10_title'),
+			'title' => $this->title['tabel_e4_alias_v10'],
 			'konten' => $this->v10['tabel_e4'],
 			'dekor' => $this->tl_e4->dekor($this->theme_id, $this->aliases['tabel_e4']),
 			'tbl_e4' => $this->tl_e4->get_e4_by_field_archive('tabel_e4_field1', $code),
@@ -286,7 +286,7 @@ class Tabel_e4Controller extends OmnitagsController
 
 		$data1 = array(
 			'table_id' => $code,
-			'title' => lang('tabel_e4_alias_v11_title'),
+			'title' => $this->title['tabel_e4_alias_v11'],
 			'konten' => $this->v11['tabel_e4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e4']),
 			'tbl_e4' => $this->tl_ot->get_by_field_history('tabel_e4', 'tabel_e4_field1', $code),

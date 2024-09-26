@@ -15,7 +15,7 @@ class Tabel_c2Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_c2_alias_v3_title'),
+			'title' => $this->title['tabel_c2_alias_v3'],
 			'konten' => $this->v3['tabel_c2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c2']),
 			'tbl_c2' => $this->tl_c2->get_all_c2(),
@@ -31,7 +31,7 @@ class Tabel_c2Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_c2_alias_v4_title'),
+			'title' => $this->title['tabel_c2_alias_v4'],
 			'konten' => $this->v4['tabel_c2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c2']),
 			'tbl_c2' => $this->tl_c2->get_all_c2(),
@@ -54,7 +54,7 @@ class Tabel_c2Controller extends OmnitagsController
 
 		$code = userdata($this->aliases['tabel_c2_field1']);
 		$data1 = array(
-			'title' => lang('tabel_c2_alias_v6_title'),
+			'title' => $this->title['tabel_c2_alias_v6'],
 			'konten' => $this->v6['tabel_c2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c2']),
 			'tbl_c2' => $this->tl_c2->get_c2_by_field('tabel_c2_field1', $code),
@@ -495,7 +495,7 @@ class Tabel_c2Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_c2_alias_v9_title'),
+			'title' => $this->title['tabel_c2_alias_v9'],
 			'konten' => $this->v9['tabel_c2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c2']),
 			'tbl_c2' => $this->tl_c2->get_all_c2_archive(),
@@ -514,7 +514,7 @@ class Tabel_c2Controller extends OmnitagsController
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'title' => lang('tabel_c2_alias_v10_title'),
+			'title' => $this->title['tabel_c2_alias_v10'],
 			'konten' => $this->v10['tabel_c2'],
 			'dekor' => $this->tl_c2->dekor($this->theme_id, $this->aliases['tabel_c2']),
 			'tbl_c2' => $this->tl_c2->get_c2_by_field_archive('tabel_c2_field1', $code),
@@ -533,7 +533,7 @@ class Tabel_c2Controller extends OmnitagsController
 
 		$data1 = array(
 			'table_id' => $code,
-			'title' => lang('tabel_c2_alias_v11_title'),
+			'title' => $this->title['tabel_c2_alias_v11'],
 			'konten' => $this->v11['tabel_c2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c2']),
 			'tbl_c2' => $this->tl_ot->get_by_field_history('tabel_c2', 'tabel_c2_field1', $code),

@@ -22,7 +22,7 @@ class Tabel_f2Controller extends OmnitagsController
 		switch (userdata($this->aliases['tabel_c2_field6'])) {
 			case $this->aliases['tabel_c2_field6_value5']:
 				$data1 = array(
-					'title' => lang('tabel_f2_alias_v1_title'),
+					'title' => $this->title['tabel_f2_alias_v1'],
 					'konten' => $this->v1['tabel_f2'],
 					'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 					'tbl_b5' => $this->tl_b5->get_all_b5(),
@@ -73,7 +73,7 @@ class Tabel_f2Controller extends OmnitagsController
 
 
 		$data1 = array(
-			'title' => lang('tabel_f2_alias_v2_title'),
+			'title' => $this->title['tabel_f2_alias_v2'],
 			'konten' => $this->v2['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 			'tbl_f2' => $result,
@@ -111,7 +111,7 @@ class Tabel_f2Controller extends OmnitagsController
 		// }
 
 		$data1 = array(
-			'title' => lang('tabel_f2_alias_v3_title'),
+			'title' => $this->title['tabel_f2_alias_v3'],
 			'konten' => $this->v3['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 			'tbl_f2' => $this->tl_f2->get_all_f2(),
@@ -134,7 +134,7 @@ class Tabel_f2Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_f2_alias_v4_title'),
+			'title' => $this->title['tabel_f2_alias_v4'],
 			'konten' => $this->v4['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 			'tbl_f2' => $this->tl_f2->get_f2_with_e4(),
@@ -157,7 +157,7 @@ class Tabel_f2Controller extends OmnitagsController
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'title' => lang('tabel_f2_alias_v5_title'),
+			'title' => $this->title['tabel_f2_alias_v5'],
 			'konten' => $this->v5['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 			'tbl_f2' => $this->tl_f2->get_f2_with_e4_by_f2_field1($code),
@@ -193,7 +193,7 @@ class Tabel_f2Controller extends OmnitagsController
 		$param2 = $this->v_get['tabel_f2_field4'];
 
 		$data1 = array(
-			'title' => lang('tabel_f2_alias_v1_title'),
+			'title' => $this->title['tabel_f2_alias_v1'],
 			'konten' => $this->v1['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 
@@ -215,7 +215,7 @@ class Tabel_f2Controller extends OmnitagsController
 		$tabel_c2_field3 = userdata($this->aliases['tabel_c2_field3'] . '_' . $this->aliases['tabel_f2']);
 
 		$data1 = array(
-			'title' => lang('tabel_f2_alias_v4_title'),
+			'title' => $this->title['tabel_f2_alias_v4'],
 			'konten' => $this->v7['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 
@@ -505,7 +505,7 @@ class Tabel_f2Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_f2_alias_v9_title'),
+			'title' => $this->title['tabel_f2_alias_v9'],
 			'konten' => $this->v9['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 			'tbl_f2' => $this->tl_f2->get_all_f2_archive(),
@@ -523,7 +523,7 @@ class Tabel_f2Controller extends OmnitagsController
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'title' => lang('tabel_f2_alias_v10_title'),
+			'title' => $this->title['tabel_f2_alias_v10'],
 			'konten' => $this->v10['tabel_f2'],
 			'dekor' => $this->tl_f2->dekor($this->theme_id, $this->aliases['tabel_f2']),
 			'tbl_f2' => $this->tl_f2->get_f2_by_field_archive('tabel_f2_field1', $code),
@@ -542,7 +542,7 @@ class Tabel_f2Controller extends OmnitagsController
 
 		$data1 = array(
 			'table_id' => $code,
-			'title' => lang('tabel_f2_alias_v11_title'),
+			'title' => $this->title['tabel_f2_alias_v11'],
 			'konten' => $this->v11['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 			'tbl_f2' => $this->tl_ot->get_by_field_history('tabel_f2', 'tabel_f2_field1', $code),

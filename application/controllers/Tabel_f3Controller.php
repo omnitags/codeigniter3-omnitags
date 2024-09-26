@@ -46,7 +46,7 @@ class Tabel_f3Controller extends OmnitagsController
 		}
 
 		$data1 = array(
-			'title' => lang('tabel_f3_alias_v2_title'),
+			'title' => $this->title['tabel_f3_alias_v2'],
 			'konten' => $this->v2['tabel_f3'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f3']),
 			'tbl_f3' => $result,
@@ -80,7 +80,7 @@ class Tabel_f3Controller extends OmnitagsController
 		}
 
 		$data1 = array(
-			'title' => lang('tabel_f3_alias_past'),
+			'title' => $this->title['tabel_f3_alias'],
 			'konten' => 'contents/tabel_f3/daftar_history',
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f3']),
 			'tbl_f3' => $result,
@@ -112,7 +112,7 @@ class Tabel_f3Controller extends OmnitagsController
 		}
 
 		$data1 = array(
-			'title' => lang('tabel_f3_alias_v3_title'),
+			'title' => $this->title['tabel_f3_alias_v3'],
 			'konten' => $this->v3['tabel_f3'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f3']),
 			'tbl_f3' => $result,
@@ -132,7 +132,7 @@ class Tabel_f3Controller extends OmnitagsController
 		$this->page_session_2();
 
 		$data1 = array(
-			'title' => lang('tabel_f3_alias_v4_title'),
+			'title' => $this->title['tabel_f3_alias_v4'],
 			'konten' => $this->v4['tabel_f3'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f3']),
 			'tbl_f3' => $this->tl_f3->get_all_f3(),
@@ -160,7 +160,7 @@ class Tabel_f3Controller extends OmnitagsController
 		$this->check_data($param1);
 
 		$data1 = array(
-			'title' => lang('tabel_f3_alias_v5_title'),
+			'title' => $this->title['tabel_f3_alias_v5'],
 			'konten' => $this->v5['tabel_f3'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f3']),
 		);
@@ -198,7 +198,7 @@ class Tabel_f3Controller extends OmnitagsController
 
 		$tabel_f3_field3 = userdata($this->aliases['tabel_f3_field3'] . '_' . $this->aliases['tabel_f3']);
 		$data1 = array(
-			'title' => lang('tabel_f3_alias_v4_title'),
+			'title' => $this->title['tabel_f3_alias_v4'],
 			'konten' => $this->v7['tabel_f3'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f3']),
 
@@ -390,7 +390,7 @@ class Tabel_f3Controller extends OmnitagsController
 		$this->page_session_3();
 
 		$data1 = array(
-			'title' => lang('tabel_f3_alias_v9_title'),
+			'title' => $this->title['tabel_f3_alias_v9'],
 			'konten' => $this->v9['tabel_f3'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f3']),
 			'tbl_f3' => $this->tl_f3->get_all_f3_archive(),
@@ -409,7 +409,7 @@ class Tabel_f3Controller extends OmnitagsController
 		$this->check_data($tabel);
 
 		$data1 = array(
-			'title' => lang('tabel_f3_alias_v10_title'),
+			'title' => $this->title['tabel_f3_alias_v10'],
 			'konten' => $this->v10['tabel_f3'],
 			'dekor' => $this->tl_f3->dekor($this->theme_id, $this->aliases['tabel_f3']),
 			'tbl_f3' => $this->tl_f3->get_f3_by_field_archive('tabel_f3_field1', $code),
@@ -428,7 +428,7 @@ class Tabel_f3Controller extends OmnitagsController
 
 		$data1 = array(
 			'table_id' => $code,
-			'title' => lang('tabel_f3_alias_v11_title'),
+			'title' => $this->title['tabel_f3_alias_v11'],
 			'konten' => $this->v11['tabel_f3'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f3']),
 			'tbl_f3' => $this->tl_ot->get_by_field_history('tabel_f3', 'tabel_f3_field1', $code),
