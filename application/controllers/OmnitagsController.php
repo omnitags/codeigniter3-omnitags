@@ -134,17 +134,17 @@ if (!class_exists('OmnitagsController')) {
 
                 $this->v_upload_path[$item['key']] = './assets/img/' . $item['key'] . '/';
 
-                $this->v1[$item['key']] = '_contents/' . $item['key'] . '/index';
-                $this->v2[$item['key']] = '_contents/' . $item['key'] . '/daftar';
-                $this->v3[$item['key']] = '_contents/' . $item['key'] . '/admin';
-                $this->v4[$item['key']] = '_contents/' . $item['key'] . '/laporan';
-                $this->v5[$item['key']] = '_contents/' . $item['key'] . '/print';
-                $this->v6[$item['key']] = '_contents/' . $item['key'] . '/profil';
-                $this->v7[$item['key']] = '_contents/' . $item['key'] . '/konfirmasi';
-                $this->v8[$item['key']] = '_contents/' . $item['key'] . '/detail';
-                $this->v9[$item['key']] = '_contents/' . $item['key'] . '/archive';
-                $this->v10[$item['key']] = '_contents/' . $item['key'] . '/archive_detail';
-                $this->v11[$item['key']] = '_contents/' . $item['key'] . '/history';
+                $this->v1[$item['key']] = 'contents/' . $item['key'] . '/index';
+                $this->v2[$item['key']] = 'contents/' . $item['key'] . '/daftar';
+                $this->v3[$item['key']] = 'contents/' . $item['key'] . '/admin';
+                $this->v4[$item['key']] = 'contents/' . $item['key'] . '/laporan';
+                $this->v5[$item['key']] = 'contents/' . $item['key'] . '/print';
+                $this->v6[$item['key']] = 'contents/' . $item['key'] . '/profil';
+                $this->v7[$item['key']] = 'contents/' . $item['key'] . '/konfirmasi';
+                $this->v8[$item['key']] = 'contents/' . $item['key'] . '/detail';
+                $this->v9[$item['key']] = 'contents/' . $item['key'] . '/archive';
+                $this->v10[$item['key']] = 'contents/' . $item['key'] . '/archive_detail';
+                $this->v11[$item['key']] = 'contents/' . $item['key'] . '/history';
             }
 
             $this->overload();
@@ -159,7 +159,7 @@ if (!class_exists('OmnitagsController')) {
             $this->notif_null = $this->tl_b9->get_b9_by_field(['tabel_b9_field2', 'tabel_b9_field6'], [userdata($this->aliases['tabel_c2_field1']), NULL]);
 
             $this->views = array(
-                'head' => '_partials/head',
+                'head' => 'partials/head',
                 'phase' => $this->phase_2,
                 'lisensi' => $this->tl_b5->get_b5_by_field(['tabel_b5_field6', 'tabel_b5_field7'], [$this->aliases['tabel_b5_field6_value1'], $this->theme_id]),
                 'sosmed' => $this->tl_b6->get_b6_by_field(['tabel_b6_field6', 'tabel_b6_field7'], [$this->aliases['tabel_b6_field6_value1'], $this->theme_id]),

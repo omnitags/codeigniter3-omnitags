@@ -71,7 +71,7 @@ class WebController extends OmnitagsController
 					'tbl_b2' => $this->tl_b2->get_b2_by_field(['tabel_b2_field7', 'tabel_b2_field6'], [$this->theme_id, $this->aliases['tabel_b2_field6_value1']]),
 				);
 
-				$this->load_page('', '_layouts/template', $data1);
+				$this->load_page('', 'layouts/template', $data1);
 				break;
 		}
 	}
@@ -120,7 +120,7 @@ class WebController extends OmnitagsController
 
 		$notif = $this->handle_2a();		
 		
-		$this->load_page('', '_layouts/template', $data1);
+		$this->load_page('', 'layouts/template', $data1);
 	}
 
 	// Page that will be loaded if a function is performed by a user with the wrong level

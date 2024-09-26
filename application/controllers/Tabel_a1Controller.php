@@ -20,11 +20,11 @@ class Tabel_a1Controller extends OmnitagsController
 
 		$data1 = array(
 			'title' => 'Testing Page',
-			'konten' => '_contents/tabel_a1/testing',
+			'konten' => 'contents/tabel_a1/testing',
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_a1']),
 		);
 
-		$this->load_page('tabel_a1', '_layouts/template', $data1);
+		$this->load_page('tabel_a1', 'layouts/template', $data1);
 	}
 
 	// Page for 1 data
@@ -47,7 +47,7 @@ class Tabel_a1Controller extends OmnitagsController
 			'tbl_b7' => $this->tl_b7->get_all_b7(),
 		);
 
-		$this->load_page('tabel_a1', '_layouts/template', $data1);
+		$this->load_page('tabel_a1', 'layouts/template', $data1);
 	}
 
 	// Functions
@@ -146,7 +146,7 @@ class Tabel_a1Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_a1', 'tabel_a1_field1', $code),
 		);
 
-		$this->load_page('tabel_a1', '_layouts/template', $data1);
+		$this->load_page('tabel_a1', 'layouts/template', $data1);
 	}
 
 	//Push History Data into current data

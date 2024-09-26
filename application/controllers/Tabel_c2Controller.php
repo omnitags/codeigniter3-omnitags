@@ -21,7 +21,7 @@ class Tabel_c2Controller extends OmnitagsController
 			'tbl_c2' => $this->tl_c2->get_all_c2(),
 		);
 
-		$this->load_page('tabel_c2', '_layouts/template', $data1);
+		$this->load_page('tabel_c2', 'layouts/template', $data1);
 	}
 
 	// Print all data
@@ -37,7 +37,7 @@ class Tabel_c2Controller extends OmnitagsController
 			'tbl_c2' => $this->tl_c2->get_all_c2(),
 		);
 
-		$this->load_page('tabel_c2', '_layouts/printpage', $data1);
+		$this->load_page('tabel_c2', 'layouts/printpage', $data1);
 	}
 
 	// Profile page
@@ -61,7 +61,7 @@ class Tabel_c2Controller extends OmnitagsController
 			'tbl_d3' => $this->tl_d3->get_d3_by_field('tabel_c2_field1', $code),
 		);
 
-		$this->load_page('tabel_c2', '_layouts/template', $data1);
+		$this->load_page('tabel_c2', 'layouts/template', $data1);
 	}
 
 	// Login Page
@@ -76,7 +76,7 @@ class Tabel_c2Controller extends OmnitagsController
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'login'),
 		);
 
-		$this->load_page('', '_layouts/logpage', $data1);
+		$this->load_page('', 'layouts/logpage', $data1);
 	}
 
 	// Sign Up Page
@@ -91,7 +91,7 @@ class Tabel_c2Controller extends OmnitagsController
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'signup'),
 		);
 
-		$this->load_page('', '_layouts/logpage', $data1);
+		$this->load_page('', 'layouts/logpage', $data1);
 	}
 
 	// Functions
@@ -501,7 +501,7 @@ class Tabel_c2Controller extends OmnitagsController
 			'tbl_c2' => $this->tl_c2->get_all_c2_archive(),
 		);
 
-		$this->load_page('tabel_c2', '_layouts/template', $data1);
+		$this->load_page('tabel_c2', 'layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -520,7 +520,7 @@ class Tabel_c2Controller extends OmnitagsController
 			'tbl_c2' => $this->tl_c2->get_c2_by_field_archive('tabel_c2_field1', $code),
 		);
 
-		$this->load_page('tabel_c2', '_layouts/template', $data1);
+		$this->load_page('tabel_c2', 'layouts/template', $data1);
 	}
 	
 	public function history($code = null)
@@ -540,7 +540,7 @@ class Tabel_c2Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_c2', 'tabel_c2_field1', $code),
 		);
 
-		$this->load_page('tabel_c2', '_layouts/template', $data1);
+		$this->load_page('tabel_c2', 'layouts/template', $data1);
 	}
 
 	//Push History Data into current data

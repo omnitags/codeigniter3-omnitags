@@ -25,7 +25,7 @@ class Tabel_c1Controller extends OmnitagsController
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
 		);
 
-		$this->load_page('tabel_c1', '_layouts/template', $data1);
+		$this->load_page('tabel_c1', 'layouts/template', $data1);
 	}
 
 	// Print all data
@@ -41,7 +41,7 @@ class Tabel_c1Controller extends OmnitagsController
 			'tbl_c1' => $this->tl_c1->get_all_c1(),
 		);
 
-		$this->load_page('tabel_c1', '_layouts/printpage', $data1);
+		$this->load_page('tabel_c1', 'layouts/printpage', $data1);
 	}
 
 	// Show 1 data
@@ -64,7 +64,7 @@ class Tabel_c1Controller extends OmnitagsController
 			'tbl_c1' => $this->tl_c1->get_c1_by_field('tabel_c1_field1', $code),
 		);
 
-		$this->load_page('tabel_c1', '_layouts/template', $data1);
+		$this->load_page('tabel_c1', 'layouts/template', $data1);
 	}
 
 	// Login page
@@ -75,11 +75,11 @@ class Tabel_c1Controller extends OmnitagsController
 
 		$data1 = array(
 			'title' => 'Login Sebagai ' . $this->aliases['tabel_c1_alias'],
-			'konten' => '_contents/tabel_c1Controller/login',
+			'konten' => 'contents/tabel_c1Controller/login',
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c1']),
 		);
 
-		$this->load_page('', '_layouts/logpage', $data1);
+		$this->load_page('', 'layouts/logpage', $data1);
 	}
 
 	// Signup page
@@ -94,7 +94,7 @@ class Tabel_c1Controller extends OmnitagsController
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'signup'),
 		);
 
-		$this->load_page('', '_layouts/logpage', $data1);
+		$this->load_page('', 'layouts/logpage', $data1);
 	}
 
 	// Functions
@@ -502,7 +502,7 @@ class Tabel_c1Controller extends OmnitagsController
 			'tbl_c1' => $this->tl_c1->get_all_c1_archive(),
 		);
 
-		$this->load_page('tabel_c1', '_layouts/template', $data1);
+		$this->load_page('tabel_c1', 'layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -521,7 +521,7 @@ class Tabel_c1Controller extends OmnitagsController
 			'tbl_c1' => $this->tl_c1->get_c1_by_field_archive('tabel_c1_field1', $code),
 		);
 
-		$this->load_page('tabel_c1', '_layouts/template', $data1);
+		$this->load_page('tabel_c1', 'layouts/template', $data1);
 	}
 	
 	public function history($code = null)
@@ -541,7 +541,7 @@ class Tabel_c1Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_c1', 'tabel_c1_field1', $code),
 		);
 
-		$this->load_page('tabel_c1', '_layouts/template', $data1);
+		$this->load_page('tabel_c1', 'layouts/template', $data1);
 	}
 
 	//Push History Data into current data

@@ -25,7 +25,7 @@ class Tabel_d3Controller extends OmnitagsController
 			'tbl_d3' => $this->tl_d3->get_all_d3(),
 		);
 
-		$this->load_page('tabel_d3', '_layouts/template', $data1);
+		$this->load_page('tabel_d3', 'layouts/template', $data1);
 	}
 
 	// Print all data
@@ -41,7 +41,7 @@ class Tabel_d3Controller extends OmnitagsController
 			'tbl_d3' => $this->tl_d3->get_all_d3(),
 		);
 
-		$this->load_page('tabel_d3', '_layouts/printpage', $data1);
+		$this->load_page('tabel_d3', 'layouts/printpage', $data1);
 	}
 
 	// Print one data
@@ -129,7 +129,7 @@ class Tabel_d3Controller extends OmnitagsController
 			'tbl_d3' => $this->tl_d3->get_all_d3_archive(),
 		);
 
-		$this->load_page('tabel_d3', '_layouts/template', $data1);
+		$this->load_page('tabel_d3', 'layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -148,7 +148,7 @@ class Tabel_d3Controller extends OmnitagsController
 			'tbl_d3' => $this->tl_d3->get_d3_by_field_archive('tabel_d3_field1', $code),
 		);
 
-		$this->load_page('tabel_d3', '_layouts/template', $data1);
+		$this->load_page('tabel_d3', 'layouts/template', $data1);
 	}
 	
 	public function history($code = null)
@@ -168,7 +168,7 @@ class Tabel_d3Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_d3', 'tabel_d3_field1', $code),
 		);
 
-		$this->load_page('tabel_d3', '_layouts/template', $data1);
+		$this->load_page('tabel_d3', 'layouts/template', $data1);
 	}
 
 	//Push History Data into current data

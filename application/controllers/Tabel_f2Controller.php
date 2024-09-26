@@ -38,7 +38,7 @@ class Tabel_f2Controller extends OmnitagsController
 				set_flashdata($this->views['flash1'], $this->views['flash1_note2']);
 				set_flashdata('toast', $this->views['flash1_func1']);
 
-				$halaman = '_layouts/template';
+				$halaman = 'layouts/template';
 				break;
 
 			default:
@@ -86,7 +86,7 @@ class Tabel_f2Controller extends OmnitagsController
 
 		);
 
-		$this->load_page('tabel_f2', '_layouts/template', $data1);
+		$this->load_page('tabel_f2', 'layouts/template', $data1);
 	}
 
 
@@ -124,7 +124,7 @@ class Tabel_f2Controller extends OmnitagsController
 			// 'tabel_f2_field11_filter2_value' => $param4
 		);
 
-		$this->load_page('tabel_f2', '_layouts/template', $data1);
+		$this->load_page('tabel_f2', 'layouts/template', $data1);
 	}
 
 	// Print all data
@@ -140,7 +140,7 @@ class Tabel_f2Controller extends OmnitagsController
 			'tbl_f2' => $this->tl_f2->get_f2_with_e4(),
 		);
 
-		$this->load_page('tabel_f2', '_layouts/printpage', $data1);
+		$this->load_page('tabel_f2', 'layouts/printpage', $data1);
 	}
 
 	// Print one data
@@ -163,7 +163,7 @@ class Tabel_f2Controller extends OmnitagsController
 			'tbl_f2' => $this->tl_f2->get_f2_with_e4_by_f2_field1($code),
 		);
 
-		$this->load_page('tabel_f2', '_layouts/printpage', $data1);
+		$this->load_page('tabel_f2', 'layouts/printpage', $data1);
 	}
 
 
@@ -203,7 +203,7 @@ class Tabel_f2Controller extends OmnitagsController
 			'tbl_e3' => $this->tl_e3->get_all_e3(),
 		);
 
-		$this->load_page('tabel_f2', '_layouts/template', $data1);
+		$this->load_page('tabel_f2', 'layouts/template', $data1);
 	}
 
 
@@ -223,7 +223,7 @@ class Tabel_f2Controller extends OmnitagsController
 			'tbl_f2' => $this->tl_f2->get_f2_by_field('tabel_c2_field3', $tabel_c2_field3)->last_row(),
 		);
 
-		$this->load_page('tabel_f2', '_layouts/blank', $data1);
+		$this->load_page('tabel_f2', 'layouts/blank', $data1);
 	}
 
 	// Functions
@@ -511,7 +511,7 @@ class Tabel_f2Controller extends OmnitagsController
 			'tbl_f2' => $this->tl_f2->get_all_f2_archive(),
 		);
 
-		$this->load_page('tabel_f2', '_layouts/template', $data1);
+		$this->load_page('tabel_f2', 'layouts/template', $data1);
 	}
 	// Public Pages
 	public function detail_archive($code = null)
@@ -529,7 +529,7 @@ class Tabel_f2Controller extends OmnitagsController
 			'tbl_f2' => $this->tl_f2->get_f2_by_field_archive('tabel_f2_field1', $code),
 		);
 
-		$this->load_page('tabel_f2', '_layouts/template', $data1);
+		$this->load_page('tabel_f2', 'layouts/template', $data1);
 	}
 
 	public function history($code = null)
@@ -549,7 +549,7 @@ class Tabel_f2Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_f2', 'tabel_f2_field1', $code),
 		);
 
-		$this->load_page('tabel_f2', '_layouts/template', $data1);
+		$this->load_page('tabel_f2', 'layouts/template', $data1);
 	}
 
 	//Push History Data into current data

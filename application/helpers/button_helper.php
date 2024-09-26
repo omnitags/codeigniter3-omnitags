@@ -176,9 +176,8 @@ if (!function_exists('btn_sync')) {
 
 
         $controller = xss_clean($data[$tabel]);
-        $lang = xss_clean($data['language']);
-
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/sync_theme'));
+        
+        $url = xss_clean(site_url($controller . '/' . $value . '/sync_theme'));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-primary" onclick="return confirm('Sync with {$value}?')" href="{$url}">
@@ -260,9 +259,8 @@ if (!function_exists('btn_laporan')) {
 
         $controller = xss_clean($data[$tabel]);
 
-        $lang = xss_clean($data['language']);
-
-        $url = xss_clean(site_url($lang . '/' . $controller . '/laporan'));
+        
+        $url = xss_clean(site_url($controller . '/laporan'));
 
         return <<<HTML
         <a class="btn mr-1 btn-info mb-4" href="{$url}" target="_blank">
@@ -282,9 +280,8 @@ if (!function_exists('btn_archive')) {
 
         $controller = xss_clean($data[$tabel]);
 
-        $lang = xss_clean($data['language']);
-
-        $url = xss_clean(site_url($lang . '/' . $controller . '/archive'));
+        
+        $url = xss_clean(site_url($controller . '/archive'));
 
         return <<<HTML
         <a class="btn mr-1 btn-outline-secondary mb-4" href="{$url}" target="_blank">
@@ -305,9 +302,8 @@ if (!function_exists('btn_print')) {
 
         $controller = xss_clean($data[$tabel]);
 
-        $lang = xss_clean($data['language']);
-
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/print'));
+        
+        $url = xss_clean(site_url($controller . '/' . $value . '/print'));
 
         return <<<HTML
         <a class="btn btn-light border border-dark text-info mb-2" href="{$url}"
@@ -329,8 +325,7 @@ if (!function_exists('btn_kelola')) {
 
         $alias = xss_clean(lang($tabel . '_alias' . '_btn'));
         $controller = xss_clean($data[$tabel]);
-        $lang = xss_clean($data['language']);
-        $url = xss_clean(site_url($lang . '/' . $controller . $function));
+        $url = xss_clean(site_url($controller . $function));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-info text-light" href="{$url}">
@@ -349,9 +344,8 @@ if (!function_exists('btn_redo')) {
         $data = $CI->load->get_vars();
 
         $controller = xss_clean($data[$tabel]);
-        $lang = xss_clean($data['language']);
-
-        $url = xss_clean(site_url($lang . '/' . $controller . $function));
+        
+        $url = xss_clean(site_url($controller . $function));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-danger" type="button" href="{$url}">
@@ -372,9 +366,8 @@ if (!function_exists('btn_hapus')) {
 
         $controller = xss_clean($data[$tabel]);
         $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
-
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/soft_delete'));
+        
+        $url = xss_clean(site_url($controller . '/' . $value . '/soft_delete'));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah data {$alias} ingin dihapus?')"
@@ -396,9 +389,8 @@ if (!function_exists('btn_hapus_cepat')) {
 
         $controller = xss_clean($data[$tabel]);
         $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
-
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/soft_delete'));
+        
+        $url = xss_clean(site_url($controller . '/' . $value . '/soft_delete'));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-danger"
@@ -420,9 +412,8 @@ if (!function_exists('btn_restore')) {
 
         $controller = xss_clean($data[$tabel]);
         $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
-
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/restore'));
+        
+        $url = xss_clean(site_url($controller . '/' . $value . '/restore'));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-primary" onclick="return confirm('apakah data {$alias} ingin dikembalikan?')"
@@ -444,9 +435,8 @@ if (!function_exists('btn_push')) {
 
         $controller = xss_clean($data[$tabel]);
         $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
-
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/push'));
+        
+        $url = xss_clean(site_url($controller . '/' . $value . '/push'));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-primary" onclick="return confirm('apakah data {$alias} ingin dikembalikan?')"
@@ -468,9 +458,8 @@ if (!function_exists('btn_history')) {
 
         $controller = xss_clean($data[$tabel]);
         $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
-
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/history'));
+        
+        $url = xss_clean(site_url($controller . '/' . $value . '/history'));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-primary"
@@ -492,9 +481,8 @@ if (!function_exists('btn_hapus_full')) {
 
         $controller = xss_clean($data[$tabel]);
         $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
-
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/delete'));
+        
+        $url = xss_clean(site_url($controller . '/' . $value . '/delete'));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
@@ -516,9 +504,8 @@ if (!function_exists('btn_truncate')) {
 
         $controller = xss_clean($data[$tabel]);
         $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
-
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/soft_truncate'));
+        
+        $url = xss_clean(site_url($controller . '/' . $value . '/soft_truncate'));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah semua data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
@@ -540,9 +527,8 @@ if (!function_exists('btn_truncate_full')) {
 
         $controller = xss_clean($data[$tabel]);
         $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
-
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/truncate'));
+        
+        $url = xss_clean(site_url($controller . '/' . $value . '/truncate'));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah semua data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
@@ -562,8 +548,7 @@ if (!function_exists('btn_action')) {
         $data = $CI->load->get_vars();
 
         $controller = xss_clean($data[$tabel]);
-        $lang = xss_clean($data['language']);
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $id . '/' . $function));
+        $url = xss_clean(site_url($controller . '/' . $id . '/' . $function));
 
         return <<<HTML
         <a class="btn mr-2 mb-2 {$theme}" href="{$url}">

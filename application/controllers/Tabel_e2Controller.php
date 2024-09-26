@@ -20,7 +20,7 @@ class Tabel_e2Controller extends OmnitagsController
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
 		);
 
-		$this->load_page('tabel_e2', '_layouts/template', $data1);
+		$this->load_page('tabel_e2', 'layouts/template', $data1);
 	}
 
 	public function detail($code = null)
@@ -38,7 +38,7 @@ class Tabel_e2Controller extends OmnitagsController
 			'tbl_e2' => $this->tl_e2->get_e2_by_field('tabel_e2_field1', $code),
 		);
 
-		$this->load_page('tabel_e2', '_layouts/template', $data1);
+		$this->load_page('tabel_e2', 'layouts/template', $data1);
 	}
 
 	// Account Only Pages
@@ -70,7 +70,7 @@ class Tabel_e2Controller extends OmnitagsController
 			'stuff' => firebase_get_data('/teachers')
 		);
 
-		$this->load_page('tabel_e2', '_layouts/template', $data1);
+		$this->load_page('tabel_e2', 'layouts/template', $data1);
 	}
 
 	// Print all data
@@ -86,7 +86,7 @@ class Tabel_e2Controller extends OmnitagsController
 			'tbl_e2' => $this->tl_e2->get_all_e2(),
 		);
 
-		$this->load_page('tabel_e2', '_layouts/printpage', $data1);
+		$this->load_page('tabel_e2', 'layouts/printpage', $data1);
 	}
 
 	// Print one data
@@ -262,7 +262,7 @@ class Tabel_e2Controller extends OmnitagsController
 			'tbl_e2' => $this->tl_e2->get_all_e2_archive(),
 		);
 
-		$this->load_page('tabel_e2', '_layouts/template', $data1);
+		$this->load_page('tabel_e2', 'layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -281,7 +281,7 @@ class Tabel_e2Controller extends OmnitagsController
 			'tbl_e2' => $this->tl_e2->get_e2_by_field_archive('tabel_e2_field1', $code),
 		);
 
-		$this->load_page('tabel_e2', '_layouts/template', $data1);
+		$this->load_page('tabel_e2', 'layouts/template', $data1);
 	}
 	
 	public function history($code = null)
@@ -301,7 +301,7 @@ class Tabel_e2Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_e2', 'tabel_e2_field1', $code),
 		);
 
-		$this->load_page('tabel_e2', '_layouts/template', $data1);
+		$this->load_page('tabel_e2', 'layouts/template', $data1);
 	}
 
 	//Push History Data into current data

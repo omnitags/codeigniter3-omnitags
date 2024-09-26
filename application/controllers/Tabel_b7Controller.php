@@ -22,7 +22,7 @@ class Tabel_b7Controller extends OmnitagsController
 			'tbl_b7' => $this->tl_b7->get_b7_by_field('tabel_b7_field1', $code),
 		);
 
-		$this->load_page('tabel_b7', '_layouts/template', $data1);
+		$this->load_page('tabel_b7', 'layouts/template', $data1);
 	}
 
 	// Account Only Pages
@@ -41,7 +41,7 @@ class Tabel_b7Controller extends OmnitagsController
 			'tbl_b7' => $this->tl_b7->get_all_b7(),
 		);
 
-		$this->load_page('tabel_b7', '_layouts/template', $data1);
+		$this->load_page('tabel_b7', 'layouts/template', $data1);
 	}
 
 	// Print all data
@@ -57,7 +57,7 @@ class Tabel_b7Controller extends OmnitagsController
 			'tbl_b7' => $this->tl_b7->get_all_b7(),
 		);
 
-		$this->load_page('tabel_b7', '_layouts/printpage', $data1);
+		$this->load_page('tabel_b7', 'layouts/printpage', $data1);
 	}
 
 	// Print one data
@@ -361,7 +361,7 @@ class Tabel_b7Controller extends OmnitagsController
 			'tbl_b7' => $this->tl_b7->get_all_b7_archive(),
 		);
 
-		$this->load_page('tabel_b7', '_layouts/template', $data1);
+		$this->load_page('tabel_b7', 'layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -380,7 +380,7 @@ class Tabel_b7Controller extends OmnitagsController
 			'tbl_b7' => $this->tl_b7->get_b7_by_field_archive('tabel_b7_field1', $code),
 		);
 
-		$this->load_page('tabel_b7', '_layouts/template', $data1);
+		$this->load_page('tabel_b7', 'layouts/template', $data1);
 	}
 	
 	public function history($code = null)
@@ -400,7 +400,7 @@ class Tabel_b7Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_b7', 'tabel_b7_field1', $code),
 		);
 
-		$this->load_page('tabel_b7', '_layouts/template', $data1);
+		$this->load_page('tabel_b7', 'layouts/template', $data1);
 	}
 
 	//Push History Data into current data

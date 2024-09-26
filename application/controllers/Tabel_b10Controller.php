@@ -30,7 +30,7 @@ class Tabel_b10Controller extends OmnitagsController
 			'tabel_b10_field4_value' => $param1
 		);
 
-		$this->load_page('tabel_b10', '_layouts/template', $data1);
+		$this->load_page('tabel_b10', 'layouts/template', $data1);
 	}
 
 	// Pages
@@ -50,7 +50,7 @@ class Tabel_b10Controller extends OmnitagsController
 			'tbl_b10' => $this->tl_b10->get_b10_by_field('tabel_b10_field1', $code),
 		);
 
-		$this->load_page('tabel_b10', '_layouts/template', $data1);
+		$this->load_page('tabel_b10', 'layouts/template', $data1);
 	}
 
 
@@ -82,7 +82,7 @@ class Tabel_b10Controller extends OmnitagsController
 			'tabel_b10_field4_value' => $param1
 		);
 
-		$this->load_page('tabel_b10', '_layouts/template', $data1);
+		$this->load_page('tabel_b10', 'layouts/template', $data1);
 	}
 
 	// Print all data
@@ -98,7 +98,7 @@ class Tabel_b10Controller extends OmnitagsController
 			'tbl_b10' => $this->tl_b10->get_all_b10(),
 		);
 
-		$this->load_page('tabel_b10', '_layouts/printpage', $data1);
+		$this->load_page('tabel_b10', 'layouts/printpage', $data1);
 	}
 
 	// Functions
@@ -286,7 +286,7 @@ class Tabel_b10Controller extends OmnitagsController
 			'tbl_b10' => $this->tl_b10->get_all_b10_archive(),
 		);
 
-		$this->load_page('tabel_b10', '_layouts/template', $data1);
+		$this->load_page('tabel_b10', 'layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -305,7 +305,7 @@ class Tabel_b10Controller extends OmnitagsController
 			'tbl_b10' => $this->tl_b10->get_b10_by_field_archive('tabel_b10_field1', $code),
 		);
 
-		$this->load_page('tabel_b10', '_layouts/template', $data1);
+		$this->load_page('tabel_b10', 'layouts/template', $data1);
 	}
 	
 	public function history($code = null)
@@ -325,7 +325,7 @@ class Tabel_b10Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_b10', 'tabel_b10_field1', $code),
 		);
 
-		$this->load_page('tabel_b10', '_layouts/template', $data1);
+		$this->load_page('tabel_b10', 'layouts/template', $data1);
 	}
 
 	//Push History Data into current data

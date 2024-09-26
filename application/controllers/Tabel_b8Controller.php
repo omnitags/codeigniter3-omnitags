@@ -25,7 +25,7 @@ class Tabel_b8Controller extends OmnitagsController
 			'tbl_b8' => $this->tl_b8->get_all_b8(),
 		);
 
-		$this->load_page('tabel_b8', '_layouts/template', $data1);
+		$this->load_page('tabel_b8', 'layouts/template', $data1);
 	}
 
 	// Print all data
@@ -41,7 +41,7 @@ class Tabel_b8Controller extends OmnitagsController
 			'tbl_b8' => $this->tl_b8->get_all_b8(),
 		);
 
-		$this->load_page('tabel_b8', '_layouts/printpage', $data1);
+		$this->load_page('tabel_b8', 'layouts/printpage', $data1);
 	}
 
 	// Print one data
@@ -200,7 +200,7 @@ class Tabel_b8Controller extends OmnitagsController
 			'tbl_b8' => $this->tl_b8->get_all_b8_archive(),
 		);
 
-		$this->load_page('tabel_b8', '_layouts/template', $data1);
+		$this->load_page('tabel_b8', 'layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -219,7 +219,7 @@ class Tabel_b8Controller extends OmnitagsController
 			'tbl_b8' => $this->tl_b8->get_b8_by_field_archive('tabel_b8_field1', $code),
 		);
 
-		$this->load_page('tabel_b8', '_layouts/template', $data1);
+		$this->load_page('tabel_b8', 'layouts/template', $data1);
 	}
 	
 	public function history($code = null)
@@ -239,7 +239,7 @@ class Tabel_b8Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_b8', 'tabel_b8_field1', $code),
 		);
 
-		$this->load_page('tabel_b8', '_layouts/template', $data1);
+		$this->load_page('tabel_b8', 'layouts/template', $data1);
 	}
 
 	//Push History Data into current data

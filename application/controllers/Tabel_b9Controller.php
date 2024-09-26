@@ -35,10 +35,10 @@ class Tabel_b9Controller extends OmnitagsController
 
 				if (get('refresh') !== 'true') {
 					// Redirect to the same method with a refresh parameter
-					$this->load_page('tabel_b9', '_layouts/template', $data1);
+					$this->load_page('tabel_b9', 'layouts/template', $data1);
 					redirect(current_url() . '?refresh=true');
 				} else {
-					$this->load_page('tabel_b9', '_layouts/template', $data1);
+					$this->load_page('tabel_b9', 'layouts/template', $data1);
 				}
 
 			} else {
@@ -70,7 +70,7 @@ class Tabel_b9Controller extends OmnitagsController
 			'tbl_b9' => $this->tl_b9->get_b9_with_b8_by_b9_field2($tabel_b9_field2),
 		);
 
-		$this->load_page('tabel_b9', '_layouts/template', $data1);
+		$this->load_page('tabel_b9', 'layouts/template', $data1);
 	}
 
 	// Admin Pages
@@ -86,7 +86,7 @@ class Tabel_b9Controller extends OmnitagsController
 			'tbl_b9' => $this->tl_b9->get_all_b9(),
 		);
 
-		$this->load_page('tabel_b9', '_layouts/template', $data1);
+		$this->load_page('tabel_b9', 'layouts/template', $data1);
 	}
 
 	// Print all data
@@ -102,7 +102,7 @@ class Tabel_b9Controller extends OmnitagsController
 			'tbl_b9' => $this->tl_b9->get_all_b9(),
 		);
 
-		$this->load_page('tabel_b9', '_layouts/printpage', $data1);
+		$this->load_page('tabel_b9', 'layouts/printpage', $data1);
 	}
 
 	// Print one data
@@ -288,7 +288,7 @@ class Tabel_b9Controller extends OmnitagsController
 			'tbl_b9' => $this->tl_b9->get_all_b9_archive(),
 		);
 
-		$this->load_page('tabel_b9', '_layouts/template', $data1);
+		$this->load_page('tabel_b9', 'layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -307,7 +307,7 @@ class Tabel_b9Controller extends OmnitagsController
 			'tbl_b9' => $this->tl_b9->get_b9_by_field_archive('tabel_b9_field1', $code),
 		);
 
-		$this->load_page('tabel_b9', '_layouts/template', $data1);
+		$this->load_page('tabel_b9', 'layouts/template', $data1);
 	}
 
 	public function history($code = null)
@@ -327,6 +327,6 @@ class Tabel_b9Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_b9', 'tabel_b9_field1', $code),
 		);
 
-		$this->load_page('tabel_b9', '_layouts/template', $data1);
+		$this->load_page('tabel_b9', 'layouts/template', $data1);
 	}
 }

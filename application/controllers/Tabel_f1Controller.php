@@ -44,7 +44,7 @@ class Tabel_f1Controller extends OmnitagsController
 			'tabel_f1_field12_filter2_value' => $param4,
 		);
 
-		$this->load_page('tabel_f1', '_layouts/template', $data1);
+		$this->load_page('tabel_f1', 'layouts/template', $data1);
 	}
 
 	// Admin Pages
@@ -80,7 +80,7 @@ class Tabel_f1Controller extends OmnitagsController
 			'tabel_f1_field12_filter2_value' => $param4,
 		);
 
-		$this->load_page('tabel_f1', '_layouts/template', $data1);
+		$this->load_page('tabel_f1', 'layouts/template', $data1);
 	}
 
 	// public function delete($code = null)
@@ -105,7 +105,7 @@ class Tabel_f1Controller extends OmnitagsController
 			'tbl_f1' => $this->tl_f1->get_f1_with_e4(),
 		);
 
-		$this->load_page('tabel_f1', '_layouts/printpage', $data1);
+		$this->load_page('tabel_f1', 'layouts/printpage', $data1);
 	}
 
 	public function print($code = null)
@@ -127,7 +127,7 @@ class Tabel_f1Controller extends OmnitagsController
 			'tbl_f1' => $this->tl_f1->get_f1_with_e4_by_f1_field1($code),
 		);
 
-		$this->load_page('tabel_f1', '_layouts/printpage', $data1);
+		$this->load_page('tabel_f1', 'layouts/printpage', $data1);
 	}
 
 	// Archive Page
@@ -143,7 +143,7 @@ class Tabel_f1Controller extends OmnitagsController
 			'tbl_f1' => $this->tl_f1->get_all_f1_archive(),
 		);
 
-		$this->load_page('tabel_f1', '_layouts/template', $data1);
+		$this->load_page('tabel_f1', 'layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -162,7 +162,7 @@ class Tabel_f1Controller extends OmnitagsController
 			'tbl_f1' => $this->tl_f1->get_f1_by_field_archive('tabel_f1_field1', $code),
 		);
 
-		$this->load_page('tabel_f1', '_layouts/template', $data1);
+		$this->load_page('tabel_f1', 'layouts/template', $data1);
 	}
 	
 	public function history($code = null)
@@ -182,7 +182,7 @@ class Tabel_f1Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_f1', 'tabel_f1_field1', $code),
 		);
 
-		$this->load_page('tabel_f1', '_layouts/template', $data1);
+		$this->load_page('tabel_f1', 'layouts/template', $data1);
 	}
 
 	//Push History Data into current data

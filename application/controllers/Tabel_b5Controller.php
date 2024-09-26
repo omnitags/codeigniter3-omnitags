@@ -22,7 +22,7 @@ class Tabel_b5Controller extends OmnitagsController
 			'tbl_b5' => $this->tl_b5->get_b5_by_field('tabel_b5_field1', $code),
 		);
 
-		$this->load_page('tabel_b5', '_layouts/template', $data1);
+		$this->load_page('tabel_b5', 'layouts/template', $data1);
 	}
 
 	// Account Only Pages
@@ -53,7 +53,7 @@ class Tabel_b5Controller extends OmnitagsController
 			'tabel_b5_field7_value' => $param1,
 		);
 
-		$this->load_page('tabel_b5', '_layouts/template', $data1);
+		$this->load_page('tabel_b5', 'layouts/template', $data1);
 	}
 
 	// Print all data
@@ -69,7 +69,7 @@ class Tabel_b5Controller extends OmnitagsController
 			'tbl_b5' => $this->tl_b5->get_all_b5(),
 		);
 
-		$this->load_page('tabel_b5', '_layouts/printpage', $data1);
+		$this->load_page('tabel_b5', 'layouts/printpage', $data1);
 	}
 
 	// Print one data
@@ -336,7 +336,7 @@ class Tabel_b5Controller extends OmnitagsController
 			'tbl_b5' => $this->tl_b5->get_all_b5_archive(),
 		);
 
-		$this->load_page('tabel_b5', '_layouts/template', $data1);
+		$this->load_page('tabel_b5', 'layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -355,7 +355,7 @@ class Tabel_b5Controller extends OmnitagsController
 			'tbl_b5' => $this->tl_b5->get_b5_by_field_archive('tabel_b5_field1', $code),
 		);
 
-		$this->load_page('tabel_b5', '_layouts/template', $data1);
+		$this->load_page('tabel_b5', 'layouts/template', $data1);
 	}
 	
 	public function history($code = null)
@@ -375,7 +375,7 @@ class Tabel_b5Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_b5', 'tabel_b5_field1', $code),
 		);
 
-		$this->load_page('tabel_b5', '_layouts/template', $data1);
+		$this->load_page('tabel_b5', 'layouts/template', $data1);
 	}
 
 	//Push History Data into current data

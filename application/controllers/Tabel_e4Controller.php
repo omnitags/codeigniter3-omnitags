@@ -19,7 +19,7 @@ class Tabel_e4Controller extends OmnitagsController
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
 		);
 
-		$this->load_page('tabel_e4', '_layouts/template', $data1);
+		$this->load_page('tabel_e4', 'layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -38,7 +38,7 @@ class Tabel_e4Controller extends OmnitagsController
 			'tbl_e4' => $this->tl_e4->get_e4_by_field('tabel_e4_field1', $code),
 		);
 
-		$this->load_page('tabel_e4', '_layouts/template', $data1);
+		$this->load_page('tabel_e4', 'layouts/template', $data1);
 	}
 
 	// Account Only Pages
@@ -56,7 +56,7 @@ class Tabel_e4Controller extends OmnitagsController
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
 		);
 
-		$this->load_page('tabel_e4', '_layouts/template', $data1);
+		$this->load_page('tabel_e4', 'layouts/template', $data1);
 	}
 
 	// Print all data
@@ -72,7 +72,7 @@ class Tabel_e4Controller extends OmnitagsController
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
 		);
 
-		$this->load_page('tabel_e4', '_layouts/printpage', $data1);
+		$this->load_page('tabel_e4', 'layouts/printpage', $data1);
 	}
 
 	/**
@@ -254,7 +254,7 @@ class Tabel_e4Controller extends OmnitagsController
 			'tbl_e4' => $this->tl_e4->get_all_e4_archive(),
 		);
 
-		$this->load_page('tabel_e4', '_layouts/template', $data1);
+		$this->load_page('tabel_e4', 'layouts/template', $data1);
 	}
 
 	// Public Pages
@@ -273,7 +273,7 @@ class Tabel_e4Controller extends OmnitagsController
 			'tbl_e4' => $this->tl_e4->get_e4_by_field_archive('tabel_e4_field1', $code),
 		);
 
-		$this->load_page('tabel_e4', '_layouts/template', $data1);
+		$this->load_page('tabel_e4', 'layouts/template', $data1);
 	}
 	
 	public function history($code = null)
@@ -293,7 +293,7 @@ class Tabel_e4Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_e4', 'tabel_e4_field1', $code),
 		);
 
-		$this->load_page('tabel_e4', '_layouts/template', $data1);
+		$this->load_page('tabel_e4', 'layouts/template', $data1);
 	}	
 
 	//Push History Data into current data
