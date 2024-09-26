@@ -89,7 +89,7 @@ if (!class_exists('OmnitagsController')) {
 
             // Create variables dynamically
             foreach ($this->myData1 as $item) {
-                $this->aliases[$item['key']] = $item['value']; // Variable variable to create dynamic variables
+                $this->aliases[$item['key']] = $item['value']; // Variables to create dynamic variables
                 $this->reverse[$item['value'] . '_realname'] = $item['key'];
 
                 $this->v_input[$item['key'] . '_input'] = 'txt_' . $item['value'];

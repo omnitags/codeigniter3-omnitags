@@ -31,7 +31,7 @@ foreach ($myData2 as $item2) {
 
 
     $routeId = $item2['value'] . '/(:num)';
-    $controller = $prefix . '/detail/$2';
+    $controller = $prefix . '/detail/$1';
     $route[$routeId] = $controller;
 
     // Define routes for different functionality groups
