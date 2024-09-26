@@ -2,32 +2,32 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 // Redirect to English version if language is not specified
-$route['default_controller'] = 'welcome/default_language';
+$route['default_controller'] = 'WebController/default_language';
 $languages = 'en|fr|id|zh';
-$route['404_override'] = 'welcome/no_page';
+$route['404_override'] = 'WebController/no_page';
 $route['translate_uri_dashes'] = FALSE;
 
 // Language routes
-$route['^(?!' . $languages . ')(.*)/home$'] = 'welcome/default_language';
-$route['(' . $languages . ')/home'] = 'welcome';
-$route['(' . $languages . ')/login'] = 'c_tabel_c2/login';
-$route['(' . $languages . ')/signup'] = 'c_tabel_c2/signup';
-$route['(' . $languages . ')/no_level'] = 'welcome/no_level';
-$route['en/overloaded'] = 'welcome/overloaded';
-$route['(' . $languages . ')/invalid'] = 'welcome/invalid';
-$route['(' . $languages . ')/dashboard'] = 'welcome/dashboard';
-$route['(' . $languages . ')/dashboard/home'] = 'welcome/dashboard';
-$route['(' . $languages . ')/welcome/set_language'] = 'welcome/set_language';
-$route['(' . $languages . ')'] = 'welcome';
+$route['^(?!' . $languages . ')(.*)/home$'] = 'WebController/default_language';
+$route['(' . $languages . ')/home'] = 'WebController';
+$route['(' . $languages . ')/login'] = 'Tabel_c2Controller/login';
+$route['(' . $languages . ')/signup'] = 'Tabel_c2Controller/signup';
+$route['(' . $languages . ')/no_level'] = 'WebController/no_level';
+$route['en/overloaded'] = 'WebController/overloaded';
+$route['(' . $languages . ')/invalid'] = 'WebController/invalid';
+$route['(' . $languages . ')/dashboard'] = 'WebController/dashboard';
+$route['(' . $languages . ')/dashboard/home'] = 'WebController/dashboard';
+$route['(' . $languages . ')/WebController/set_language'] = 'WebController/set_language';
+$route['(' . $languages . ')'] = 'WebController';
 
 // Define routes dynamically based on JSON data
 $jsonData2 = file_get_contents(FCPATH . ('assets/json/app.postman_environment.json'));
 $myData2 = json_decode($jsonData2, true)['values'];
 
 foreach ($myData2 as $item2) {
-    $route['assets/img/' . $item2['value'] . '/(:any)'] = 'Omnitags/serve_image/' . $item2['key'] . '/$1';
+    $route['assets/img/' . $item2['value'] . '/(:any)'] = 'OmnitagsController/serve_image/' . $item2['key'] . '/$1';
 
-    $prefix = 'c_' . $item2['key'];
+    $prefix = $item2['key'] . 'Controller';
     $cachedControllers = [];
 
     $routeKey = '(' . $languages . ')/' . $item2['value'];

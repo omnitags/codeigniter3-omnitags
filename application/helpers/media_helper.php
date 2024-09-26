@@ -95,3 +95,29 @@ if (!function_exists('get_next_code')) {
         return $new_code;
     }
 }
+
+// Generate an information to avoid using JOINs
+if (!function_exists('show_info_user')) {
+    function show_info_user($param1, $param2)
+    {
+        foreach ($param2->result() as $obj) {
+            if ($param1 == $obj->id_user) {
+                return $obj->nama;  // Assuming 'user_name' exists in tbl2
+            }
+        }
+        return 'No user found';
+    }
+}
+
+// Generate an information to avoid using JOINs
+if (!function_exists('show_info')) {
+    function show_info($id, $target_tbl, $target_id, $target_value)
+    {
+        foreach ($target_tbl->result() as $obj) {
+            if ($id == $target_id) {
+                return $target_value;  // Assuming 'user_name' exists in tbl2
+            }
+        }
+        return 'No user found';
+    }
+}

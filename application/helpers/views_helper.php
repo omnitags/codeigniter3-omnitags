@@ -91,7 +91,7 @@ if (!function_exists('set_security_headers')) {
             "X-Frame-Options: SAMEORIGIN",
             "X-Content-Type-Options: nosniff",
             "Referrer-Policy: strict-origin-when-cross-origin",
-            "Permissions-Policy: geolocation=self http://localhost/me/omnitags, camera=self, microphone=none"
+            "Permissions-Policy: geolocation=self http://localhost/project/omnitags, camera=self, microphone=none"
         ];
 
         foreach ($headers as $header) {

@@ -216,7 +216,7 @@
     } ?>
 
     <!-- <li class="nav-item d-flex align-items-center">
-        <form action="<?= nav_url($language . '/welcome/set_language'); ?>" method="post" class="form-inline">
+        <form action="<?= nav_url($language . '/WebController/set_language'); ?>" method="post" class="form-inline">
             <select name="language" class="form-control" onchange="this.form.submit()">
                 <option value="en" <?= (userdata('site_lang') == 'en') ? 'selected' : ''; ?>>EN</option>
                 <option value="id" <?= (userdata('site_lang') == 'id') ? 'selected' : ''; ?>>ID</option>
