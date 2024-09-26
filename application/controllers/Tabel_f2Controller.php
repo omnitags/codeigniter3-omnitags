@@ -42,7 +42,7 @@ class Tabel_f2Controller extends OmnitagsController
 				break;
 
 			default:
-				redirect(site_url($this->language_code . '/login'));
+				redirect(site_url('login'));
 				break;
 		}
 
@@ -254,7 +254,7 @@ class Tabel_f2Controller extends OmnitagsController
 				set_flashdata($this->views['flash1'], "Invalid input. Please provide valid data.");
 				set_flashdata($this->views['flash1'], $this->views['flash1_func1']);
 				// Functional requirement: Redirect user to 'tabel_f2' confirmation page
-				redirect(site_url($this->language_code . '/' . $this->aliases['tabel_f2'] . '/konfirmasi'));
+				redirect(site_url($this->aliases['tabel_f2'] . '/konfirmasi'));
 			}
 		}
 
@@ -308,7 +308,7 @@ class Tabel_f2Controller extends OmnitagsController
 		}
 
 		// Functional requirement: Redirect user to 'tabel_f2' confirmation page
-		redirect($this->language_code . '/' . $this->aliases['tabel_f2'] . '/konfirmasi');
+		redirect($this->aliases['tabel_f2'] . '/konfirmasi');
 	}
 
 

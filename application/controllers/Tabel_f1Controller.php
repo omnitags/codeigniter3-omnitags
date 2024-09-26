@@ -89,7 +89,7 @@ class Tabel_f1Controller extends OmnitagsController
 
 	// 	$aksi = $this->tl_f1->delete_f1($code);
 	// 	redirect($_SERVER['HTTP_REFERER']); 
-	// redirect(site_url($this->language_code . '/' . $this->aliases['tabel_f1/admin'));
+	// redirect(site_url($this->aliases['tabel_f1/admin'));
 	// }
 
 	// Print all data

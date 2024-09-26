@@ -4,8 +4,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 if (!class_exists('OmnitagsController')) {
     class OmnitagsController extends CI_Controller
     {
-        protected $language_code;
-
         // Remember if you failed to load the link in this app, then you have to go to views helper where I put restrictions on 
         // which websites that I need to load
 
@@ -176,7 +174,6 @@ if (!class_exists('OmnitagsController')) {
                 'notif' => $this->notif_limit,
                 'notif_count' => $this->notif_null->num_rows(),
                 'users' => $this->tl_c2->get_all_c2(),
-                'language' => $this->language_code,
                 'no_data' => $this->tl_b1->dekor($this->theme_id, 'no_data'),
 
                 'flash1' => 'pesan',
@@ -555,7 +552,7 @@ if (!class_exists('OmnitagsController')) {
             if (in_array(userdata($this->aliases['tabel_c2_field6']), $allowed_values)) {
                 return; // Do nothing if the value is allowed
             } else {
-                redirect(site_url($this->views['language'] . '/invalid'));
+                redirect(site_url('invalid'));
             }
         }
 
@@ -564,7 +561,7 @@ if (!class_exists('OmnitagsController')) {
             if (in_array(userdata($this->aliases['tabel_c2_field6']), $allowed_values)) {
                 return; // Do nothing if the value is allowed
             } else {
-                redirect(site_url($this->views['language'] . '/invalid'));
+                redirect(site_url('invalid'));
             }
         }
 
@@ -640,7 +637,7 @@ if (!class_exists('OmnitagsController')) {
         public function handle_2a()
         {
             if (userdata($this->aliases['tabel_c2_field1']) == '') {
-                redirect(site_url($this->views['language'] . '/no_level'));
+                redirect(site_url('no_level'));
             } else {
                 $msg = 'Selamat datang ' . userdata($this->aliases['tabel_c2_field6']) . ' ' . userdata($this->aliases['tabel_c2_field2']) . '!';
                 $type = $this->aliases['tabel_b8_field2_value2'];

@@ -7,13 +7,6 @@ include 'OmnitagsController.php';
 // Using encapsulation
 class WebController extends OmnitagsController
 {
-	// Calling the default language
-	public function default_language()
-	{
-		redirect('/en', 'refresh');
-	}
-
-
 	// First loaded function
 	public function index()
 	{
@@ -48,7 +41,7 @@ class WebController extends OmnitagsController
 				set_flashdata($this->views['flash1'], $this->views['flash1_note1']);
 				set_flashdata('toast', $this->views['flash1_func1']);
 
-				redirect(site_url($this->language_code . '/' . 'dashboard'));
+				redirect(site_url('dashboard'));
 				break;
 
 			default:

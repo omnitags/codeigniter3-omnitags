@@ -45,7 +45,7 @@ class Tabel_b9Controller extends OmnitagsController
 				redirect($_SERVER['HTTP_REFERER']);
 			}
 		} else {
-			redirect(site_url($this->views['language'] . '/no_level'));
+			redirect(site_url('no_level'));
 		}
 	}
 
@@ -135,7 +135,7 @@ class Tabel_b9Controller extends OmnitagsController
 			redirect($_SERVER['HTTP_REFERER']);
 
 		} else {
-			redirect(site_url($this->views['language'] . '/invalid'));
+			redirect(site_url('invalid'));
 		}
 	}
 

@@ -402,7 +402,7 @@ class Tabel_c1Controller extends OmnitagsController
 				// set_userdata($this->aliases['tabel_c2_field6'], $tabel_c2_field6);
 
 
-				redirect(site_url($this->language_code . '/' . 'home'));
+				redirect(site_url('home'));
 
 				// jika password salah
 			} else {
@@ -422,14 +422,14 @@ class Tabel_c1Controller extends OmnitagsController
 
 
 				set_flashdata($this->views['flash1'], $this->aliases['tabel_c1_field5_alias'] . ' salah!');
-				redirect(site_url($this->language_code . '/' . $this->aliases['tabel_c1'] . '/login'));
+				redirect(site_url($this->aliases['tabel_c1'] . '/login'));
 			}
 
 			// jika jumlah data lebih dari 0
 		} else {
 
 			set_flashdata($this->views['flash1'], $this->aliases['tabel_c1_field1_alias'] . ' tidak tersedia!');
-			redirect(site_url($this->language_code . '/' . $this->aliases['tabel_c1'] . '/login'));
+			redirect(site_url($this->aliases['tabel_c1'] . '/login'));
 		}
 
 		// // mencari apakah jumlah data kurang dari 0
@@ -452,14 +452,14 @@ class Tabel_c1Controller extends OmnitagsController
 		// 		set_userdata('level', $level);
 
 		// 		redirect($_SERVER['HTTP_REFERER']); 
-		redirect(site_url($this->language_code . '/' . 'home'));
+		redirect(site_url('home'));
 
 		// 		// jika password salah
 		// 	} else {
 
 		// 		set_flashdata($this->views['flash1'], 'Password Salah!');
 		// 		redirect($_SERVER['HTTP_REFERER']); 
-		redirect(site_url($this->language_code . '/login'));
+		redirect(site_url('login'));
 		// 	}
 
 		// 	// jika jumlah data lebih dari 0
@@ -467,7 +467,7 @@ class Tabel_c1Controller extends OmnitagsController
 
 		// 	set_flashdata($this->views['flash1'], 'Email tidak tersedia!');
 		// 	redirect($_SERVER['HTTP_REFERER']); 
-		redirect(site_url($this->language_code . '/login'));
+		redirect(site_url('login'));
 		// }	
 	}
 
@@ -486,7 +486,7 @@ class Tabel_c1Controller extends OmnitagsController
 		// menghapus session
 		session_destroy();
 		redirect($_SERVER['HTTP_REFERER']);
-		redirect(site_url($this->language_code . '/' . 'home'));
+		redirect(site_url('home'));
 	}
 
 	// Archive Page

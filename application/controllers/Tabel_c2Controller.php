@@ -152,7 +152,7 @@ class Tabel_c2Controller extends OmnitagsController
 					redirect($_SERVER['HTTP_REFERER']);
 				} else {
 
-					redirect(site_url($this->language_code . '/login'));
+					redirect(site_url('login'));
 				}
 
 				// jika input konfirm tidak sama dengan input password
@@ -458,16 +458,16 @@ class Tabel_c2Controller extends OmnitagsController
 				$notif = $this->handle_2a();
 
 				// Redirect to home page after successful login
-				redirect(site_url($this->language_code . '/' . 'home'));
+				redirect(site_url('home'));
 			} else {
 				// Set flash message for incorrect password
 				set_flashdata($this->views['flash1'], 'Incorrect email or password.');
-				redirect(site_url($this->language_code . '/login'));
+				redirect(site_url('login'));
 			}
 		} else {
 			// Set flash message for non-existent email
 			set_flashdata($this->views['flash1'], 'Email not found.');
-			redirect(site_url($this->language_code . '/login'));
+			redirect(site_url('login'));
 		}
 	}
 
@@ -485,7 +485,7 @@ class Tabel_c2Controller extends OmnitagsController
 
 		// menghapus session
 		session_destroy();
-		redirect(site_url($this->language_code . '/' . 'home'));
+		redirect(site_url('home'));
 	}
 
 	// Archive Page

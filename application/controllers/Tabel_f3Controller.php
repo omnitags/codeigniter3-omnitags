@@ -278,7 +278,7 @@ class Tabel_f3Controller extends OmnitagsController
 			set_flashdata('toast', $this->views['flash1_func1']);
 		}
 
-		redirect(site_url($this->language_code . '/' . $this->aliases['tabel_f3'] . '/konfirmasi'));
+		redirect(site_url($this->aliases['tabel_f3'] . '/konfirmasi'));
 	}
 
 

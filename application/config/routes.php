@@ -13,7 +13,6 @@ $route['overloaded'] = 'WebController/overloaded';
 $route['invalid'] = 'WebController/invalid';
 $route['dashboard'] = 'WebController/dashboard';
 $route['dashboard/home'] = 'WebController/dashboard';
-$route['WebController/set_language'] = 'WebController/set_language';
 
 // Define routes dynamically based on JSON data
 $jsonData2 = file_get_contents(FCPATH . ('assets/json/app.postman_environment.json'));

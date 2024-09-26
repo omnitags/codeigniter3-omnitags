@@ -148,7 +148,7 @@ class Tabel_b10Controller extends OmnitagsController
 
 			$notif = $this->handle_4b($aksi, 'tabel_b10');
 
-			redirect(site_url($this->language_code . '/' . $this->aliases['tabel_b10'] . '/admin'));
+			redirect(site_url($this->aliases['tabel_b10'] . '/admin'));
 		} else {
 			set_flashdata($this->views['flash1'], $this->aliases['tabel_b10_field2'] . ' telah digunakan!');
 			redirect($_SERVER['HTTP_REFERER']);
