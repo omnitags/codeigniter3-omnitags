@@ -76,7 +76,12 @@ if (!function_exists('row_data_crud')) {
 if (!function_exists('row_file')) {
     function row_file($tabel_class, $field, $value)
     {
-        $alias = $field . '_alias';
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+        $alias = $data[$field . '_alias'];
         $img = tampil_image('125px', $tabel_class, $value, $alias);
 
         return <<<HTML
@@ -93,7 +98,12 @@ if (!function_exists('row_file')) {
 if (!function_exists('tampil_text')) {
     function tampil_text($field, $value)
     {
-        $alias = $field . '_alias';
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+        
+        $alias = $data[$field . '_alias'];
 
         return <<<HTML
         <div class="form-group">
@@ -190,7 +200,12 @@ if (!function_exists('tampil_dekor_archive')) {
 if (!function_exists('tampil_file')) {
     function tampil_file($tabel_class, $field, $value)
     {
-        $alias = $field . '_alias';
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+        
+        $alias = $data[$field . '_alias'];
 
         return <<<HTML
         <div class="form-group">
