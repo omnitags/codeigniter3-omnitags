@@ -34,7 +34,7 @@
                                         ?>
                                         <h6 class="dropdown-header"><?= $tabelf3_alias ?></h6>
                                         <?= dropdown_nav('tabel_f3', '/admin') ?>
-                                        <?= dropdown_nav_unique($tabel_f3_alias_past, $tabel_f3, '/history') ?>
+                                        <?= dropdown_nav_unique($tabel_f3_alias. ' History', $tabel_f3, '/history') ?>
                                         <?php break;
 
                                     case $tabel_c2_field6_value3:

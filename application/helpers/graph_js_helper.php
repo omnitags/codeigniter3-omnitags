@@ -12,8 +12,8 @@ if (!function_exists('chart')) {
 
         $chart1 = $data['chart_' . $tabel1];
         $chart2 = $data['chart_' . $tabel2];
-        $alias1 = lang($tabel1 . '_alias');
-        $alias2 = lang($tabel2 . '_alias');
+        $alias1 = $data[$tabel1 . '_alias'];
+        $alias2 = $data[$tabel2 . '_alias'];
 
         return <<<HTML
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

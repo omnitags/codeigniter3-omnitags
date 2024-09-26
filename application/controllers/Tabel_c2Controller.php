@@ -71,7 +71,7 @@ class Tabel_c2Controller extends OmnitagsController
 		$this->page_session_all();
 
 		$data1 = array(
-			'title' => lang('login'),
+			'title' => "Login",
 			'konten' => 'login',
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'login'),
 		);

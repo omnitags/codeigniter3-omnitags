@@ -69,7 +69,7 @@ if (!function_exists('input_add')) {
         $data = $CI->load->get_vars();
 
         $input = $data[$field . '_input'];
-        $alias = lang($field . '_alias');
+        $alias = $field . '_alias';
 
         if (strpos($required, 'required') !== false) {
             $msg = '';
@@ -95,7 +95,7 @@ if (!function_exists('add_min_max')) {
         $data = $CI->load->get_vars();
 
         $input = $data[$field . '_input'];
-        $alias = lang($field . '_alias');
+        $alias = $field . '_alias';
 
         if (strpos($required, 'required') !== false) {
             $msg = '';
@@ -122,7 +122,7 @@ if (!function_exists('edit_min_max')) {
         $data = $CI->load->get_vars();
 
         $input = $data[$field . '_input'];
-        $alias = lang($field . '_alias');
+        $alias = $field . '_alias';
 
         if (strpos($required, 'required') !== false) {
             $msg = '';
@@ -148,7 +148,7 @@ if (!function_exists('add_old')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias_old');
+        $alias = 'Old '. $data[$field . '_alias'];
         $input = $data[$field . '_old'];
 
         if (strpos($required, 'required') !== false) {
@@ -174,7 +174,7 @@ if (!function_exists('add_new_password')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias_new');
+        $alias = 'New '. $data[$field . '_alias'];
         $input = $data[$field . '_new'];
 
         if (strpos($required, 'required') !== false) {
@@ -203,7 +203,7 @@ if (!function_exists('add_confirm')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias' . '_confirm');
+        $alias = 'Confirm ' . $data($field . '_alias');
         $input = $data[$field . '_confirm'];
 
         if (strpos($required, 'required') !== false) {
@@ -229,7 +229,7 @@ if (!function_exists('select_add')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias');
+        $alias = $field . '_alias';
         $input = $data[$field . '_input'];
 
         // Start building the select HTML
@@ -266,7 +266,7 @@ if (!function_exists('select_edit')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias');
+        $alias = $field . '_alias';
         $input = $data[$field . '_input'];
 
         // Start building the select HTML
@@ -322,7 +322,7 @@ if (!function_exists('input_edit')) {
         $data = $CI->load->get_vars();
 
         $input = $data[$field . '_input'];
-        $alias = lang($field . '_alias');
+        $alias = $field . '_alias';
 
         if (strpos($required, 'required') !== false) {
             $msg = '';
@@ -348,7 +348,7 @@ if (!function_exists('input_ckeditor')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias');
+        $alias = $field . '_alias';
         $input = $data[$field . '_input'];
 
         if (strpos($required, 'required') !== false) {
@@ -376,7 +376,7 @@ if (!function_exists('input_textarea')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias');
+        $alias = $field . '_alias';
         $input = $data[$field . '_input'];
 
         if (strpos($required, 'required') !== false) {
@@ -403,7 +403,7 @@ if (!function_exists('add_file')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias');
+        $alias = $field . '_alias';
         $input = $data[$field . '_input'];
 
         if (strpos($required, 'required') !== false) {
@@ -429,7 +429,7 @@ if (!function_exists('edit_file')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias');
+        $alias = $field . '_alias';
         $input = $data[$field . '_input'];
         $old = $data[$field . "_old"];
         $img = tampil_image('125px', $tabel, $value, $alias);
@@ -491,7 +491,7 @@ if (!function_exists('select_add')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias' . '_select');
+        $alias = 'Select ' . $data[$field . '_alias'];
         $input = $data[$field . '_input'];
 
         if (strpos($required, 'required') !== false) {
@@ -520,7 +520,7 @@ if (!function_exists('select_ubah')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias' . '_select');
+        $alias = 'Select ' . $data[$field . '_alias'];
         $input = $data[$field . '_input'];
 
         if (strpos($required, 'required') !== false) {

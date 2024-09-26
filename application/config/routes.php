@@ -25,12 +25,12 @@ foreach ($myData2 as $item2) {
     $prefix = $item2['key'] . 'Controller';
     $cachedControllers = [];
 
-    $routeKey = '' . $item2['value'];
+    $routeKey = $item2['value'];
     $controller = $prefix;
     $route[$routeKey] = $controller;
 
 
-    $routeId = '' . $item2['value'] . '/(:num)';
+    $routeId = $item2['value'] . '/(:num)';
     $controller = $prefix . '/detail/$2';
     $route[$routeId] = $controller;
 
@@ -96,28 +96,28 @@ foreach ($myData2 as $item2) {
     // Check if any view routes don't exist
 
     foreach ($viewRoutes as $key => $value) {
-        $routeKey1 = '' . $item2['value'] . '/' . $key;
+        $routeKey1 = $item2['value'] . '/' . $key;
         $controller1 = $prefix . '/' . $value;
 
         $route[$routeKey1] = $controller1;
     }
 
     foreach ($commonFunctionRoutes as $key => $value) {
-        $routeKey1 = '' . $item2['value'] . '/' . $key;
+        $routeKey1 = $item2['value'] . '/' . $key;
         $controller1 = $prefix . '/' . $value;
 
         $route[$routeKey1] = $controller1;
     }
 
     foreach ($uncommonFunctionRoutes as $key => $value) {
-        $routeKey1 = '' . $item2['value'] . '/(:num)' . '/' . $key;
+        $routeKey1 = $item2['value'] . '/(:num)' . '/' . $key;
         $controller1 = $prefix . '/' . $value . '/$2';
 
         $route[$routeKey1] = $controller1;
     }
 
     foreach ($uniqueFunctionRoutes as $key => $value) {
-        $routeKey1 = '' .  $item2['value'] . '/' . $key;
+        $routeKey1 =  $item2['value'] . '/' . $key;
         $controller1 = $prefix . '/' . $value;
         
         $route[$routeKey1] = $controller1;

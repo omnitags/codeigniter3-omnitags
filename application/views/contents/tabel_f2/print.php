@@ -37,4 +37,4 @@
     </tbody>
   </table>
 <?php endforeach ?>
-<p class="text-center"><?= lang('tabel_c2_field6_value4_alias_v5_msg') ?></p>
+<p class="text-center">Send this evidence to <?= $tabel_c2_field6_value4_alias ?> for processing.</p>

@@ -11,7 +11,7 @@ if (!function_exists('back_to_home')) {
         $data = $CI->load->get_vars();
 
         $alias = '< Home';
-        $url = xss_clean(site_url($data['language'] . '/home'));
+        $url = xss_clean(site_url('home'));
 
         return <<<HTML
         <a class="text-decoration-none" href="{$url}">{$alias}</a>
@@ -33,7 +33,7 @@ if (!function_exists('back_to_activity')) {
         $data = $CI->load->get_vars();
 
         // Get the previous URL from session, fallback to home if not set
-        $url = xss_clean(userdata('previous_url') ? userdata('previous_url') : site_url($data['language'] . '/home'));
+        $url = xss_clean(userdata('previous_url') ? userdata('previous_url') : site_url('home'));
 
         return <<<HTML
         <a class="text-decoration-none" href="{$url}">Back to Activity</a>
@@ -145,7 +145,12 @@ if (!function_exists('btn_update_field')) {
     // Creates a button to update data with a confirmation prompt
     function btn_update_field($field)
     {
-        $placeholder = xss_clean('Save changes to ' . lang($field));
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+        $placeholder = xss_clean('Save changes to ' . $data[$field . '_alias']);
 
         return <<<HTML
         <button class="btn mt-4 mr-1 btn-success" type="submit" 
@@ -175,8 +180,8 @@ if (!function_exists('btn_sync')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        
+        $controller = $data[$tabel];
+
         $url = xss_clean(site_url($controller . '/' . $value . '/sync_theme'));
 
         return <<<HTML
@@ -196,7 +201,7 @@ if (!function_exists('btn_read_more')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = xss_clean(site_url($data['language'] . '/' . $data[$table] . '/' . $id));
+        $url = xss_clean(site_url($data[$table] . '/' . $id));
 
         return <<<HTML
         <a class="text-decoration-none" href="{$url}" target="_blank"> Read more</a>
@@ -213,7 +218,7 @@ if (!function_exists('btn_value')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = xss_clean(site_url($data['language'] . '/' . $data[$table] . '/' . $id . '/' . $function));
+        $url = xss_clean(site_url($data[$table] . '/' . $id . '/' . $function));
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-light border border-dark text-warning"
@@ -257,9 +262,9 @@ if (!function_exists('btn_laporan')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $controller = xss_clean($data[$tabel]);
+        $controller = $data[$tabel];
 
-        
+
         $url = xss_clean(site_url($controller . '/laporan'));
 
         return <<<HTML
@@ -278,9 +283,9 @@ if (!function_exists('btn_archive')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $controller = xss_clean($data[$tabel]);
+        $controller = $data[$tabel];
 
-        
+
         $url = xss_clean(site_url($controller . '/archive'));
 
         return <<<HTML
@@ -300,9 +305,9 @@ if (!function_exists('btn_print')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
+        $controller = $data[$tabel];
 
-        
+
         $url = xss_clean(site_url($controller . '/' . $value . '/print'));
 
         return <<<HTML
@@ -323,9 +328,9 @@ if (!function_exists('btn_kelola')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = xss_clean(lang($tabel . '_alias' . '_btn'));
-        $controller = xss_clean($data[$tabel]);
-        $url = xss_clean(site_url($controller . $function));
+        $alias = $data[$tabel . '_alias'];
+        $controller = $data[$tabel];
+        $url = site_url($controller . $function);
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-info text-light" href="{$url}">
@@ -343,9 +348,9 @@ if (!function_exists('btn_redo')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $controller = xss_clean($data[$tabel]);
-        
-        $url = xss_clean(site_url($controller . $function));
+        $controller = $data[$tabel];
+
+        $url = site_url($controller . $function);
 
         return <<<HTML
         <a class="btn mr-1 mb-2 btn-danger" type="button" href="{$url}">
@@ -364,9 +369,9 @@ if (!function_exists('btn_hapus')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
+
         $url = xss_clean(site_url($controller . '/' . $value . '/soft_delete'));
 
         return <<<HTML
@@ -387,9 +392,9 @@ if (!function_exists('btn_hapus_cepat')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
+
         $url = xss_clean(site_url($controller . '/' . $value . '/soft_delete'));
 
         return <<<HTML
@@ -410,9 +415,9 @@ if (!function_exists('btn_restore')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
+
         $url = xss_clean(site_url($controller . '/' . $value . '/restore'));
 
         return <<<HTML
@@ -433,9 +438,9 @@ if (!function_exists('btn_push')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
+
         $url = xss_clean(site_url($controller . '/' . $value . '/push'));
 
         return <<<HTML
@@ -456,9 +461,9 @@ if (!function_exists('btn_history')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
+
         $url = xss_clean(site_url($controller . '/' . $value . '/history'));
 
         return <<<HTML
@@ -479,9 +484,9 @@ if (!function_exists('btn_hapus_full')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
+
         $url = xss_clean(site_url($controller . '/' . $value . '/delete'));
 
         return <<<HTML
@@ -502,9 +507,9 @@ if (!function_exists('btn_truncate')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
+
         $url = xss_clean(site_url($controller . '/' . $value . '/soft_truncate'));
 
         return <<<HTML
@@ -525,9 +530,9 @@ if (!function_exists('btn_truncate_full')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
+
         $url = xss_clean(site_url($controller . '/' . $value . '/truncate'));
 
         return <<<HTML
@@ -547,7 +552,7 @@ if (!function_exists('btn_action')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $controller = xss_clean($data[$tabel]);
+        $controller = $data[$tabel];
         $url = xss_clean(site_url($controller . '/' . $id . '/' . $function));
 
         return <<<HTML
