@@ -88,7 +88,7 @@
                     data-toggle="dropdown" href="#">
                     <i class="fas fa-bell"></i><?php if (!$notif_count) { ?><span>&nbsp;&nbsp;</span><?php
                     } else { ?>
-                        <span><?= $notif_count ?></span><?php } ?>
+                        <span class="badge badge-light"><?= $notif_count ?></span><?php } ?>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
