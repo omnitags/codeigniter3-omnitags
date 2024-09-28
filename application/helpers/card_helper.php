@@ -173,8 +173,8 @@ if (!function_exists('card_count')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = site_url($data['language'] . '/' . $data[$controller] . '/admin');
-        $detail = lang('detail') . ' >>';
+        $url = site_url($data[$controller] . '/admin');
+        $detail = 'Detail >>';
         
         return <<<HTML
         <div class="col-md-3 mt-2">
