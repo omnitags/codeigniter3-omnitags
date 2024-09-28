@@ -39,7 +39,7 @@
 
   <?php switch (userdata($tabel_c2_field6)) {
     case $tabel_c2_field6_value3: ?>
-      <?= card_count($tabel_e3_alias, 'tabel_e3', 'text-white bg-danger', $tbl_e3) ?>
+      <!-- ?= card_count($tabel_e3_alias, 'tabel_e3', 'text-white bg-danger', $tbl_e3) ?> -->
       <?= card_count($tabel_e4_alias, 'tabel_e4', 'text-white bg-danger', $tbl_e4) ?>
       <!-- ?= card_count($tabel_e2_alias, 'tabel_e2', 'text-white bg-danger', $tbl_e2) ?> -->
       <!-- ?= card_count($tabel_e1_alias, 'tabel_e1', 'text-white bg-danger', $tbl_e1) ?> -->
