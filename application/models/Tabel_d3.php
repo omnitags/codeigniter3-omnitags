@@ -6,14 +6,14 @@ class Tabel_d3 extends CI_Model
 	public function get_all_d3()
 	{
 		$this->db->where('deleted_at', NULL);
-		$this->db->order_by($this->aliases['tabel_d3_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_d3']);
 	}
 	
 	public function get_all_d3_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_d3_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_d3']);
 	}
 	
@@ -29,7 +29,7 @@ class Tabel_d3 extends CI_Model
 		}
 		
 		$this->db->where('deleted_at', NULL);
-		$this->db->order_by($this->aliases['tabel_d3_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_d3']);
 	}
 	
@@ -45,7 +45,7 @@ class Tabel_d3 extends CI_Model
 		}
 
 		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_d3_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_d3']);
 	}
 
@@ -56,7 +56,7 @@ class Tabel_d3 extends CI_Model
 
 	public function update_d3($data, $param1)
 	{
-		$this->db->where($this->aliases['tabel_d3_field1'], $param1);
+		$this->db->where('id', $param1);
 		return $this->db->update($this->aliases['tabel_d3'], $data);
 	}
 

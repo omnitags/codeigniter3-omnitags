@@ -101,7 +101,7 @@ if (!function_exists('show_info_user')) {
     function show_info_user($param1, $param2)
     {
         foreach ($param2->result() as $obj) {
-            if ($param1 == $obj->id_user) {
+            if ($param1 == $obj->id) {
                 return $obj->nama;  // Assuming 'user_name' exists in tbl2
             }
         }

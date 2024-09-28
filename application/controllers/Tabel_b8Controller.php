@@ -25,7 +25,7 @@ class Tabel_b8Controller extends OmnitagsController
 			'tbl_b8' => $this->tl_b8->get_all_b8(),
 		);
 
-		$this->load_page('tabel_b8', 'layouts/template', $data1);
+		$this->load_page('tabel_b8', 'layouts/template_admin', $data1);
 	}
 
 	// Print all data
@@ -63,18 +63,18 @@ class Tabel_b8Controller extends OmnitagsController
 			'tambah'
 		);
 
-		// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
-		// $this->aliases['tabel_e1_field1'] => $id,
+		// $id = get_next_code($this->aliases['tabel_e1'], 'id', 'FK');
+		// 'id' => $id,
 
 		$data = array(
-			$this->aliases['tabel_b8_field1'] => '',
+			'id' => '',
 			$this->aliases['tabel_b8_field2'] => $this->v_post['tabel_b8_field2'],
 			$this->aliases['tabel_b8_field3'] => $this->v_post['tabel_b8_field3'],
 			$this->aliases['tabel_b8_field4'] => $this->v_post['tabel_b8_field4'],
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b8->insert_b8($data);
@@ -114,7 +114,7 @@ class Tabel_b8Controller extends OmnitagsController
 			$this->aliases['tabel_b8_field4'] => $this->v_post['tabel_b8_field4'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b8->update_b8($data, $code);
@@ -137,7 +137,7 @@ class Tabel_b8Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b8->update_b8($data, $code);
@@ -160,7 +160,7 @@ class Tabel_b8Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => NULL,
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b8->update_b8($data, $code);
@@ -202,9 +202,8 @@ class Tabel_b8Controller extends OmnitagsController
 
 		$this->load_page('tabel_b8', 'layouts/template', $data1);
 	}
-
-	// Public Pages
-	public function detail_archive($code = null)
+	
+	public function detai_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
@@ -239,7 +238,7 @@ class Tabel_b8Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_b8', 'tabel_b8_field1', $code),
 		);
 
-		$this->load_page('tabel_b8', 'layouts/template', $data1);
+		$this->load_page('tabel_b8', 'layouts/template_admin', $data1);
 	}
 
 	//Push History Data into current data
@@ -251,14 +250,14 @@ class Tabel_b8Controller extends OmnitagsController
 		$tabel = $this->tl_ot->get_by_id_history('tabel_b8', $code)->result();
 		$this->check_data($tabel);
 
-		$code = $tabel[0]->{$this->aliases['tabel_b8_field1']};
+		$code = $tabel[0]->id;
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			$this->aliases['tabel_b8_field2'] => $tabel[0]->{$this->aliases['tabel_b8_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b8->update_b8($data, $code);

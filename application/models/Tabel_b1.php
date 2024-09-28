@@ -7,14 +7,14 @@ class Tabel_b1 extends CI_Model
 	public function get_all_b1()
 	{
 		$this->db->where('deleted_at', NULL);
-		$this->db->order_by($this->aliases['tabel_b1_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b1']);
 	}
 
 	public function get_all_b1_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_b1_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b1']);
 	}
 
@@ -23,7 +23,7 @@ class Tabel_b1 extends CI_Model
 	{
 		$this->db->where($this->aliases['tabel_b1_field7'], $param1);
 		$this->db->where($this->aliases['tabel_b1_field2'], $param2);
-		$this->db->order_by($this->aliases['tabel_b1_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b1']);
 	}
 
@@ -39,7 +39,7 @@ class Tabel_b1 extends CI_Model
 		}
 
 		$this->db->where('deleted_at', NULL);
-		$this->db->order_by($this->aliases['tabel_b1_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b1']);
 	}
 
@@ -55,7 +55,7 @@ class Tabel_b1 extends CI_Model
 		}
 
 		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_b1_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b1']);
 	}
 
@@ -68,7 +68,7 @@ class Tabel_b1 extends CI_Model
 	// Updates a record in the tabel_b1 table where tabel_b1_field1 equals $param1
 	public function update_b1($data, $param1)
 	{
-		$this->db->where($this->aliases['tabel_b1_field1'], $param1);
+		$this->db->where('id', $param1);
 		return $this->db->update($this->aliases['tabel_b1'], $data);
 	}
 

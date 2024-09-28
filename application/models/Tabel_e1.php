@@ -6,14 +6,14 @@ class Tabel_e1 extends CI_Model
     // Retrieves all records from the tabel_e1 table in descending order of tabel_e1_field1
     public function get_all_e1()
     {
-        $this->db->order_by($this->aliases['tabel_e1_field1'], 'DESC');
+        $this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e1']);
     }
 	
 	public function get_all_e1_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_e1_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e1']);
 	}
 	
@@ -29,7 +29,7 @@ class Tabel_e1 extends CI_Model
 		}
 		
 		$this->db->where('deleted_at', NULL);
-		$this->db->order_by($this->aliases['tabel_e1_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e1']);
 	}
 	
@@ -45,7 +45,7 @@ class Tabel_e1 extends CI_Model
 		}
 
 		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_e1_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e1']);
 	}
 	
@@ -61,7 +61,7 @@ class Tabel_e1 extends CI_Model
     // Updates a record in the tabel_e1 table based on the value of tabel_e1_field1
     public function update_e1($data, $param1)
     {
-        $this->db->where($this->aliases['tabel_e1_field1'], $param1);
+        $this->db->where('id', $param1);
         return $this->db->update($this->aliases['tabel_e1'], $data);
     }
 

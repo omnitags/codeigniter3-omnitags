@@ -19,7 +19,7 @@ class Tabel_f2Controller extends OmnitagsController
 		$this->declarew();
 		$this->page_session_all();
 
-		switch (userdata($this->aliases['tabel_c2_field6'])) {
+		switch (userdata('role')) {
 			case $this->aliases['tabel_c2_field6_value5']:
 				$data1 = array(
 					'title' => $this->title['tabel_f2_alias_v1'],
@@ -61,7 +61,7 @@ class Tabel_f2Controller extends OmnitagsController
 		$param3 = $this->v_get['tabel_f2_field11_filter1'];
 		$param4 = $this->v_get['tabel_f2_field11_filter2'];
 
-		$tabel_c2_field1 = userdata($this->aliases['tabel_c2_field1']);
+		$tabel_c2_field1 = userdata('id');
 
 		$filter = $this->tl_f2->filter_user_with_e4($param1, $param2, $param3, $param4, $tabel_c2_field1);
 
@@ -124,7 +124,7 @@ class Tabel_f2Controller extends OmnitagsController
 			// 'tabel_f2_field11_filter2_value' => $param4
 		);
 
-		$this->load_page('tabel_f2', 'layouts/template', $data1);
+		$this->load_page('tabel_f2', 'layouts/template_admin', $data1);
 	}
 
 	// Print all data
@@ -203,7 +203,7 @@ class Tabel_f2Controller extends OmnitagsController
 			'tbl_e3' => $this->tl_e3->get_all_e3(),
 		);
 
-		$this->load_page('tabel_f2', 'layouts/template', $data1);
+		$this->load_page('tabel_f2', 'layouts/template_admin', $data1);
 	}
 
 
@@ -212,7 +212,7 @@ class Tabel_f2Controller extends OmnitagsController
 		$this->declarew();
 		$this->page_session_5();
 
-		$tabel_c2_field3 = userdata($this->aliases['tabel_c2_field3'] . '_' . $this->aliases['tabel_f2']);
+		$tabel_c2_field3 = userdata('email' . '_' . $this->aliases['tabel_f2']);
 
 		$data1 = array(
 			'title' => $this->title['tabel_f2_alias_v4'],
@@ -270,11 +270,11 @@ class Tabel_f2Controller extends OmnitagsController
 		// Calculate total price
 		$harga_total = ($numberdays * $tabel_e4[0]->{$this->aliases['tabel_f2_field9']});
 
-		// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
-		// $this->aliases['tabel_e1_field1'] => $id,
+		// $id = get_next_code($this->aliases['tabel_e1'], 'id', 'FK');
+		// 'id' => $id,
 
 		$data = [
-			$this->aliases['tabel_f2_field1'] => '',
+			'id' => '',
 			$this->aliases['tabel_f2_field2'] => $this->v_post['tabel_f2_field2'],
 			$this->aliases['tabel_f2_field3'] => $this->v_post['tabel_f2_field3'],
 			$this->aliases['tabel_f2_field4'] => $this->v_post['tabel_f2_field4'],
@@ -292,7 +292,7 @@ class Tabel_f2Controller extends OmnitagsController
 		];
 
 		// Create temporary session for a specific duration
-		set_userdata($this->aliases['tabel_c2_field3'] . '_' . $this->aliases['tabel_f2'], $this->v_post['tabel_f2_field4']);
+		set_userdata('email' . '_' . $this->aliases['tabel_f2'], $this->v_post['tabel_f2_field4']);
 
 		try {
 			// Security: Prepared Statements to prevent SQL injection
@@ -362,7 +362,7 @@ class Tabel_f2Controller extends OmnitagsController
 
 			// memasukkan nama resepsionis yang melakukan operasi
 			$data = array(
-				$this->aliases['tabel_f1_field15'] => userdata($this->aliases['tabel_c2_field1'])
+				$this->aliases['tabel_f1_field15'] => userdata('id')
 			);
 
 			// mengupdate pesanan dengan nama user yang aktif
@@ -386,7 +386,7 @@ class Tabel_f2Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_f2->update_f2($data, $code);
@@ -409,7 +409,7 @@ class Tabel_f2Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => NULL,
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_f2->update_f2($data, $code);
@@ -511,7 +511,7 @@ class Tabel_f2Controller extends OmnitagsController
 			'tbl_f2' => $this->tl_f2->get_all_f2_archive(),
 		);
 
-		$this->load_page('tabel_f2', 'layouts/template', $data1);
+		$this->load_page('tabel_f2', 'layouts/template_admin', $data1);
 	}
 	// Public Pages
 	public function detail_archive($code = null)
@@ -529,7 +529,7 @@ class Tabel_f2Controller extends OmnitagsController
 			'tbl_f2' => $this->tl_f2->get_f2_by_field_archive('tabel_f2_field1', $code),
 		);
 
-		$this->load_page('tabel_f2', 'layouts/template', $data1);
+		$this->load_page('tabel_f2', 'layouts/template_admin', $data1);
 	}
 
 	public function history($code = null)
@@ -549,7 +549,7 @@ class Tabel_f2Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_f2', 'tabel_f2_field1', $code),
 		);
 
-		$this->load_page('tabel_f2', 'layouts/template', $data1);
+		$this->load_page('tabel_f2', 'layouts/template_admin', $data1);
 	}
 
 	//Push History Data into current data
@@ -561,14 +561,14 @@ class Tabel_f2Controller extends OmnitagsController
 		$tabel = $this->tl_ot->get_by_id_history('tabel_f2', $code)->result();
 		$this->check_data($tabel);
 
-		$code = $tabel[0]->{$this->aliases['tabel_f2_field1']};
+		$code = $tabel[0]->id;
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			$this->aliases['tabel_f2_field2'] => $tabel[0]->{$this->aliases['tabel_f2_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_f2->update_f2($data, $code);

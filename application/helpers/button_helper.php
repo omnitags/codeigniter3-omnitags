@@ -252,6 +252,17 @@ if (!function_exists('btn_edit')) {
     }
 }
 
+if (!function_exists('btn_filter')) {
+    // Generates a button to print a report for a specific table
+    function btn_filter()
+    {
+        return <<<HTML
+        <button class="btn mr-1 btn-primary mb-4" type="button" data-toggle="modal" data-target="#filter">
+            <i class="fas fa-filter"></i> Filter
+        </button>
+        HTML;
+    }
+}
 
 if (!function_exists('btn_laporan')) {
     // Generates a button to print a report for a specific table
@@ -268,8 +279,12 @@ if (!function_exists('btn_laporan')) {
         $url = xss_clean(site_url($controller . '/laporan'));
 
         return <<<HTML
-        <a class="btn mr-1 btn-info mb-4" href="{$url}" target="_blank">
-            <i class="fas fa-print"></i> Print Report</a>
+        <button class="btn mr-1 btn-info dropdown-toggle mb-4" type="button" data-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-print"></i> Export
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" target="_blank" href="{$url}"><i class="fas fa-file-pdf"></i> PDF</a>
+        </div>
         HTML;
     }
 }

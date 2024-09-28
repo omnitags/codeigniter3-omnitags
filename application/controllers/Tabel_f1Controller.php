@@ -21,7 +21,7 @@ class Tabel_f1Controller extends OmnitagsController
 		$param3 = $this->v_get['tabel_f1_field12_filter1'];
 		$param4 = $this->v_get['tabel_f1_field12_filter2'];
 
-		$param5 = userdata($this->aliases['tabel_c2_field1']);
+		$param5 = userdata('id');
 
 		$filter = $this->tl_f1->filter_user_with_e4($param1, $param2, $param3, $param4, $param5);
 
@@ -80,7 +80,7 @@ class Tabel_f1Controller extends OmnitagsController
 			'tabel_f1_field12_filter2_value' => $param4,
 		);
 
-		$this->load_page('tabel_f1', 'layouts/template', $data1);
+		$this->load_page('tabel_f1', 'layouts/template_admin', $data1);
 	}
 
 	// public function delete($code = null)
@@ -145,9 +145,8 @@ class Tabel_f1Controller extends OmnitagsController
 
 		$this->load_page('tabel_f1', 'layouts/template', $data1);
 	}
-
-	// Public Pages
-	public function detail_archive($code = null)
+	
+	public function detai_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
@@ -182,7 +181,7 @@ class Tabel_f1Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_f1', 'tabel_f1_field1', $code),
 		);
 
-		$this->load_page('tabel_f1', 'layouts/template', $data1);
+		$this->load_page('tabel_f1', 'layouts/template_admin', $data1);
 	}
 
 	//Push History Data into current data
@@ -194,14 +193,14 @@ class Tabel_f1Controller extends OmnitagsController
 		$tabel = $this->tl_ot->get_by_id_history('tabel_f1', $code)->result();
 		$this->check_data($tabel);
 
-		$code = $tabel[0]->{$this->aliases['tabel_f1_field1']};
+		$code = $tabel[0]->id;
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			$this->aliases['tabel_f1_field2'] => $tabel[0]->{$this->aliases['tabel_f1_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_f1->update_f1($data, $code);

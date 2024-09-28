@@ -33,7 +33,7 @@ class WebController extends OmnitagsController
 		header("Expires: 0"); // Proxies.
 
 		// Forward users based on their roles in their session
-		switch (userdata($this->aliases['tabel_c2_field6'])) {
+		switch (userdata('role')) {
 			case $this->aliases['tabel_c2_field6_value2']:
 			case $this->aliases['tabel_c2_field6_value3']:
 			case $this->aliases['tabel_c2_field6_value4']:
@@ -113,7 +113,7 @@ class WebController extends OmnitagsController
 
 		$notif = $this->handle_2a();		
 		
-		$this->load_page('', 'layouts/template', $data1);
+		$this->load_page('', 'layouts/template_admin', $data1);
 	}
 
 	// Page that will be loaded if a function is performed by a user with the wrong level

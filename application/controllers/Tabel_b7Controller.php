@@ -22,7 +22,7 @@ class Tabel_b7Controller extends OmnitagsController
 			'tbl_b7' => $this->tl_b7->get_b7_by_field('tabel_b7_field1', $code),
 		);
 
-		$this->load_page('tabel_b7', 'layouts/template', $data1);
+		$this->load_page('tabel_b7', 'layouts/template_admin', $data1);
 	}
 
 	// Account Only Pages
@@ -41,7 +41,7 @@ class Tabel_b7Controller extends OmnitagsController
 			'tbl_b7' => $this->tl_b7->get_all_b7(),
 		);
 
-		$this->load_page('tabel_b7', 'layouts/template', $data1);
+		$this->load_page('tabel_b7', 'layouts/template_admin', $data1);
 	}
 
 	// Print all data
@@ -84,17 +84,17 @@ class Tabel_b7Controller extends OmnitagsController
 			'tambah'
 		);
 
-		// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
-		// $this->aliases['tabel_e1_field1'] => $id,
+		// $id = get_next_code($this->aliases['tabel_e1'], 'id', 'FK');
+		// 'id' => $id,
 
 		$data = array(
-			$this->aliases['tabel_b7_field1'] => '',
+			'id' => '',
 			$this->aliases['tabel_b7_field2'] => $param1,
 			$this->aliases['tabel_b7_field6'] => htmlspecialchars($this->v_post['tabel_b7_field6']),
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b7->insert_b7($data);
@@ -134,7 +134,7 @@ class Tabel_b7Controller extends OmnitagsController
 			$this->aliases['tabel_b7_field6'] => $this->v_post['tabel_b7_field6'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b7->update_b7($data, $code);
@@ -179,7 +179,7 @@ class Tabel_b7Controller extends OmnitagsController
 			$this->aliases['tabel_b7_field3'] => $gambar,
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b7->update_b7($data, $code);
@@ -264,7 +264,7 @@ class Tabel_b7Controller extends OmnitagsController
 			$this->aliases['tabel_b7_field5'] => $gambar,
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b7->update_b7($data, $code);
@@ -287,7 +287,7 @@ class Tabel_b7Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b7->update_b7($data, $code);
@@ -310,7 +310,7 @@ class Tabel_b7Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => NULL,
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b7->update_b7($data, $code);
@@ -363,9 +363,8 @@ class Tabel_b7Controller extends OmnitagsController
 
 		$this->load_page('tabel_b7', 'layouts/template', $data1);
 	}
-
-	// Public Pages
-	public function detail_archive($code = null)
+	
+	public function detai_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
@@ -400,7 +399,7 @@ class Tabel_b7Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_b7', 'tabel_b7_field1', $code),
 		);
 
-		$this->load_page('tabel_b7', 'layouts/template', $data1);
+		$this->load_page('tabel_b7', 'layouts/template_admin', $data1);
 	}
 
 	//Push History Data into current data
@@ -412,14 +411,14 @@ class Tabel_b7Controller extends OmnitagsController
 		$tabel = $this->tl_ot->get_by_id_history('tabel_b7', $code)->result();
 		$this->check_data($tabel);
 
-		$code = $tabel[0]->{$this->aliases['tabel_b7_field1']};
+		$code = $tabel[0]->id;
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			$this->aliases['tabel_b7_field2'] => $tabel[0]->{$this->aliases['tabel_b7_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b7->update_b7($data, $code);

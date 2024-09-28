@@ -35,7 +35,7 @@ class Tabel_f3Controller extends OmnitagsController
 		$param1 = $this->v_get['tabel_f3_field7_filter1'];
 		$param2 = $this->v_get['tabel_f3_field7_filter2'];
 
-		$param3 = userdata($this->aliases['tabel_c2_field1']);
+		$param3 = userdata('id');
 
 		$filter = $this->tl_f1->filter_user_with_e4($param1, $param2, $param3);
 
@@ -69,7 +69,7 @@ class Tabel_f3Controller extends OmnitagsController
 		$param1 = $this->v_get['tabel_f3_field7_filter1'];
 		$param2 = $this->v_get['tabel_f3_field7_filter2'];
 
-		$param3 = userdata($this->aliases['tabel_c2_field1']);
+		$param3 = userdata('id');
 
 		$filter = $this->tl_f1->filter_user_with_e4($param1, $param2, $param3);
 
@@ -122,7 +122,7 @@ class Tabel_f3Controller extends OmnitagsController
 			'tabel_f3_field7_filter2_value' => $param2,
 		);
 
-		$this->load_page('tabel_f3', 'layouts/template', $data1);
+		$this->load_page('tabel_f3', 'layouts/template_admin', $data1);
 	}
 
 	// Print all data
@@ -169,14 +169,14 @@ class Tabel_f3Controller extends OmnitagsController
 		// Di bawah ini adalah kode untuk memisahkan antara transaksi yang id pesanannya masih berada di tabel pesanann
 		// Dan transaksi yang id pesanananya sudah berada di tabel history
 
-		$param2 = $param1[0]->{$this->aliases['tabel_f3_field1']};
+		$param2 = $param1[0]->id;
 
 		$method = $this->tl_f1->get_f1_by_field('tabel_f1_field2', $param2);
 
 
 		if ($method->num_rows() > 0) {
 			$data2 = array(
-				'tbl_f3' => $this->tl_f3->get_f3_with_f1_with_e4_by_f3_field1($code, userdata($this->aliases['tabel_c2_field1'])),
+				'tbl_f3' => $this->tl_f3->get_f3_with_f1_with_e4_by_f3_field1($code, userdata('id')),
 			);
 			$data = array_merge($data1, $data2);
 			$this->load_page('tabel_f3', 'layouts/printpage', $data);
@@ -230,12 +230,12 @@ class Tabel_f3Controller extends OmnitagsController
 
 		// $kembalian = $this->tl_f2->get('harga_total') - $bayar;
 
-		// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
-		// $this->aliases['tabel_e1_field1'] => $id,
+		// $id = get_next_code($this->aliases['tabel_e1'], 'id', 'FK');
+		// 'id' => $id,
 
 		$data = array(
-			$this->aliases['tabel_f3_field1'] => '',
-			$this->aliases['tabel_f3_field2'] => userdata($this->aliases['tabel_c2_field1']),
+			'id' => '',
+			$this->aliases['tabel_f3_field2'] => userdata('id'),
 			$this->aliases['tabel_f3_field3'] => $tabel_f3_field3,
 			$this->aliases['tabel_f3_field4'] => $this->v_post['tabel_f3_field4'],
 			$this->aliases['tabel_f3_field5'] => $this->v_post['tabel_f3_field5'],
@@ -246,7 +246,7 @@ class Tabel_f3Controller extends OmnitagsController
 			'updated_at' => date("Y-m-d\TH:i:s"),
 		);
 
-		set_userdata($this->aliases['tabel_c2_field3'] . '_' . $this->aliases['tabel_f3'], $tabel_f3_field3);
+		set_userdata('email' . '_' . $this->aliases['tabel_f3'], $tabel_f3_field3);
 
 		// Session kembalian_transaksi sebenarnya digunakan ketika menggunakan cash, namun fungsi ini akan tetap disimpan untuk pengembangan lebih lanjut
 		// set_tempdata('kembalian_transaksi', $kembalian, 300);
@@ -306,7 +306,7 @@ class Tabel_f3Controller extends OmnitagsController
 			$this->aliases['tabel_f3_field7'] => $tabel_f3_field7,
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_f3->update_f3($data, $code);
@@ -329,7 +329,7 @@ class Tabel_f3Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_f3->update_f3($data, $code);
@@ -352,7 +352,7 @@ class Tabel_f3Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => NULL,
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_f3->update_f3($data, $code);
@@ -398,9 +398,8 @@ class Tabel_f3Controller extends OmnitagsController
 
 		$this->load_page('tabel_f3', 'layouts/template', $data1);
 	}
-
-	// Public Pages
-	public function detail_archive($code = null)
+	
+	public function detai_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
@@ -415,7 +414,7 @@ class Tabel_f3Controller extends OmnitagsController
 			'tbl_f3' => $this->tl_f3->get_f3_by_field_archive('tabel_f3_field1', $code),
 		);
 
-		$this->load_page('tabel_f3', 'layouts/template', $data1);
+		$this->load_page('tabel_f3', 'layouts/template_admin', $data1);
 	}
 
 	public function history($code = null)
@@ -435,7 +434,7 @@ class Tabel_f3Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_f3', 'tabel_f3_field1', $code),
 		);
 
-		$this->load_page('tabel_f3', 'layouts/template', $data1);
+		$this->load_page('tabel_f3', 'layouts/template_admin', $data1);
 	}
 
 	//Push History Data into current data
@@ -447,14 +446,14 @@ class Tabel_f3Controller extends OmnitagsController
 		$tabel = $this->tl_ot->get_by_id_history('tabel_f3', $code)->result();
 		$this->check_data($tabel);
 
-		$code = $tabel[0]->{$this->aliases['tabel_f3_field1']};
+		$code = $tabel[0]->id;
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			$this->aliases['tabel_f3_field2'] => $tabel[0]->{$this->aliases['tabel_f3_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_f3->update_f3($data, $code);

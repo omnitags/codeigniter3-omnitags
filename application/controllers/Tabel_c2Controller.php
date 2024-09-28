@@ -21,7 +21,7 @@ class Tabel_c2Controller extends OmnitagsController
 			'tbl_c2' => $this->tl_c2->get_all_c2(),
 		);
 
-		$this->load_page('tabel_c2', 'layouts/template', $data1);
+		$this->load_page('tabel_c2', 'layouts/template_admin', $data1);
 	}
 
 	// Print all data
@@ -52,7 +52,7 @@ class Tabel_c2Controller extends OmnitagsController
 		];
 		$this->page_session_check($allowed_values);
 
-		$code = userdata($this->aliases['tabel_c2_field1']);
+		$code = userdata('id');
 		$data1 = array(
 			'title' => $this->title['tabel_c2_alias_v6'],
 			'konten' => $this->v6['tabel_c2'],
@@ -61,7 +61,7 @@ class Tabel_c2Controller extends OmnitagsController
 			'tbl_d3' => $this->tl_d3->get_d3_by_field('tabel_c2_field1', $code),
 		);
 
-		$this->load_page('tabel_c2', 'layouts/template', $data1);
+		$this->load_page('tabel_c2', 'layouts/template_admin', $data1);
 	}
 
 	// Login Page
@@ -126,19 +126,19 @@ class Tabel_c2Controller extends OmnitagsController
 			if ($this->v_post['tabel_c2_field4_confirm'] === $tabel_c2_field4) {
 				$this->load->library('encryption');
 
-				// $id = get_next_code($this->aliases['tabel_c2'], $this->aliases['tabel_c2_field1'], 'USR');
+				// $id = get_next_code($this->aliases['tabel_c2'], 'id', 'USR');
 
 				$data = array(
-					// $this->aliases['tabel_c2_field1'] => $id,
-					$this->aliases['tabel_c2_field1'] => '',
+					// 'id' => $id,
+					'id' => '',
 					$this->aliases['tabel_c2_field2'] => $this->v_post['tabel_c2_field2'],
-					$this->aliases['tabel_c2_field3'] => $this->v_post['tabel_c2_field3'],
+					'email' => $this->v_post['tabel_c2_field3'],
 
 					// mengubah password menjadi password berenkripsi
-					$this->aliases['tabel_c2_field4'] => password_hash($tabel_c2_field4, PASSWORD_DEFAULT),
+					'password' => password_hash($tabel_c2_field4, PASSWORD_DEFAULT),
 
-					$this->aliases['tabel_c2_field5'] => $this->v_post['tabel_c2_field5'],
-					$this->aliases['tabel_c2_field6'] => $this->v_post['tabel_c2_field6'],
+					'phone' => $this->v_post['tabel_c2_field5'],
+					'role' => $this->v_post['tabel_c2_field6'],
 
 					'created_at' => date("Y-m-d\TH:i:s"),
 					'updated_at' => date("Y-m-d\TH:i:s"),
@@ -147,7 +147,7 @@ class Tabel_c2Controller extends OmnitagsController
 				$aksi = $this->tl_c2->insert_c2($data);
 
 				// mengarahkan pengguna ke halaman yang berbeda sesuai dengan session masing-masing
-				if (userdata($this->aliases['tabel_c2_field3'])) {
+				if (userdata('email')) {
 
 					redirect($_SERVER['HTTP_REFERER']);
 				} else {
@@ -159,7 +159,7 @@ class Tabel_c2Controller extends OmnitagsController
 			} else {
 
 				// menampilkan flashdata dalam bentuk teks
-				set_flashdata($this->views['flash1'], 'Konfirmasi ' . $this->aliases['tabel_c2_field4'] . ' salah!');
+				set_flashdata($this->views['flash1'], 'Konfirmasi ' . 'password' . ' salah!');
 
 				redirect($_SERVER['HTTP_REFERER']);
 			}
@@ -167,7 +167,7 @@ class Tabel_c2Controller extends OmnitagsController
 			// jika jumlah data lebih dari 0
 		} else {
 
-			set_flashdata($this->views['flash1'], $this->aliases['tabel_c2_field3'] . ' telah digunakan!');
+			set_flashdata($this->views['flash1'], 'email' . ' telah digunakan!');
 			redirect($_SERVER['HTTP_REFERER']);
 		}
 	}
@@ -197,12 +197,12 @@ class Tabel_c2Controller extends OmnitagsController
 
 		$data = array(
 			$this->aliases['tabel_c2_field2'] => $this->v_post['tabel_c2_field2'],
-			$this->aliases['tabel_c2_field3'] => $this->v_post['tabel_c2_field3'],
-			$this->aliases['tabel_c2_field5'] => $this->v_post['tabel_c2_field5'],
-			$this->aliases['tabel_c2_field6'] => $this->v_post['tabel_c2_field6'],
+			'email' => $this->v_post['tabel_c2_field3'],
+			'phone' => $this->v_post['tabel_c2_field5'],
+			'role' => $this->v_post['tabel_c2_field6'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_c2->update_c2($data, $code);
@@ -226,7 +226,7 @@ class Tabel_c2Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_c2->update_c2($data, $code);
@@ -249,7 +249,7 @@ class Tabel_c2Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => NULL,
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_c2->update_c2($data, $code);
@@ -298,11 +298,11 @@ class Tabel_c2Controller extends OmnitagsController
 
 		$data = array(
 			$this->aliases['tabel_c2_field2'] => $this->v_post['tabel_c2_field2'],
-			$this->aliases['tabel_c2_field3'] => $this->v_post['tabel_c2_field3'],
-			$this->aliases['tabel_c2_field5'] => $this->v_post['tabel_c2_field5'],
+			'email' => $this->v_post['tabel_c2_field3'],
+			'phone' => $this->v_post['tabel_c2_field5'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_c2->update_c2($data, $code);
@@ -313,12 +313,12 @@ class Tabel_c2Controller extends OmnitagsController
 		// mengambil data profil yang baru dirubah
 		$tabel_c2 = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $code)->result();
 		$tabel_c2_field2 = $tabel_c2[0]->{$this->aliases['tabel_c2_field2']};
-		$tabel_c2_field3 = $tabel_c2[0]->{$this->aliases['tabel_c2_field3']};
-		$tabel_c2_field5 = $tabel_c2[0]->{$this->aliases['tabel_c2_field5']};
+		$tabel_c2_field3 = $tabel_c2[0]->email;
+		$tabel_c2_field5 = $tabel_c2[0]->phone;
 
 		// membuat session baru berdasarkan data yang telah diupdate
 		set_userdata($this->aliases['tabel_c2_field2'], $tabel_c2_field2);
-		set_userdata($this->aliases['tabel_c2_field3'], $tabel_c2_field3);
+		set_userdata('email', $tabel_c2_field3);
 
 		// kembali ke halaman sebelumnya sesuai dengan masing-masing user dengan level yang berbeda
 		redirect($_SERVER['HTTP_REFERER']);
@@ -354,7 +354,7 @@ class Tabel_c2Controller extends OmnitagsController
 		// mencari apakah jumlah data lebih dari 0
 		if ($cek_id->num_rows() > 0) {
 			$tabel_c2 = $cek_id->result();
-			$cek_tabel_c2_field4 = $tabel_c2[0]->{$this->aliases['tabel_c2_field4']};
+			$cek_tabel_c2_field4 = $tabel_c2[0]->{'password'};
 
 			$old_tabel_c2_field4 = $this->v_post['tabel_c2_field4_old'];
 
@@ -368,7 +368,7 @@ class Tabel_c2Controller extends OmnitagsController
 
 					$data = array(
 						// mengubah password menjadi password berenkripsi
-						$this->aliases['tabel_c2_field4'] => password_hash($tabel_c2_field4, PASSWORD_BCRYPT),
+						'password' => password_hash($tabel_c2_field4, PASSWORD_BCRYPT),
 					);
 
 					$aksi = $this->tl_c2->update_c2($data, $code);
@@ -419,34 +419,34 @@ class Tabel_c2Controller extends OmnitagsController
 		$tabel_c2_field4 = xss_clean($this->v_post['tabel_c2_field4']);
 
 		// Get user data based on email
-		$method3 = $this->tl_c2->get_c2_by_field('tabel_c2_field3', $tabel_c2_field3);
+		$method3 = $this->tl_c2->get_c2_by_field('email', $tabel_c2_field3);
 
 		// Check if user data exists
 		if ($method3->num_rows() > 0) {
 			$tabel_c2 = $method3->result();
-			$method4 = $tabel_c2[0]->{$this->aliases['tabel_c2_field4']};
+			$method4 = $tabel_c2[0]->{'password'};
 
 			// Verify password
 			if (password_verify($tabel_c2_field4, $method4)) {
 				// Set user session data
-				$code = $tabel_c2[0]->{$this->aliases['tabel_c2_field1']};
-				$tabel_c2_field2 = $tabel_c2[0]->{$this->aliases['tabel_c2_field2']};
-				$tabel_c2_field3 = $tabel_c2[0]->{$this->aliases['tabel_c2_field3']};
-				$tabel_c2_field5 = $tabel_c2[0]->{$this->aliases['tabel_c2_field5']};
-				$tabel_c2_field6 = $tabel_c2[0]->{$this->aliases['tabel_c2_field6']};
+				$code = $tabel_c2[0]->id;
+				$tabel_c2_field2 = $tabel_c2[0]->nama;
+				$tabel_c2_field3 = $tabel_c2[0]->email;
+				$tabel_c2_field5 = $tabel_c2[0]->phone;
+				$tabel_c2_field6 = $tabel_c2[0]->role;
 
-				set_userdata($this->aliases['tabel_c2_field1'], $code);
-				set_userdata($this->aliases['tabel_c2_field2'], $tabel_c2_field2);
-				set_userdata($this->aliases['tabel_c2_field3'], $tabel_c2_field3);
-				set_userdata($this->aliases['tabel_c2_field5'], $tabel_c2_field5);
-				set_userdata($this->aliases['tabel_c2_field6'], $tabel_c2_field6);
+				set_userdata('id', $code);
+				set_userdata('nama', $tabel_c2_field2);
+				set_userdata('email', $tabel_c2_field3);
+				set_userdata('phone', $tabel_c2_field5);
+				set_userdata('role', $tabel_c2_field6);
 
 				// Record login history
 				$userAgent = $_SERVER['HTTP_USER_AGENT'];
 				$deviceType = getDeviceTypeAndOS($userAgent);
 				$loginh = array(
-					$this->aliases['tabel_d3_field1'] => '',
-					$this->aliases['tabel_d3_field2'] => userdata($this->aliases['tabel_c2_field1']),
+					'id' => '',
+					$this->aliases['tabel_d3_field2'] => userdata('id'),
 					$this->aliases['tabel_d3_field3'] => $deviceType,
 
 					'created_at' => date("Y-m-d\TH:i:s"),
@@ -503,9 +503,8 @@ class Tabel_c2Controller extends OmnitagsController
 
 		$this->load_page('tabel_c2', 'layouts/template', $data1);
 	}
-
-	// Public Pages
-	public function detail_archive($code = null)
+	
+	public function detai_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
@@ -540,7 +539,7 @@ class Tabel_c2Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_c2', 'tabel_c2_field1', $code),
 		);
 
-		$this->load_page('tabel_c2', 'layouts/template', $data1);
+		$this->load_page('tabel_c2', 'layouts/template_admin', $data1);
 	}
 
 	//Push History Data into current data
@@ -552,14 +551,14 @@ class Tabel_c2Controller extends OmnitagsController
 		$tabel = $this->tl_ot->get_by_id_history('tabel_c2', $code)->result();
 		$this->check_data($tabel);
 
-		$code = $tabel[0]->{$this->aliases['tabel_c2_field1']};
+		$code = $tabel[0]->id;
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			$this->aliases['tabel_c2_field2'] => $tabel[0]->{$this->aliases['tabel_c2_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_c2->update_c2($data, $code);

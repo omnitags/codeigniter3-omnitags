@@ -160,10 +160,10 @@ if (!class_exists('OmnitagsController')) {
             $this->tabel_a1_field1 = 1;
 
             $this->theme = $this->tl_b7->tema($this->tabel_a1_field1)->result();
-            $this->theme_id = $this->theme[0]->{$this->aliases['tabel_b7_field1']};
+            $this->theme_id = $this->theme[0]->id;
 
-            $this->notif_limit = $this->tl_b9->get_b9_with_b8_limit(userdata($this->aliases['tabel_c2_field1']))->result();
-            $this->notif_null = $this->tl_b9->get_b9_by_field(['tabel_b9_field2', 'tabel_b9_field6'], [userdata($this->aliases['tabel_c2_field1']), NULL]);
+            $this->notif_limit = $this->tl_b9->get_b9_with_b8_limit(userdata('id'))->result();
+            $this->notif_null = $this->tl_b9->get_b9_by_field(['tabel_b9_field2', 'tabel_b9_field6'], [userdata('id'), NULL]);
 
             $this->views = array(
                 'head' => 'partials/head',
@@ -180,8 +180,8 @@ if (!class_exists('OmnitagsController')) {
                 'flash1_func1' => '$("#element").toast("show")',
 
                 // Pesan unik di bawah ini menggunakan flash1 dan ditandai dengan note
-                'flash1_note1' => 'Selamat datang ' . userdata($this->aliases['tabel_c2_field6']) . ' ' . userdata($this->aliases['tabel_c2_field2']) . '!',
-                'flash1_note2' => 'Ayo kita lanjutkan ke pemesanan, ' . userdata($this->aliases['tabel_c2_field6']) . ' ' . userdata($this->aliases['tabel_c2_field2']) . '!',
+                'flash1_note1' => 'Selamat datang ' . userdata('role') . ' ' . userdata($this->aliases['tabel_c2_field2']) . '!',
+                'flash1_note2' => 'Ayo kita lanjutkan ke pemesanan, ' . userdata('role') . ' ' . userdata($this->aliases['tabel_c2_field2']) . '!',
 
                 // Data Manupulation Flashdatas
                 'flash2' => 'pesan_tambah',
@@ -361,7 +361,7 @@ if (!class_exists('OmnitagsController')) {
         public function add_notif($msg, $type, $extra)
         {
             $notif = array(
-                $this->aliases['tabel_b9_field2'] => userdata($this->aliases['tabel_c2_field1']),
+                $this->aliases['tabel_b9_field2'] => userdata('id'),
                 $this->aliases['tabel_b9_field3'] => $type,
                 $this->aliases['tabel_b9_field4'] => $msg . $extra,
 
@@ -374,8 +374,8 @@ if (!class_exists('OmnitagsController')) {
 
         public function add_code($tabel, $id_name, $digits, $kode)
         {
-            // $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
-            // $this->aliases['tabel_e1_field1'] => $id,
+            // $id = get_next_code($this->aliases['tabel_e1'], 'id', 'FK');
+            // 'id' => $id,
 
             // Get the next incrementing number (this is a simplified example)
             $last_record = $this->db->query("SELECT {$id_name} 
@@ -399,11 +399,11 @@ if (!class_exists('OmnitagsController')) {
         // adding the actual notif to all user based on c2_field1
         public function add_notif_all($msg, $type, $extra)
         {
-            $users = $this->tl_d3->get_d3_by_field('tabel_c2_field1', userdata($this->aliases['tabel_c2_field1']));
+            $users = $this->tl_d3->get_d3_by_field('tabel_c2_field1', userdata('id'));
 
             if ($users->num_rows() < 2) {
                 $notif = array(
-                    $this->aliases['tabel_b9_field2'] => userdata($this->aliases['tabel_c2_field1']),
+                    $this->aliases['tabel_b9_field2'] => userdata('id'),
                     $this->aliases['tabel_b9_field3'] => $type,
                     $this->aliases['tabel_b9_field4'] => $msg . $extra,
 
@@ -424,7 +424,7 @@ if (!class_exists('OmnitagsController')) {
             if (!empty($tabel->result())) {
             } else {
                 $data = array(
-                    'page_id' => '',
+                    'id' => '',
                     'page_url' => current_full_url(),
                     'page_name' => uri_string(),
 
@@ -437,9 +437,9 @@ if (!class_exists('OmnitagsController')) {
             $tabel = $this->tl_b11->get_b11_by_field('tabel_b11_field2', current_full_url())->result();
 
             $data1 = array(
-                'click_id' => '',
-                'user_id' => userdata($this->aliases['tabel_c2_field1']),
-                'page_id' => $tabel[0]->page_id,
+                'id' => '',
+                'user_id' => userdata('id'),
+                'page_id' => $tabel[0]->id,
 
                 'created_at' => date("Y-m-d\TH:i:s"),
             );
@@ -549,7 +549,7 @@ if (!class_exists('OmnitagsController')) {
 
         public function page_session_check($allowed_values)
         {
-            if (in_array(userdata($this->aliases['tabel_c2_field6']), $allowed_values)) {
+            if (in_array(userdata('role'), $allowed_values)) {
                 return; // Do nothing if the value is allowed
             } else {
                 redirect(site_url('invalid'));
@@ -558,7 +558,7 @@ if (!class_exists('OmnitagsController')) {
 
         public function session_check($allowed_values)
         {
-            if (in_array(userdata($this->aliases['tabel_c2_field6']), $allowed_values)) {
+            if (in_array(userdata('role'), $allowed_values)) {
                 return; // Do nothing if the value is allowed
             } else {
                 redirect(site_url('invalid'));
@@ -636,10 +636,10 @@ if (!class_exists('OmnitagsController')) {
         // added to database for all value5 users
         public function handle_2a()
         {
-            if (userdata($this->aliases['tabel_c2_field1']) == '') {
+            if (userdata('id') == '') {
                 redirect(site_url('no_level'));
             } else {
-                $msg = 'Selamat datang ' . userdata($this->aliases['tabel_c2_field6']) . ' ' . userdata($this->aliases['tabel_c2_field2']) . '!';
+                $msg = 'Selamat datang ' . userdata('role') . ' ' . userdata($this->aliases['tabel_c2_field2']) . '!';
                 $type = $this->aliases['tabel_b8_field2_value2'];
                 $extra = '';
                 $flashtype = 'toast';
