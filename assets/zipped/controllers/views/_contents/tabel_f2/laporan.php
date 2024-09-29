@@ -1,11 +1,11 @@
 <table class="table">
   <thead class="thead">
     <tr>
-      <th><?= $tabel_f2_field1_alias ?></th>
-      <th><?= $tabel_f2_field2_alias ?></th>
-      <th><?= $tabel_f2_field3_alias ?></th>
-      <th><?= $tabel_f2_field4_alias ?></th>
-      <th><?= $tabel_f2_field5_alias ?></th>
+      <th><?= lang('tabel_f2_field1_alias') ?></th>
+      <th><?= lang('tabel_f2_field2_alias') ?></th>
+      <th><?= lang('tabel_f2_field3_alias') ?></th>
+      <th><?= lang('tabel_f2_field4_alias') ?></th>
+      <th><?= lang('tabel_f2_field5_alias') ?></th>
     </tr>
   </thead>
   <tbody>

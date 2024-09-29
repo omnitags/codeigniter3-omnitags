@@ -40,9 +40,9 @@
   <?php } else {
     foreach ($tbl_e4->result() as $tl_e4):
       if ($tl_e4->$tabel_e4_field9 == $tabel_e4_field9_value1) {
-        $button = '';
-      } elseif ($tl_e4->$tabel_e4_field9 == $tabel_e4_field9_value3) {
-        $button = '';
+        $button =
+          btn_action('tabel_e4', '/approve/' . $tl_e4->$tabel_e4_field1, '<i class="fas fa-check"></i>', 'text-success btn-light') .
+          btn_action('tabel_e4', '/reject/' . $tl_e4->$tabel_e4_field1, '<i class="fas fa-times"></i>', 'text-danger btn-light');
       } else {
         if ($tl_e4->$tabel_e4_field8 == $tabel_e4_field8_value1) {
           $button =
@@ -51,16 +51,24 @@
           $button =
             btn_action('tabel_e4', '/aktifkan/' . $tl_e4->$tabel_e4_field1, '<i class="far fa-eye-slash"></i>', 'text-secondary btn-light');
         }
+      }
 
+      if ($tl_e4->$tabel_e4_field2 != userdata($tabel_c2_field1)) {
+        $button2 = '';
+      } else {
+        $button2 = btn_edit($tl_e4->$tabel_e4_field1) . ' ' .
+        btn_hapus('tabel_e4', $tl_e4->$tabel_e4_field1);
       }
       echo card_file(
         $tl_e4->$tabel_e4_field1,
         $tl_e4->$tabel_e4_field3,
-        $tl_e4->$tabel_e4_field8,
-        btn_lihat($tl_e4->$tabel_e4_field1) . ' ' .
+        card_content('40%', 'tabel_e4_field2', $tl_e4->$tabel_e4_field2) .
+        card_content('40%', 'tabel_e4_field6', $tl_e4->$tabel_e4_field6) .
+        card_content('40%', 'tabel_e4_field8', $tl_e4->$tabel_e4_field8) .
+        card_content('40%', 'tabel_e4_field9', $tl_e4->$tabel_e4_field9),
+        btn_lihat($tl_e4->$tabel_e4_field1) . ' ' . 
         $button . ' ' .
-        btn_edit($tl_e4->$tabel_e4_field1) . ' ' .
-        btn_hapus('tabel_e4', $tl_e4->$tabel_e4_field1),
+        $button2,
         'text-white bg-danger',
         'col-md-4',
         $tabel_e4,
@@ -75,12 +83,20 @@
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <?= modal_header('Tambah ' . $tabel_e4_alias, '') ?>
+      <?= modal_header(lang('add') . ' ' . lang('tabel_e4_alias'), '') ?>
       <form action="<?= site_url($language . '/' . $tabel_e4 . '/tambah') ?>" enctype="multipart/form-data"
         method="post">
         <div class="modal-body">
           <div class="row">
             <div class="col-md-4">
+              <div class="form-group">
+                <select class="form-control float" required name="<?= $tabel_e4_field8_input ?>">
+                  <option value="<?= $tabel_e4_field8_value1 ?>"><?= $tabel_e4_field8_value1 ?></option>
+                  <option value="<?= $tabel_e4_field8_value2 ?>"><?= $tabel_e4_field8_value2 ?></option>
+                </select>
+                <label for="<?= $tabel_e4_field8_input ?>" class="form-label"><?= lang('select') ?>
+                  <?= $tabel_e4_field8_alias ?></label>
+              </div>
               <?= add_file('tabel_e4_field5', 'required') ?>
             </div>
             <div class="col-md-8">
@@ -105,7 +121,7 @@
   <div id="ubah<?= $tl_e4->$tabel_e4_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
-        <?= modal_header_id('Make changes to ' . $tabel_e4_alias, $tl_e4->$tabel_e4_field1) ?>
+        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_e4_alias'), $tl_e4->$tabel_e4_field1) ?>
 
 
         <!-- administrator tidak dapat mengubah password akun lain -->
@@ -114,11 +130,21 @@
           <div class="modal-body">
             <div class="row">
               <div class="col-md-5">
+                <div class="form-group">
+                  <select class="form-control float" required name="<?= $tabel_e4_field8_input ?>">
+                    <option selected hidden value="<?= $tl_e4->$tabel_e4_field8 ?>"><?= $tl_e4->$tabel_e4_field8 ?>
+                    </option>
+                    <option value="<?= $tabel_e4_field8_value1 ?>"><?= $tabel_e4_field8_value1 ?></option>
+                    <option value="<?= $tabel_e4_field8_value2 ?>"><?= $tabel_e4_field8_value2 ?></option>
+                  </select>
+                  <label for="<?= $tabel_e4_field8_input ?>" class="form-label"><?= lang('select') ?>
+                    <?= $tabel_e4_field8_alias ?></label>
+                </div>
                 <?= edit_file('tabel_e4', 'tabel_e4_field5', $tl_e4->$tabel_e4_field5, '') ?>
               </div>
               <div class="col-md-7">
                 <?= input_hidden('tabel_e4_field1', $tl_e4->$tabel_e4_field1, 'required') ?>
-                <?= input_edit($tl_e4->$tabel_e4_field1, 'text', 'tabel_e4_field3', $tl_e4->$tabel_e4_field3, 'required') ?>
+                <?= input_edit('text', 'tabel_e4_field3', $tl_e4->$tabel_e4_field3, 'required') ?>
                 <?= input_textarea('tabel_e4_field4', $tl_e4->$tabel_e4_field4, 'required') ?>
 
               </div>
@@ -137,6 +163,7 @@
   </div>
 
 
+
   <!-- modal lihat -->
   <div id="lihat<?= $tl_e4->$tabel_e4_field1 ?>" class="modal fade lihat">
     <div class="modal-dialog modal-lg">
@@ -147,7 +174,6 @@
           <div class="row">
             <div class="col-md-6">
               <?= tampil_image('400px', $tabel_e4, $tl_e4->$tabel_e4_field5, $tl_e4->$tabel_e4_field5) ?>
-
             </div>
             <div class="col-md-6">
               <div class="border border-dark">
@@ -157,6 +183,7 @@
 
               </div>
               <?= table_data(
+                row_data('tabel_e4_field2', $tl_e4->$tabel_e4_field2) .
                 row_data('tabel_e4_field6', $tl_e4->$tabel_e4_field6) .
                 row_data('tabel_e4_field7', $tl_e4->$tabel_e4_field7),
                 'text-dark bg-light'

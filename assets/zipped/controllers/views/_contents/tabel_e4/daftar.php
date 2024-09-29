@@ -75,7 +75,7 @@
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <?= modal_header('Tambah ' . $tabel_e4_alias, '') ?>
+      <?= modal_header(lang('add') . ' ' . lang('tabel_e4_alias'), '') ?>
       <form action="<?= site_url($language . '/' . $tabel_e4 . '/tambah') ?>" enctype="multipart/form-data"
         method="post">
         <div class="modal-body">
@@ -105,7 +105,7 @@
   <div id="ubah<?= $tl_e4->$tabel_e4_field1; ?>" class="modal fade ubah">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
-        <?= modal_header_id('Make changes to ' . $tabel_e4_alias, $tl_e4->$tabel_e4_field1) ?>
+        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_e4_alias'), $tl_e4->$tabel_e4_field1) ?>
 
 
         <!-- administrator tidak dapat mengubah password akun lain -->
@@ -118,7 +118,7 @@
               </div>
               <div class="col-md-7">
                 <?= input_hidden('tabel_e4_field1', $tl_e4->$tabel_e4_field1, 'required') ?>
-                <?= input_edit($tl_e4->$tabel_e4_field1, 'text', 'tabel_e4_field3', $tl_e4->$tabel_e4_field3, 'required') ?>
+                <?= input_edit('text', 'tabel_e4_field3', $tl_e4->$tabel_e4_field3, 'required') ?>
                 <?= input_textarea('tabel_e4_field4', $tl_e4->$tabel_e4_field4, 'required') ?>
 
               </div>
