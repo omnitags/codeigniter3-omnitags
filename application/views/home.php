@@ -10,7 +10,7 @@
             <div>
               <h1>Find a place that meets your needs</h1>
               <br>
-              <a href="<?= site_url($language . '/' . $tabel_f2) ?>" class="btn btn-primary mb-4">Book Now</a>
+              <a href="<?= site_url($tabel_f2) ?>" class="btn btn-primary mb-4">Book Now</a>
             </div>
           </div>
 
@@ -27,7 +27,7 @@
   case $tabel_c2_field6_value5: ?>
 
     <!-- method get supaya nilai dari form bisa tampil nanti (tidak langsung masuk ke database) -->
-    <!-- <form action="<?= site_url($language . '/' . $tabel_f2) ?>" method="get">
+    <!-- <form action="<?= site_url($tabel_f2) ?>" method="get">
       <div id="tour2" class="row justify-content-center align-items-end mt-2">
         <div class="col-md-2">
           <?= add_min_max('date', 'tabel_f2_field10', 'required oninput="myFunction1()"', date('Y-m-d'), '') ?>
