@@ -173,8 +173,8 @@ if (!function_exists('card_count')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = site_url($data['language'] . '/' . $data[$controller] . '/admin');
-        $detail = lang('detail') . ' >>';
+        $url = site_url($data[$controller] . '/admin');
+        $detail = 'Detail >>';
         
         return <<<HTML
         <div class="col-md-3 mt-2">
@@ -191,18 +191,5 @@ if (!function_exists('card_count')) {
             </div>
         </div>
         HTML;
-    }
-}
-
-// Generates a tooltip to generate the data from other data to prevent doing JOINs
-if (!function_exists('show_info_user')) {
-    function show_info_user($param1, $param2)
-    {
-        foreach ($param2->result() as $obj) {
-            if ($param1 == $obj->id_user) {
-                return $obj->nama;  // Assuming 'user_name' exists in tbl2
-            }
-        }
-        return 'No user found';
     }
 }

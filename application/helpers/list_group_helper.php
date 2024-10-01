@@ -10,7 +10,7 @@ if (!function_exists('list_group_nav')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = nav_url($data['language'] . '/' . $data[$tabel] . '/'. $place);
+        $url = nav_url($data[$tabel] . '/'. $place);
 
         return <<<HTML
         <a href="{$url}" class="list-group-item {$theme}">
