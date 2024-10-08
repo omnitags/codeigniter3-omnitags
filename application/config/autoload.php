@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'file', 'form', 'language');
+$autoload['helper'] = array('url', 'file', 'form');
 
 /*
 | -------------------------------------------------------------------
@@ -133,30 +133,31 @@ $autoload['language'] = array('en');
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array(
-  'M_omnitags' => 'tl_ot',
-  'M_tabel_a1' => 'tl_a1',
-  'M_tabel_b1' => 'tl_b1',
-  'M_tabel_b2' => 'tl_b2',
-  'M_tabel_b5' => 'tl_b5',
-  'M_tabel_b6' => 'tl_b6',
-  'M_tabel_b7' => 'tl_b7',
-  'M_tabel_b8' => 'tl_b8',
-  'M_tabel_b9' => 'tl_b9',
-  'M_tabel_b10' => 'tl_b10',
-  'M_tabel_b11' => 'tl_b11',
-  'M_tabel_c1' => 'tl_c1',
-  'M_tabel_c2' => 'tl_c2',
-  'M_tabel_c3' => 'tl_c3',
-  'M_tabel_c4' => 'tl_c4',
-  'M_tabel_d3' => 'tl_d3',
-  'M_tabel_d4' => 'tl_d4',
-  'M_tabel_e1' => 'tl_e1',
-  'M_tabel_e2' => 'tl_e2',
-  'M_tabel_e3' => 'tl_e3',
-  'M_tabel_e4' => 'tl_e4',
-  'M_tabel_f1' => 'tl_f1',
-  'M_tabel_f2' => 'tl_f2',
-  'M_tabel_f3' => 'tl_f3',
-  'M_tabel_f4' => 'tl_f4',
-  'M_tabel_f5' => 'tl_f5',
+  'Omnitags' => 'tl_ot',
+  'Tabel_a1' => 'tl_a1',
+  'Tabel_b1' => 'tl_b1',
+  'Tabel_b2' => 'tl_b2',
+  'Tabel_b5' => 'tl_b5',
+  'Tabel_b6' => 'tl_b6',
+  'Tabel_b7' => 'tl_b7',
+  'Tabel_b8' => 'tl_b8',
+  'Tabel_b9' => 'tl_b9',
+  'Tabel_b10' => 'tl_b10',
+  'Tabel_b11' => 'tl_b11',
+  'Tabel_c1' => 'tl_c1',
+  'Tabel_c2' => 'tl_c2',
+  'Tabel_d3' => 'tl_d3',
+  'Tabel_d4' => 'tl_d4',
+  'Tabel_e1' => 'tl_e1',
+  'Tabel_e2' => 'tl_e2',
+  'Tabel_e3' => 'tl_e3',
+  'Tabel_e4' => 'tl_e4',
+  'Tabel_e5' => 'tl_e5',
+  'Tabel_e6' => 'tl_e6',
+  'Tabel_e7' => 'tl_e7',
+  'Tabel_e8' => 'tl_e8',
+  'Tabel_f1' => 'tl_f1',
+  'Tabel_f2' => 'tl_f2',
+  'Tabel_f3' => 'tl_f3',
+  'Tabel_f4' => 'tl_f4',
 );
