@@ -399,7 +399,7 @@ if (!class_exists('OmnitagsController')) {
         // adding the actual notif to all user based on c2_field1
         public function add_notif_all($msg, $type, $extra)
         {
-            $users = $this->tl_d3->get_d3_by_field('tabel_c2_field1', userdata('id'));
+            $users = $this->tl_d3->get_d3_by_field('tabel_d3_field2', userdata('id'));
 
             if ($users->num_rows() < 2) {
                 $notif = array(
