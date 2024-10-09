@@ -159,8 +159,8 @@ if (!class_exists('OmnitagsController')) {
             date_default_timezone_set($this->aliases['timezone']);
             $this->tabel_a1_field1 = 1;
 
-            $this->theme = $this->tl_b7->tema($this->tabel_a1_field1)->result();
-            $this->theme_id = $this->theme[0]->id;
+            $this->theme = $this->tl_b7->theme($this->tabel_a1_field1)->result();
+            $this->theme_id = $this->theme[0]->id_theme;
 
             $this->notif_limit = $this->tl_b9->get_b9_with_b8_limit(userdata('id'))->result();
             $this->notif_null = $this->tl_b9->get_b9_by_field(['tabel_b9_field2', 'tabel_b9_field6'], [userdata('id'), NULL]);
