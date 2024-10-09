@@ -42,7 +42,7 @@
         $tl_e5->$tabel_e5_field2,
         btn_lihat($tl_e5->$tabel_e5_field1) . ' ' .
         btn_edit($tl_e5->$tabel_e5_field1),
-        'text-white bg-danger',
+        'text-dark bg-light',
         'col-md-3',
         $tabel_e5,
       );

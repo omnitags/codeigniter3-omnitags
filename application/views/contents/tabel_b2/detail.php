@@ -3,7 +3,7 @@
   <?php } else {
     $counter = 1;
     foreach ($tbl_b2->result() as $tl_b2): ?>
-      <img src="img/<?= $tabel_b2 ?>/<?= $tl_b2->$tabel_b2_field4 ?>" class="img-fluid rounded">
+      <img src="img/<?= $tabel_b2 ?>/<?= $tl_b2->$tabel_b2_field4 ?>" class="img-fluid shadow-sm rounded">
       <h1 class="text-center"><?= $tl_b2->$tabel_b2_field3 ?></h1>
       <hr>
       <div class="row">

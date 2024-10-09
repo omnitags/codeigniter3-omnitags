@@ -65,7 +65,7 @@
         btn_lihat($tl_e3->$tabel_e3_field1) . ' ' .
         btn_edit($tl_e3->$tabel_e3_field1) . ' ' .
         btn_hapus('tabel_e3', $tl_e3->$tabel_e3_field1),
-        'text-white bg-danger',
+        'text-dark bg-light',
         'col-md-3',
         $tabel_e3
       );

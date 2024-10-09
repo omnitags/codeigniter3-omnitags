@@ -5,14 +5,12 @@ class Tabel_b8 extends CI_Model
 {
 	public function get_all_b8()
 	{
-		$this->db->where('deleted_at', NULL);
 		$this->db->order_by('id_notif_type', 'DESC');
 		return $this->db->get($this->aliases['tabel_b8']);
 	}
 	
 	public function get_all_b8_archive()
 	{
-		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by('id_notif_type', 'DESC');
 		return $this->db->get($this->aliases['tabel_b8']);
 	}
@@ -28,7 +26,6 @@ class Tabel_b8 extends CI_Model
 			$this->db->where($this->aliases[$fields], $params);
 		}
 		
-		$this->db->where('deleted_at', NULL);
 		$this->db->order_by('id_notif_type', 'DESC');
 		return $this->db->get($this->aliases['tabel_b8']);
 	}
@@ -44,7 +41,6 @@ class Tabel_b8 extends CI_Model
 			$this->db->where($this->aliases[$fields], $params);
 		}
 		
-		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by('id_notif_type', 'DESC');
 		return $this->db->get($this->aliases['tabel_b8']);
 	}

@@ -65,7 +65,7 @@
         $tl_e2->$tabel_e2_field2,
         btn_lihat($tl_e2->$tabel_e2_field1) . ' ' .
         btn_edit($tl_e2->$tabel_e2_field1),
-        'text-white bg-danger',
+        'text-dark bg-light',
         'col-md-3',
         $tabel_e2,
       );

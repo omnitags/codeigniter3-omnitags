@@ -37,7 +37,7 @@
         btn_lihat($tl_c2->$tabel_c2_field1) . ' ' .
         btn_edit($tl_c2->$tabel_c2_field1) . ' ' .
         btn_hapus('tabel_c2', $tl_c2->$tabel_c2_field1),
-        'text-white bg-danger',
+        'text-dark bg-light',
         'col-md-3',
         $tabel_c2,
       );
