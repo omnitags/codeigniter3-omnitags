@@ -90,7 +90,7 @@
 </div>
 
 
-<div id="table-view" class="table-responsive shadow-sm data-view" style="display: none;">
+<div id="table-view" class="table-responsive data-view" style="display: none;">
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
