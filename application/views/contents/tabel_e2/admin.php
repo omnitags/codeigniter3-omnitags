@@ -29,24 +29,24 @@
 <div id="card-view" class="data-view active">
   <div class="row">
     <?php if (empty($tbl_e2->result())) {
-    load_view('partials/no_data');
-  } else {
-    $counter = 1;
-    foreach ($tbl_e2->result() as $tl_e2):
-      echo card_regular(
-        $counter,
-        $tl_e2->$tabel_e2_field1,
-        "ID: " . $tl_e2->$tabel_e2_field1,
-        $tl_e2->$tabel_e2_field2,
-        btn_lihat($tl_e2->$tabel_e2_field1) . ' ' .
-        btn_edit($tl_e2->$tabel_e2_field1),
-        'text-light bg-dark',
-        'col-md-3',
-        $tabel_e2,
-      );
-    $counter++;
-    endforeach;
-  } ?>
+      load_view('partials/no_data');
+    } else {
+      $counter = 1;
+      foreach ($tbl_e2->result() as $tl_e2):
+        echo card_regular(
+          $counter,
+          $tl_e2->$tabel_e2_field1,
+          "ID: " . $tl_e2->$tabel_e2_field1,
+          $tl_e2->$tabel_e2_field2,
+          btn_lihat($tl_e2->$tabel_e2_field1) . ' ' .
+          btn_edit($tl_e2->$tabel_e2_field1),
+          'text-light bg-dark',
+          'col-md-3',
+          $tabel_e2,
+        );
+        $counter++;
+      endforeach;
+    } ?>
 
   </div>
   <div class="row">
@@ -63,6 +63,7 @@
         <th><?= $tabel_e2_field1_alias ?></th>
         <th><?= $tabel_e2_field2_alias ?></th>
         <th><?= $tabel_e2_field6_alias ?></th>
+        <th><?= $tabel_e2_field7_alias ?></th>
         <th>Action</th>
       </tr>
     </thead>
@@ -74,6 +75,7 @@
           <td><?= $tl_e2->$tabel_e2_field1; ?></td>
           <td><?= $tl_e2->$tabel_e2_field2 ?></td>
           <td><?= $tl_e2->$tabel_e2_field6 ?></td>
+          <td><?= $tl_e2->$tabel_e2_field7 ?></td>
           <td>
             <?= btn_lihat($tl_e2->$tabel_e2_field1) ?>
             <?= btn_edit($tl_e2->$tabel_e2_field1) ?>
@@ -108,6 +110,8 @@
             'required'
           ); ?>
 
+          <?= add_min_max('date', 'tabel_e2_field7', '', '', '') ?>
+
         </div>
 
         <!-- memunculkan notifikasi modal -->
@@ -133,9 +137,9 @@
           <div class="modal-body">
             <?= input_hidden('tabel_e2_field1', $tl_e2->$tabel_e2_field1, 'required') ?>
             <?= edit_min_max('number', 'tabel_e2_field2', $tl_e2->$tabel_e2_field2, 'required', '', '') ?>
-            <?= edit_min_max('decimal', 'tabel_e2_field3', $tl_e2->$tabel_e2_field3, '', '', '') ?>
-            <?= edit_min_max('decimal', 'tabel_e2_field4', $tl_e2->$tabel_e2_field4, '', '', '') ?>
-            <?= edit_min_max('decimal', 'tabel_e2_field5', $tl_e2->$tabel_e2_field5, '', '', '') ?>
+            <?= edit_min_max('number', 'tabel_e2_field3', $tl_e2->$tabel_e2_field3, '', '', '') ?>
+            <?= edit_min_max('number', 'tabel_e2_field4', $tl_e2->$tabel_e2_field4, '', '', '') ?>
+            <?= edit_min_max('number', 'tabel_e2_field5', $tl_e2->$tabel_e2_field5, '', '', '') ?>
 
             <?= select_edit(
               'tabel_e2_field6',
@@ -145,6 +149,7 @@
               $tabel_e3_field2,
               'required'
             ); ?>
+            <?= edit_min_max('date', 'tabel_e2_field7', $tl_e2->$tabel_e2_field7, '', '', '') ?>
 
           </div>
 
@@ -182,7 +187,8 @@
                 <?= table_data(
                   row_data('tabel_e2_field4', $tl_e2->$tabel_e2_field4) .
                   row_data('tabel_e2_field5', $tl_e2->$tabel_e2_field5) .
-                  row_data('tabel_e2_field6', $tl_e2->$tabel_e2_field6),
+                  row_data('tabel_e2_field6', $tl_e2->$tabel_e2_field6) .
+                  row_data('tabel_e2_field7', $tl_e2->$tabel_e2_field7),
                   'table-light'
                 ) ?>
               </div>

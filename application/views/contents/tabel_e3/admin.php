@@ -99,7 +99,7 @@
 
           <?= input_add('text', 'tabel_e3_field2', 'required') ?>
           <?= input_add('text', 'tabel_e3_field3', 'required') ?>
-          <?= add_min_max('date', 'tabel_e3_field4', 'required', '', '') ?>
+          <?= add_min_max('date', 'tabel_e3_field4', '', '', '') ?>
 
           <?= select_add(
             'tabel_e3_field5',
@@ -134,7 +134,7 @@
           <div class="modal-body">
             <?= input_edit($tl_e3->$tabel_e3_field1, 'text', 'tabel_e3_field2', $tl_e3->$tabel_e3_field2, 'required') ?>
             <?= input_edit($tl_e3->$tabel_e3_field1, 'text', 'tabel_e3_field3', $tl_e3->$tabel_e3_field3, 'required') ?>
-            <?= edit_min_max( 'date', 'tabel_e3_field4', $tl_e3->$tabel_e3_field4, 'required', '', '') ?>
+            <?= edit_min_max( 'date', 'tabel_e3_field4', $tl_e3->$tabel_e3_field4, '', '', '') ?>
 
             
             
