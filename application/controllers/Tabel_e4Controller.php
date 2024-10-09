@@ -98,20 +98,11 @@ class Tabel_e4Controller extends OmnitagsController
 			'tambah'
 		);
 
-		$gambar = $this->upload_new_image(
-			$this->v_post['tabel_e4_field2'],
-			$this->v_upload_path['tabel_e4'],
-			'tabel_e4_field3',
-			$this->file_type1,
-			''
-		);
-
 		$code = $this->add_code('tabel_e4', 'id', 5, '04');
 
 		$data = array(
 			'id' => $code,
 			$this->aliases['tabel_e4_field2'] => $this->v_post['tabel_e4_field2'],
-			$this->aliases['tabel_e4_field3'] => $gambar,
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
@@ -152,18 +143,8 @@ class Tabel_e4Controller extends OmnitagsController
 			'ubah' . $code
 		);
 
-		$gambar = $this->change_image(
-			$this->v_post['tabel_e4_field2'] . "_" . $this->aliases['tabel_e4_field3'],
-			$tabel[0]->{$this->aliases['tabel_e4_field3']},
-			$this->v_upload_path['tabel_e4'],
-			'tabel_e4_field3',
-			$this->file_type1,
-			$tabel
-		);
-
 		$data = array(
 			$this->aliases['tabel_e4_field2'] => $this->v_post['tabel_e4_field2'],
-			$this->aliases['tabel_e4_field3'] => $gambar,
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
 			'updated_by' => userdata('id'),

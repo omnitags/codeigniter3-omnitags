@@ -36,7 +36,7 @@
   } else {
     $counter = 1;
     foreach ($tbl_e4->result() as $tl_e4):
-      echo card_file(
+      echo card_regular(
         $counter,
         $tl_e4->$tabel_e4_field1,
         $tabel_e4_field1_alias . ": " . $tl_e4->$tabel_e4_field1,
@@ -45,8 +45,7 @@
         btn_edit($tl_e4->$tabel_e4_field1),
         'text-white bg-danger',
         'col-md-3',
-        $tabel_e4,
-        $tl_e4->$tabel_e4_field3
+        $tabel_e4
       );
     $counter++;
     endforeach;
@@ -66,7 +65,6 @@
         <th>No</th>
         <th><?= $tabel_e4_field1_alias ?></th>
         <th><?= $tabel_e4_field2_alias ?></th>
-        <th><?= $tabel_e4_field3_alias ?></th>
         <th>Action</th>
       </tr>
     </thead>
@@ -77,7 +75,6 @@
           <td></td>
           <td><?= $tl_e4->$tabel_e4_field1; ?></td>
           <td><?= $tl_e4->$tabel_e4_field2 ?></td>
-          <td><?= $tl_e4->$tabel_e4_field3 ?></td>
           <td>
             <?= btn_lihat($tl_e4->$tabel_e4_field1) ?>
             <?= btn_edit($tl_e4->$tabel_e4_field1) ?>
@@ -99,7 +96,6 @@
       <form action="<?= site_url($tabel_e4 . '/tambah') ?>" method="post" enctype="multipart/form-data">
         <div class="modal-body">
           <?= input_add('text', 'tabel_e4_field2', 'required') ?>
-          <?= add_file('tabel_e4_field3', 'required') ?>
         </div>
         <!-- memunculkan notifikasi modal -->
         <p class="small text-center text-danger"><?= get_flashdata('pesan_tambah') ?></p>
@@ -124,7 +120,6 @@
           <div class="modal-body">
             <?= input_hidden('tabel_e4_field1', $tl_e4->$tabel_e4_field1, 'required') ?>
             <?= input_edit($tl_e4->$tabel_e4_field1, 'text', 'tabel_e4_field2', $tl_e4->$tabel_e4_field2, 'required') ?>
-            <?= edit_file($tabel_e4, 'tabel_e4_field3', $tl_e4->$tabel_e4_field3, 'required') ?>
           </div>
 
           <!-- memunculkan notifikasi modal -->
@@ -148,8 +143,7 @@
         <form>
           <div class="modal-body">
             <?= table_data(
-              row_data('tabel_e4_field2', $tl_e4->$tabel_e4_field2) . 
-              row_file($tabel_e4, 'tabel_e4_field3', $tl_e4->$tabel_e4_field3),
+              row_data('tabel_e4_field2', $tl_e4->$tabel_e4_field2),
               'table-light'
             ) ?>
 
