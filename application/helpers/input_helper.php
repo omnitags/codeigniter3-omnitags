@@ -357,8 +357,8 @@ if (!function_exists('input_ckeditor')) {
         }
 
         return <<<HTML
+        <label>{$alias} {$msg}</label>
         <div class="form-group shadow-sm">
-            <label>{$alias} {$msg}</label>
             <textarea class="ckeditor form-control" name="{$input}" placeholder=""
             {$required} cols="30" rows="10">{$value}</textarea>
         </div>

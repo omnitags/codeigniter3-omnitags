@@ -66,7 +66,7 @@
         $tl_b10->$tabel_b10_field3,
         $tabel_b10_field4_alias . ": " . $tl_b10->$tabel_b10_field4,
         btn_lihat($tl_b10->$tabel_b10_field1),
-        'text-dark bg-light',
+        'text-light bg-dark',
         'col-md-3',
         $tabel_b10,
         $tl_b10->$tabel_b10_field2,
