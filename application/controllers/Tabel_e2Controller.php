@@ -50,24 +50,12 @@ class Tabel_e2Controller extends OmnitagsController
 		$this->declarew();
 		$this->page_session_3();
 
-		$param1 = $this->v_get['tabel_e2_field3'];
-
-		$filter = $this->tl_e2->get_e2_by_field('tabel_e2_field3', $param1);
-
-		if (empty($param1)) {
-			$result = $this->tl_e2->get_all_e2();
-		} else {
-			$result = $filter;
-		}
-
 		$data1 = array(
 			'title' => $this->title['tabel_e2_alias_v3'],
 			'konten' => $this->v3['tabel_e2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e2']),
-			'tbl_e2' => $result,
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
-			'tabel_e2_field3_value' => $param1,
-			'stuff' => firebase_get_data('/teachers')
+			'tbl_e2' => $this->tl_e2->get_all_e2(),
+			'tbl_e3' => $this->tl_e3->get_all_e3(),
 		);
 
 		$this->load_page('tabel_e2', 'layouts/template_admin', $data1);

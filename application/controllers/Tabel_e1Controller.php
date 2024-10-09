@@ -19,7 +19,7 @@ class Tabel_e1Controller extends OmnitagsController
 			'konten' => $this->v3['tabel_e1'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e1']),
 			'tbl_e1' => $this->tl_e1->get_all_e1(),
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			'tbl_e2' => $this->tl_e2->get_all_e2(),
 		);
 
 		$this->load_page('tabel_e1', 'layouts/template_admin', $data1);
