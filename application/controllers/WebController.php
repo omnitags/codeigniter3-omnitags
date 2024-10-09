@@ -126,7 +126,7 @@ class WebController extends OmnitagsController
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'invalid'),
 		);
 
-		$this->load_page('', 'errors/invalid', $data1);
+		$this->load_page_error('', 'errors/invalid', $data1);
 	}
 
 	// Page that will be loaded if a page is visisted by a user with the wrong level
@@ -139,7 +139,7 @@ class WebController extends OmnitagsController
 			'dekor' => "",
 		);
 
-		$this->load_page('', 'errors/overload', $data1);
+		$this->load_page_error('', 'errors/overload', $data1);
 	}
 
 	// Page that will be loaded if a page is visisted by a user with the wrong level
@@ -152,7 +152,7 @@ class WebController extends OmnitagsController
 			'dekor' => $this->tl_b1->dekor($this->theme_id, 'no_level'),
 		);
 
-		$this->load_page('', 'errors/no_level', $data1);
+		$this->load_page_error('', 'errors/no_level', $data1);
 	}
 
 	// Page that will be loaded when the page is not found/404
@@ -165,7 +165,7 @@ class WebController extends OmnitagsController
 			'dekor' => $this->tl_b1->dekor($this->theme_id, '404'),
 		);
 
-		$this->load_page('', 'errors/404', $data1);
+		$this->load_page_error('', 'errors/404', $data1);
 	}
 }
  
