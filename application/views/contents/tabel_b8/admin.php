@@ -43,7 +43,7 @@
           btn_lihat($tl_b8->$tabel_b8_field1) . ' ' .
           btn_edit($tl_b8->$tabel_b8_field1) . ' ' .
           btn_hapus('tabel_b8', $tl_b8->$tabel_b8_field1),
-          'text-white bg-danger',
+          'text-dark bg-light',
           'col-md-4',
           $tabel_b8,
         );
@@ -132,7 +132,7 @@
             <?= input_hidden('tabel_b8_field1', $tl_b8->$tabel_b8_field1, 'required') ?>
             <?= input_edit($tl_b8->$tabel_b8_field1, 'text', 'tabel_b8_field2', $tl_b8->$tabel_b8_field2, 'required') ?>
             <?= input_edit($tl_b8->$tabel_b8_field1, 'text', 'tabel_b8_field3', $tl_b8->$tabel_b8_field3, 'required') ?>
-            <?= input_edit($tl_b8->$tabel_b8_field1, 'text', 'tabel_b8_field4', html_entity_decode($tl_b8->$tabel_b8_field4), 'required') ?>
+            <?= input_edit($tl_b8->$tabel_b8_field1, 'text', 'tabel_b8_field4', htmlspecialchars($tl_b8->$tabel_b8_field4), 'required') ?>
           </div>
 
           <!-- memunculkan notifikasi modal -->

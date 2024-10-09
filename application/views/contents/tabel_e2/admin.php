@@ -29,24 +29,24 @@
 <div id="card-view" class="data-view active">
   <div class="row">
     <?php if (empty($tbl_e2->result())) {
-      load_view('partials/no_data');
-    } else {
-      $counter = 1;
-      foreach ($tbl_e2->result() as $tl_e2):
-        echo card_regular(
-          $counter,
-          $tl_e2->$tabel_e2_field1,
-          "ID: " . $tl_e2->$tabel_e2_field1,
-          $tl_e2->$tabel_e2_field2,
-          btn_lihat($tl_e2->$tabel_e2_field1) . ' ' .
-          btn_edit($tl_e2->$tabel_e2_field1),
-          'text-white bg-danger',
-          'col-md-3',
-          $tabel_e2,
-        );
-        $counter++;
-      endforeach;
-    } ?>
+    load_view('partials/no_data');
+  } else {
+    $counter = 1;
+    foreach ($tbl_e2->result() as $tl_e2):
+      echo card_regular(
+        $counter,
+        $tl_e2->$tabel_e2_field1,
+        "ID: " . $tl_e2->$tabel_e2_field1,
+        $tl_e2->$tabel_e2_field2,
+        btn_lihat($tl_e2->$tabel_e2_field1) . ' ' .
+        btn_edit($tl_e2->$tabel_e2_field1),
+        'text-dark bg-light',
+        'col-md-3',
+        $tabel_e2,
+      );
+    $counter++;
+    endforeach;
+  } ?>
 
   </div>
   <div class="row">

@@ -47,7 +47,7 @@
           href="' . site_url($tabel_b7 . $tl_b7->$tabel_b7_field1 . '/delete') . '">
           <i class="fas fa-trash"></i></a>' : ''
           ),
-          'text-white bg-danger',
+          'text-dark bg-light',
           'col-md-3',
           $tabel_b7,
           $tl_b7->$tabel_b7_field3,

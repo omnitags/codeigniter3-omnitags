@@ -75,7 +75,7 @@
           btn_lihat($tl_b1->$tabel_b1_field1) . ' ' .
           btn_edit($tl_b1->$tabel_b1_field1) . ' ' .
           btn_hapus('tabel_b1', $tl_b1->$tabel_b1_field1),
-          'text-white bg-danger',
+          'text-dark bg-light',
           'col-md-3',
           $tabel_b1,
           $tl_b1->$tabel_b1_field4,
@@ -90,7 +90,7 @@
 </div>
 
 
-<div id="table-view" class="table-responsive data-view" style="display: none;">
+<div id="table-view" class="table-responsive shadow-sm data-view" style="display: none;">
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
