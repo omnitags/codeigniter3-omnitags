@@ -1,6 +1,6 @@
 <div class="row mb-2 align-items-center">
   <div class="col-md-9 d-flex align-items-center">
-    <h1><?= xss_clean($title) ?><?= $phase ?></h1>
+    <h1><?= $title ?><?= count_data($tbl_b1) ?><?= $phase ?></h1>
   </div>
   <div class="col-md-3 text-right">
     <?php foreach ($dekor->result() as $dk): ?>
@@ -28,35 +28,35 @@
 <div id="card-view" class="data-view active">
   <div class="row">
     <?php if (empty($tbl_b7->result())) {
-    load_view('partials/no_data');
-  } else {
-    $counter = 1;
-    foreach ($tbl_b7->result() as $tl_b7):
-      echo card_file(
-        $counter,
-        $tl_b7->$tabel_b7_field1,
-        $tl_b7->$tabel_b7_field2,
-        btn_field($tabel_b7_field3 . $tl_b7->$tabel_b7_field1, '<i class="fas fa-globe"></i>') . ' ' .
-        btn_field($tabel_b7_field4 . $tl_b7->$tabel_b7_field1, '<i class="fas fa-rocket"></i>') . ' ' .
-        btn_field($tabel_b7_field5 . $tl_b7->$tabel_b7_field1, '<i class="fas fa-image"></i>'),
-        btn_lihat($tl_b7->$tabel_b7_field1) . ' ' .
-        btn_edit($tl_b7->$tabel_b7_field1) . ' ' .
-        ($tl_b7->$tabel_b7_field2 != $database ?
-          '<a class="btn mr-1 mb-2 btn-light text-danger"
+      load_view('partials/no_data');
+    } else {
+      $counter = 1;
+      foreach ($tbl_b7->result() as $tl_b7):
+        echo card_file(
+          $counter,
+          $tl_b7->$tabel_b7_field1,
+          $tl_b7->$tabel_b7_field2,
+          btn_field($tabel_b7_field3 . $tl_b7->$tabel_b7_field1, '<i class="fas fa-globe"></i>') . ' ' .
+          btn_field($tabel_b7_field4 . $tl_b7->$tabel_b7_field1, '<i class="fas fa-rocket"></i>') . ' ' .
+          btn_field($tabel_b7_field5 . $tl_b7->$tabel_b7_field1, '<i class="fas fa-image"></i>'),
+          btn_lihat($tl_b7->$tabel_b7_field1) . ' ' .
+          btn_edit($tl_b7->$tabel_b7_field1) . ' ' .
+          ($tl_b7->$tabel_b7_field2 != $database ?
+            '<a class="btn mr-1 mb-2 btn-light text-danger"
           onclick="return confirm(\'Tindakan anda akan menghapus hal-hal berikut:\n' . $tabel_b7_alias . '\n' . $tabel_b1_alias . '\n' . $tabel_b2_alias . '\n' . $tabel_b5_alias . '\n' . $tabel_b6_alias . '\nHapus data?\')"
           href="' . site_url($tabel_b7 . $tl_b7->$tabel_b7_field1 . '/delete') . '">
           <i class="fas fa-trash"></i></a>' : ''
-        ),
-        'text-white bg-danger',
-        'col-md-3',
-        $tabel_b7,
-        $tl_b7->$tabel_b7_field3,
-      );
-    $counter++;
-    endforeach;
-  } ?>
+          ),
+          'text-white bg-danger',
+          'col-md-3',
+          $tabel_b7,
+          $tl_b7->$tabel_b7_field3,
+        );
+        $counter++;
+      endforeach;
+    } ?>
 
-</div>
+  </div>
   <div class="row">
     <?= card_pagination() ?>
   </div>
@@ -120,8 +120,7 @@
     <div class="modal-content">
       <?= modal_header('Add ' . $tabel_b7_alias, '') ?>
 
-      <form action="<?= site_url($tabel_b7 . '/tambah') ?>" enctype="multipart/form-data"
-        method="post">
+      <form action="<?= site_url($tabel_b7 . '/tambah') ?>" enctype="multipart/form-data" method="post">
         <div class="modal-body">
           <?= input_edit($tl_b7->$tabel_b7_field1, 'text', 'tabel_b7_field2', $database, 'required') ?>
           <?= input_ckeditor('tabel_b7_field6', '', 'required') ?>
@@ -146,8 +145,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <?= modal_header_id('Make changes to ' . $tabel_b7_alias, $tl_b7->$tabel_b7_field1) ?>
-        <form action="<?= site_url($tabel_b7 . '/update') ?>" method="post"
-          enctype="multipart/form-data">
+        <form action="<?= site_url($tabel_b7 . '/update') ?>" method="post" enctype="multipart/form-data">
           <div class="modal-body">
 
             <?= input_hidden('tabel_b7_field1', $tl_b7->$tabel_b7_field1, 'required') ?>
@@ -173,8 +171,7 @@
       <div class="modal-content">
         <?= modal_header_id('Make changes to ' . $tabel_b7_field3_alias, $tl_b7->$tabel_b7_field1) ?>
 
-        <form action="<?= site_url($tabel_b7 . '/update_favicon') ?>" method="post"
-          enctype="multipart/form-data">
+        <form action="<?= site_url($tabel_b7 . '/update_favicon') ?>" method="post" enctype="multipart/form-data">
           <div class="modal-body">
 
             <?= input_hidden('tabel_b7_field1', $tl_b7->$tabel_b7_field1, 'required') ?>
@@ -202,8 +199,7 @@
       <div class="modal-content">
         <?= modal_header_id('Make changes to ' . $tabel_b7_field4_alias, $tl_b7->$tabel_b7_field1) ?>
 
-        <form action="<?= site_url($tabel_b7 . '/update_logo') ?>" method="post"
-          enctype="multipart/form-data">
+        <form action="<?= site_url($tabel_b7 . '/update_logo') ?>" method="post" enctype="multipart/form-data">
           <div class="modal-body">
 
             <?= input_hidden('tabel_b7_field1', $tl_b7->$tabel_b7_field1, 'required') ?>
@@ -231,8 +227,7 @@
       <div class="modal-content">
         <?= modal_header_id('Make changes to ' . $tabel_b7_field5_alias, $tl_b7->$tabel_b7_field1) ?>
 
-        <form action="<?= site_url($tabel_b7 . '/update_foto') ?>" method="post"
-          enctype="multipart/form-data">
+        <form action="<?= site_url($tabel_b7 . '/update_foto') ?>" method="post" enctype="multipart/form-data">
           <div class="modal-body">
 
             <?= input_hidden('tabel_b7_field1', $tl_b7->$tabel_b7_field1, 'required') ?>
