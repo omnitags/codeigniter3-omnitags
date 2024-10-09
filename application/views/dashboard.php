@@ -16,9 +16,9 @@
 <?php switch (userdata($tabel_c2_field6)) {
   case $tabel_c2_field6_value3: ?>
     <div class="row">
-      <?= card_count($tabel_c2_alias, 'tabel_c2', 'text-dark bg-light', $tbl_c2) ?>
-      <!-- ?= card_count($tabel_c1_alias, 'tabel_c1', 'text-dark bg-light', $tbl_c1) ?> -->
-      <?= card_count($tabel_d3_alias, 'tabel_d3', 'text-dark bg-light', $tbl_d3) ?>
+      <?= card_count($tabel_c2_alias, 'tabel_c2', 'text-light bg-dark', $tbl_c2) ?>
+      <!-- ?= card_count($tabel_c1_alias, 'tabel_c1', 'text-light bg-dark', $tbl_c1) ?> -->
+      <?= card_count($tabel_d3_alias, 'tabel_d3', 'text-light bg-dark', $tbl_d3) ?>
 
     </div>
 
@@ -39,20 +39,20 @@
 
   <?php switch (userdata($tabel_c2_field6)) {
     case $tabel_c2_field6_value3: ?>
-      <?= card_count($tabel_e3_alias, 'tabel_e3', 'text-dark bg-light', $tbl_e3) ?>
-      <?= card_count($tabel_e4_alias, 'tabel_e4', 'text-dark bg-light', $tbl_e4) ?>
-      <!-- ?= card_count($tabel_e2_alias, 'tabel_e2', 'text-dark bg-light', $tbl_e2) ?> -->
-      <!-- ?= card_count($tabel_e1_alias, 'tabel_e1', 'text-dark bg-light', $tbl_e1) ?> -->
+      <?= card_count($tabel_e3_alias, 'tabel_e3', 'text-light bg-dark', $tbl_e3) ?>
+      <?= card_count($tabel_e4_alias, 'tabel_e4', 'text-light bg-dark', $tbl_e4) ?>
+      <!-- ?= card_count($tabel_e2_alias, 'tabel_e2', 'text-light bg-dark', $tbl_e2) ?> -->
+      <!-- ?= card_count($tabel_e1_alias, 'tabel_e1', 'text-light bg-dark', $tbl_e1) ?> -->
       <?php break;
 
     case $tabel_c2_field6_value4: ?>
-      <?= card_count($tabel_e3_alias, 'tabel_e3', 'text-dark bg-light', $tbl_e3) ?>
-      <?= card_count($tabel_f2_alias, 'tabel_f2', 'text-dark bg-light', $tbl_f2) ?>
-      <?= card_count($tabel_f1_alias, 'tabel_f1', 'text-dark bg-light', $tbl_f1) ?>
+      <?= card_count($tabel_e3_alias, 'tabel_e3', 'text-light bg-dark', $tbl_e3) ?>
+      <?= card_count($tabel_f2_alias, 'tabel_f2', 'text-light bg-dark', $tbl_f2) ?>
+      <?= card_count($tabel_f1_alias, 'tabel_f1', 'text-light bg-dark', $tbl_f1) ?>
       <?php break;
 
     case $tabel_c2_field6_value2: ?>
-      <!-- ?= card_count($tabel_f3_alias, 'tabel_f3', 'text-dark bg-light', $tbl_f3) ?> -->
+      <!-- ?= card_count($tabel_f3_alias, 'tabel_f3', 'text-light bg-dark', $tbl_f3) ?> -->
       <?php break;
 
 

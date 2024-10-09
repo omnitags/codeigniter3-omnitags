@@ -49,7 +49,7 @@
             $tl_b9->$tabel_b9_field4 . '<br>' .
             $tl_b9->created_at,
             btn_lihat($tl_b9->$tabel_b9_field1) . btn_hapus_cepat('tabel_b9', $tl_b9->$tabel_b9_field1),
-            'text-dark bg-light',
+            'text-light bg-dark',
             'col-md-3',
             $tabel_b9,
           );

@@ -75,7 +75,7 @@
           btn_lihat($tl_b1->$tabel_b1_field1) . ' ' .
           btn_edit($tl_b1->$tabel_b1_field1) . ' ' .
           btn_hapus('tabel_b1', $tl_b1->$tabel_b1_field1),
-          'text-dark bg-light',
+          'text-light bg-dark',
           'col-md-3',
           $tabel_b1,
           $tl_b1->$tabel_b1_field4,

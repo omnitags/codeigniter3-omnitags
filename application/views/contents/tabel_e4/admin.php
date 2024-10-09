@@ -43,7 +43,7 @@
         $tl_e4->$tabel_e4_field2,
         btn_lihat($tl_e4->$tabel_e4_field1) . ' ' .
         btn_edit($tl_e4->$tabel_e4_field1),
-        'text-dark bg-light',
+        'text-light bg-dark',
         'col-md-3',
         $tabel_e4,
         $tl_e4->$tabel_e4_field3
