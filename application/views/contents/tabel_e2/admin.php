@@ -137,7 +137,6 @@
             </div>
             <div class="col-md-6">
               <?= input_textarea('tabel_e2_field5', '', 'required') ?>
-              <?= input_textarea('tabel_e2_field6', '', 'required') ?>
 
             </div>
           </div>
@@ -182,7 +181,6 @@
               </div>
               <div class="col-md-6">
                 <?= input_textarea('tabel_e2_field5', $tl_e2->$tabel_e2_field5, 'required') ?>
-                <?= input_textarea('tabel_e2_field6', $tl_e2->$tabel_e2_field6, 'required') ?>
 
               </div>
             </div>
@@ -223,7 +221,6 @@
                 <?= table_data(
                   row_data('tabel_e2_field4', $tl_e2->$tabel_e2_field4) .
                   row_data('tabel_e2_field5', $tl_e2->$tabel_e2_field5) .
-                  row_data('tabel_e2_field6', $tl_e2->$tabel_e2_field6),
                   'table-light'
                 ) ?>
               </div>

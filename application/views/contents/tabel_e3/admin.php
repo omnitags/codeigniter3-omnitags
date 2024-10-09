@@ -133,14 +133,6 @@
             'required'
           ); ?>
 
-          <?= select_add(
-            'tabel_e3_field5',
-            $tbl_e1,
-            $tabel_e1_field1,
-            $tabel_e1_field2,
-            'required'
-          ); ?>
-
         </div>
 
         <!-- memunculkan notifikasi modal -->
@@ -173,15 +165,6 @@
               $tbl_e4,
               $tabel_e4_field1,
               $tabel_e4_field2,
-              'required'
-            ); ?>
-
-            <?= select_edit(
-              'tabel_e3_field5',
-              $tl_e3->$tabel_e3_field5,
-              $tbl_e1,
-              $tabel_e1_field1,
-              $tabel_e1_field2,
               'required'
             ); ?>
 

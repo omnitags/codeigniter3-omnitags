@@ -232,63 +232,24 @@ class Tabel_f2Controller extends OmnitagsController
 	{
 		// Functional requirement: Declare necessary configurations
 		$this->declarew();
-		$this->session_5();
+		$this->session_3();
 
 		// Security: Input Sanitization and Validation
-		$inputs = [
-			'tabel_f2_field4',
-			'tabel_f2_field8',
-			'tabel_f2_field10',
-			'tabel_f2_field11',
-			'tabel_f2_field2',
-			'tabel_f2_field3',
-			'tabel_f2_field5',
-			'tabel_f2_field6',
-			'tabel_f2_field7'
-		];
-
-		foreach ($inputs as $input) {
-			$input_value = htmlspecialchars(trim($this->v_post[$input]));
-			if (empty($input_value)) {
-				// Error Handling: Set error flash message for invalid input
-				set_flashdata($this->views['flash1'], "Invalid input. Please provide valid data.");
-				set_flashdata($this->views['flash1'], $this->views['flash1_func1']);
-				// Functional requirement: Redirect user to 'tabel_f2' confirmation page
-				redirect(site_url($this->aliases['tabel_f2'] . '/konfirmasi'));
-			}
-		}
-
-		// Calculate total price based on date difference
-		$startTimeStamp = strtotime($this->v_post['tabel_f2_field10']);
-		$endTimeStamp = strtotime($this->v_post['tabel_f2_field11']);
-		$timedif = $endTimeStamp - $startTimeStamp;
-		$numberdays = $timedif / 60 / 60 / 24; // 86400 seconds in one day
-
-		$tabel_e4_field1 = $this->v_post['tabel_f2_field7'];
-		$tabel_e4 = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
-
-		// Calculate total price
-		$harga_total = ($numberdays * $tabel_e4[0]->{$this->aliases['tabel_f2_field9']});
-
-		// $id = get_next_code($this->aliases['tabel_e1'], 'id', 'FK');
-		// 'id' => $id,
+		validate_all(
+			array(
+				$this->v_post['tabel_e2_field2'],
+			),
+			$this->views['flash2'],
+			'tambah'
+		);
 
 		$data = [
 			'id' => '',
 			$this->aliases['tabel_f2_field2'] => $this->v_post['tabel_f2_field2'],
-			$this->aliases['tabel_f2_field3'] => $this->v_post['tabel_f2_field3'],
-			$this->aliases['tabel_f2_field4'] => $this->v_post['tabel_f2_field4'],
-			$this->aliases['tabel_f2_field5'] => $this->v_post['tabel_f2_field5'],
-			$this->aliases['tabel_f2_field6'] => $this->v_post['tabel_f2_field6'],
-			$this->aliases['tabel_f2_field7'] => $this->v_post['tabel_f2_field7'],
-			$this->aliases['tabel_f2_field8'] => $this->v_post['tabel_f2_field8'],
-			$this->aliases['tabel_f2_field9'] => $harga_total,
-			$this->aliases['tabel_f2_field10'] => $this->v_post['tabel_f2_field10'],
-			$this->aliases['tabel_f2_field11'] => $this->v_post['tabel_f2_field11'],
-			$this->aliases['tabel_f2_field12'] => $this->aliases['tabel_f2_field12_value1'],
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata("id"),
 		];
 
 		// Create temporary session for a specific duration
