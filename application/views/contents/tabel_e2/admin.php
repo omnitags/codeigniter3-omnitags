@@ -19,11 +19,11 @@
 
       <td class="pr-2">
         <?= select_edit(
-          'tabel_e2_field3',
-          $tabel_e2_field3_value,
-          $tbl_e4,
-          $tabel_e4_field1,
-          $tabel_e4_field2,
+          'tabel_e2_field6',
+          $tabel_e2_field6_value,
+          $tbl_e3,
+          $tabel_e3_field1,
+          $tabel_e3_field2,
           'required'
         ); ?>
       </td>
@@ -87,7 +87,7 @@
         <th>No</th>
         <th><?= $tabel_e2_field1_alias ?></th>
         <th><?= $tabel_e2_field2_alias ?></th>
-        <th><?= $tabel_e2_field3_alias ?></th>
+        <th><?= $tabel_e2_field6_alias ?></th>
         <th>Action</th>
       </tr>
     </thead>
@@ -98,7 +98,7 @@
           <td></td>
           <td><?= $tl_e2->$tabel_e2_field1; ?></td>
           <td><?= $tl_e2->$tabel_e2_field2 ?></td>
-          <td><?= $tl_e2->$tabel_e2_field3 ?></td>
+          <td><?= $tl_e2->$tabel_e2_field6 ?></td>
           <td>
             <?= btn_lihat($tl_e2->$tabel_e2_field1) ?>
             <?= btn_edit($tl_e2->$tabel_e2_field1) ?>
@@ -122,13 +122,16 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-md-6">
-              <?= input_add('text', 'tabel_e2_field2', 'required') ?>
+              <?= add_min_max('number', 'tabel_e2_field2', 'required', '', '') ?>
+              <?= add_min_max('decimal', 'tabel_e2_field3', 'required', '', '') ?>
+              <?= add_min_max('decimal', 'tabel_e2_field4', '', '', '') ?>
+              <?= add_min_max('decimal', 'tabel_e2_field5', '', '', '') ?>
 
               <?= select_add(
-                'tabel_e2_field3',
-                $tbl_e4,
-                $tabel_e4_field1,
-                $tabel_e4_field2,
+                'tabel_e2_field6',
+                $tbl_e3,
+                $tabel_e3_field1,
+                $tabel_e3_field2,
                 'required'
               ); ?>
 
@@ -168,13 +171,17 @@
             <div class="row">
               <div class="col-md-6">
                 <?= input_hidden('tabel_e2_field1', $tl_e2->$tabel_e2_field1, 'required') ?>
-                <?= input_edit($tl_e2->$tabel_e2_field1, 'text', 'tabel_e2_field2', $tl_e2->$tabel_e2_field2, 'required') ?>
+                <?= edit_min_max('number', 'tabel_e2_field2', $tl_e2->$tabel_e2_field2, 'required', '', '') ?>
+                <?= edit_min_max('decimal', 'tabel_e2_field3', $tl_e2->$tabel_e2_field3, '', '', '') ?>
+                <?= edit_min_max('decimal', 'tabel_e2_field4', $tl_e2->$tabel_e2_field4, '', '', '') ?>
+                <?= edit_min_max('decimal', 'tabel_e2_field5', $tl_e2->$tabel_e2_field5, '', '', '') ?>
+                
                 <?= select_edit(
-                  'tabel_e2_field3',
-                  $tl_e2->$tabel_e2_field3,
-                  $tbl_e4,
-                  $tabel_e4_field1,
-                  $tabel_e4_field2,
+                  'tabel_e2_field6',
+                  $tl_e2->$tabel_e2_field6,
+                  $tbl_e3,
+                  $tabel_e3_field1,
+                  $tabel_e3_field2,
                   'required'
                 ); ?>
                 <?= input_ckeditor('tabel_e2_field4', $tl_e2->$tabel_e2_field4, 'required') ?>
@@ -221,6 +228,7 @@
                 <?= table_data(
                   row_data('tabel_e2_field4', $tl_e2->$tabel_e2_field4) .
                   row_data('tabel_e2_field5', $tl_e2->$tabel_e2_field5) .
+                  row_data('tabel_e2_field6', $tl_e2->$tabel_e2_field6),
                   'table-light'
                 ) ?>
               </div>

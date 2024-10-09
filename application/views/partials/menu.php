@@ -40,12 +40,12 @@
                                     case $tabel_c2_field6_value3:
                                         ?>
                                         <h6 class="dropdown-header">Data</h6>
+                                        <?= dropdown_nav('tabel_e1', '/admin') ?>
                                         <?= dropdown_nav('tabel_e2', '/admin') ?>
                                         <?= dropdown_nav('tabel_e3', '/admin') ?>
                                         <?= dropdown_nav('tabel_e4', '/admin') ?>
                                         <div class="dropdown-divider"></div>
                                         <h6 class="dropdown-header">Operations</h6>
-                                        <?= dropdown_nav('tabel_f2', '/admin') ?>
                                         <?= dropdown_nav('tabel_c2', '/admin') ?>
                                         <div class="dropdown-divider"></div>
                                         <?= dropdown_nav('tabel_a1', '/profil') ?>
@@ -55,7 +55,6 @@
 
                                         <h6 class="dropdown-header">Manage</h6>
                                         <?= dropdown_nav('tabel_e3', '/admin') ?>
-                                        <?= dropdown_nav('tabel_f2', '/admin') ?>
                                         <?= dropdown_nav('tabel_f1', '/admin') ?>
                                         <div class="dropdown-divider"></div>
                                         <h6 class="dropdown-header">Operations</h6>
@@ -177,7 +176,6 @@
                                 <?= dropdown_nav('tabel_e4', '') ?>
                                 <div class="dropdown-divider"></div>
                                 <h6 class="dropdown-header">Reservations</h6>
-                                <?= dropdown_nav('tabel_f2', '/daftar') ?>
                                 <?= dropdown_nav('tabel_f3', '/daftar') ?>
                                 <div class="dropdown-divider"></div>
                                 <h6 class="dropdown-header">History</h6>

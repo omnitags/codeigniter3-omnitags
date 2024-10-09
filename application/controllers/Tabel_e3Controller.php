@@ -81,6 +81,7 @@ class Tabel_e3Controller extends OmnitagsController
 				$this->v_post['tabel_e3_field2'],
 				$this->v_post['tabel_e3_field3'],
 				$this->v_post['tabel_e3_field4'],
+				$this->v_post['tabel_e3_field5'],
 			),
 			$this->views['flash2'],
 			'tambah'
