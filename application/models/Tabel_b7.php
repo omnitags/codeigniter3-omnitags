@@ -49,7 +49,7 @@ class Tabel_b7 extends CI_Model
 		return $this->db->get($this->aliases['tabel_b7']);
 	}
 
-	public function tema($param1)
+	public function theme($param1)
 	{
 		$sql = "SELECT * FROM {$this->aliases['tabel_a1']} 
 		JOIN {$this->aliases['tabel_b7']} 
