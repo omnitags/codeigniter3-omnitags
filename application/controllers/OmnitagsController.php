@@ -108,13 +108,13 @@ if (!class_exists('OmnitagsController')) {
                 $this->v_get[$item['key'] . '_filter1'] = get('min_' . $item['value']);
                 $this->v_get[$item['key'] . '_filter2'] = get('max_' . $item['value']);
 
-                $this->flash1_msg_1[$item['key']] = $item['key'] . ' successfully saved!';
-                $this->flash1_msg_2[$item['key']] = $item['key'] . ' failed to save!';
-                $this->flash1_msg_3[$item['key']] = $item['key'] . ' successfully updated!';
-                $this->flash1_msg_4[$item['key']] = $item['key'] . ' failed to update!';
-                $this->flash1_msg_5[$item['key']] = $item['key'] . ' successfully deleted!';
-                $this->flash1_msg_6[$item['key']] = $item['key'] . ' failed to delete!';
-
+                $this->flash1_msg_1[$item['key']] = $item['value'] . ' successfully saved!';
+                $this->flash1_msg_2[$item['key']] = $item['value'] . ' failed to save!';
+                $this->flash1_msg_3[$item['key']] = $item['value'] . ' successfully updated!';
+                $this->flash1_msg_4[$item['key']] = $item['value'] . ' failed to update!';
+                $this->flash1_msg_5[$item['key']] = $item['value'] . ' successfully deleted!';
+                $this->flash1_msg_6[$item['key']] = $item['value'] . ' failed to delete!';
+                
                 $this->flash[$item['key']] = 'pesan_' . $item['value'];
                 $this->flash_func[$item['key']] = '$(".' . $item['value'] . '").modal("show")';
 
