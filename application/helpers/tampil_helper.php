@@ -162,8 +162,10 @@ if (!function_exists('tampil_dekor')) {
     function tampil_dekor($size, $tabel_class, $value)
     {
         return <<<HTML
-        <img style="max-height: {$size}; transform: scale(0.9);" alt="image"
-            class="img-fluid" src="img/{$tabel_class}/{$value}">
+        <div class="dekor">
+            <img style="max-height: {$size}; transform: scale(0.9);" alt="image"
+                class="img-fluid" src="img/{$tabel_class}/{$value}">
+        </div>
         HTML;
     }
 }
