@@ -1,11 +1,11 @@
 <div class="row mb-2 align-items-center">
   <div class="col-md-9 d-flex align-items-center">
-    <h1><?= $title ?><?= count_data($tbl_b1) ?><?= $phase ?></h1>
+    <h1><?= $title ?><?= count_data($tbl_b7) ?><?= $phase ?></h1>
   </div>
   <div class="col-md-3 text-right">
-    <?php foreach ($dekor->result() as $dk): ?>
-      <img src="img/<?= xss_clean($tabel_b1) ?>/<?= xss_clean($dk->$tabel_b1_field4) ?>" width="200" alt="Image">
-    <?php endforeach ?>
+    <?php foreach ($dekor->result() as $dk):
+      echo tampil_dekor('175px', $tabel_b1, $dk->$tabel_b1_field4);
+    endforeach ?>
   </div>
 </div>
 <hr>
