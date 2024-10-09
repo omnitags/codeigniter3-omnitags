@@ -235,6 +235,16 @@ if (!class_exists('OmnitagsController')) {
             $this->track_page();
             load_view_data($view_name, $data);
         }
+        
+        public function load_page_error($tabel, $view_name, $data1)
+        {
+            if (!empty($tabel)) {
+                $this->tl_ot->create_or_update_history_table($tabel);
+            }
+            $data = array_merge($data1, $this->package);
+            $this->track_page();
+            load_view_data($view_name, $data);
+        }
 
         // Function to simplify upload new image
         public function upload_new_image($new_name, $path, $field, $allowed_types, $tabel)
