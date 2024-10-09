@@ -28,30 +28,30 @@
 <div id="card-view" class="data-view active">
   <div class="row">
     <?php if (empty($tbl_b8->result())) {
-    load_view('partials/no_data');
-  } else {
-    $counter = 1;
-    foreach ($tbl_b8->result() as $tl_b8):
-      echo card_regular(
-        $counter,
-        $tl_b8->$tabel_b8_field1,
-        $tl_b8->$tabel_b8_field2,
-        '<div style="width: 100%;">' .
-        card_content('40%', 'tabel_b8_field3', card_text($tl_b8->$tabel_b8_field3)) .
-        card_content('40%', 'tabel_b8_field4', $tl_b8->$tabel_b8_field4) .
-        '</div>',
-        btn_lihat($tl_b8->$tabel_b8_field1) . ' ' .
-        btn_edit($tl_b8->$tabel_b8_field1) . ' ' .
-        btn_hapus('tabel_b8', $tl_b8->$tabel_b8_field1),
-        'text-white bg-danger',
-        'col-md-4',
-        $tabel_b8,
-      );
-    $counter++;
-    endforeach;
-  } ?>
+      load_view('partials/no_data');
+    } else {
+      $counter = 1;
+      foreach ($tbl_b8->result() as $tl_b8):
+        echo card_regular(
+          $counter,
+          $tl_b8->$tabel_b8_field1,
+          $tl_b8->$tabel_b8_field2,
+          '<div style="width: 100%;">' .
+          card_content('40%', 'tabel_b8_field3', card_text($tl_b8->$tabel_b8_field3)) .
+          card_content('40%', 'tabel_b8_field4', $tl_b8->$tabel_b8_field4) .
+          '</div>',
+          btn_lihat($tl_b8->$tabel_b8_field1) . ' ' .
+          btn_edit($tl_b8->$tabel_b8_field1) . ' ' .
+          btn_hapus('tabel_b8', $tl_b8->$tabel_b8_field1),
+          'text-white bg-danger',
+          'col-md-4',
+          $tabel_b8,
+        );
+        $counter++;
+      endforeach;
+    } ?>
 
-</div>
+  </div>
   <div class="row">
     <?= card_pagination() ?>
   </div>
@@ -100,8 +100,7 @@
     <div class="modal-content">
       <?= modal_header('Add ' . $tabel_b8_alias, '') ?>A
 
-      <form action="<?= site_url($tabel_b8 . '/tambah') ?>" enctype="multipart/form-data"
-        method="post">
+      <form action="<?= site_url($tabel_b8 . '/tambah') ?>" enctype="multipart/form-data" method="post">
         <div class="modal-body">
           <?= input_add('text', 'tabel_b8_field2', 'required') ?>
           <?= input_add('text', 'tabel_b8_field3', 'required') ?>
@@ -128,8 +127,7 @@
       <div class="modal-content">
         <?= modal_header_id('Make changes to ' . $tabel_b8_alias, $tl_b8->$tabel_b8_field1) ?>
 
-        <form action="<?= site_url($tabel_b8 . '/update') ?>" method="post"
-          enctype="multipart/form-data">
+        <form action="<?= site_url($tabel_b8 . '/update') ?>" method="post" enctype="multipart/form-data">
           <div class="modal-body">
             <?= input_hidden('tabel_b8_field1', $tl_b8->$tabel_b8_field1, 'required') ?>
             <?= input_edit($tl_b8->$tabel_b8_field1, 'text', 'tabel_b8_field2', $tl_b8->$tabel_b8_field2, 'required') ?>
