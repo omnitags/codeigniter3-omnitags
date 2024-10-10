@@ -53,8 +53,8 @@ if (!function_exists('row_data')) {
 }
 
 // Generates a table row with a field alias and value
-if (!function_exists('row_data_crud')) {
-    function row_data_crud($field, $value)
+if (!function_exists('row_data_text')) {
+    function row_data_text($field, $value)
     {
         return <<<HTML
         <tr>
