@@ -11,7 +11,7 @@
 
   <div class="form-group">
     <div class="d-flex justify-content-center mb-4">
-      <button class="btn btn-primary login" type="submit">
+      <button class="btn shadow btn-primary login" type="submit">
         Login
       </button>
     </div>

@@ -186,7 +186,7 @@ if (!function_exists('card_count')) {
                 <p class="card-text" style="font-size: 32px;">
                     {$count}
                 </p>
-                <a class="text-dark" href="{$url}">{$detail}</a>
+                <a class="text-light" href="{$url}">{$detail}</a>
             </div>
             </div>
         </div>

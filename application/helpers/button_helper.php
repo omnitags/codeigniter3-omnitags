@@ -136,7 +136,7 @@ if (!function_exists('btn_update')) {
     function btn_update()
     {
         return <<<HTML
-        <button class="btn shadow-sm mt-4 mr-1 btn-success" type="submit">Save Changes</button>
+        <button class="btn shadow-sm mt-4 mr-1 btn-success" onclick="return confirm('Save Changes?')" type="submit">Save Changes</button>
         HTML;
     }
 }
