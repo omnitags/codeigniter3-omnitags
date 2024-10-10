@@ -20,7 +20,7 @@ terima kasih pada link di atas -->
       <ul class="list-unstyled ml-2">
         <li><?= $tabel_e2_alias ?> : </li>
         <?php foreach ($tbl_e2->result() as $tl_e2): ?>
-          <?php if ($tl_e4->$tabel_e4_field1 === $tl_e2->$tabel_e2_field3) { ?>
+          <?php if ($tl_e4->$tabel_e4_field1 === $tl_e2->$tabel_e4_field1) { ?>
 
             <li>
               <a class="text-decoration-none"
