@@ -27,7 +27,6 @@ class Tabel_f2Controller extends OmnitagsController
 					'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 					'tbl_b5' => $this->tl_b5->get_all_b5(),
 					'tbl_b7' => $this->tl_b7->get_all_b7(),
-					'tbl_a1_alt' => $this->tl_a1->get_a1_by_field('tabel_a1_field1', $this->tabel_a1_field1),
 					'tbl_e4' => $this->tl_e4->get_all_e4(),
 
 					'tabel_f2_field10_value' => $this->v_get['tabel_f2_field10'],
@@ -110,12 +109,17 @@ class Tabel_f2Controller extends OmnitagsController
 		// 	$result = $filter;
 		// }
 
+		$param1 = $this->v_get['tabel_f2_field3'];
+
 		$data1 = array(
 			'title' => $this->title['tabel_f2_alias_v3'],
 			'konten' => $this->v3['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 			'tbl_f2' => $this->tl_f2->get_all_f2(),
-			'tbl_e3' => $this->tl_e3->get_all_e3(),
+			'tbl_c1' => $this->tl_c1->get_c1_by_field('tabel_c1_field1', $param1),
+			'tbl_e4' => $this->tl_e4->get_all_e4(),
+
+			'tabel_f2_field3_value' => $param1,
 
 			// menggunakan nilai $min dan $max sebagai bagian dari $data
 			// 'tabel_f2_field10_filter1_value' => $param1,
@@ -235,43 +239,19 @@ class Tabel_f2Controller extends OmnitagsController
 		$this->session_5();
 
 		// Security: Input Sanitization and Validation
-		$inputs = [
-			'tabel_f2_field4',
-			'tabel_f2_field8',
-			'tabel_f2_field10',
-			'tabel_f2_field11',
-			'tabel_f2_field2',
-			'tabel_f2_field3',
-			'tabel_f2_field5',
-			'tabel_f2_field6',
-			'tabel_f2_field7'
-		];
-
-		foreach ($inputs as $input) {
-			$input_value = htmlspecialchars(trim($this->v_post[$input]));
-			if (empty($input_value)) {
-				// Error Handling: Set error flash message for invalid input
-				set_flashdata($this->views['flash1'], "Invalid input. Please provide valid data.");
-				set_flashdata($this->views['flash1'], $this->views['flash1_func1']);
-				// Functional requirement: Redirect user to 'tabel_f2' confirmation page
-				redirect(site_url($this->aliases['tabel_f2'] . '/konfirmasi'));
-			}
-		}
-
-		// Calculate total price based on date difference
-		$startTimeStamp = strtotime($this->v_post['tabel_f2_field10']);
-		$endTimeStamp = strtotime($this->v_post['tabel_f2_field11']);
-		$timedif = $endTimeStamp - $startTimeStamp;
-		$numberdays = $timedif / 60 / 60 / 24; // 86400 seconds in one day
-
-		$tabel_e4_field1 = $this->v_post['tabel_f2_field7'];
-		$tabel_e4 = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
-
-		// Calculate total price
-		$harga_total = ($numberdays * $tabel_e4[0]->{$this->aliases['tabel_f2_field9']});
-
-		// $id = get_next_code($this->aliases['tabel_e1'], 'id', 'FK');
-		// 'id' => $id,
+		validate_all(
+			array(
+				$this->v_post['tabel_f2_field2'],
+				$this->v_post['tabel_f2_field3'],
+				$this->v_post['tabel_f2_field4'],
+				$this->v_post['tabel_f2_field5'],
+				$this->v_post['tabel_f2_field6'],
+				$this->v_post['tabel_f2_field7'],
+				$this->v_post['tabel_f2_field8'],
+			),
+			$this->views['flash2'],
+			'tambah'
+		);
 
 		$data = [
 			'id' => '',
@@ -282,33 +262,15 @@ class Tabel_f2Controller extends OmnitagsController
 			$this->aliases['tabel_f2_field6'] => $this->v_post['tabel_f2_field6'],
 			$this->aliases['tabel_f2_field7'] => $this->v_post['tabel_f2_field7'],
 			$this->aliases['tabel_f2_field8'] => $this->v_post['tabel_f2_field8'],
-			$this->aliases['tabel_f2_field9'] => $harga_total,
-			$this->aliases['tabel_f2_field10'] => $this->v_post['tabel_f2_field10'],
-			$this->aliases['tabel_f2_field11'] => $this->v_post['tabel_f2_field11'],
-			$this->aliases['tabel_f2_field12'] => $this->aliases['tabel_f2_field12_value1'],
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
 		];
 
-		// Create temporary session for a specific duration
-		set_userdata('email' . '_' . $this->aliases['tabel_f2'], $this->v_post['tabel_f2_field4']);
+		$aksi = $this->tl_f2->insert_f2($data);
 
-		try {
-			// Security: Prepared Statements to prevent SQL injection
-			// Functional requirement: Save data to the database
-			$aksi = $this->tl_f2->insert_f2($data);
-
-			$notif = $this->handle_4b($aksi, 'tabel_f2');
-
-		} catch (Exception $e) {
-			// Error Handling: Handle database operation errors
-			set_flashdata($this->views['flash2'], "Error occurred while adding data: " . $e->getMessage());
-			set_flashdata('modal', $this->views['flash2_func1']);
-		}
-
-		// Functional requirement: Redirect user to 'tabel_f2' confirmation page
-		redirect($this->aliases['tabel_f2'] . '/konfirmasi');
+		$notif = $this->handle_4b($aksi, 'tabel_f2');
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
 
