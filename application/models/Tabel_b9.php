@@ -6,14 +6,14 @@ class Tabel_b9 extends CI_Model
 	public function get_all_b9()
 	{
 		$this->db->where('deleted_at', NULL);
-		$this->db->order_by($this->aliases['tabel_b9_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b9']);
 	}
 	
 	public function get_all_b9_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_b9_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b9']);
 	}
 
@@ -29,7 +29,7 @@ class Tabel_b9 extends CI_Model
 		}
 		
 		$this->db->where('deleted_at', NULL);
-		$this->db->order_by($this->aliases['tabel_b9_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b9']);
 	}
 	
@@ -45,7 +45,7 @@ class Tabel_b9 extends CI_Model
 		}
 		
 		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_b9_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b9']);
 	}
 
@@ -65,7 +65,7 @@ class Tabel_b9 extends CI_Model
 		ON {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field3']} = {$this->aliases['tabel_b8']}.{$this->aliases['tabel_b8_field2']}
 		WHERE {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field2']} = '$param1'
 		ORDER BY CASE WHEN read_at IS NULL THEN 0
-		ELSE 1 END, read_at DESC, {$this->aliases['tabel_b9_field1']} DESC LIMIT 15";
+		ELSE 1 END, read_at DESC, {$this->aliases['tabel_b9']}.id DESC LIMIT 15";
 		return $this->db->query($sql);
 	}
 	
@@ -73,7 +73,7 @@ class Tabel_b9 extends CI_Model
 	{
 		$sql = "SELECT 
 
-		{$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field1']}, 
+		{$this->aliases['tabel_b9']}.id, 
 		{$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field4']}, 
 		{$this->aliases['tabel_b9']}.created_at, 
 		{$this->aliases['tabel_b9']}.read_at, 
@@ -88,7 +88,7 @@ class Tabel_b9 extends CI_Model
 		WHERE {$this->aliases['tabel_b9']}.{$this->aliases['tabel_b9_field2']} = '$param1'
 		AND {$this->aliases['tabel_b9']}.deleted_at IS NULL
 		ORDER BY CASE WHEN read_at IS NULL THEN 0
-		ELSE 1 END, read_at DESC, {$this->aliases['tabel_b9_field1']} DESC";
+		ELSE 1 END, read_at DESC, id DESC";
 		return $this->db->query($sql);
 	}
 
@@ -102,7 +102,7 @@ class Tabel_b9 extends CI_Model
 
 	public function update_b9($data, $param1)
 	{
-		$this->db->where($this->aliases['tabel_b9_field1'], $param1);
+		$this->db->where('id', $param1);
 		return $this->db->update($this->aliases['tabel_b9'], $data);
 	}
 
@@ -115,7 +115,7 @@ class Tabel_b9 extends CI_Model
 
 	public function update_satu($data, $param1, $param2)
 	{
-		$this->db->where($this->aliases['tabel_b9_field1'], $param1);
+		$this->db->where('id', $param1);
 		$this->db->where($this->aliases['tabel_b9_field2'], $param2);
 		return $this->db->update($this->aliases['tabel_b9'], $data);
 	}

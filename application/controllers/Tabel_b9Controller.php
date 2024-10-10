@@ -12,10 +12,10 @@ class Tabel_b9Controller extends OmnitagsController
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$code, userdata($this->aliases['tabel_c2_field1'])])->result();
+		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$code, userdata('id')])->result();
 
 		if ($tabel_b9) {
-			$tabel_b9_field2 = userdata($this->aliases['tabel_c2_field1']);
+			$tabel_b9_field2 = userdata('id');
 
 			// menggunakan nama khusus sama dengan konfigurasi
 			$notif = array(
@@ -35,10 +35,10 @@ class Tabel_b9Controller extends OmnitagsController
 
 				if (get('refresh') !== 'true') {
 					// Redirect to the same method with a refresh parameter
-					$this->load_page('tabel_b9', 'layouts/template', $data1);
+					$this->load_page('tabel_b9', 'layouts/template_admin', $data1);
 					redirect(current_url() . '?refresh=true');
 				} else {
-					$this->load_page('tabel_b9', 'layouts/template', $data1);
+					$this->load_page('tabel_b9', 'layouts/template_admin', $data1);
 				}
 
 			} else {
@@ -61,7 +61,7 @@ class Tabel_b9Controller extends OmnitagsController
 		];
 		$this->page_session_check($allowed_values);
 
-		$tabel_b9_field2 = userdata($this->aliases['tabel_c2_field1']);
+		$tabel_b9_field2 = userdata('id');
 
 		$data1 = array(
 			'title' => $this->title['tabel_b9_alias_v2'],
@@ -86,7 +86,7 @@ class Tabel_b9Controller extends OmnitagsController
 			'tbl_b9' => $this->tl_b9->get_all_b9(),
 		);
 
-		$this->load_page('tabel_b9', 'layouts/template', $data1);
+		$this->load_page('tabel_b9', 'layouts/template_admin', $data1);
 	}
 
 	// Print all data
@@ -120,11 +120,11 @@ class Tabel_b9Controller extends OmnitagsController
 		];
 		$this->session_check($allowed_values);
 
-		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$code, userdata($this->aliases['tabel_c2_field1'])])->result();
+		$tabel_b9 = $this->tl_b9->get_b9_by_field(['tabel_b9_field1', 'tabel_b9_field2'], [$code, userdata('id')])->result();
 
 		if ($tabel_b9) {
 
-			$tabel_b9_field2 = userdata($this->aliases['tabel_c2_field1']);
+			$tabel_b9_field2 = userdata('id');
 
 			// menggunakan nama khusus sama dengan konfigurasi
 			$notif = array(
@@ -145,11 +145,11 @@ class Tabel_b9Controller extends OmnitagsController
 		$this->declarew();
 		$this->session_3();
 
-		// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
-		// $this->aliases['tabel_e1_field1'] => $id,
+		// $id = get_next_code($this->aliases['tabel_e1'], 'id', 'FK');
+		// 'id' => $id,
 
 		$data = array(
-			$this->aliases['tabel_b9_field1'] => '',
+			'id' => '',
 			$this->aliases['tabel_b9_field2'] => $this->v_post['tabel_b9_field2'],
 
 			'created_at' => date("Y-m-d\TH:i:s"),
@@ -177,7 +177,7 @@ class Tabel_b9Controller extends OmnitagsController
 		];
 		$this->session_check($allowed_values);
 
-		$tabel_b9_field2 = userdata($this->aliases['tabel_c2_field1']);
+		$tabel_b9_field2 = userdata('id');
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
@@ -206,7 +206,7 @@ class Tabel_b9Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b9->update_b9($data, $code);
@@ -223,14 +223,14 @@ class Tabel_b9Controller extends OmnitagsController
 		$tabel = $this->tl_ot->get_by_id_history('tabel_b9', $code)->result();
 		$this->check_data($tabel);
 
-		$code = $tabel[0]->{$this->aliases['tabel_b9_field1']};
+		$code = $tabel[0]->id;
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			$this->aliases['tabel_b9_field2'] => $tabel[0]->{$this->aliases['tabel_b9_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b9->update_b9($data, $code);
@@ -252,7 +252,7 @@ class Tabel_b9Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => NULL,
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_b9->update_b9($data, $code);
@@ -290,9 +290,8 @@ class Tabel_b9Controller extends OmnitagsController
 
 		$this->load_page('tabel_b9', 'layouts/template', $data1);
 	}
-
-	// Public Pages
-	public function detail_archive($code = null)
+	
+	public function detai_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
@@ -307,7 +306,7 @@ class Tabel_b9Controller extends OmnitagsController
 			'tbl_b9' => $this->tl_b9->get_b9_by_field_archive('tabel_b9_field1', $code),
 		);
 
-		$this->load_page('tabel_b9', 'layouts/template', $data1);
+		$this->load_page('tabel_b9', 'layouts/template_admin', $data1);
 	}
 
 	public function history($code = null)
@@ -327,6 +326,6 @@ class Tabel_b9Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_b9', 'tabel_b9_field1', $code),
 		);
 
-		$this->load_page('tabel_b9', 'layouts/template', $data1);
+		$this->load_page('tabel_b9', 'layouts/template_admin', $data1);
 	}
 }

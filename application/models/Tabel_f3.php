@@ -10,9 +10,9 @@ class Tabel_f3 extends CI_Model
 		LEFT JOIN {$this->aliases['tabel_f2']} 
 		ON {$this->aliases['tabel_f2']}.{$this->aliases['tabel_f3_field4']} = {$this->aliases['tabel_f3']}.{$this->aliases['tabel_f3_field4']}
 		LEFT JOIN {$this->aliases['tabel_e4']} 
-		ON {$this->aliases['tabel_f2']}.{$this->aliases['tabel_e4_field1']} = {$this->aliases['tabel_e4']}.{$this->aliases['tabel_e4_field1']}
+		ON {$this->aliases['tabel_f2']}.id = {$this->aliases['tabel_e4']}.id
 		WHERE {$this->aliases['tabel_f3']}.deleted_at IS NULL
-		ORDER BY {$this->aliases['tabel_f3_field1']} DESC";
+		ORDER BY id DESC";
 		return $this->db->query($sql);
 	}
 
@@ -22,11 +22,11 @@ class Tabel_f3 extends CI_Model
 		LEFT JOIN {$this->aliases['tabel_f1']} 
 		ON {$this->aliases['tabel_f1']}.{$this->aliases['tabel_f3_field4']} = {$this->aliases['tabel_f3']}.{$this->aliases['tabel_f3_field4']}
 		LEFT JOIN {$this->aliases['tabel_e4']} 
-		ON {$this->aliases['tabel_f1']}.{$this->aliases['tabel_e4_field1']} = {$this->aliases['tabel_e4']}.{$this->aliases['tabel_e4_field1']}
-		WHERE {$this->aliases['tabel_f3']}.{$this->aliases['tabel_f3_field1']} = {$param1}
-		AND {$this->aliases['tabel_f3']}.{$this->aliases['tabel_c2_field1']} = {$param2}
+		ON {$this->aliases['tabel_f1']}.id = {$this->aliases['tabel_e4']}.id
+		WHERE {$this->aliases['tabel_f3']}.id = {$param1}
+		AND {$this->aliases['tabel_f3']}.id = {$param2}
 		WHERE {$this->aliases['tabel_f3']}.deleted_at IS NULL
-		ORDER BY {$this->aliases['tabel_f3_field1']} DESC";
+		ORDER BY id DESC";
 		return $this->db->query($sql);
 	}
 
@@ -36,24 +36,24 @@ class Tabel_f3 extends CI_Model
 		JOIN {$this->aliases['tabel_f2']} 
 		ON {$this->aliases['tabel_f2']}.{$this->aliases['tabel_f3_field4']} = {$this->aliases['tabel_f3']}.{$this->aliases['tabel_f3_field4']}
 		JOIN {$this->aliases['tabel_e4']} 
-		ON {$this->aliases['tabel_f2']}.{$this->aliases['tabel_e4_field1']} = {$this->aliases['tabel_e4']}.{$this->aliases['tabel_e4_field1']}
-		WHERE {$this->aliases['tabel_f3']}.{$this->aliases['tabel_c2_field1']} = {$param1}
+		ON {$this->aliases['tabel_f2']}.id = {$this->aliases['tabel_e4']}.id
+		WHERE {$this->aliases['tabel_f3']}.id = {$param1}
 		WHERE {$this->aliases['tabel_f3']}.deleted_at IS NULL
-		ORDER BY {$this->aliases['tabel_f3_field1']} DESC";
+		ORDER BY id DESC";
 		return $this->db->query($sql);
 	}
 
 	public function get_all_f3()
 	{
 		$this->db->where('deleted_at', NULL);
-		$this->db->order_by($this->aliases['tabel_f3_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_f3']);
 	}
 
 	public function get_all_f3_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_f3_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_f3']);
 	}
 
@@ -69,7 +69,7 @@ class Tabel_f3 extends CI_Model
 		}
 		
 		$this->db->where('deleted_at', NULL);
-		$this->db->order_by($this->aliases['tabel_f3_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_f3']);
 	}
 	
@@ -85,7 +85,7 @@ class Tabel_f3 extends CI_Model
 		}
 
 		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_f3_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_f3']);
 	}
 
@@ -101,7 +101,7 @@ class Tabel_f3 extends CI_Model
 	{
 		$sql = "SELECT * FROM {$this->aliases['tabel_f3']}
 		WHERE {$this->aliases['tabel_f3_field7']}
-		BETWEEN '{$min}' AND '{$max}' ORDER BY {$this->aliases['tabel_f3_field1']} DESC";
+		BETWEEN '{$min}' AND '{$max}' ORDER BY id DESC";
 		return $this->db->query($sql);
 	}
 
@@ -112,7 +112,7 @@ class Tabel_f3 extends CI_Model
 
 	public function update_f3($data, $param1)
 	{
-		$this->db->where($this->aliases['tabel_f3_field1'], $param1);
+		$this->db->where('id', $param1);
 		return $this->db->update($this->aliases['tabel_f3'], $data);
 	}
 

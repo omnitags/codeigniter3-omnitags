@@ -7,13 +7,13 @@ class Tabel_c1 extends CI_Model
     public function get_all_c1()
     {
 		$this->db->where('deleted_at', NULL);
-        $this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
+        $this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_c1']);
     }
 	
 	public function get_all_c1_archive()
 	{
-        $this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
+        $this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_c1']);
 	}
     
@@ -29,7 +29,7 @@ class Tabel_c1 extends CI_Model
 		}
         
 		$this->db->where('deleted_at', NULL);
-		$this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_c1']);
 	}
     
@@ -45,17 +45,17 @@ class Tabel_c1 extends CI_Model
 		}
         
         $this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_c1']);
 	}
 
     // Checks for a record in the tabel_c1 table where tabel_c1_field1 and tabel_c1_field5 match the given parameters, in descending order of tabel_c1_field1
     public function ceklogin($param1, $param2)
     {
-        $this->db->where($this->aliases['tabel_c1_field1'], $param1);
+        $this->db->where('id', $param1);
         $this->db->where($this->aliases['tabel_c1_field5'], $param2);
 		$this->db->where('deleted_at', NULL);
-        $this->db->order_by($this->aliases['tabel_c1_field1'], 'DESC');
+        $this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_c1']);
     }
 
@@ -68,7 +68,7 @@ class Tabel_c1 extends CI_Model
     // Updates a record in the tabel_c1 table where tabel_c1_field1 matches the given parameter
     public function update_c1($data, $param1)
     {
-        $this->db->where($this->aliases['tabel_c1_field1'], $param1);
+        $this->db->where('id', $param1);
         return $this->db->update($this->aliases['tabel_c1'], $data);
     }
 
@@ -76,7 +76,7 @@ class Tabel_c1 extends CI_Model
     public function updateCount($param1)
     {
         $this->db->set('login_count', 'login_count + 1', FALSE);
-        $this->db->where($this->aliases['tabel_c1_field1'], $param1);
+        $this->db->where('id', $param1);
         return $this->db->update($this->aliases['tabel_c1']);
     }
 

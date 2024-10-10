@@ -28,7 +28,7 @@
                         <div class="dropdown">
                             <?= menu_logo("Master Data") ?>
 
-                            <div class="dropdown-menu dropdown-menu-right" style="max-height: 450px; overflow-y: auto;">
+                            <div class="dropdown-menu dropdown-menu-right shadow" style="max-height: 450px; overflow-y: auto;">
                                 <?php switch (userdata($tabel_c2_field6)) {
                                     case $tabel_c2_field6_value2:
                                         ?>
@@ -78,7 +78,7 @@
                         <span class="badge badge-light"><?= $notif_count ?></span><?php } ?>
                 </a>
 
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+                <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="alertsDropdown">
                     <div class="dropdown-header d-flex justify-content-between align-items-center">
                         <span><?= $notif_count . ' new notifications' ?></span>
                         <div>
@@ -162,7 +162,7 @@
                             <!-- Show the dropdown for other cases -->
                             <?php break;
                     } ?>
-                    <div class="dropdown-menu dropdown-menu-right" style="max-height: 450px; overflow-y: auto;">
+                    <div class="dropdown-menu dropdown-menu-right shadow" style="max-height: 450px; overflow-y: auto;">
                         <?php switch (userdata($tabel_c2_field6)) {
                             case $tabel_c2_field6_value5:
                                 ?>

@@ -49,7 +49,7 @@
             $tl_b9->$tabel_b9_field4 . '<br>' .
             $tl_b9->created_at,
             btn_lihat($tl_b9->$tabel_b9_field1) . btn_hapus_cepat('tabel_b9', $tl_b9->$tabel_b9_field1),
-            'text-dark bg-light',
+            'text-light bg-dark',
             'col-md-3',
             $tabel_b9,
           );
@@ -122,8 +122,8 @@
             <?= table_data(
               row_data('tabel_b8_field3', $tl_b9->$tabel_b8_field3) .
               row_data('tabel_b9_field4', html_entity_decode($tl_b9->$tabel_b9_field4)) .
-              row_data_crud('created_at', $tl_b9->created_at) .
-              row_data_crud('read_at', $tl_b9->read_at),
+              row_data_text('Created At', $tl_b9->created_at) .
+              row_data_text('Read At', $tl_b9->read_at),
               'table-light',
             ) ?>
           </div>
@@ -132,7 +132,6 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
-            <?= btn_history('tabel_b9', $tl_b9->$tabel_b9_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>

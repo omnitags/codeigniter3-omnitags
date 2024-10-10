@@ -6,14 +6,14 @@ class Tabel_e5 extends CI_Model
 	public function get_all_e5()
 	{
 		$this->db->where('deleted_at', NULL);
-		$this->db->order_by($this->aliases['tabel_e5_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e5']);
 	}
 	
 	public function get_all_e5_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_e5_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e5']);
 	}
 
@@ -29,7 +29,7 @@ class Tabel_e5 extends CI_Model
 		}
 		
 		$this->db->where('deleted_at', NULL);
-		$this->db->order_by($this->aliases['tabel_e5_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e5']);
 	}
 
@@ -45,7 +45,7 @@ class Tabel_e5 extends CI_Model
 		}
 
 		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by($this->aliases['tabel_e5_field1'], 'DESC');
+		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e5']);
 	}
 
@@ -59,7 +59,7 @@ class Tabel_e5 extends CI_Model
 
 	public function update_e5($data, $param1)
 	{
-		$this->db->where($this->aliases['tabel_e5_field1'], $param1);
+		$this->db->where('id', $param1);
 		return $this->db->update($this->aliases['tabel_e5'], $data);
 	}
 

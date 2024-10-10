@@ -33,7 +33,7 @@ class Tabel_e1Controller extends OmnitagsController
 			'tabel_e1_field5_value' => $param1
 		);
 
-		$this->load_page('tabel_e1', 'layouts/template', $data1);
+		$this->load_page('tabel_e1', 'layouts/template_admin', $data1);
 	}
 
 	// Print all data
@@ -69,14 +69,14 @@ class Tabel_e1Controller extends OmnitagsController
 			'tambah'
 		);
 
-		// $id = get_next_code($this->aliases['tabel_e1'], $this->aliases['tabel_e1_field1'], 'FK');
-		// $this->aliases['tabel_e1_field1'] => $id,
+		// $id = get_next_code($this->aliases['tabel_e1'], 'id', 'FK');
+		// 'id' => $id,
 
-		$code = $this->add_code('tabel_e1', $this->aliases['tabel_e1_field1'], 5, '01');
+		$code = $this->add_code('tabel_e1', 'id', 5, '01');
 
 		// Functional requirement: Construct data array from validated view inputs
 		$data = array(
-			$this->aliases['tabel_e1_field1'] => $code,
+			'id' => $code,
 			$this->aliases['tabel_e1_field2'] => $this->v_post['tabel_e1_field2'],
 			$this->aliases['tabel_e1_field3'] => $this->v_post['tabel_e1_field3'],
 			$this->aliases['tabel_e1_field4'] => $this->v_post['tabel_e1_field4'],
@@ -84,7 +84,7 @@ class Tabel_e1Controller extends OmnitagsController
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_e1->insert_e1($data);
@@ -130,7 +130,7 @@ class Tabel_e1Controller extends OmnitagsController
 			$this->aliases['tabel_e1_field5'] => $this->v_post['tabel_e1_field5'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_e1->update_e1($data, $code);
@@ -157,7 +157,7 @@ class Tabel_e1Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_e1->update_e1($data, $code);
@@ -180,7 +180,7 @@ class Tabel_e1Controller extends OmnitagsController
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			'deleted_at' => NULL,
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_e1->update_e1($data, $code);
@@ -247,9 +247,8 @@ class Tabel_e1Controller extends OmnitagsController
 
 		$this->load_page('tabel_e1', 'layouts/template', $data1);
 	}
-
-	// Public Pages
-	public function detail_archive($code = null)
+	
+	public function detai_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
@@ -284,7 +283,7 @@ class Tabel_e1Controller extends OmnitagsController
 			'current' => $this->tl_ot->get_by_field('tabel_e1', 'tabel_e1_field1', $code),
 		);
 
-		$this->load_page('tabel_e1', 'layouts/template', $data1);
+		$this->load_page('tabel_e1', 'layouts/template_admin', $data1);
 	}
 
 	//Push History Data into current data
@@ -296,14 +295,14 @@ class Tabel_e1Controller extends OmnitagsController
 		$tabel = $this->tl_ot->get_by_id_history('tabel_e1', $code)->result();
 		$this->check_data($tabel);
 
-		$code = $tabel[0]->{$this->aliases['tabel_e1_field1']};
+		$code = $tabel[0]->id;
 
 		// menggunakan nama khusus sama dengan konfigurasi
 		$data = array(
 			$this->aliases['tabel_e1_field2'] => $tabel[0]->{$this->aliases['tabel_e1_field2']},
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
-			'updated_by' => userdata($this->aliases['tabel_c2_field1']),
+			'updated_by' => userdata('id'),
 		);
 
 		$aksi = $this->tl_e1->update_e1($data, $code);
