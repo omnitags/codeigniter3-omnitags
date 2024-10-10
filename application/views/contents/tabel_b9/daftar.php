@@ -122,8 +122,8 @@
             <?= table_data(
               row_data('tabel_b8_field3', $tl_b9->$tabel_b8_field3) .
               row_data('tabel_b9_field4', html_entity_decode($tl_b9->$tabel_b9_field4)) .
-              row_data_crud('created_at', $tl_b9->created_at) .
-              row_data_crud('read_at', $tl_b9->read_at),
+              row_data_text('Created At', $tl_b9->created_at) .
+              row_data_text('Read At', $tl_b9->read_at),
               'table-light',
             ) ?>
           </div>
