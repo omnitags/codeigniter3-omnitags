@@ -108,13 +108,13 @@ if (!class_exists('OmnitagsController')) {
                 $this->v_get[$item['key'] . '_filter1'] = get('min_' . $item['value']);
                 $this->v_get[$item['key'] . '_filter2'] = get('max_' . $item['value']);
 
-                $this->flash1_msg_1[$item['key']] = $item['key'] . ' successfully saved!';
-                $this->flash1_msg_2[$item['key']] = $item['key'] . ' failed to save!';
-                $this->flash1_msg_3[$item['key']] = $item['key'] . ' successfully updated!';
-                $this->flash1_msg_4[$item['key']] = $item['key'] . ' failed to update!';
-                $this->flash1_msg_5[$item['key']] = $item['key'] . ' successfully deleted!';
-                $this->flash1_msg_6[$item['key']] = $item['key'] . ' failed to delete!';
-
+                $this->flash1_msg_1[$item['key']] = $item['value'] . ' successfully saved!';
+                $this->flash1_msg_2[$item['key']] = $item['value'] . ' failed to save!';
+                $this->flash1_msg_3[$item['key']] = $item['value'] . ' successfully updated!';
+                $this->flash1_msg_4[$item['key']] = $item['value'] . ' failed to update!';
+                $this->flash1_msg_5[$item['key']] = $item['value'] . ' successfully deleted!';
+                $this->flash1_msg_6[$item['key']] = $item['value'] . ' failed to delete!';
+                
                 $this->flash[$item['key']] = 'pesan_' . $item['value'];
                 $this->flash_func[$item['key']] = '$(".' . $item['value'] . '").modal("show")';
 
@@ -159,8 +159,8 @@ if (!class_exists('OmnitagsController')) {
             date_default_timezone_set($this->aliases['timezone']);
             $this->tabel_a1_field1 = 1;
 
-            $this->theme = $this->tl_b7->tema($this->tabel_a1_field1)->result();
-            $this->theme_id = $this->theme[0]->id;
+            $this->theme = $this->tl_b7->theme($this->tabel_a1_field1)->result();
+            $this->theme_id = $this->theme[0]->id_theme;
 
             $this->notif_limit = $this->tl_b9->get_b9_with_b8_limit(userdata('id'))->result();
             $this->notif_null = $this->tl_b9->get_b9_by_field(['tabel_b9_field2', 'tabel_b9_field6'], [userdata('id'), NULL]);
@@ -232,6 +232,16 @@ if (!class_exists('OmnitagsController')) {
             }
             $data = array_merge($data1, $this->package);
             set_userdata('previous_url', current_url());
+            $this->track_page();
+            load_view_data($view_name, $data);
+        }
+        
+        public function load_page_error($tabel, $view_name, $data1)
+        {
+            if (!empty($tabel)) {
+                $this->tl_ot->create_or_update_history_table($tabel);
+            }
+            $data = array_merge($data1, $this->package);
             $this->track_page();
             load_view_data($view_name, $data);
         }
@@ -399,7 +409,7 @@ if (!class_exists('OmnitagsController')) {
         // adding the actual notif to all user based on c2_field1
         public function add_notif_all($msg, $type, $extra)
         {
-            $users = $this->tl_d3->get_d3_by_field('tabel_c2_field1', userdata('id'));
+            $users = $this->tl_d3->get_d3_by_field('tabel_d3_field2', userdata('id'));
 
             if ($users->num_rows() < 2) {
                 $notif = array(
