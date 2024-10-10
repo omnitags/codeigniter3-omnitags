@@ -265,6 +265,7 @@ if (!function_exists('select_edit')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
+        // Set alias and input field names
         $alias = $data[$field . '_alias'];
         $input = $data[$field . '_input'];
 
@@ -272,16 +273,23 @@ if (!function_exists('select_edit')) {
         $select_html = <<<HTML
         <div class="form-group shadow-sm">
             <select id="{$input}" class="form-control float" {$required} name="{$input}">
-                <option selected hidden value="{$value}">{$value}</option>
         HTML;
 
         // Loop through the results to generate options
         foreach ($tbl->result() as $obj) {
-            $value = $obj->$target_id;
-            $label = $obj->$target_id . ' - ' . $obj->$target_name;
-            $select_html .= <<<HTML
-                <option value="{$value}">{$label}</option>
-        HTML;
+            $option_value = $obj->$target_id;
+            $label = $obj->$target_name;
+
+            // Check if the current option is the selected one
+            if ($value == $option_value) {
+                $select_html .= <<<HTML
+                    <option selected value="{$option_value}">{$label}</option>
+                HTML;
+            } else {
+                $select_html .= <<<HTML
+                    <option value="{$option_value}">{$label}</option>
+                HTML;
+            }
         }
 
         // Close the select element and the div container
@@ -294,6 +302,7 @@ if (!function_exists('select_edit')) {
         return $select_html;
     }
 }
+
 
 
 if (!function_exists('input_hidden')) {

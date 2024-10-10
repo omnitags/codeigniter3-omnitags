@@ -155,9 +155,9 @@ if (!function_exists('tampil_dekor')) {
     function tampil_dekor($size, $tabel_class, $value)
     {
         return <<<HTML
-        <div class="dekor">
+        <div class="dekor rounded">
             <img style="max-height: {$size}; transform: scale(1.0);" alt="image"
-                class="img-fluid" src="img/{$tabel_class}/{$value}">
+                class="img-fluid rounded" src="img/{$tabel_class}/{$value}">
         </div>
         HTML;
     }
@@ -168,9 +168,9 @@ if (!function_exists('tampil_dekor_history')) {
     function tampil_dekor_history($size, $tabel_class, $value)
     {
         return <<<HTML
-        <div class="dekor shadow-sm">
+        <div class="dekor rounded shadow-sm">
             <img style="max-height: {$size}; transform: scale(1.0);" alt="image"
-                class="img-fluid archived" src="img/{$tabel_class}/{$value}">
+                class="img-fluid rounded archived" src="img/{$tabel_class}/{$value}">
             <div class="overlay"><i class="fas fa-history"></i></div>
         </div>
         HTML;
@@ -182,9 +182,9 @@ if (!function_exists('tampil_dekor_archive')) {
     function tampil_dekor_archive($size, $tabel_class, $value)
     {
         return <<<HTML
-        <div class="dekor shadow-sm">
+        <div class="dekor rounded shadow-sm">
             <img style="max-height: {$size}; transform: scale(1.0);" alt="image"
-                class="img-fluid archived" src="img/{$tabel_class}/{$value}">
+                class="img-fluid rounded archived" src="img/{$tabel_class}/{$value}">
             <div class="overlay"><i class="fas fa-trash"></i></div>
         </div>
         HTML;
