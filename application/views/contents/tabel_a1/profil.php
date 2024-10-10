@@ -35,7 +35,7 @@
       <form action="<?= site_url($tabel_a1 . '/update') ?>" method="post" enctype="multipart/form-data">
         <?= input_hidden('tabel_a1_field1', $tl_a1_alt->$tabel_a1_field1, 'required') ?>
         <?= input_edit($tl_a1_alt->$tabel_a1_field1, 'text', 'tabel_a1_field2', $tl_a1_alt->$tabel_a1_field2, 'required') ?>
-        <?= input_edit($tl_a1_alt->$tabel_a1_field1, 'text', 'tabel_a1_field3', $tl_a1_alt->$tabel_a1_field3, 'required') ?>
+        <?= input_textarea('tabel_a1_field3', $tl_a1_alt->$tabel_a1_field3, 'required') ?>
         <?= input_edit($tl_a1_alt->$tabel_a1_field1, 'text', 'tabel_a1_field4', $tl_a1_alt->$tabel_a1_field4, 'required') ?>
         <?= input_edit($tl_a1_alt->$tabel_a1_field1, 'text', 'tabel_a1_field5', $tl_a1_alt->$tabel_a1_field5, 'required') ?>
 
