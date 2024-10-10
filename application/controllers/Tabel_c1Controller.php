@@ -20,8 +20,6 @@ class Tabel_c1Controller extends OmnitagsController
 			'title' => $this->title['tabel_c1_alias_v3'],
 			'konten' => $this->v3['tabel_c1'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c1']),
-			'tbl_c1' => $this->tl_c1->get_all_c1(),
-			'tbl_e2' => $this->tl_e2->get_all_e2(),
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
 		);
 
