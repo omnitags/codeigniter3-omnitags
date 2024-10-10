@@ -45,7 +45,7 @@
         '</div>',
         btn_lihat($tl_e8->$tabel_e8_field1) . ' ' .
         btn_edit($tl_e8->$tabel_e8_field1),
-        'text-white bg-danger',
+        'text-light bg-dark',
         'col-md-3',
         $tabel_e8,
       );

@@ -10,16 +10,16 @@
 </div>
 <hr>
 
-<?php foreach ($tbl_a1 as $tl_a1): ?>
+<?php foreach ($tbl_a1_alt->result() as $tl_a1_alt): ?>
   <div class="row">
     <div class="col-md-6">
       <p>Some images will not change immediately, cache needs to be cleared first.</p>
       <div class="form-group">
-        <?= btn_field($tabel_b7_field3 . $tl_a1->$tabel_b7_field1, '<i class="fas fa-edit"></i> ' . $tabel_b7_field3_alias) ?>
-        <?= btn_field($tabel_b7_field4 . $tl_a1->$tabel_b7_field1, '<i class="fas fa-edit"></i> ' . $tabel_b7_field4_alias) ?>
-        <?= btn_field($tabel_b7_field5 . $tl_a1->$tabel_b7_field1, '<i class="fas fa-edit"></i> ' . $tabel_b7_field5_alias) ?>
+        <?= btn_field($tabel_b7_field3 . $tl_a1_alt->$tabel_a1_field6, '<i class="fas fa-edit"></i> ' . $tabel_b7_field3_alias) ?>
+        <?= btn_field($tabel_b7_field4 . $tl_a1_alt->$tabel_a1_field6, '<i class="fas fa-edit"></i> ' . $tabel_b7_field4_alias) ?>
+        <?= btn_field($tabel_b7_field5 . $tl_a1_alt->$tabel_a1_field6, '<i class="fas fa-edit"></i> ' . $tabel_b7_field5_alias) ?>
         <?= btn_field($tabel_b7, '<i class="fas fa-edit"></i> ' . $tabel_b7_alias) ?>
-        <?= btn_field('archive' . $tl_a1->$tabel_a1_field1, '<i class="fas fa-trash"></i>' . ' Archives') ?>
+        <?= btn_field('archive' . $tl_a1_alt->$tabel_a1_field1, '<i class="fas fa-trash"></i>' . ' Archives') ?>
         <?= btn_kelola('tabel_b1', '/admin') ?>
         <?= btn_kelola('tabel_b2', '/admin') ?>
         <?= btn_kelola('tabel_b8', '/admin') ?>
@@ -31,17 +31,16 @@
       </div>
     </div>
     <div class="col-md-6">
-      <?= btn_history('tabel_a1', $tl_a1->$tabel_a1_field1) ?>
+      <?= btn_history('tabel_a1', $tl_a1_alt->$tabel_a1_field1) ?>
       <form action="<?= site_url($tabel_a1 . '/update') ?>" method="post" enctype="multipart/form-data">
-        <?= input_hidden('tabel_a1_field1', $tl_a1->$tabel_a1_field1, 'required') ?>
-        <?= input_edit($tl_a1->$tabel_a1_field1, 'text', 'tabel_a1_field2', $tl_a1->$tabel_a1_field2, 'required') ?>
-        <?= input_edit($tl_a1->$tabel_a1_field1, 'text', 'tabel_a1_field3', $tl_a1->$tabel_a1_field3, 'required') ?>
-        <?= input_edit($tl_a1->$tabel_a1_field1, 'text', 'tabel_a1_field4', $tl_a1->$tabel_a1_field4, 'required') ?>
-        <?= input_edit($tl_a1->$tabel_a1_field1, 'text', 'tabel_a1_field5', $tl_a1->$tabel_a1_field5, 'required') ?>
+        <?= input_hidden('tabel_a1_field1', $tl_a1_alt->$tabel_a1_field1, 'required') ?>
+        <?= input_edit($tl_a1_alt->$tabel_a1_field1, 'text', 'tabel_a1_field2', $tl_a1_alt->$tabel_a1_field2, 'required') ?>
+        <?= input_edit($tl_a1_alt->$tabel_a1_field1, 'text', 'tabel_a1_field3', $tl_a1_alt->$tabel_a1_field3, 'required') ?>
+        <?= input_edit($tl_a1_alt->$tabel_a1_field1, 'text', 'tabel_a1_field4', $tl_a1_alt->$tabel_a1_field4, 'required') ?>
+        <?= input_edit($tl_a1_alt->$tabel_a1_field1, 'text', 'tabel_a1_field5', $tl_a1_alt->$tabel_a1_field5, 'required') ?>
 
         <div class="form-group">
-          <button class="btn btn-success" onclick="return confirm('Ubah data website?')" type="submit">Simpan
-            Perubahan</button>
+          <?= btn_update() ?>
         </div>
       </form>
     </div>
@@ -54,28 +53,20 @@
       <div class="modal-content">
         <?= modal_header('Make changes to ' . $tabel_b7_alias, '') ?>
 
-        <form action="<?= site_url($tabel_a1 . '/update_id_tema') ?>" method="post">
+        <form action="<?= site_url($tabel_a1 . '/update_id_theme') ?>" method="post">
           <div class="modal-body">
             <?= btn_kelola('tabel_b7', '/admin') ?>
 
-            <div class="form-group">
-              <select class="form-control float" required name="<?= $tabel_a1_field6_input ?>"
-                id="<?= $tabel_a1_field6_input ?>">
+            <?= select_edit(
+              'tabel_a1_field6',
+              $tl_a1_alt->$tabel_a1_field6,
+              $tbl_b7,
+              $tabel_b7_field1,
+              $tabel_b7_field2,
+              'required'
+            ); ?>
 
-                <?php foreach ($tbl_b7->result() as $tl_b7): ?>
-                  <?php if ($tl_a1->$tabel_a1_field6 == $tl_b7->$tabel_b7_field1) { ?>
-                    <option selected hidden value="<?= $tl_b7->$tabel_b7_field1 ?>"><?= $tl_b7->$tabel_b7_field2 ?></option>
-                  <?php } else { ?>
-                    <option value="<?= $tl_b7->$tabel_b7_field1 ?>"><?= $tl_b7->$tabel_b7_field2 ?>
-                    </option>
-                  <?php }endforeach ?>
-
-              </select>
-              <label for="<?= $tabel_a1_field6_input ?>" class="form-label">Select
-                <?= $tabel_b7_alias ?></label>
-
-              <?= input_hidden('tabel_a1_field1', $tl_a1->$tabel_a1_field1, 'required') ?>
-            </div>
+            <?= input_hidden('tabel_a1_field1', $tl_a1_alt->$tabel_a1_field1, 'required') ?>
           </div>
 
           <!-- memunculkan notifikasi modal -->
@@ -94,14 +85,13 @@
 
 <!-- modal edit favicon-->
 <?php foreach ($tbl_b7->result() as $tl_b7):
-  if ($tl_a1->$tabel_a1_field6 == $tl_b7->$tabel_b7_field1) { ?>
+  if ($tl_a1_alt->$tabel_a1_field6 == $tl_b7->$tabel_b7_field1) { ?>
     <div id="<?= $tabel_b7_field3 . $tl_b7->$tabel_b7_field1; ?>" class="modal fade <?= $tabel_b7_field3 ?>">
       <div class="modal-dialog">
         <div class="modal-content">
           <?= modal_header('Make changes to ' . $tabel_b7_field3_alias, '') ?>
 
-          <form action="<?= site_url($tabel_b7 . '/update_favicon') ?>" method="post"
-            enctype="multipart/form-data">
+          <form action="<?= site_url($tabel_b7 . '/update_favicon') ?>" method="post" enctype="multipart/form-data">
             <div class="modal-body">
 
               <?= input_hidden('tabel_b7_field1', $tl_b7->$tabel_b7_field1, 'required') ?>
@@ -128,8 +118,7 @@
         <div class="modal-content">
           <?= modal_header('Make changes to ' . $tabel_b7_field4_alias, '') ?>
 
-          <form action="<?= site_url($tabel_b7 . '/update_logo') ?>" method="post"
-            enctype="multipart/form-data">
+          <form action="<?= site_url($tabel_b7 . '/update_logo') ?>" method="post" enctype="multipart/form-data">
             <div class="modal-body">
 
               <?= input_hidden('tabel_b7_field1', $tl_b7->$tabel_b7_field1, 'required') ?>
@@ -156,8 +145,7 @@
         <div class="modal-content">
           <?= modal_header('Make changes to ' . $tabel_b7_field5_alias, '') ?>
 
-          <form action="<?= site_url($tabel_b7 . '/update_foto') ?>" method="post"
-            enctype="multipart/form-data">
+          <form action="<?= site_url($tabel_b7 . '/update_foto') ?>" method="post" enctype="multipart/form-data">
             <div class="modal-body">
 
               <?= input_hidden('tabel_b7_field1', $tl_b7->$tabel_b7_field1, 'required') ?>
@@ -178,7 +166,7 @@
       </div>
     </div>
 
-    <div id="archive<?= $tl_a1->$tabel_a1_field1; ?>" class="modal fade lihat" role="dialog">
+    <div id="archive<?= $tl_a1_alt->$tabel_a1_field1; ?>" class="modal fade lihat" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <?= modal_header("Archives", '') ?>

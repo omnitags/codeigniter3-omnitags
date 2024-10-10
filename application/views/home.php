@@ -10,14 +10,14 @@
             <div>
               <h1>Find a place that meets your needs</h1>
               <br>
-              <a href="<?= site_url($tabel_f2) ?>" class="btn btn-primary mb-4">Book Now</a>
+              <a href="<?= site_url($tabel_f2) ?>" class="btn btn-primary shadow-sm mb-4">Book Now</a>
             </div>
           </div>
 
           <div class="col-md-6">
             <?php break;
     } ?>
-        <img src="img/<?= $tabel_b7 ?>/<?= $tl_a1->$tabel_b7_field5 ?>" class="img-fluid rounded">
+        <img src="img/<?= $tabel_b7 ?>/<?= $tl_a1->$tabel_b7_field5 ?>" class="img-fluid shadow-sm rounded">
       </div>
     </div>
   </div>
