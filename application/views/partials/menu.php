@@ -41,6 +41,8 @@
                                         ?>
                                         <h6 class="dropdown-header">Data</h6>
                                         <?= dropdown_nav('tabel_e4', '/admin') ?>
+                                        <h6 class="dropdown-header">Manage</h6>
+                                        <?= dropdown_nav('tabel_c2', '/admin') ?>
                                         <div class="dropdown-divider"></div>
                                         <?= dropdown_nav('tabel_a1', '/profil') ?>
                                         <?php break;
