@@ -6,7 +6,6 @@
                 <a class="nav-link text-decoration-none text-light"
                     href="<?= nav_url('') ?>">Home</a>
             </li>
-            <?= nav_item($tabel_e4_alias, $tabel_e4, '/') ?>
             <!-- ?= nav_item($tabel_b10_alias, $tabel_b10, '/') ?> -->
             <!-- ?= nav_item($tabel_e2_alias, $tabel_e2, '/') ?> -->
             <?= nav_item('Login', 'login', '') ?>
