@@ -10,32 +10,6 @@
 </div>
 <hr>
 
-
-<table class="mb-4">
-
-  <!-- method get supaya nilai dari filter bisa tampil nanti -->
-  <form action="<?= site_url($language . '/' . $tabel_e2 . '/admin') ?>" method="get">
-    <tr>
-
-      <td class="pr-2">
-        <?= select_edit(
-          'tabel_e2_field3',
-          $tabel_e2_field3_value,
-          $tbl_e4,
-          $tabel_e4_field1,
-          $tabel_e4_field2,
-          'required'
-        ); ?>
-      </td>
-
-      <td>
-        <?= btn_cari() ?>
-        <?= btn_redo('tabel_e2', '/admin') ?>
-      </td>
-    </tr>
-  </form>
-</table>
-
 <div class="row">
   <div class="col-md-10">
     <?= btn_tambah() ?>
@@ -50,24 +24,24 @@
 
 
 
-
 <div id="card-view" class="data-view active">
   <div class="row">
     <?php if (empty($tbl_e2->result())) {
-    load_view('_partials/no_data');
+    load_view('partials/no_data');
   } else {
     $counter = 1;
     foreach ($tbl_e2->result() as $tl_e2):
       echo card_regular(
         $counter,
         $tl_e2->$tabel_e2_field1,
-        "ID: " . $tl_e2->$tabel_e2_field1,
+        $tl_e2->$tabel_e2_field1 . ' | ' . $tl_e2->$tabel_e2_field3,
         $tl_e2->$tabel_e2_field2,
         btn_lihat($tl_e2->$tabel_e2_field1) . ' ' .
-        btn_edit($tl_e2->$tabel_e2_field1),
-        'text-white bg-danger',
+        btn_edit($tl_e2->$tabel_e2_field1) . ' ' .
+        btn_hapus('tabel_e2', $tl_e2->$tabel_e2_field1),
+        'text-light bg-dark',
         'col-md-3',
-        $tabel_e2,
+        $tabel_e2
       );
     $counter++;
     endforeach;
@@ -84,11 +58,12 @@
   <table class="table table-light" id="data">
     <thead class="thead-light">
       <tr>
-        <th><?= lang('no') ?></th>
-        <th><?= lang('tabel_e2_field1_alias') ?></th>
-        <th><?= lang('tabel_e2_field2_alias') ?></th>
-        <th><?= lang('tabel_e2_field3_alias') ?></th>
-        <th><?= lang('action') ?></th>
+        <th>No</th>
+        <th><?= $tabel_e2_field1_alias ?></th>
+        <th><?= $tabel_e2_field2_alias ?></th>
+        <th><?= $tabel_e2_field4_alias ?></th>
+        <th><?= $tabel_e2_field5_alias ?></th>
+        <th>Action</th>
       </tr>
     </thead>
 
@@ -98,49 +73,47 @@
           <td></td>
           <td><?= $tl_e2->$tabel_e2_field1; ?></td>
           <td><?= $tl_e2->$tabel_e2_field2 ?></td>
-          <td><?= $tl_e2->$tabel_e2_field3 ?></td>
+          <td><?= $tl_e2->$tabel_e2_field4 ?></td>
+          <td><?= $tl_e2->$tabel_e2_field5 ?></td>
           <td>
             <?= btn_lihat($tl_e2->$tabel_e2_field1) ?>
             <?= btn_edit($tl_e2->$tabel_e2_field1) ?>
+            <?= btn_hapus('tabel_e2', $tl_e2->$tabel_e2_field1) ?>
           </td>
         </tr>
       <?php endforeach; ?>
     </tbody>
-
-
   </table>
 </div>
-
 
 <!-- modal tambah -->
 <div id="tambah" class="modal fade tambah">
   <div class="modal-dialog">
     <div class="modal-content">
-      <?= modal_header(lang('add') . ' ' . lang('tabel_e2_alias'), '') ?>
+      <?= modal_header('Add ' . $tabel_e2_alias, '') ?>
 
-      <form action="<?= site_url($language . '/' . $tabel_e2 . '/tambah') ?>" method="post">
+      <form action="<?= site_url($tabel_e2 . '/tambah') ?>" method="post"
+        enctype="multipart/form-data">
         <div class="modal-body">
-          <div class="row">
-            <div class="col-md-6">
-              <?= input_add('text', 'tabel_e2_field2', 'required') ?>
 
-              <?= select_add(
-                'tabel_e2_field3',
-                $tbl_e4,
-                $tabel_e4_field1,
-                $tabel_e4_field2,
-                'required'
-              ); ?>
+          <?= input_add('text', 'tabel_e2_field2', 'required') ?>
+          <?= input_add('text', 'tabel_e2_field3', 'required') ?>
 
-              <?= input_ckeditor('tabel_e2_field4', '', 'required') ?>
+          <?= select_add(
+            'tabel_e2_field4',
+            $tbl_e4,
+            $tabel_e4_field1,
+            $tabel_e4_field2,
+            'required'
+          ); ?>
 
-            </div>
-            <div class="col-md-6">
-              <?= input_textarea('tabel_e2_field5', '', 'required') ?>
-              <?= input_textarea('tabel_e2_field6', '', 'required') ?>
-
-            </div>
-          </div>
+          <?= select_add(
+            'tabel_e2_field5',
+            $tbl_e1,
+            $tabel_e1_field1,
+            $tabel_e1_field2,
+            'required'
+          ); ?>
 
         </div>
 
@@ -158,37 +131,20 @@
 <!-- modal edit -->
 <?php foreach ($tbl_e2->result() as $tl_e2): ?>
   <div id="ubah<?= $tl_e2->$tabel_e2_field1; ?>" class="modal fade ubah">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
       <div class="modal-content">
-        <?= modal_header_id(lang('change_data') . ' ' . lang('tabel_e2_alias'), $tl_e2->$tabel_e2_field1) ?>
+        <?= modal_header_id('Make changes to ' . $tabel_e2_alias, $tl_e2->$tabel_e2_field1) ?>
 
-        <!-- administrator tidak dapat mengubah password akun lain -->
-        <form action="<?= site_url($language . '/' . $tabel_e2 . '/update') ?>" method="post"
+        <form action="<?= site_url($tabel_e2 . '/update') ?>" method="post"
           enctype="multipart/form-data">
           <div class="modal-body">
-            <div class="row">
-              <div class="col-md-6">
-                <?= input_hidden('tabel_e2_field1', $tl_e2->$tabel_e2_field1, 'required') ?>
-                <?= input_edit('text', 'tabel_e2_field2', $tl_e2->$tabel_e2_field2, 'required') ?>
-                <?= select_edit(
-                  'tabel_e2_field3',
-                  $tl_e2->$tabel_e2_field3,
-                  $tbl_e4,
-                  $tabel_e4_field1,
-                  $tabel_e4_field2,
-                  'required'
-                ); ?>
-                <?= input_ckeditor('tabel_e2_field4', $tl_e2->$tabel_e2_field4, 'required') ?>
-              </div>
-              <div class="col-md-6">
-                <?= input_textarea('tabel_e2_field5', $tl_e2->$tabel_e2_field5, 'required') ?>
-                <?= input_textarea('tabel_e2_field6', $tl_e2->$tabel_e2_field6, 'required') ?>
+            <?= input_edit($tl_e2->$tabel_e2_field1, 'text', 'tabel_e2_field2', $tl_e2->$tabel_e2_field2, 'required') ?>
+            <?= input_edit($tl_e2->$tabel_e2_field1, 'text', 'tabel_e2_field3', $tl_e2->$tabel_e2_field3, 'required') ?>
+            <?= input_edit($tl_e2->$tabel_e2_field1, 'text', 'tabel_e2_field4', $tl_e2->$tabel_e2_field4, 'required') ?>
 
-              </div>
-            </div>
 
+            <?= input_hidden('tabel_e2_field1', $tl_e2->$tabel_e2_field1, 'required') ?>
           </div>
-
 
           <!-- memunculkan notifikasi modal -->
           <p class="small text-center text-danger"><?= get_flashdata('pesan_ubah') ?></p>
@@ -202,33 +158,20 @@
   </div>
 
 
-  <div id="lihat<?= $tl_e2->$tabel_e2_field1; ?>" class="modal fade lihat" role="dialog">
-    <div class="modal-dialog modal-xl" role="document">
-      <div class="modal-content">
-        <?= modal_header_id(lang('tabel_e2_alias'), $tl_e2->$tabel_e2_field1) ?>
 
-        <!-- administrator tidak bisa melihat password user lain -->
+
+  <div id="lihat<?= $tl_e2->$tabel_e2_field1; ?>" class="modal fade lihat" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <?= modal_header_id($tabel_e2_alias, $tl_e2->$tabel_e2_field1) ?>
         <form>
           <div class="modal-body">
-            <div class="row">
-              <div class="col-md-4">
-                <?= table_data(
-                  row_data('tabel_e2_field1', $tl_e2->$tabel_e2_field1) .
-                  row_data('tabel_e2_field2', $tl_e2->$tabel_e2_field2) .
-                  row_data('tabel_e2_field3', $tl_e2->$tabel_e2_field3),
-                  'table-light'
-                ) ?>
-              </div>
-              <div class="col-md-8">
-                <?= table_data(
-                  row_data('tabel_e2_field4', $tl_e2->$tabel_e2_field4) .
-                  row_data('tabel_e2_field5', $tl_e2->$tabel_e2_field5) .
-                  row_data('tabel_e2_field6', $tl_e2->$tabel_e2_field6),
-                  'table-light'
-                ) ?>
-              </div>
-            </div>
-
+            <?= table_data(
+              row_data('tabel_e2_field2', $tl_e2->$tabel_e2_field2) .
+              row_data('tabel_e2_field3', $tl_e2->$tabel_e2_field3) .
+              row_data('tabel_e2_field4', $tl_e2->$tabel_e2_field4),
+              'table-light'
+            ) ?>
           </div>
 
           <!-- memunculkan notifikasi modal -->
@@ -239,11 +182,12 @@
             <?= btn_tutup() ?>
           </div>
         </form>
-
       </div>
     </div>
   </div>
-<?php endforeach; ?>
+
+
+<?php endforeach ?>
 
 <?= adjust_col_js('col-md-3', 'col-md-4') ?>
 <?= load_card_pagination_js($tbl_e2->num_rows(), 28) ?>
