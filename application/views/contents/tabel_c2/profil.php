@@ -25,8 +25,6 @@
 
         <?= input_hidden('tabel_c2_field1', $tl_c2->$tabel_c2_field1, 'required') ?>
         <?= input_edit($tl_c2->$tabel_c2_field1, 'text', 'tabel_c2_field2', $tl_c2->$tabel_c2_field2, 'required') ?>
-        <small>*Merubah <?= $tabel_c2_field3_alias ?> ini tidak akan merubah <?= $tabel_c2_field3_alias ?> yang ada di
-          <?= $tabel_f2_alias ?></small>
         <?= input_edit($tl_c2->$tabel_c2_field1, 'email', 'tabel_c2_field3', $tl_c2->$tabel_c2_field3, 'required autocomplete="username"') ?>
         <?= input_edit($tl_c2->$tabel_c2_field1, 'text', 'tabel_c2_field5', $tl_c2->$tabel_c2_field5, 'required') ?>
 
