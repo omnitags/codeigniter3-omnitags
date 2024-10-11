@@ -36,7 +36,7 @@
   } else {
     $counter = 1;
     foreach ($tbl_e4->result() as $tl_e4):
-      echo card_file(
+      echo card_regular(
         $counter,
         $tl_e4->$tabel_e4_field1,
         $tabel_e4_field1_alias . ": " . $tl_e4->$tabel_e4_field1,
@@ -46,7 +46,6 @@
         'text-light bg-dark',
         'col-md-3',
         $tabel_e4,
-        $tl_e4->$tabel_e4_field3
       );
     $counter++;
     endforeach;

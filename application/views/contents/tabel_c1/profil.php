@@ -27,8 +27,6 @@
         <div class="form-group">
           <?= btn_update() ?>
         </div>
-        <small>*Merubah <?= $tabel_c1_field3_alias ?> ini tidak akan merubah <?= $tabel_c1_field3_alias ?> yang ada di
-          <?= $tabel_f2_alias ?></small>
       </form>
     <?php endforeach; ?>
   </div>

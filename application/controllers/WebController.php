@@ -95,7 +95,7 @@ class WebController extends OmnitagsController
 			// 'tbl_e1' => $this->tl_e1->get_all_e1()->num_rows(),
 			// 'tbl_e2' => $this->tl_e2->get_all_e2()->num_rows(),
 			// 'tbl_c1' => $this->tl_c1->get_all_c1()->num_rows(),
-			'tbl_e3' => $this->tl_e3->get_all_e3()->num_rows(),
+			// 'tbl_e3' => $this->tl_e3->get_all_e3()->num_rows(),
 			'tbl_e4' => $this->tl_e4->get_all_e4()->num_rows(),
 			// 'tbl_f1' => $this->tl_f1->get_all_f1()->num_rows(),
 			'tbl_f2' => $this->tl_f2->get_all_f2()->num_rows(),
