@@ -34,8 +34,8 @@
       echo card_regular(
         $counter,
         $tl_e3->$tabel_e3_field1,
-        $tl_e3->$tabel_e3_field1 . ' | ' . $tl_e3->$tabel_e3_field2,
-        $tl_e3->$tabel_e3_field4,
+        $tl_e3->$tabel_e3_field1 . ' | ' . $tl_e3->$tabel_e3_field3,
+        $tl_e3->$tabel_e3_field2,
         btn_lihat($tl_e3->$tabel_e3_field1) . ' ' .
         btn_edit($tl_e3->$tabel_e3_field1) . ' ' .
         btn_hapus('tabel_e3', $tl_e3->$tabel_e3_field1),
@@ -98,7 +98,22 @@
 
           <?= input_add('text', 'tabel_e3_field2', 'required') ?>
           <?= input_add('text', 'tabel_e3_field3', 'required') ?>
-          <?= input_add('text', 'tabel_e3_field4', 'required') ?>
+
+          <?= select_add(
+            'tabel_e3_field4',
+            $tbl_e4,
+            $tabel_e4_field1,
+            $tabel_e4_field2,
+            'required'
+          ); ?>
+
+          <?= select_add(
+            'tabel_e3_field5',
+            $tbl_e1,
+            $tabel_e1_field1,
+            $tabel_e1_field2,
+            'required'
+          ); ?>
 
         </div>
 
@@ -153,7 +168,7 @@
           <div class="modal-body">
             <?= table_data(
               row_data('tabel_e3_field2', $tl_e3->$tabel_e3_field2) .
-              row_data('tabel_e3_field4', $tl_e3->$tabel_e3_field4) .
+              row_data('tabel_e3_field3', $tl_e3->$tabel_e3_field3) .
               row_data('tabel_e3_field4', $tl_e3->$tabel_e3_field4),
               'table-light'
             ) ?>

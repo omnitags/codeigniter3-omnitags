@@ -99,8 +99,6 @@
           <td><?= $tl_e1->$tabel_e1_field1; ?></td>
           <td><?= $tl_e1->$tabel_e1_field2 ?></td>
           <td><?= $tl_e1->$tabel_e1_field3 ?></td>
-          <td><?= $tl_e1->$tabel_e1_field4 ?></td>
-          <td><?= $tl_e1->$tabel_e1_field5 ?></td>
           <td>
             <?= btn_lihat($tl_e1->$tabel_e1_field1) ?>
             <?= btn_edit($tl_e1->$tabel_e1_field1) ?>
