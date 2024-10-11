@@ -238,7 +238,7 @@ class Tabel_b1Controller extends OmnitagsController
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_b7->get_b7_by_field('tabel_b1_field7', $tabel_b1_field7)->result();
+		$tabel = $this->tl_b7->get_b7_by_field('tabel_b1_field1', $tabel_b1_field7)->result();
 		$this->check_data($tabel);
 
 		$data = array(

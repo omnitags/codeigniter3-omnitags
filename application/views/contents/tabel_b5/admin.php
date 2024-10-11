@@ -80,7 +80,7 @@
           btn_lihat($tl_b5->$tabel_b5_field1) . ' ' .
           btn_edit($tl_b5->$tabel_b5_field1) . ' ' .
           btn_hapus('tabel_b5', $tl_b5->$tabel_b5_field1),
-          'text-white bg-danger',
+          'text-light bg-dark',
           'col-md-3',
           $tabel_b5,
           $tl_b5->$tabel_b5_field4,

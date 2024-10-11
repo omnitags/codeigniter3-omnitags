@@ -41,7 +41,7 @@
         btn_lihat($tl_a1_alt->$tabel_a1_field1) . ' ' .
         btn_edit($tl_a1_alt->$tabel_a1_field1) . ' ' .
         btn_hapus($tabel_a1, $tl_a1_alt->$tabel_a1_field1),
-        'text-white bg-danger',
+        'text-light bg-dark',
         'col-md-3',
         $tabel_a1,
         $tl_a1->$tabel_a1_field3,

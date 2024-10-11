@@ -53,7 +53,7 @@ switch (true) {
     </div>
 
     <!-- navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top shadow">
       <a class="navbar-brand font-weight-bold" href="<?= nav_url('/') ?>">
         <img src="img/<?= $tabel_b7 ?>/<?= $tl_a1->$tabel_b7_field4; ?>" height="50">
       </a>
