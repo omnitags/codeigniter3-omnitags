@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/me/omnitags/';
+$config['base_url'] = 'http://localhost/project/omnitags/';
 
 /*
 |--------------------------------------------------------------------------

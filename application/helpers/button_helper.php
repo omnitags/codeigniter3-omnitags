@@ -11,7 +11,7 @@ if (!function_exists('back_to_home')) {
         $data = $CI->load->get_vars();
 
         $alias = '< Home';
-        $url = xss_clean(site_url($data['language'] . '/home'));
+        $url = xss_clean(site_url('home'));
 
         return <<<HTML
         <a class="text-decoration-none" href="{$url}">{$alias}</a>
@@ -32,12 +32,11 @@ if (!function_exists('back_to_activity')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = xss_clean(lang('back_to_activity'));
         // Get the previous URL from session, fallback to home if not set
-        $url = xss_clean(userdata('previous_url') ? userdata('previous_url') : site_url($data['language'] . '/home'));
+        $url = xss_clean(userdata('previous_url') ? userdata('previous_url') : site_url('home'));
 
         return <<<HTML
-        <a class="text-decoration-none" href="{$url}">{$alias}</a>
+        <a class="text-decoration-none" href="{$url}">Back to Activity</a>
         HTML;
     }
 }
@@ -64,10 +63,8 @@ if (!function_exists('btn_tambah')) {
     // Creates a button to add new content
     function btn_tambah()
     {
-        $alias = xss_clean(lang('add'));
-
         return <<<HTML
-        <button class="btn mr-1 btn-success mb-4" type="button" data-toggle="modal" data-target="#tambah">+ {$alias}</button>
+        <button class="btn shadow-sm mr-1 btn-success mb-4" type="button" data-toggle="modal" data-target="#tambah">+ Add</button>
         HTML;
     }
 }
@@ -76,10 +73,8 @@ if (!function_exists('btn_simpan')) {
     // Creates a button to save data
     function btn_simpan()
     {
-        $alias = xss_clean(lang('save_data'));
-
         return <<<HTML
-        <button class="btn mt-4 mb-4 mr-1 btn-success" type="submit">{$alias}</button>
+        <button class="btn shadow-sm mt-4 mb-4 mr-1 btn-success" type="submit">Save Data</button>
         HTML;
     }
 }
@@ -88,10 +83,8 @@ if (!function_exists('btn_tutup')) {
     // Creates a button to close a dialog or modal
     function btn_tutup()
     {
-        $alias = xss_clean(lang('close_dialog'));
-
         return <<<HTML
-        <button class="btn mb-2 btn-primary" data-dismiss="modal">{$alias}</button>
+        <button class="btn shadow-sm mb-2 btn-primary" data-dismiss="modal">Close</button>
         HTML;
     }
 }
@@ -100,10 +93,8 @@ if (!function_exists('btn_book')) {
     // Creates a button to book an item
     function btn_book($value)
     {
-        $alias = xss_clean(lang('input'));
-
         return <<<HTML
-        <a class="btn btn-light border border-dark text-success mb-2" type="button" data-toggle="modal"
+        <a class="btn shadow-sm btn-light border border-dark text-success mb-2" type="button" data-toggle="modal"
             data-target="#book{$value}">
             <i class="fas fa-concierge-bell"></i>
         </a>
@@ -117,9 +108,9 @@ if (!function_exists('view_switcher')) {
     {
         return <<<HTML
         <div class="btn-group mb-4" role="group" aria-label="View Toggle">
-        <button type="button" class="btn btn-primary view-toggle active" data-target="card-view"><i
+        <button type="button" class="btn shadow-sm btn-primary view-toggle active" data-target="card-view"><i
             class="fas fa-th-large"></i></button>
-        <button type="button" class="btn btn-primary view-toggle" data-target="table-view"><i
+        <button type="button" class="btn shadow-sm btn-primary view-toggle" data-target="table-view"><i
             class="fas fa-table"></i></button>
         </div>
         HTML;
@@ -132,7 +123,7 @@ if (!function_exists('btn_field')) {
     {
 
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-light border border-dark text-info" type="button" data-toggle="modal"
+        <a class="btn shadow-sm mr-1 mb-2 btn-light border border-dark text-info" type="button" data-toggle="modal"
             data-target="#{$value}">
             {$logo}
         </a>
@@ -144,10 +135,8 @@ if (!function_exists('btn_update')) {
     // Creates a button to update data
     function btn_update()
     {
-        $alias = xss_clean(lang('update_data'));
-
         return <<<HTML
-        <button class="btn mt-4 mr-1 btn-success" type="submit">{$alias}</button>
+        <button class="btn shadow-sm mt-4 mr-1 btn-success" onclick="return confirm('Save Changes?')" type="submit">Save Changes</button>
         HTML;
     }
 }
@@ -156,13 +145,16 @@ if (!function_exists('btn_update_field')) {
     // Creates a button to update data with a confirmation prompt
     function btn_update_field($field)
     {
-        $alias = xss_clean(lang('update_data'));
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
 
-        $placeholder = xss_clean($alias . ' ' . lang($field));
+        $placeholder = xss_clean('Save changes to ' . $data[$field . '_alias']);
 
         return <<<HTML
-        <button class="btn mt-4 mr-1 btn-success" type="submit" 
-        onclick="return confirm({$placeholder})">{$alias}</button>
+        <button class="btn shadow-sm mt-4 mr-1 btn-success" type="submit" 
+        onclick="return confirm({$placeholder})">Save Changes</button>
         HTML;
     }
 }
@@ -172,7 +164,7 @@ if (!function_exists('btn_cari')) {
     function btn_cari()
     {
         return <<<HTML
-        <button class="btn mr-1 mb-2 btn-success" name="search" type="submit">
+        <button class="btn shadow-sm mr-1 mb-2 btn-success" name="search" type="submit">
           <a type="submit"><i class="fas fa-search"></i></a>
         </button>
         HTML;
@@ -188,13 +180,12 @@ if (!function_exists('btn_sync')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $lang = xss_clean($data['language']);
+        $controller = $data[$tabel];
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/sync_theme'));
+        $url = xss_clean(site_url($controller . '/' . $value . '/sync_theme'));
 
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-primary" onclick="return confirm('Sync with {$value}?')" href="{$url}">
+        <a class="btn shadow-sm mr-1 mb-2 btn-primary" onclick="return confirm('Sync with {$value}?')" href="{$url}">
           <i class="fas fa-sync-alt"></i>
         </a>
         HTML;
@@ -210,7 +201,7 @@ if (!function_exists('btn_read_more')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = xss_clean(site_url($data['language'] . '/' . $data[$table] . '/' . $id));
+        $url = xss_clean(site_url($data[$table] . '/' . $id));
 
         return <<<HTML
         <a class="text-decoration-none" href="{$url}" target="_blank"> Read more</a>
@@ -227,10 +218,10 @@ if (!function_exists('btn_value')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = xss_clean(site_url($data['language'] . '/' . $data[$table] . '/' . $id . '/' . $function));
+        $url = xss_clean(site_url($data[$table] . '/' . $id . '/' . $function));
 
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-light border border-dark text-warning"
+        <a class="btn shadow-sm mr-1 mb-2 btn-light border border-dark text-warning"
                 href="{$url}">
                 {$logo}</a>
         HTML;
@@ -241,10 +232,8 @@ if (!function_exists('btn_lihat')) {
     // Creates a button to view details
     function btn_lihat($value)
     {
-        $alias = xss_clean(lang('input'));
-
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-light border border-dark text-primary" type="button" data-toggle="modal"
+        <a class="btn shadow-sm mr-1 mb-2 btn-light border border-dark text-primary" type="button" data-toggle="modal"
             data-target="#lihat{$value}">
             <i class="fas fa-eye"></i></a>
         HTML;
@@ -255,16 +244,25 @@ if (!function_exists('btn_edit')) {
     // Creates a button to edit details
     function btn_edit($value)
     {
-        $alias = xss_clean(lang('input'));
-
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-light border border-dark text-warning" type="button" data-toggle="modal"
+        <a class="btn shadow-sm mr-1 mb-2 btn-light border border-dark text-warning" type="button" data-toggle="modal"
               data-target="#ubah{$value}">
               <i class="fas fa-edit"></i></a>
         HTML;
     }
 }
 
+if (!function_exists('btn_filter')) {
+    // Generates a button to print a report for a specific table
+    function btn_filter()
+    {
+        return <<<HTML
+        <button class="btn shadow-sm mr-1 btn-primary mb-4" type="button" data-toggle="modal" data-target="#filter">
+            <i class="fas fa-filter"></i> Filter
+        </button>
+        HTML;
+    }
+}
 
 if (!function_exists('btn_laporan')) {
     // Generates a button to print a report for a specific table
@@ -275,16 +273,18 @@ if (!function_exists('btn_laporan')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $controller = xss_clean($data[$tabel]);
+        $controller = $data[$tabel];
 
-        $lang = xss_clean($data['language']);
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/laporan'));
-        $alias = xss_clean(lang('print_report'));
+        $url = xss_clean(site_url($controller . '/laporan'));
 
         return <<<HTML
-        <a class="btn mr-1 btn-info mb-4" href="{$url}" target="_blank">
-            <i class="fas fa-print"></i> {$alias}</a>
+        <button class="btn shadow-sm mr-1 btn-info dropdown-toggle mb-4" type="button" data-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-print"></i> Export
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" target="_blank" href="{$url}"><i class="fas fa-file-pdf"></i> PDF</a>
+        </div>
         HTML;
     }
 }
@@ -298,14 +298,13 @@ if (!function_exists('btn_archive')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $controller = xss_clean($data[$tabel]);
+        $controller = $data[$tabel];
 
-        $lang = xss_clean($data['language']);
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/archive'));
+        $url = xss_clean(site_url($controller . '/archive'));
 
         return <<<HTML
-        <a class="btn mr-1 btn-outline-secondary mb-4" href="{$url}" target="_blank">
+        <a class="btn shadow-sm mr-1 btn-outline-secondary mb-4" href="{$url}" target="_blank">
             <i class="fas fa-trash"></i> Trash</a>
         HTML;
     }
@@ -321,14 +320,13 @@ if (!function_exists('btn_print')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
+        $controller = $data[$tabel];
 
-        $lang = xss_clean($data['language']);
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/print'));
+        $url = xss_clean(site_url($controller . '/' . $value . '/print'));
 
         return <<<HTML
-        <a class="btn btn-light border border-dark text-info mb-2" href="{$url}"
+        <a class="btn shadow-sm btn-light border border-dark text-info mb-2" href="{$url}"
               target="_blank">
               <i class="fas fa-print"></i>
             </a>
@@ -345,13 +343,12 @@ if (!function_exists('btn_kelola')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = xss_clean(lang($tabel . '_alias' . '_btn'));
-        $controller = xss_clean($data[$tabel]);
-        $lang = xss_clean($data['language']);
-        $url = xss_clean(site_url($lang . '/' . $controller . $function));
+        $alias = $data[$tabel . '_alias'];
+        $controller = $data[$tabel];
+        $url = site_url($controller . $function);
 
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-info text-light" href="{$url}">
+        <a class="btn shadow-sm mr-1 mb-2 btn-info text-light" href="{$url}">
         <i class="fas fa-edit"></i> {$alias}</a>
         HTML;
     }
@@ -366,13 +363,12 @@ if (!function_exists('btn_redo')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $controller = xss_clean($data[$tabel]);
-        $lang = xss_clean($data['language']);
+        $controller = $data[$tabel];
 
-        $url = xss_clean(site_url($lang . '/' . $controller . $function));
+        $url = site_url($controller . $function);
 
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-danger" type="button" href="{$url}">
+        <a class="btn shadow-sm mr-1 mb-2 btn-danger" type="button" href="{$url}">
           <i class="fas fa-redo"></i></a>
         HTML;
     }
@@ -388,14 +384,13 @@ if (!function_exists('btn_hapus')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/soft_delete'));
+        $url = xss_clean(site_url($controller . '/' . $value . '/soft_delete'));
 
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah data {$alias} ingin dihapus?')"
+        <a class="btn shadow-sm mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah data {$alias} ingin dihapus?')"
               href="{$url}">
               <i class="fas fa-trash"></i></a>
         HTML;
@@ -412,14 +407,13 @@ if (!function_exists('btn_hapus_cepat')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/soft_delete'));
+        $url = xss_clean(site_url($controller . '/' . $value . '/soft_delete'));
 
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-light border border-dark text-danger"
+        <a class="btn shadow-sm mr-1 mb-2 btn-light border border-dark text-danger"
               href="{$url}">
               <i class="fas fa-trash"></i></a>
         HTML;
@@ -436,14 +430,13 @@ if (!function_exists('btn_restore')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/restore'));
+        $url = xss_clean(site_url($controller . '/' . $value . '/restore'));
 
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-light border border-dark text-primary" onclick="return confirm('apakah data {$alias} ingin dikembalikan?')"
+        <a class="btn shadow-sm mr-1 mb-2 btn-light border border-dark text-primary" onclick="return confirm('apakah data {$alias} ingin dikembalikan?')"
               href="{$url}">
               <i class="fas fa-trash-restore"></i></a>
         HTML;
@@ -460,14 +453,13 @@ if (!function_exists('btn_push')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/push'));
+        $url = xss_clean(site_url($controller . '/' . $value . '/push'));
 
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-light border border-dark text-primary" onclick="return confirm('apakah data {$alias} ingin dikembalikan?')"
+        <a class="btn shadow-sm mr-1 mb-2 btn-light border border-dark text-primary" onclick="return confirm('apakah data {$alias} ingin dikembalikan?')"
               href="{$url}">
               <i class="fas fa-arrow-up"></i></a>
         HTML;
@@ -484,14 +476,12 @@ if (!function_exists('btn_history')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
+        $controller = $data[$tabel];
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/history'));
+        $url = xss_clean(site_url($controller . '/' . $value . '/history'));
 
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-light border border-dark text-primary"
+        <a class="btn shadow-sm mr-1 mb-2 btn-light border border-dark text-primary"
               href="{$url}" target="_blank">
               <i class="fas fa-history"></i></a>
         HTML;
@@ -508,14 +498,13 @@ if (!function_exists('btn_hapus_full')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/delete'));
+        $url = xss_clean(site_url($controller . '/' . $value . '/delete'));
 
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
+        <a class="btn shadow-sm mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
               href="{$url}">
               <i class="fas fa-times"></i></a>
         HTML;
@@ -532,14 +521,13 @@ if (!function_exists('btn_truncate')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/soft_truncate'));
+        $url = xss_clean(site_url($controller . '/' . $value . '/soft_truncate'));
 
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah semua data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
+        <a class="btn shadow-sm mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah semua data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
               href="{$url}">
               <i class="fas fa-dumpster"></i></a>
         HTML;
@@ -556,14 +544,13 @@ if (!function_exists('btn_truncate_full')) {
         $data = $CI->load->get_vars();
 
 
-        $controller = xss_clean($data[$tabel]);
-        $alias = xss_clean(lang($tabel . '_alias'));
-        $lang = xss_clean($data['language']);
+        $controller = $data[$tabel];
+        $alias = $data[$tabel . '_alias'];
 
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $value . '/truncate'));
+        $url = xss_clean(site_url($controller . '/' . $value . '/truncate'));
 
         return <<<HTML
-        <a class="btn mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah semua data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
+        <a class="btn shadow-sm mr-1 mb-2 btn-light border border-dark text-danger" onclick="return confirm('apakah semua data {$alias} ingin dihapus (tindakan ini tidak dapat dikembalikan)?')"
               href="{$url}">
               <i class="fas fa-dumpster-fire"></i></a>
         HTML;
@@ -579,12 +566,11 @@ if (!function_exists('btn_action')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $controller = xss_clean($data[$tabel]);
-        $lang = xss_clean($data['language']);
-        $url = xss_clean(site_url($lang . '/' . $controller . '/' . $id . '/' . $function));
+        $controller = $data[$tabel];
+        $url = xss_clean(site_url($controller . '/' . $id . '/' . $function));
 
         return <<<HTML
-        <a class="btn mr-2 mb-2 {$theme}" href="{$url}">
+        <a class="btn shadow-sm mr-2 mb-2 {$theme}" href="{$url}">
         {$logo}</a>
         HTML;
     }
@@ -598,13 +584,13 @@ if (!function_exists('card_pagination')) {
         <nav aria-label="Page navigation" class="my-4">
             <ul class="pagination justify-content-center" id="pagination-numbers">
             <li class="page-item">
-                <button class="page-link" id="prev-btn" onclick="prevPage()">Previous</button>
+                <button class="shadow-sm page-link" id="prev-btn" onclick="prevPage()">Previous</button>
             </li>
             <li class="page-item">
                 <span id="page-info" style="display: inline-block; padding: 0.5rem 1rem; color: #000;">Page Info</span>
             </li>
             <li class="page-item">
-                <button class="page-link" id="next-btn" onclick="nextPage()">Next</button>
+                <button class="shadow-sm page-link" id="next-btn" onclick="nextPage()">Next</button>
             </li>
             </ul>
         </nav>
