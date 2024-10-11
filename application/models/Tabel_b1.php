@@ -38,7 +38,6 @@ class Tabel_b1 extends CI_Model
 			$this->db->where($this->aliases[$fields], $params);
 		}
 
-		$this->db->where('deleted_at', NULL);
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b1']);
 	}
