@@ -9,7 +9,7 @@ class Tabel_f2 extends CI_Model
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_f2']);
 	}
-	
+
 	public function get_all_f2_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
@@ -28,7 +28,6 @@ class Tabel_f2 extends CI_Model
 			$this->db->where($this->aliases[$fields], $params);
 		}
 
-		$this->db->where('deleted_at', NULL);
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_f2']);
 	}
@@ -116,7 +115,7 @@ class Tabel_f2 extends CI_Model
 		ORDER BY id DESC";
 		return $this->db->query($filter);
 	}
-	
+
 	public function filter_user_with_e4($param1, $param2, $param3, $param4, $param5)
 	{
 		$filter = "SELECT * FROM {$this->aliases['tabel_f2']} 

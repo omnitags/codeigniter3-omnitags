@@ -9,7 +9,7 @@ class Tabel_f4 extends CI_Model
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_f4']);
 	}
-	
+
 	public function get_all_f4_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
@@ -28,7 +28,6 @@ class Tabel_f4 extends CI_Model
 			$this->db->where($this->aliases[$fields], $params);
 		}
 
-		$this->db->where('deleted_at', NULL);
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_f4']);
 	}
