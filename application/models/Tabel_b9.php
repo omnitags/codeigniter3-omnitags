@@ -9,7 +9,7 @@ class Tabel_b9 extends CI_Model
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b9']);
 	}
-	
+
 	public function get_all_b9_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
@@ -27,12 +27,11 @@ class Tabel_b9 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
-		$this->db->where('deleted_at', NULL);
+
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b9']);
 	}
-	
+
 	public function get_b9_by_field_archive($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
@@ -43,7 +42,7 @@ class Tabel_b9 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
+
 		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b9']);
@@ -68,7 +67,7 @@ class Tabel_b9 extends CI_Model
 		ELSE 1 END, read_at DESC, {$this->aliases['tabel_b9']}.id DESC LIMIT 15";
 		return $this->db->query($sql);
 	}
-	
+
 	public function get_b9_with_b8_by_b9_field2($param1)
 	{
 		$sql = "SELECT 
