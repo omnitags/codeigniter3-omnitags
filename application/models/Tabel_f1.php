@@ -11,7 +11,7 @@ class Tabel_f1 extends CI_Model
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_f1']);
 	}
-	
+
 	public function get_all_f1_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
@@ -30,7 +30,6 @@ class Tabel_f1 extends CI_Model
 			$this->db->where($this->aliases[$fields], $params);
 		}
 
-		$this->db->where('deleted_at', NULL);
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_f1']);
 	}
@@ -45,7 +44,7 @@ class Tabel_f1 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
+
 		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_f1']);
@@ -126,7 +125,7 @@ class Tabel_f1 extends CI_Model
 		WHERE {$this->aliases['tabel_f1']}.deleted_at IS NULL
 		ORDER BY id DESC";
 		return $this->db->query($sql);
-	}	
+	}
 
 	// Eventhought the codes below works, there's still flasws inside the code
 	// To apply the filter, I actualy have two options, 
@@ -135,7 +134,7 @@ class Tabel_f1 extends CI_Model
 	// second, is to make the a dropdown or a toggle that can switch between cek in or cek out filter
 	// three, is to make a javascript that can switch the button from the one that using the filter function with OR 
 	// and the filter function with AND, with that, the fiter will be fine
-	
+
 	// Retrieves records from the tabel_f1 table filtered by a range of values for tabel_f1_field11 and tabel_f1_field12, ordered by tabel_f1_field1 in descending order
 	public function filter($param1, $param2, $param3, $param4)
 	{
