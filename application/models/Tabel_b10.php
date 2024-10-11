@@ -9,7 +9,7 @@ class Tabel_b10 extends CI_Model
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b10']);
 	}
-	
+
 	public function get_all_b10_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
@@ -27,12 +27,11 @@ class Tabel_b10 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
-		$this->db->where('deleted_at', NULL);
+
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b10']);
 	}
-	
+
 	public function get_b10_by_field_archive($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
@@ -43,12 +42,12 @@ class Tabel_b10 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
+
 		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b10']);
 	}
-	
+
 	public function insert_b10($data)
 	{
 		return $this->db->insert($this->aliases['tabel_b10'], $data);

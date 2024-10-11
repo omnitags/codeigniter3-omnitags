@@ -9,13 +9,13 @@ class Tabel_c2 extends CI_Model
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_c2']);
 	}
-	
+
 	public function get_all_c2_archive()
 	{
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_c2']);
 	}
-	
+
 	public function get_c2_by_field($fields, $params)
 	{
 		$this->db->where($fields, $params);
@@ -23,7 +23,7 @@ class Tabel_c2 extends CI_Model
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_c2']);
 	}
-	
+
 	public function get_c2_by_field_special($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
@@ -34,12 +34,11 @@ class Tabel_c2 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
-		$this->db->where('deleted_at', NULL);
+
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_c2']);
 	}
-	
+
 	public function get_c2_by_field_archive($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
@@ -50,7 +49,7 @@ class Tabel_c2 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
+
 		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_c2']);
