@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Checkboxes with Disable and FontAwesome (Bootstrap)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .checkbox-group .btn-primary {
+            background-color: #007bff;
+            /* Primary color */
+        }
+
+        .checkbox-group .btn-secondary {
+            background-color: #d3d3d3;
+            /* Light Grey */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body text-center">
+                <h5 class="card-title">Card Title</h5>
+
+                <div class="checkbox-group">
+                    <p class="card-text">Some description or text above the checkboxes.</p>
+
+                    <div class="btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-primary">
+                            <input type="checkbox" name="group1" id="option1" class="checkbox-option" required>
+
+                        </label>
+
+                        <label class="btn btn-primary">
+                            <input type="checkbox" name="group1" id="option2" class="checkbox-option" required>
+
+                        </label>
+
+                        <!-- Add more checkboxes as needed -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js"></script>
+    <!-- Replace with your Font Awesome Kit URL -->
+
+    <script>
+        // JavaScript to disable all primary buttons once one is chosen
+        $(document).ready(function () {
+            $('.checkbox-group input[type="checkbox"]').change(function () {
+                var checkboxes = $('.checkbox-group input[type="checkbox"]');
+                var checkedCheckbox = $(this);
+
+                if (checkedCheckbox.prop('checked')) {
+                    checkboxes.parent().removeClass('btn-primary').addClass('btn-secondary');
+                    checkedCheckbox.parent().addClass('active').addClass('btn-danger');
+                    checkedCheckbox.next().html('<i class="fas fa-times"></i> Cancel');
+                    checkboxes.not(checkedCheckbox).prop('disabled', true).prop('required', false);
+                } else {
+                    checkboxes.parent().removeClass('btn-secondary').addClass('btn-primary');
+                    checkboxes.prop('disabled', false).prop('required', true);
+                    checkedCheckbox.parent().removeClass('active').removeClass('btn-danger');
+                    checkedCheckbox.next().html('<i class="fas fa-check"></i> Option');
+
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
