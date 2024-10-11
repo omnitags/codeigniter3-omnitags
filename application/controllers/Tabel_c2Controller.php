@@ -126,11 +126,10 @@ class Tabel_c2Controller extends OmnitagsController
 			if ($this->v_post['tabel_c2_field4_confirm'] === $tabel_c2_field4) {
 				$this->load->library('encryption');
 
-				// $id = get_next_code($this->aliases['tabel_c2'], 'id', 'USR');
+				$code = get_next_code($this->aliases['tabel_c2'], 'id', '32');
 
 				$data = array(
-					// 'id' => $id,
-					'id' => '',
+					'id' => $code,
 					$this->aliases['tabel_c2_field2'] => $this->v_post['tabel_c2_field2'],
 					'email' => $this->v_post['tabel_c2_field3'],
 
