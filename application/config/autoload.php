@@ -149,8 +149,4 @@ $autoload['model'] = array(
   'Tabel_d3' => 'tl_d3',
   'Tabel_d4' => 'tl_d4',
   'Tabel_e4' => 'tl_e4',
-  'Tabel_f1' => 'tl_f1',
-  'Tabel_f2' => 'tl_f2',
-  'Tabel_f3' => 'tl_f3',
-  'Tabel_f4' => 'tl_f4',
 );
