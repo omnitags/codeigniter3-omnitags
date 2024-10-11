@@ -103,8 +103,6 @@ class Tabel_e2Controller extends OmnitagsController
 				$this->v_post['tabel_e2_field2'],
 				$this->v_post['tabel_e2_field3'],
 				$this->v_post['tabel_e2_field4'],
-				$this->v_post['tabel_e2_field5'],
-				$this->v_post['tabel_e2_field6'],
 			),
 			$this->views['flash2'],
 			'tambah'
@@ -120,8 +118,6 @@ class Tabel_e2Controller extends OmnitagsController
 			$this->aliases['tabel_e2_field2'] => $this->v_post['tabel_e2_field2'],
 			$this->aliases['tabel_e2_field3'] => $this->v_post['tabel_e2_field3'],
 			$this->aliases['tabel_e2_field4'] => $this->v_post['tabel_e2_field4'],
-			$this->aliases['tabel_e2_field5'] => $this->v_post['tabel_e2_field5'],
-			$this->aliases['tabel_e2_field6'] => $this->v_post['tabel_e2_field6'],
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
@@ -161,8 +157,6 @@ class Tabel_e2Controller extends OmnitagsController
 				$this->v_post['tabel_e2_field2'],
 				$this->v_post['tabel_e2_field3'],
 				$this->v_post['tabel_e2_field4'],
-				$this->v_post['tabel_e2_field5'],
-				$this->v_post['tabel_e2_field6'],
 			),
 			$this->views['flash3'],
 			'ubah' . $code
@@ -172,8 +166,6 @@ class Tabel_e2Controller extends OmnitagsController
 			$this->aliases['tabel_e2_field2'] => $this->v_post['tabel_e2_field2'],
 			$this->aliases['tabel_e2_field3'] => $this->v_post['tabel_e2_field3'],
 			$this->aliases['tabel_e2_field4'] => $this->v_post['tabel_e2_field4'],
-			$this->aliases['tabel_e2_field5'] => $this->v_post['tabel_e2_field5'],
-			$this->aliases['tabel_e2_field6'] => $this->v_post['tabel_e2_field6'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
 			'updated_by' => userdata('id'),

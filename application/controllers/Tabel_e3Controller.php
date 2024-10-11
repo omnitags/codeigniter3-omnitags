@@ -96,7 +96,6 @@ class Tabel_e3Controller extends OmnitagsController
 			$this->aliases['tabel_e3_field2'] => $this->v_post['tabel_e3_field2'],
 			$this->aliases['tabel_e3_field3'] => $this->v_post['tabel_e3_field3'],
 			$this->aliases['tabel_e3_field4'] => $this->v_post['tabel_e3_field4'],
-			$this->aliases['tabel_e3_field5'] => $this->v_post['tabel_e3_field5'],
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
@@ -128,7 +127,6 @@ class Tabel_e3Controller extends OmnitagsController
 				$this->v_post['tabel_e3_field2'],
 				$this->v_post['tabel_e3_field3'],
 				$this->v_post['tabel_e3_field4'],
-				$this->v_post['tabel_e3_field5'],
 			),
 			$this->views['flash3'],
 			'ubah' . $code
@@ -138,7 +136,6 @@ class Tabel_e3Controller extends OmnitagsController
 			$this->aliases['tabel_e3_field2'] => $this->v_post['tabel_e3_field2'],
 			$this->aliases['tabel_e3_field3'] => $this->v_post['tabel_e3_field3'],
 			$this->aliases['tabel_e3_field4'] => $this->v_post['tabel_e3_field4'],
-			$this->aliases['tabel_e3_field5'] => $this->v_post['tabel_e3_field5'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
 			'updated_by' => userdata('id'),

@@ -183,7 +183,6 @@
                 <?= btn_kelola('tabel_b8', '/archive') ?>
                 <?= btn_kelola('tabel_b9', '/archive') ?>
                 <?= btn_kelola('tabel_b10', '/archive') ?>
-                <?= btn_kelola('tabel_c1', '/archive') ?>
                 <?= btn_kelola('tabel_c2', '/archive') ?>
                 <?= btn_kelola('tabel_d3', '/archive') ?>
                 <?= btn_kelola('tabel_d4', '/archive') ?>
@@ -191,7 +190,6 @@
                 <?= btn_kelola('tabel_e2', '/archive') ?>
                 <?= btn_kelola('tabel_e3', '/archive') ?>
                 <?= btn_kelola('tabel_e4', '/archive') ?>
-                <?= btn_kelola('tabel_f2', '/archive') ?>
               </div>
             </div>
 
