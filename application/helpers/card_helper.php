@@ -92,7 +92,7 @@ if (!function_exists('card_regular')) {
         
         return <<<HTML
         <div id="{$card_id}" class="{$size} mt-2">
-            <div class="card {$theme}">
+            <div class="card shadow-sm {$theme}">
             <div class="card-body">
                 {$title}
                 <p class="card-text">{$detail}</p>
@@ -119,7 +119,7 @@ if (!function_exists('card_file')) {
         
         return <<<HTML
         <div id="{$card_id}" class="{$size} mt-2">
-            <div class="card {$theme}">
+            <div class="card shadow-sm {$theme}">
             <img src="img/{$table}/{$picture}" class="card-img-top img-fluid" style="max-height: 150px" alt="...">
             <div class="card-body">
                 <p class="card-text" style="font-size: 18px;"
@@ -147,7 +147,7 @@ if (!function_exists('card_event')) {
         
         return <<<HTML
         <div id="card-{$id}" class="col-md-4 mt-2">
-            <div class="card text-white {$theme}">
+            <div class="card shadow-sm text-white {$theme}">
             <img src="img/{$table}/{$picture}" class="card-img-top img-fluid" style="max-height: 150px" alt="...">
             <div class="card-body">
                 <p class="card-text" style="font-size: 18px;"
@@ -173,12 +173,12 @@ if (!function_exists('card_count')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = site_url($data['language'] . '/' . $data[$controller] . '/admin');
-        $detail = lang('detail') . ' >>';
+        $url = site_url($data[$controller] . '/admin');
+        $detail = 'Detail >>';
         
         return <<<HTML
         <div class="col-md-3 mt-2">
-            <div class="card {$theme}">
+            <div class="card shadow-sm {$theme}">
             <div class="card-body">
                 <h5 class="card-title">
                     {$title}
@@ -186,7 +186,7 @@ if (!function_exists('card_count')) {
                 <p class="card-text" style="font-size: 32px;">
                     {$count}
                 </p>
-                <a class="text-white" href="{$url}">{$detail}</a>
+                <a class="text-light" href="{$url}">{$detail}</a>
             </div>
             </div>
         </div>

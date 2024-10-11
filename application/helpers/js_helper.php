@@ -80,8 +80,8 @@ if (!function_exists('chart')) {
 
         $chart1 = $data['chart_' . $tabel1];
         $chart2 = $data['chart_' . $tabel2];
-        $alias1 = lang($tabel1 . '_alias');
-        $alias2 = lang($tabel2 . '_alias');
+        $alias1 = $data[$tabel1 . '_alias'];
+        $alias2 = $data[$tabel2 . '_alias'];
 
         return <<<HTML
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -503,6 +503,16 @@ if ( ! function_exists('load_card_pagination_js')) {
 
                 // Update page info
                 document.getElementById("page-info").textContent = `Page ${currentPage} of ${totalPages}`;
+                updateButtonStates();
+                localStorage.setItem("currentPage", currentPage);
+            }
+
+            const prevBtn = document.getElementById("prev-btn");
+            const nextBtn = document.getElementById("next-btn");
+
+            function updateButtonStates() {
+                prevBtn.disabled = currentPage === 1;
+                nextBtn.disabled = currentPage === totalPages;
             }
 
             function nextPage() {
