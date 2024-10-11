@@ -1,6 +1,6 @@
 <div class="row mb-2 align-items-center">
   <div class="col-md-9 d-flex align-items-center">
-    <h1><?= $title ?> (ID = <?= $table_id ?>)<?= count_data($tbl_e5) ?><?= $phase ?></h1>
+    <h1><?= $title ?> (ID = <?= $table_id ?>)<?= count_data($tbl_f5) ?><?= $phase ?></h1>
   </div>
   <div class="col-md-3 text-right">
     <?php foreach ($dekor->result() as $dk):
@@ -18,8 +18,8 @@
       <tr>
         <th>No</th>
         <th>ID History</th>
-        <th><?= $tabel_e5_field1_alias ?></th>
-        <th><?= $tabel_e5_field2_alias ?></th>
+        <th><?= $tabel_f5_field1_alias ?></th>
+        <th><?= $tabel_f5_field2_alias ?></th>
         <th>Updated At</th>
         <th>Updated By</th>
         <th>Action</th>
@@ -31,23 +31,23 @@
         <tr class="bg-light">
           <td></td>
           <td>[current]</td>
-          <td><?= $tl_cr->$tabel_e5_field1 ?></td>
-          <td><?= $tl_cr->$tabel_e5_field2 ?></td>
+          <td><?= $tl_cr->$tabel_f5_field1 ?></td>
+          <td><?= $tl_cr->$tabel_f5_field2 ?></td>
           <td><?= $tl_cr->updated_at ?></td>
           <td><?= show_info_user($tl_cr->updated_by, $users) ?></td>
           <td></td>
         </tr>
       <?php endforeach; ?>
-      <?php foreach ($tbl_e5->result() as $tl_e5): ?>
+      <?php foreach ($tbl_f5->result() as $tl_f5): ?>
         <tr>
           <td></td>
-          <td><?= $tl_e5->id_history; ?></td>
-          <td><?= $tl_e5->$tabel_e5_field1 ?></td>
-          <td><?= $tl_e5->$tabel_e5_field2 ?></td>
-          <td><?= $tl_e5->updated_at ?></td>
-          <td><?= show_info_user($tl_e5->updated_by, $users) ?></td>
+          <td><?= $tl_f5->id_history; ?></td>
+          <td><?= $tl_f5->$tabel_f5_field1 ?></td>
+          <td><?= $tl_f5->$tabel_f5_field2 ?></td>
+          <td><?= $tl_f5->updated_at ?></td>
+          <td><?= show_info_user($tl_f5->updated_by, $users) ?></td>
           <td>
-            <?= btn_lihat($tl_e5->id_history) ?>
+            <?= btn_lihat($tl_f5->id_history) ?>
           </td>
         </tr>
       <?php endforeach; ?>
@@ -58,18 +58,18 @@
 </div>
 
 <!-- modal lihat-->
-<?php foreach ($tbl_e5->result() as $tl_e5): ?>
-  <div id="lihat<?= $tl_e5->id_history; ?>" class="modal fade lihat" role="dialog">
+<?php foreach ($tbl_f5->result() as $tl_f5): ?>
+  <div id="lihat<?= $tl_f5->id_history; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <?= modal_header_id($tabel_e5_alias, $tl_e5->id_history) ?>
+        <?= modal_header_id($tabel_f5_alias, $tl_f5->id_history) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>
           <div class="modal-body">
             <?= table_data(
-              row_data('tabel_e5_field1', $tl_e5->$tabel_e5_field1) . 
-              row_data('tabel_e5_field2', $tl_e5->$tabel_e5_field2),
+              row_data('tabel_f5_field1', $tl_f5->$tabel_f5_field1) . 
+              row_data('tabel_f5_field2', $tl_f5->$tabel_f5_field2),
               'table-light'
             ) ?>
           </div>
@@ -78,7 +78,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
-            <?= btn_push('tabel_e5', $tl_e5->id_history) ?>
+            <?= btn_push('tabel_f5', $tl_f5->id_history) ?>
             <?= btn_tutup() ?>
           </div>
         </form>

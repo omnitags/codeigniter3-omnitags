@@ -1,6 +1,6 @@
 <div class="row mb-2 align-items-center">
   <div class="col-md-9 d-flex align-items-center">
-    <h1><?= $title ?><?= count_data($tbl_e8) ?><?= $phase ?></h1>
+    <h1><?= $title ?><?= count_data($tbl_f5) ?><?= $phase ?></h1>
   </div>
   <div class="col-md-3 text-right">
     <?php foreach ($dekor->result() as $dk):
@@ -27,22 +27,22 @@
 
 <div id="card-view" class="data-view active">
   <div class="row">
-    <?php if (empty($tbl_e8->result())) {
+    <?php if (empty($tbl_f5->result())) {
       load_view('partials/no_data');
     } else {
       $counter = 1;
-      foreach ($tbl_e8->result() as $tl_e8):
+      foreach ($tbl_f5->result() as $tl_f5):
         echo card_regular(
           $counter,
-          $tl_e8->$tabel_e8_field1,
-          $tl_e8->$tabel_e8_field1,
-          $tl_e8->$tabel_e8_field2,
-          btn_lihat($tl_e8->$tabel_e8_field1) . ' ' .
-          btn_restore('tabel_e8', $tl_e8->$tabel_e8_field1) . ' ' .
-          btn_hapus_full('tabel_e8', $tl_e8->$tabel_e8_field1),
+          $tl_f5->$tabel_f5_field1,
+          $tl_f5->$tabel_f5_field1,
+          $tl_f5->$tabel_f5_field2,
+          btn_lihat($tl_f5->$tabel_f5_field1) . ' ' .
+          btn_restore('tabel_f5', $tl_f5->$tabel_f5_field1) . ' ' .
+          btn_hapus_full('tabel_f5', $tl_f5->$tabel_f5_field1),
           'text-white bg-secondary',
           'col-md-3',
-          $tabel_e8,
+          $tabel_f5,
         );
         $counter++;
       endforeach;
@@ -59,22 +59,22 @@
     <thead class="thead-light">
       <tr>
         <th>No</th>
-        <th><?= $tabel_e8_field1_alias ?></th>
-        <th><?= $tabel_e8_field2_alias ?></th>
+        <th><?= $tabel_f5_field1_alias ?></th>
+        <th><?= $tabel_f5_field2_alias ?></th>
         <th>Action</th>
       </tr>
     </thead>
 
     <tbody>
-      <?php foreach ($tbl_e8->result() as $tl_e8): ?>
+      <?php foreach ($tbl_f5->result() as $tl_f5): ?>
         <tr>
           <td></td>
-          <td><?= $tl_e8->$tabel_e8_field1; ?></td>
-          <td><?= $tl_e8->$tabel_e8_field2 ?></td>
+          <td><?= $tl_f5->$tabel_f5_field1; ?></td>
+          <td><?= $tl_f5->$tabel_f5_field2 ?></td>
           <td>
-            <?= btn_lihat($tl_e8->$tabel_e8_field1) ?>
-            <?= btn_restore('tabel_e8', $tl_e8->$tabel_e8_field1) ?>
-            <?= btn_hapus_full('tabel_e8', $tl_e8->$tabel_e8_field1) ?>
+            <?= btn_lihat($tl_f5->$tabel_f5_field1) ?>
+            <?= btn_restore('tabel_f5', $tl_f5->$tabel_f5_field1) ?>
+            <?= btn_hapus_full('tabel_f5', $tl_f5->$tabel_f5_field1) ?>
           </td>
         </tr>
       <?php endforeach; ?>
@@ -85,18 +85,18 @@
 </div>
 
 <!-- modal edit-->
-<?php foreach ($tbl_e8->result() as $tl_e8): ?>
-  <div id="lihat<?= $tl_e8->$tabel_e8_field1; ?>" class="modal fade lihat" role="dialog">
+<?php foreach ($tbl_f5->result() as $tl_f5): ?>
+  <div id="lihat<?= $tl_f5->$tabel_f5_field1; ?>" class="modal fade lihat" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <?= modal_header_id($tabel_e8_alias, $tl_e8->$tabel_e8_field1) ?>
+        <?= modal_header_id($tabel_f5_alias, $tl_f5->$tabel_f5_field1) ?>
 
         <!-- administrator tidak bisa melihat password user lain -->
         <form>
           <div class="modal-body">
             <?= table_data(
-              row_data('tabel_e8_field1', $tl_e8->$tabel_e8_field1) .
-              row_data('tabel_e8_field2', $tl_e8->$tabel_e8_field2),
+              row_data('tabel_f5_field1', $tl_f5->$tabel_f5_field1) .
+              row_data('tabel_f5_field2', $tl_f5->$tabel_f5_field2),
               'table-light'
             ) ?>
           </div>
@@ -105,7 +105,7 @@
           <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
 
           <div class="modal-footer">
-            <?= btn_history('tabel_e8', $tl_e8->$tabel_e8_field1) ?>
+            <?= btn_history('tabel_f5', $tl_f5->$tabel_f5_field1) ?>
             <?= btn_tutup() ?>
           </div>
         </form>
@@ -116,4 +116,4 @@
 <?php endforeach; ?>
 
 <?= adjust_col_js('col-md-3', 'col-md-4') ?>
-<?= load_card_pagination_js($tbl_e8->num_rows(), 28) ?>
+<?= load_card_pagination_js($tbl_f5->num_rows(), 28) ?>
