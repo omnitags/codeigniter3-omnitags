@@ -9,7 +9,7 @@ class Tabel_e5 extends CI_Model
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e5']);
 	}
-	
+
 	public function get_all_e5_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
@@ -27,8 +27,7 @@ class Tabel_e5 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
-		$this->db->where('deleted_at', NULL);
+
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e5']);
 	}

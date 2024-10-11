@@ -9,14 +9,14 @@ class Tabel_e3 extends CI_Model
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e3']);
 	}
-	
+
 	public function get_all_e3_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e3']);
 	}
-	
+
 	public function get_e3_by_field($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
@@ -27,12 +27,11 @@ class Tabel_e3 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
-		$this->db->where('deleted_at', NULL);
+
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e3']);
 	}
-	
+
 	public function get_e3_by_field_archive($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
@@ -43,7 +42,7 @@ class Tabel_e3 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
+
 		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_e3']);
@@ -58,7 +57,7 @@ class Tabel_e3 extends CI_Model
 		ORDER BY {$this->aliases['tabel_e3']}.id DESC";
 		return $this->db->query($sql);
 	}
-	
+
 	public function insert_e3($data)
 	{
 		return $this->db->insert($this->aliases['tabel_e3'], $data);

@@ -8,13 +8,13 @@ class Tabel_b8 extends CI_Model
 		$this->db->order_by('id_notif_type', 'DESC');
 		return $this->db->get($this->aliases['tabel_b8']);
 	}
-	
+
 	public function get_all_b8_archive()
 	{
 		$this->db->order_by('id_notif_type', 'DESC');
 		return $this->db->get($this->aliases['tabel_b8']);
 	}
-	
+
 	public function get_b8_by_field($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
@@ -25,7 +25,7 @@ class Tabel_b8 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
+
 		$this->db->order_by('id_notif_type', 'DESC');
 		return $this->db->get($this->aliases['tabel_b8']);
 	}
@@ -40,11 +40,11 @@ class Tabel_b8 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
+
 		$this->db->order_by('id_notif_type', 'DESC');
 		return $this->db->get($this->aliases['tabel_b8']);
 	}
-	
+
 	public function insert_b8($data)
 	// public function insert_b8($query)
 	{
