@@ -254,7 +254,7 @@ class Tabel_f2Controller extends OmnitagsController
 		);
 
 		$data = [
-			'id' => '',
+			'id' => $code,
 			$this->aliases['tabel_f2_field2'] => $this->v_post['tabel_f2_field2'],
 			$this->aliases['tabel_f2_field3'] => $this->v_post['tabel_f2_field3'],
 			$this->aliases['tabel_f2_field4'] => $this->v_post['tabel_f2_field4'],

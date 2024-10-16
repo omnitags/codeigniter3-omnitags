@@ -69,9 +69,6 @@ class Tabel_e1Controller extends OmnitagsController
 			'tambah'
 		);
 
-		// $id = get_next_code($this->aliases['tabel_e1'], 'id', 'FK');
-		// 'id' => $id,
-
 		$code = $this->add_code('tabel_e1', 'id', 5, '01');
 
 		// Functional requirement: Construct data array from validated view inputs
