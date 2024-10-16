@@ -86,9 +86,6 @@ class Tabel_e3Controller extends OmnitagsController
 			'tambah'
 		);
 
-		// $id = get_next_code($this->aliases['tabel_e1'], 'id', 'FK');
-		// 'id' => $id,
-
 		$code = $this->add_code('tabel_e3', 'id', 5, '03');
 
 		$data = array(
