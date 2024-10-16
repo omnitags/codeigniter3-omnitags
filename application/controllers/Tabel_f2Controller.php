@@ -253,6 +253,8 @@ class Tabel_f2Controller extends OmnitagsController
 			'tambah'
 		);
 
+		$code = $this->add_code('tabel_f2', 'id', 5, '02');
+
 		$data = [
 			'id' => $code,
 			$this->aliases['tabel_f2_field2'] => $this->v_post['tabel_f2_field2'],
