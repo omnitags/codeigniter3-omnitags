@@ -5,18 +5,16 @@ class Tabel_b8 extends CI_Model
 {
 	public function get_all_b8()
 	{
-		$this->db->where('deleted_at', NULL);
-		$this->db->order_by('id', 'DESC');
+		$this->db->order_by('id_notif_type', 'DESC');
 		return $this->db->get($this->aliases['tabel_b8']);
 	}
-	
+
 	public function get_all_b8_archive()
 	{
-		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by('id', 'DESC');
+		$this->db->order_by('id_notif_type', 'DESC');
 		return $this->db->get($this->aliases['tabel_b8']);
 	}
-	
+
 	public function get_b8_by_field($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
@@ -27,9 +25,8 @@ class Tabel_b8 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
-		$this->db->where('deleted_at', NULL);
-		$this->db->order_by('id', 'DESC');
+
+		$this->db->order_by('id_notif_type', 'DESC');
 		return $this->db->get($this->aliases['tabel_b8']);
 	}
 
@@ -43,12 +40,11 @@ class Tabel_b8 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
-		$this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by('id', 'DESC');
+
+		$this->db->order_by('id_notif_type', 'DESC');
 		return $this->db->get($this->aliases['tabel_b8']);
 	}
-	
+
 	public function insert_b8($data)
 	// public function insert_b8($query)
 	{
@@ -59,7 +55,7 @@ class Tabel_b8 extends CI_Model
 
 	public function update_b8($data, $param1)
 	{
-		$this->db->where('id', $param1);
+		$this->db->where('id_notif_type', $param1);
 		return $this->db->update($this->aliases['tabel_b8'], $data);
 	}
 	public function delete_b8_by_field($fields, $params)

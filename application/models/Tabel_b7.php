@@ -9,14 +9,14 @@ class Tabel_b7 extends CI_Model
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b7']);
 	}
-	
+
 	public function get_all_b7_archive()
 	{
 		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b7']);
 	}
-	
+
 	public function get_b7_by_field($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
@@ -27,12 +27,11 @@ class Tabel_b7 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
-		$this->db->where('deleted_at', NULL);
+
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b7']);
 	}
-	
+
 	public function get_b7_by_field_archive($fields, $params)
 	{
 		if (is_array($fields) && is_array($params)) {
@@ -43,13 +42,13 @@ class Tabel_b7 extends CI_Model
 		} else {
 			$this->db->where($this->aliases[$fields], $params);
 		}
-		
+
 		$this->db->where('deleted_at IS NOT NULL');
 		$this->db->order_by('id', 'DESC');
 		return $this->db->get($this->aliases['tabel_b7']);
 	}
 
-	public function tema($param1)
+	public function theme($param1)
 	{
 		$sql = "SELECT * FROM {$this->aliases['tabel_a1']} 
 		JOIN {$this->aliases['tabel_b7']} 

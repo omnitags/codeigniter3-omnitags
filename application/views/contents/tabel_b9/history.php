@@ -20,7 +20,6 @@
         <th>ID History</th>
         <th><?= $tabel_b9_field1_alias ?></th>
         <th><?= $tabel_b9_field2_alias ?></th>
-        <th>Updated At</th>
         <th>Updated By</th>
         <th>Action</th>
       </tr>
@@ -33,7 +32,6 @@
           <td>[current]</td>
           <td><?= $tl_cr->$tabel_b9_field1 ?></td>
           <td><?= $tl_cr->$tabel_b9_field2 ?></td>
-          <td><?= $tl_cr->updated_at ?></td>
           <td><?= show_info_user($tl_cr->updated_by, $users) ?></td>
           <td></td>
         </tr>

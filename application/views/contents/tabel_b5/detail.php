@@ -1,6 +1,6 @@
 <?php foreach ($tbl_a1 as $tl_a1):
   if (!$tbl_b5) { ?>
-    <img src="img/<?= $tabel_b7 ?>/<?= $tl_a1->$tabel_b7_field5 ?>" class="img-fluid rounded">
+    <img src="img/<?= $tabel_b7 ?>/<?= $tl_a1->$tabel_b7_field5 ?>" class="img-fluid shadow-sm rounded">
     <h1 class="text-center"><?= $tabel_b5_alias ?> is unavailable</h1>
     <hr>
 
@@ -8,12 +8,12 @@
     $counter = 1;
     foreach ($tbl_b5->result() as $tl_b5): ?>
 
-      <img src="img/<?= $tabel_b7 ?>/<?= $tl_a1->$tabel_b7_field5 ?>" class="img-fluid rounded">
+      <img src="img/<?= $tabel_b7 ?>/<?= $tl_a1->$tabel_b7_field5 ?>" class="img-fluid shadow-sm rounded">
 
       <h1 class="text-center">
         <hr>
         <img src="img/<?= $tabel_b5 ?>/<?= $tl_b5->$tabel_b5_field4 ?>" role="button" data-toggle="modal"
-          data-target="#lihat<?= $tl_b5->$tabel_b5_field1 ?>" width="25%" class="rounded">
+          data-target="#lihat<?= $tl_b5->$tabel_b5_field1 ?>" width="25%" class="shadow-lg rounded">
         <br>
         <?= $tabel_b5_alias ?> <a target="_blank" href="<?= $tl_b5->$tabel_b5_field5 ?>"><?= $tl_b5->$tabel_b5_field2 ?></a>
       </h1>
@@ -43,7 +43,7 @@ endforeach; ?>
         <?= modal_header($tl_b5->$tabel_b5_field2, '') ?>
         
         <div class="modal-body">
-          <img class="img-thumbnail" width="100%" src="img/<?= $tabel_b5 ?>/<?= $tl_b5->$tabel_b5_field4; ?>">
+          <img class="img-thumbnail shadow-sm" width="100%" src="img/<?= $tabel_b5 ?>/<?= $tl_b5->$tabel_b5_field4; ?>">
         </div>
 
         <!-- memunculkan notifikasi modal -->

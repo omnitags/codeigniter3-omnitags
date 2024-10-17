@@ -57,8 +57,8 @@ class Tabel_c2Controller extends OmnitagsController
 			'title' => $this->title['tabel_c2_alias_v6'],
 			'konten' => $this->v6['tabel_c2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c2']),
-			'tbl_c2' => $this->tl_c2->get_c2_by_field('tabel_c2_field1', $code),
-			'tbl_d3' => $this->tl_d3->get_d3_by_field('tabel_c2_field1', $code),
+			'tbl_c2' => $this->tl_c2->get_c2_by_field('id', $code),
+			'tbl_d3' => $this->tl_d3->get_d3_by_field('tabel_d3_field2', $code),
 		);
 
 		$this->load_page('tabel_c2', 'layouts/template_admin', $data1);
@@ -117,7 +117,7 @@ class Tabel_c2Controller extends OmnitagsController
 		$tabel_c2_field3 = $this->v_post['tabel_c2_field3'];
 		$tabel_c2_field4 = $this->v_post['tabel_c2_field4_new'];
 
-		$method3 = $this->tl_c2->get_c2_by_field('tabel_c2_field3', $tabel_c2_field3);
+		$method3 = $this->tl_c2->get_c2_by_field('email', $tabel_c2_field3);
 
 		// mencari apakah jumlah data kurang dari 1
 		if ($method3->num_rows() < 1) {
@@ -126,11 +126,10 @@ class Tabel_c2Controller extends OmnitagsController
 			if ($this->v_post['tabel_c2_field4_confirm'] === $tabel_c2_field4) {
 				$this->load->library('encryption');
 
-				// $id = get_next_code($this->aliases['tabel_c2'], 'id', 'USR');
+				$code = get_next_code($this->aliases['tabel_c2'], 'id', '32');
 
 				$data = array(
-					// 'id' => $id,
-					'id' => '',
+					'id' => $code,
 					$this->aliases['tabel_c2_field2'] => $this->v_post['tabel_c2_field2'],
 					'email' => $this->v_post['tabel_c2_field3'],
 
@@ -180,7 +179,7 @@ class Tabel_c2Controller extends OmnitagsController
 
 		$code = $this->v_post['tabel_c2_field1'];
 
-		$tabel_c2 = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $code)->result();
+		$tabel_c2 = $this->tl_c2->get_c2_by_field('id', $code)->result();
 		$this->check_data($tabel_c2);
 
 		validate_all(
@@ -220,7 +219,7 @@ class Tabel_c2Controller extends OmnitagsController
 		$this->declarew();
 		$this->session_3();
 
-		$tabel = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $code)->result();
+		$tabel = $this->tl_c2->get_c2_by_field('id', $code)->result();
 		$this->check_data($tabel);
 
 		// menggunakan nama khusus sama dengan konfigurasi
@@ -282,7 +281,7 @@ class Tabel_c2Controller extends OmnitagsController
 
 		$code = $this->v_post['tabel_c2_field1'];
 
-		$tabel = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $code)->result();
+		$tabel = $this->tl_c2->get_c2_by_field('id', $code)->result();
 		$this->check_data($tabel);
 
 		validate_all(
@@ -311,7 +310,7 @@ class Tabel_c2Controller extends OmnitagsController
 		$notif = $this->handle_4c($aksi, 'tabel_c2', $code);
 
 		// mengambil data profil yang baru dirubah
-		$tabel_c2 = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $code)->result();
+		$tabel_c2 = $this->tl_c2->get_c2_by_field('id', $code)->result();
 		$tabel_c2_field2 = $tabel_c2[0]->{$this->aliases['tabel_c2_field2']};
 		$tabel_c2_field3 = $tabel_c2[0]->email;
 		$tabel_c2_field5 = $tabel_c2[0]->phone;
@@ -349,7 +348,7 @@ class Tabel_c2Controller extends OmnitagsController
 		);
 
 
-		$cek_id = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $code);
+		$cek_id = $this->tl_c2->get_c2_by_field('id', $code);
 
 		// mencari apakah jumlah data lebih dari 0
 		if ($cek_id->num_rows() > 0) {
@@ -509,7 +508,7 @@ class Tabel_c2Controller extends OmnitagsController
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $code)->result();
+		$tabel = $this->tl_c2->get_c2_by_field('id', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(
@@ -527,7 +526,7 @@ class Tabel_c2Controller extends OmnitagsController
 		$this->declarew();
 		$this->page_session_all();
 
-		$tabel = $this->tl_c2->get_c2_by_field('tabel_c2_field1', $code)->result();
+		$tabel = $this->tl_c2->get_c2_by_field('id', $code)->result();
 		$this->check_data($tabel);
 
 		$data1 = array(

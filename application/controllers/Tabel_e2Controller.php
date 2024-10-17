@@ -110,12 +110,9 @@ class Tabel_e2Controller extends OmnitagsController
 			'tambah'
 		);
 
-		// $id = get_next_code($this->aliases['tabel_e2'], 'id', 'FH');
-
 		$code = $this->add_code('tabel_e2', 'id', 5, '02');
 
 		$data = array(
-			// 'id' => $id,
 			'id' => $code,
 			$this->aliases['tabel_e2_field2'] => $this->v_post['tabel_e2_field2'],
 			$this->aliases['tabel_e2_field3'] => $this->v_post['tabel_e2_field3'],

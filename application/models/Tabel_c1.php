@@ -6,57 +6,57 @@ class Tabel_c1 extends CI_Model
     // Retrieves all records from the tabel_c1 table in descending order of tabel_c1_field1
     public function get_all_c1()
     {
-		$this->db->where('deleted_at', NULL);
+        $this->db->where('deleted_at', NULL);
         $this->db->order_by('id', 'DESC');
-		return $this->db->get($this->aliases['tabel_c1']);
+        return $this->db->get($this->aliases['tabel_c1']);
     }
-	
-	public function get_all_c1_archive()
-	{
+
+    public function get_all_c1_archive()
+    {
         $this->db->order_by('id', 'DESC');
-		return $this->db->get($this->aliases['tabel_c1']);
-	}
-    
+        return $this->db->get($this->aliases['tabel_c1']);
+    }
+
     public function get_c1_by_field($fields, $params)
-	{
-		if (is_array($fields) && is_array($params)) {
+    {
+        if (is_array($fields) && is_array($params)) {
             foreach ($fields as $key => $field) {
-				$param = $params[$key]; // Get the corresponding param value
-				$this->db->where($this->aliases[$field], $param);
-			}
-		} else {
+                $param = $params[$key]; // Get the corresponding param value
+                $this->db->where($this->aliases[$field], $param);
+            }
+        } else {
             $this->db->where($this->aliases[$fields], $params);
-		}
-        
-		$this->db->where('deleted_at', NULL);
-		$this->db->order_by('id', 'DESC');
-		return $this->db->get($this->aliases['tabel_c1']);
-	}
-    
+        }
+
+        $this->db->where('deleted_at', NULL);
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get($this->aliases['tabel_c1']);
+    }
+
     public function get_c1_by_field_archive($fields, $params)
-	{
-		if (is_array($fields) && is_array($params)) {
-			foreach ($fields as $key => $field) {
-				$param = $params[$key]; // Get the corresponding param value
-				$this->db->where($this->aliases[$field], $param);
-			}
-		} else {
+    {
+        if (is_array($fields) && is_array($params)) {
+            foreach ($fields as $key => $field) {
+                $param = $params[$key]; // Get the corresponding param value
+                $this->db->where($this->aliases[$field], $param);
+            }
+        } else {
             $this->db->where($this->aliases[$fields], $params);
-		}
-        
+        }
+
         $this->db->where('deleted_at IS NOT NULL');
-		$this->db->order_by('id', 'DESC');
-		return $this->db->get($this->aliases['tabel_c1']);
-	}
+        $this->db->order_by('id', 'DESC');
+        return $this->db->get($this->aliases['tabel_c1']);
+    }
 
     // Checks for a record in the tabel_c1 table where tabel_c1_field1 and tabel_c1_field5 match the given parameters, in descending order of tabel_c1_field1
     public function ceklogin($param1, $param2)
     {
         $this->db->where('id', $param1);
         $this->db->where($this->aliases['tabel_c1_field5'], $param2);
-		$this->db->where('deleted_at', NULL);
+        $this->db->where('deleted_at', NULL);
         $this->db->order_by('id', 'DESC');
-		return $this->db->get($this->aliases['tabel_c1']);
+        return $this->db->get($this->aliases['tabel_c1']);
     }
 
     // Inserts a new record into the tabel_c1 table
@@ -84,14 +84,14 @@ class Tabel_c1 extends CI_Model
     public function delete_c1_by_field($fields, $params)
     {
         if (is_array($fields) && is_array($params)) {
-			foreach ($fields as $key => $field) {
-				$param = $params[$key]; // Get the corresponding param value
-				$this->db->where($this->aliases[$field], $param);
-			}
-		} else {
-			$this->db->where($this->aliases[$fields], $params);
-		}
+            foreach ($fields as $key => $field) {
+                $param = $params[$key]; // Get the corresponding param value
+                $this->db->where($this->aliases[$field], $param);
+            }
+        } else {
+            $this->db->where($this->aliases[$fields], $params);
+        }
 
-		return $this->db->delete($this->aliases['tabel_c1']);
-	}
+        return $this->db->delete($this->aliases['tabel_c1']);
+    }
 }

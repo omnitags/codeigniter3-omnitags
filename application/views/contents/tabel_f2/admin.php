@@ -54,7 +54,7 @@
         $tl_f2->$tabel_f2_field12,
         $button . ' ' .
         btn_print('tabel_f2', $tl_f2->$tabel_f2_field1),
-        'text-dark bg-light',
+        'text-light bg-dark',
         'col-md-3',
         $tabel_f2,
       );
