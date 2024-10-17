@@ -43,7 +43,6 @@ if (!function_exists('get')) {
     }
 }
 
-
 if (!function_exists('xss_clean')) {
     function xss_clean($data)
     {
@@ -69,7 +68,7 @@ if (!function_exists('input_add')) {
         $data = $CI->load->get_vars();
 
         $input = $data[$field . '_input'];
-        $alias = lang($field . '_alias');
+        $alias = $data[$field . '_alias'];
 
         if (strpos($required, 'required') !== false) {
             $msg = '';
@@ -78,7 +77,7 @@ if (!function_exists('input_add')) {
         }
 
         return <<<HTML
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <input class="form-control float" type="{$type}" {$required} name="{$input}" placeholder="" id="{$input}">
             <label for="{$input}" class="form-label">{$alias} {$msg}</label>
         </div>
@@ -95,7 +94,7 @@ if (!function_exists('add_min_max')) {
         $data = $CI->load->get_vars();
 
         $input = $data[$field . '_input'];
-        $alias = lang($field . '_alias');
+        $alias = $data[$field . '_alias'];
 
         if (strpos($required, 'required') !== false) {
             $msg = '';
@@ -104,7 +103,7 @@ if (!function_exists('add_min_max')) {
         }
 
         return <<<HTML
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <input class="form-control float" type="{$type}" {$required} name="{$input}" placeholder="" id="{$input}"
             min="{$min}" max="{$max}">
             <label for="{$input}" class="form-label">{$alias} {$msg}</label>
@@ -122,7 +121,7 @@ if (!function_exists('edit_min_max')) {
         $data = $CI->load->get_vars();
 
         $input = $data[$field . '_input'];
-        $alias = lang($field . '_alias');
+        $alias = $data[$field . '_alias'];
 
         if (strpos($required, 'required') !== false) {
             $msg = '';
@@ -131,7 +130,7 @@ if (!function_exists('edit_min_max')) {
         }
 
         return <<<HTML
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <input class="form-control float" type="{$type}" {$required} name="{$input}" placeholder="" id="{$input}"
             min="{$min}" max="{$max}" value="{$value}">
             <label for="{$input}" class="form-label">{$alias} {$msg}</label>
@@ -148,7 +147,7 @@ if (!function_exists('add_old')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias_old');
+        $alias = 'Old '. $data[$field . '_alias'];
         $input = $data[$field . '_old'];
 
         if (strpos($required, 'required') !== false) {
@@ -158,7 +157,7 @@ if (!function_exists('add_old')) {
         }
 
         return <<<HTML
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <input class="form-control float" type="{$type}" {$required} name="{$input}" placeholder="" id="{$input}">
             <label for="{$input}" class="form-label">{$alias} {$msg}</label>
         </div>
@@ -174,7 +173,7 @@ if (!function_exists('add_new_password')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias_new');
+        $alias = 'New '. $data[$field . '_alias'];
         $input = $data[$field . '_new'];
 
         if (strpos($required, 'required') !== false) {
@@ -184,7 +183,7 @@ if (!function_exists('add_new_password')) {
         }
 
         return <<<HTML
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <input class="form-control float" type="password" {$required} name="{$input}" placeholder="" id="psw"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" autocomplete="new-password"
             title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
@@ -203,7 +202,7 @@ if (!function_exists('add_confirm')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias' . '_confirm');
+        $alias = 'Confirm ' . $data[$field . '_alias'];
         $input = $data[$field . '_confirm'];
 
         if (strpos($required, 'required') !== false) {
@@ -213,7 +212,7 @@ if (!function_exists('add_confirm')) {
         }
 
         return <<<HTML
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <input class="form-control float" type="{$type}" {$required} name="{$input}" placeholder="">
             <label for="{$input}" class="form-label">{$alias} {$msg}</label>
         </div>
@@ -229,12 +228,12 @@ if (!function_exists('select_add')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias');
+        $alias = $data[$field . '_alias'];
         $input = $data[$field . '_input'];
 
         // Start building the select HTML
         $select_html = <<<HTML
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <select id="{$input}" class="form-control float" {$required} name="{$input}">
         HTML;
 
@@ -266,23 +265,31 @@ if (!function_exists('select_edit')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias');
+        // Set alias and input field names
+        $alias = $data[$field . '_alias'];
         $input = $data[$field . '_input'];
 
         // Start building the select HTML
         $select_html = <<<HTML
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <select id="{$input}" class="form-control float" {$required} name="{$input}">
-                <option selected hidden value="{$value}">{$value}</option>
         HTML;
 
         // Loop through the results to generate options
         foreach ($tbl->result() as $obj) {
-            $value = $obj->$target_id;
-            $label = $obj->$target_id . ' - ' . $obj->$target_name;
-            $select_html .= <<<HTML
-                <option value="{$value}">{$label}</option>
-        HTML;
+            $option_value = $obj->$target_id;
+            $label = $obj->$target_name;
+
+            // Check if the current option is the selected one
+            if ($value == $option_value) {
+                $select_html .= <<<HTML
+                    <option selected value="{$option_value}">{$label}</option>
+                HTML;
+            } else {
+                $select_html .= <<<HTML
+                    <option value="{$option_value}">{$label}</option>
+                HTML;
+            }
         }
 
         // Close the select element and the div container
@@ -295,6 +302,7 @@ if (!function_exists('select_edit')) {
         return $select_html;
     }
 }
+
 
 
 if (!function_exists('input_hidden')) {
@@ -321,8 +329,8 @@ if (!function_exists('input_edit')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
+        $alias = $data[$field . '_alias'];
         $input = $data[$field . '_input'];
-        $alias = lang($field . '_alias');
 
         if (strpos($required, 'required') !== false) {
             $msg = '';
@@ -331,7 +339,7 @@ if (!function_exists('input_edit')) {
         }
 
         return <<<HTML
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <input id="{$input}{$identifier}" class="form-control float" type="{$type}" {$required} name="{$input}" placeholder=""
             value="{$value}">
             <label for="{$input}{$identifier}" class="form-label">{$alias} {$msg}</label>
@@ -348,7 +356,7 @@ if (!function_exists('input_ckeditor')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias');
+        $alias = $data[$field . '_alias'];
         $input = $data[$field . '_input'];
 
         if (strpos($required, 'required') !== false) {
@@ -358,8 +366,8 @@ if (!function_exists('input_ckeditor')) {
         }
 
         return <<<HTML
-        <div class="form-group">
-            <label>{$alias} {$msg}</label>
+        <label>{$alias} {$msg}</label>
+        <div class="form-group shadow-sm">
             <textarea class="ckeditor form-control" name="{$input}" placeholder=""
             {$required} cols="30" rows="10">{$value}</textarea>
         </div>
@@ -376,7 +384,7 @@ if (!function_exists('input_textarea')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias');
+        $alias = $data[$field . '_alias'];
         $input = $data[$field . '_input'];
 
         if (strpos($required, 'required') !== false) {
@@ -386,7 +394,7 @@ if (!function_exists('input_textarea')) {
         }
 
         return <<<HTML
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <textarea class="form-control float" name="{$input}" placeholder=""
             {$required} rows="5">{$value}</textarea>
             <label for="{$input}" class="form-label">{$alias} {$msg}</label>
@@ -403,7 +411,7 @@ if (!function_exists('add_file')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias');
+        $alias = $data[$field . '_alias'];
         $input = $data[$field . '_input'];
 
         if (strpos($required, 'required') !== false) {
@@ -413,7 +421,7 @@ if (!function_exists('add_file')) {
         }
 
         return <<<HTML
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <input class="form-control float" {$required} type="file" id={$input} name="{$input}" placeholder="">
             <label for="{$input}" class="form-label">{$alias} {$msg}</label>
         </div>
@@ -429,7 +437,7 @@ if (!function_exists('edit_file')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias');
+        $alias = $data[$field . '_alias'];
         $input = $data[$field . '_input'];
         $old = $data[$field . "_old"];
         $img = tampil_image('125px', $tabel, $value, $alias);
@@ -443,12 +451,12 @@ if (!function_exists('edit_file')) {
         return <<<HTML
         <div class="row pb-2">
             <div class="col-md-5">
-                <div class="form-group">
+                <div class="form-group shadow-sm">
                     {$img}                
                 </div>
             </div>
             <div class="col-md-7">
-                <div class="form-group">
+                <div class="form-group shadow-sm">
                     <input class="form-control float" {$required} id="{$input}" type="file" name="{$input}">
                     <label class="form-label" for="{$input}">Ubah {$alias} {$msg}</label>
                     <input type="hidden" name="{$old}" value="{$value}" {$required}>
@@ -472,7 +480,7 @@ if (!function_exists('filter_min_max')) {
 
         return <<<HTML
         <td class="pr-2">
-            <div class="form-group">
+            <div class="form-group shadow-sm">
                 <input class="form-control float" type="{$type}" {$required} name="{$input}" placeholder="" id="{$input}"
                 min="{$min}" max="{$max}" value="{$value}">
                 <label for="{$input}" class="form-label">{$posisi}</label>
@@ -491,7 +499,7 @@ if (!function_exists('select_add')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias' . '_select');
+        $alias = 'Select ' . $data[$field . '_alias'];
         $input = $data[$field . '_input'];
 
         if (strpos($required, 'required') !== false) {
@@ -501,7 +509,7 @@ if (!function_exists('select_add')) {
         }
 
         return <<<HTML
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <select id="{$input}" class="form-control float" {$required} name="{$input}" placeholder="">
                 {$selected}
                 {$values}
@@ -520,7 +528,7 @@ if (!function_exists('select_ubah')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($field . '_alias' . '_select');
+        $alias = 'Select ' . $data[$field . '_alias'];
         $input = $data[$field . '_input'];
 
         if (strpos($required, 'required') !== false) {
@@ -530,7 +538,7 @@ if (!function_exists('select_ubah')) {
         }
 
         return <<<HTML
-        <div class="form-group">
+        <div class="form-group shadow-sm">
             <select id="{$input}" class="form-control float" {$required} name="{$input}" placeholder="">
                 {$selected}
                 {$values}

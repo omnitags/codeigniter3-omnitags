@@ -19,7 +19,7 @@ if (!function_exists('table_data')) {
     {
         return <<<HTML
         <div class="table-responsive">
-            <table class="table {$theme}" id="data">
+            <table class="table shadow-sm {$theme}" id="data">
                 <thead>
                 <tbody>
                     {$data}
@@ -36,7 +36,12 @@ if (!function_exists('table_data')) {
 if (!function_exists('row_data')) {
     function row_data($field, $value)
     {
-        $alias = lang($field . '_alias');
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+        $alias = $data[$field . '_alias'];
 
         return <<<HTML
         <tr>
@@ -48,15 +53,13 @@ if (!function_exists('row_data')) {
 }
 
 // Generates a table row with a field alias and value
-if (!function_exists('row_data_crud')) {
-    function row_data_crud($field, $value)
+if (!function_exists('row_data_text')) {
+    function row_data_text($field, $value)
     {
-        $alias = lang($field);
-
         return <<<HTML
         <tr>
-              <td width="40%" class="table-active">{$alias}</td>
-              <td width="">{$value}</td>
+            <td width="40%" class="table-active">{$field}</td>
+            <td width="">{$value}</td>
             </tr>
         HTML;
     }
@@ -66,7 +69,12 @@ if (!function_exists('row_data_crud')) {
 if (!function_exists('row_file')) {
     function row_file($tabel_class, $field, $value)
     {
-        $alias = lang($field . '_alias');
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+        $alias = $data[$field . '_alias'];
         $img = tampil_image('125px', $tabel_class, $value, $alias);
 
         return <<<HTML
@@ -83,7 +91,12 @@ if (!function_exists('row_file')) {
 if (!function_exists('tampil_text')) {
     function tampil_text($field, $value)
     {
-        $alias = lang($field . '_alias');
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+        
+        $alias = $data[$field . '_alias'];
 
         return <<<HTML
         <div class="form-group">
@@ -142,8 +155,10 @@ if (!function_exists('tampil_dekor')) {
     function tampil_dekor($size, $tabel_class, $value)
     {
         return <<<HTML
-        <img style="max-height: {$size}; transform: scale(0.9);" alt="image"
-            class="img-fluid" src="img/{$tabel_class}/{$value}">
+        <div class="dekor rounded">
+            <img style="max-height: {$size}; transform: scale(1.0);" alt="image"
+                class="img-fluid rounded" src="img/{$tabel_class}/{$value}">
+        </div>
         HTML;
     }
 }
@@ -153,9 +168,9 @@ if (!function_exists('tampil_dekor_history')) {
     function tampil_dekor_history($size, $tabel_class, $value)
     {
         return <<<HTML
-        <div class="dekor">
-            <img style="max-height: {$size}; transform: scale(0.9);" alt="image"
-                class="img-fluid archived" src="img/{$tabel_class}/{$value}">
+        <div class="dekor rounded shadow-sm">
+            <img style="max-height: {$size}; transform: scale(1.0);" alt="image"
+                class="img-fluid rounded archived" src="img/{$tabel_class}/{$value}">
             <div class="overlay"><i class="fas fa-history"></i></div>
         </div>
         HTML;
@@ -167,9 +182,9 @@ if (!function_exists('tampil_dekor_archive')) {
     function tampil_dekor_archive($size, $tabel_class, $value)
     {
         return <<<HTML
-        <div class="dekor">
-            <img style="max-height: {$size}; transform: scale(0.9);" alt="image"
-                class="img-fluid archived" src="img/{$tabel_class}/{$value}">
+        <div class="dekor rounded shadow-sm">
+            <img style="max-height: {$size}; transform: scale(1.0);" alt="image"
+                class="img-fluid rounded archived" src="img/{$tabel_class}/{$value}">
             <div class="overlay"><i class="fas fa-trash"></i></div>
         </div>
         HTML;
@@ -180,7 +195,12 @@ if (!function_exists('tampil_dekor_archive')) {
 if (!function_exists('tampil_file')) {
     function tampil_file($tabel_class, $field, $value)
     {
-        $alias = lang($field . '_alias');
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+        
+        $alias = $data[$field . '_alias'];
 
         return <<<HTML
         <div class="form-group">
