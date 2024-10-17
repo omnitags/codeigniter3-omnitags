@@ -201,8 +201,11 @@ a.sidebar-link.logout {
 }
 
 .dekor img {
-	filter: brightness(70%);
     display: block; /* Ensure the image behaves as a block element */
+}
+
+.dekor img.archived {
+	filter: brightness(70%);
 }
 
 .overlay {
