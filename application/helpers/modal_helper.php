@@ -62,8 +62,12 @@ if (!function_exists('modal_file')) {
      */
     function modal_file($tabel_class, $field, $value)
     {
-        $tabel_class = xss_clean($tabel_class);
-        $alias = xss_clean(lang($field . '_alias'));
+        // Get CodeIgniter instance
+        $CI =& get_instance();
+        // Fetch the view variables
+        $data = $CI->load->get_vars();
+
+        $alias = $data[$field . '_alias'];
         
         return <<<HTML
         <div class="form-group">
