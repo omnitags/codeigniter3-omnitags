@@ -1,32 +1,47 @@
 .DS_Store
 
+# Ignoring cache files
 application/cache/*
 !application/cache/index.html
 
+# Ignoring logs
 application/logs/*
 !application/logs/index.html
 
+# Ignoring .htaccess files
 !application/*/.htaccess
 
+# Ignore Composer lock file
 composer.lock
+# Ignore SQLite database for tests
 tests/mocks/database/ci_test.sqlite
 
+# Ignore user guide build files
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*
 user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
 
+# Ignore sensitive configuration files
+application/config/config.php
+application/config/database.php
+
+# Ignore Postman environment file
+assets\json\app.postman_environment.json
+
 # IDE Files
 #-------------------------
 /nbproject/
 .idea/*
 
-## Sublime Text cache files
+# Sublime Text cache files
 *.tmlanguage.cache
 *.tmPreferences.cache
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
+
+# Ignore test directories
 /tests/tests/
 /tests/results/
