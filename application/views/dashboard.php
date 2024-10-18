@@ -36,7 +36,7 @@
 <div class="row">
 
   <!-- menampilkan data untuk administrator -->
-
+ 
   <?php switch (userdata($tabel_c2_field6)) {
     case $tabel_c2_field6_value3: ?>
       <?= card_count($tabel_e3_alias, 'tabel_e3', 'text-light bg-dark', $tbl_e3) ?>
