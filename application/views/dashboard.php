@@ -34,7 +34,7 @@
 
 
 <div class="row">
-
+ 
   <!-- menampilkan data untuk administrator -->
  
   <?php switch (userdata($tabel_c2_field6)) {
