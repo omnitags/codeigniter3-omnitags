@@ -23,13 +23,6 @@ user_guide_src/cilexer/dist/*
 user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
 
-# Ignore sensitive configuration files
-application/config/config.php
-application/config/database.php
-
-# Ignore Postman environment file
-assets\json\app.postman_environment.json
-
 # IDE Files
 #-------------------------
 /nbproject/
@@ -45,3 +38,6 @@ assets\json\app.postman_environment.json
 # Ignore test directories
 /tests/tests/
 /tests/results/
+application/config/config.php
+application/config/database.php
+assets/json/app.postman_environment.json
