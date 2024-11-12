@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/floating-labels.css">
 
-  <?php load_view('_partials/pre-script') ?>
+  <?php load_view('partials/pre-script') ?>
 </head>
 
 <body>
