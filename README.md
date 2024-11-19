@@ -33,6 +33,31 @@ Here are some of the projects that showcase the capabilities of Omnitags:
 
 Omnitags relies on a branch-based approach to project management, allowing for different modules and applications to exist within the same repository. This means that instead of starting from scratch or copying existing codebases, users can simply switch between branches to implement or modify the framework for various projects. This approach saves development time and ensures consistency across applications.
 
+
+
+# CodeIgniter 3 Project Setup
+
+This document will guide you through setting up an old CodeIgniter 3 project using either Laragon or XAMPP. Please ensure that you are using a PHP version below PHP 8, as this project may not be compatible with newer PHP versions.
+
+## Prerequisites
+
+- PHP version: Below 8.0
+- Laragon or XAMPP installed on your machine
+- Access to the SQL file for database setup
+
+## Setting Up the Project
+
+### 1. Clone or Download the Project
+
+First, clone or download the CodeIgniter 3 project files to your local machine.
+
+### 2. Move Project Files
+
+#### For Laragon:
+
+- Move the project folder to the `C:\laragon\www\` directory.
+- The folder structure should look like this:
+
 ## Contributions
 
 Contributions are welcome! Feel free to explore the repository, experiment with the code, and submit any pull requests to improve the Omnitags framework or suggest new features.
