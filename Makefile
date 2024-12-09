@@ -18,3 +18,17 @@ help:
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
 %: Makefile
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+
+# Variables
+APP_NAME=my-app
+
+# Tasks
+build:
+	docker build -t $(APP_NAME) .
+
+run:
+	docker run -p 3000:3000 $(APP_NAME)
+
+test:
+	npm test
