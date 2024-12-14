@@ -1,4 +1,3 @@
-@ -0,0 +1,97 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
@@ -79,7 +78,7 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'college',
+	'database' => 'me_college',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -94,5 +93,5 @@ $db['default'] = array(
 	'stricton' => FALSE,
 	'failover' => array(),
 	'save_queries' => TRUE
-);	
+);
 ?>
