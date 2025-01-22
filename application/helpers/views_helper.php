@@ -5,7 +5,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 if (!function_exists('load_view')) {
     function load_view($view_name)
     {
-        $CI =& get_instance();
+        $CI = &get_instance();
         $CI->load->view($view_name);
     }
 }
@@ -14,7 +14,7 @@ if (!function_exists('load_view')) {
 if (!function_exists('load_view_data')) {
     function load_view_data($view_name, $data)
     {
-        $CI =& get_instance();
+        $CI = &get_instance();
         $CI->load->view($view_name, $data);
     }
 }
@@ -23,18 +23,18 @@ if (!function_exists('load_view_data')) {
 if (!function_exists('set_security_headers')) {
     function set_security_headers()
     {
-        $CI =& get_instance();
+        $CI = &get_instance();
 
         $headers = [
-            "Content-Security-Policy: default-src 'self' data:; " . 
-                "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; " . 
-                "style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; " . 
+            "Content-Security-Policy: default-src 'self' data:; " .
+                "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; " .
+                "style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline'; " .
                 "connect-src 'self' https://newsapi.org;",
             "Strict-Transport-Security: max-age=31536000; includeSubDomains",
             "X-Frame-Options: SAMEORIGIN",
             "X-Content-Type-Options: nosniff",
             "Referrer-Policy: strict-origin-when-cross-origin",
-            "Permissions-Policy: geolocation=self http://localhost/project/omnitags, camera=self, microphone=none"
+            "Permissions-Policy: geolocation=self http://localhost/me/codeigniter3-omnitags, camera=self, microphone=none"
         ];
 
         foreach ($headers as $header) {
