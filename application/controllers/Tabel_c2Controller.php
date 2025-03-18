@@ -212,7 +212,7 @@ class Tabel_c2Controller extends OmnitagsController
 		// kembali ke halaman sebelumnya
 		redirect($_SERVER['HTTP_REFERER']);
 	}
-	
+
 	//Soft Delete Data
 	public function soft_delete($code = null)
 	{
@@ -443,8 +443,11 @@ class Tabel_c2Controller extends OmnitagsController
 				// Record login history
 				$userAgent = $_SERVER['HTTP_USER_AGENT'];
 				$deviceType = getDeviceTypeAndOS($userAgent);
+
+				$code = $this->add_code('tabel_d3', 'id', 0, '');
+
 				$loginh = array(
-					'id' => '',
+					'id' => $code,
 					$this->aliases['tabel_d3_field2'] => userdata('id'),
 					$this->aliases['tabel_d3_field3'] => $deviceType,
 
@@ -502,7 +505,7 @@ class Tabel_c2Controller extends OmnitagsController
 
 		$this->load_page('tabel_c2', 'layouts/template', $data1);
 	}
-	
+
 	public function detai_archive($code = null)
 	{
 		$this->declarew();
@@ -520,7 +523,7 @@ class Tabel_c2Controller extends OmnitagsController
 
 		$this->load_page('tabel_c2', 'layouts/template', $data1);
 	}
-	
+
 	public function history($code = null)
 	{
 		$this->declarew();
@@ -567,4 +570,3 @@ class Tabel_c2Controller extends OmnitagsController
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
-
