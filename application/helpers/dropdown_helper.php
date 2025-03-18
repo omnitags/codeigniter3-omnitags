@@ -10,8 +10,8 @@ if (!function_exists('dropdown_nav')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $alias = lang($tabel . '_alias');
-        $url = nav_url($data['language'] . '/' . $data[$tabel] . $place);
+        $alias = $data[$tabel . '_alias'];
+        $url = nav_url($data[$tabel] . $place);
 
         return <<<HTML
         <a class="dropdown-item" href="{$url}">
@@ -30,7 +30,7 @@ if (!function_exists('dropdown_nav_unique')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = nav_url($data['language'] . '/' . $controller . $place);
+        $url = nav_url($controller . $place);
 
         return <<<HTML
         <a class="dropdown-item" href="{$url}">
@@ -61,10 +61,10 @@ if (!function_exists('nav_item')) {
         // Fetch the view variables
         $data = $CI->load->get_vars();
 
-        $url = site_url($data['language'] . '/' . $controller . $place);
+        $url = nav_url($controller . $place);
 
         return <<<HTML
-            <li class="nav-item pb-2">
+            <li class="nav-item d-flex align-items-center pb-2">
                 <a class="nav-link text-light text-decoration-none" href="{$url}">
                     {$title}
                 </a>
