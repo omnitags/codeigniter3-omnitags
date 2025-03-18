@@ -232,6 +232,52 @@ class C_tabel_c2 extends Omnitags
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
+	//Soft Delete Data
+	public function soft_delete($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_c2->get_c2_by_field('id', $code)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata('id'),
+		);
+
+		$aksi = $this->tl_c2->update_c2($data, $code);
+		$this->insert_history('tabel_c2', $data);
+
+		$notif = $this->handle_4e($aksi, 'tabel_c2', $code);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	// Soft Delete data
+	public function restore($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_c2->get_c2_by_field_archive('tabel_c2_field1', $code)->result();
+		$this->check_data($tabel);
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			'deleted_at' => NULL,
+			'updated_by' => userdata('id'),
+		);
+
+		$aksi = $this->tl_c2->update_c2($data, $code);
+		$this->insert_history('tabel_c2', $data);
+
+		$notif = $this->handle_4e($aksi, 'tabel_c2', $code);
+
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
 	// Delete data
 	public function delete($tabel_c2_field1 = null)
 	{
@@ -414,9 +460,12 @@ class C_tabel_c2 extends Omnitags
 				// Record login history
 				$userAgent = $_SERVER['HTTP_USER_AGENT'];
 				$deviceType = getDeviceTypeAndOS($userAgent);
+
+				$code = $this->add_code('tabel_d3', 'id', 0, '');
+
 				$loginh = array(
-					$this->aliases['tabel_d3_field1'] => '',
-					$this->aliases['tabel_d3_field2'] => userdata($this->aliases['tabel_c2_field1']),
+					'id' => $code,
+					$this->aliases['tabel_d3_field2'] => userdata('id'),
 					$this->aliases['tabel_d3_field3'] => $deviceType,
 
 					$this->aliases['created_at'] => date("Y-m-d\TH:i:s"),
@@ -455,6 +504,86 @@ class C_tabel_c2 extends Omnitags
 
 		// menghapus session
 		session_destroy();
-		redirect(site_url($this->language_code . '/' . 'home'));
+		redirect(site_url('home'));
+	}
+
+	// Archive Page
+	public function archive()
+	{
+		$this->declarew();
+		$this->page_session_3();
+
+		$data1 = array(
+			'title' => $this->title['tabel_c2_alias_v9'],
+			'konten' => $this->v9['tabel_c2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c2']),
+			'tbl_c2' => $this->tl_c2->get_all_c2_archive(),
+		);
+
+		$this->load_page('tabel_c2', 'layouts/template', $data1);
+	}
+
+	public function detai_archive($code = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_c2->get_c2_by_field('id', $code)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'title' => $this->title['tabel_c2_alias_v10'],
+			'konten' => $this->v10['tabel_c2'],
+			'dekor' => $this->tl_c2->dekor($this->theme_id, $this->aliases['tabel_c2']),
+			'tbl_c2' => $this->tl_c2->get_c2_by_field_archive('tabel_c2_field1', $code),
+		);
+
+		$this->load_page('tabel_c2', 'layouts/template', $data1);
+	}
+
+	public function history($code = null)
+	{
+		$this->declarew();
+		$this->page_session_all();
+
+		$tabel = $this->tl_c2->get_c2_by_field('id', $code)->result();
+		$this->check_data($tabel);
+
+		$data1 = array(
+			'table_id' => $code,
+			'title' => $this->title['tabel_c2_alias_v11'],
+			'konten' => $this->v11['tabel_c2'],
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_c2']),
+			'tbl_c2' => $this->tl_ot->get_by_field_history('tabel_c2', 'tabel_c2_field1', $code),
+			'current' => $this->tl_ot->get_by_field('tabel_c2', 'tabel_c2_field1', $code),
+		);
+
+		$this->load_page('tabel_c2', 'layouts/template_admin', $data1);
+	}
+
+	//Push History Data into current data
+	public function push($code = null)
+	{
+		$this->declarew();
+		$this->session_3();
+
+		$tabel = $this->tl_ot->get_by_id_history('tabel_c2', $code)->result();
+		$this->check_data($tabel);
+
+		$code = $tabel[0]->id;
+
+		// menggunakan nama khusus sama dengan konfigurasi
+		$data = array(
+			$this->aliases['tabel_c2_field2'] => $tabel[0]->{$this->aliases['tabel_c2_field2']},
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata('id'),
+		);
+
+		$aksi = $this->tl_c2->update_c2($data, $code);
+
+		$notif = $this->handle_4c($aksi, 'tabel_c2', $code);
+
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
