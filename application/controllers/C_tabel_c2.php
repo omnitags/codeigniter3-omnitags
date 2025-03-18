@@ -213,7 +213,7 @@ class C_tabel_c2 extends Omnitags
 		// kembali ke halaman sebelumnya
 		redirect($_SERVER['HTTP_REFERER']);
 	}
-	
+
 	//Soft Delete Data
 	public function soft_delete($code = null)
 	{
@@ -444,9 +444,12 @@ class C_tabel_c2 extends Omnitags
 				// Record login history
 				$userAgent = $_SERVER['HTTP_USER_AGENT'];
 				$deviceType = getDeviceTypeAndOS($userAgent);
+
+				$code = $this->add_code('tabel_d3', 'id', 0, '');
+
 				$loginh = array(
-					$this->aliases['tabel_d3_field1'] => '',
-					$this->aliases['tabel_d3_field2'] => userdata($this->aliases['tabel_c2_field1']),
+					'id' => $code,
+					$this->aliases['tabel_d3_field2'] => userdata('id'),
 					$this->aliases['tabel_d3_field3'] => $deviceType,
 
 					'created_at' => date("Y-m-d\TH:i:s"),
@@ -504,8 +507,7 @@ class C_tabel_c2 extends Omnitags
 		$this->load_page('tabel_c2', '_layouts/template', $data1);
 	}
 
-	// Public Pages
-	public function detail_archive($code = null)
+	public function detai_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
@@ -522,7 +524,7 @@ class C_tabel_c2 extends Omnitags
 
 		$this->load_page('tabel_c2', '_layouts/template', $data1);
 	}
-	
+
 	public function history($code = null)
 	{
 		$this->declarew();
@@ -569,4 +571,3 @@ class C_tabel_c2 extends Omnitags
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
-
