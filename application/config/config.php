@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/me/codeigniter3-omnitags-fork/';
+$config['base_url'] = 'http://localhost/others/omnitags/codeigniter3-omnitags/';
 
 /*
 |--------------------------------------------------------------------------
