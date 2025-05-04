@@ -52,7 +52,7 @@ class Tabel_e3 extends CI_Model
 	{
 		$sql = "SELECT * FROM {$this->aliases['tabel_e3']} 
 		JOIN {$this->aliases['tabel_e4']} 
-		ON {$this->aliases['tabel_e3']}.{$this->aliases['tabel_e3_field2']} = {$this->aliases['tabel_e4']}.{$this->aliases['tabel_e3_field2']}
+		ON {$this->aliases['tabel_e3']}.{$this->aliases['tabel_e3_field2']} = {$this->aliases['tabel_e4']}.id
 		WHERE {$this->aliases['tabel_e3']}.deleted_at IS NULL
 		ORDER BY {$this->aliases['tabel_e3']}.id DESC";
 		return $this->db->query($sql);

@@ -27,6 +27,7 @@ class Tabel_f2Controller extends OmnitagsController
 					'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 					'tbl_b5' => $this->tl_b5->get_all_b5(),
 					'tbl_b7' => $this->tl_b7->get_all_b7(),
+					'tbl_f2' => $this->tl_f2->get_all_f2(),
 					'tbl_a1_alt' => $this->tl_a1->get_a1_by_field('tabel_a1_field1', $this->tabel_a1_field1),
 					'tbl_e4' => $this->tl_e4->get_all_e4(),
 
@@ -94,34 +95,35 @@ class Tabel_f2Controller extends OmnitagsController
 	public function admin()
 	{
 		$this->declarew();
-		$this->page_session_3();
+		$this->page_session_4();
 
 		// nilai min dan max di sini belum ada
-		// $param1 = $this->v_get['tabel_f2_field10_filter1'];
-		// $param2 = $this->v_get['tabel_f2_field10_filter2'];
-		// $param3 = $this->v_get['tabel_f2_field11_filter1'];
-		// $param4 = $this->v_get['tabel_f2_field11_filter2'];
+		$param1 = $this->v_get['tabel_f2_field10_filter1'];
+		$param2 = $this->v_get['tabel_f2_field10_filter2'];
+		$param3 = $this->v_get['tabel_f2_field11_filter1'];
+		$param4 = $this->v_get['tabel_f2_field11_filter2'];
 
-		// $filter = $this->tl_f2->filter_with_e4($param1, $param2, $param3, $param4);
+		$filter = $this->tl_f2->filter_with_e4($param1, $param2, $param3, $param4);
 
-		// if (empty($param1)) {
-		// 	$result = $this->tl_f2->get_f2_with_e4();
-		// } else {
-		// 	$result = $filter;
-		// }
+		if (empty($param1)) {
+			$result = $this->tl_f2->get_f2_with_e4();
+		} else {
+			$result = $filter;
+		}
 
 		$data1 = array(
 			'title' => $this->title['tabel_f2_alias_v3'],
 			'konten' => $this->v3['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
-			'tbl_f2' => $this->tl_f2->get_all_f2(),
-			'tbl_e3' => $this->tl_e3->get_all_e3(),
+			'tbl_f2' => $result,
+			// 'tbl_f2' => $this->tl_f2->get_all_f2(),
+			'tbl_e4' => $this->tl_e4->get_all_e4(),
 
 			// menggunakan nilai $min dan $max sebagai bagian dari $data
-			// 'tabel_f2_field10_filter1_value' => $param1,
-			// 'tabel_f2_field10_filter2_value' => $param2,
-			// 'tabel_f2_field11_filter1_value' => $param3,
-			// 'tabel_f2_field11_filter2_value' => $param4
+			'tabel_f2_field10_filter1_value' => $param1,
+			'tabel_f2_field10_filter2_value' => $param2,
+			'tabel_f2_field11_filter1_value' => $param3,
+			'tabel_f2_field11_filter2_value' => $param4
 		);
 
 		$this->load_page('tabel_f2', 'layouts/template_admin', $data1);
@@ -131,7 +133,7 @@ class Tabel_f2Controller extends OmnitagsController
 	public function laporan()
 	{
 		$this->declarew();
-		$this->page_session_3();
+		$this->page_session_4();
 
 		$data1 = array(
 			'title' => $this->title['tabel_f2_alias_v4'],
@@ -212,7 +214,7 @@ class Tabel_f2Controller extends OmnitagsController
 		$this->declarew();
 		$this->page_session_5();
 
-		$tabel_c2_field3 = userdata('email' . '_' . $this->aliases['tabel_f2']);
+		$tabel_f2_field4 = userdata('email' . '_' . $this->aliases['tabel_f2']);
 
 		$data1 = array(
 			'title' => $this->title['tabel_f2_alias_v4'],
@@ -220,7 +222,7 @@ class Tabel_f2Controller extends OmnitagsController
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 
 			// mengembalikan data baris terakhir/terbaru sesuai ketentuan dalam database untuk ditampilkan
-			'tbl_f2' => $this->tl_f2->get_f2_by_field('tabel_c2_field3', $tabel_c2_field3)->last_row(),
+			'tbl_f2' => $this->tl_f2->get_f2_by_field('tabel_f2_field4', $tabel_f2_field4)->last_row(),
 		);
 
 		$this->load_page('tabel_f2', 'layouts/blank', $data1);
@@ -301,10 +303,20 @@ class Tabel_f2Controller extends OmnitagsController
 
 			$notif = $this->handle_4b($aksi, 'tabel_f2');
 
+			if (!$aksi) {
+				// Error Handling: Handle database operation errors
+				set_flashdata($this->views['flash2'], "Error occurred while adding data: ");
+				set_flashdata('modal', $this->views['flash2_func1']);
+
+				redirect($this->aliases['tabel_f2'] . '/index');
+			}
+
 		} catch (Exception $e) {
 			// Error Handling: Handle database operation errors
 			set_flashdata($this->views['flash2'], "Error occurred while adding data: " . $e->getMessage());
 			set_flashdata('modal', $this->views['flash2_func1']);
+
+			redirect($this->aliases['tabel_f2'] . '/index');
 		}
 
 		// Functional requirement: Redirect user to 'tabel_f2' confirmation page
@@ -502,7 +514,7 @@ class Tabel_f2Controller extends OmnitagsController
 	public function archive()
 	{
 		$this->declarew();
-		$this->page_session_3();
+		$this->page_session_4();
 
 		$data1 = array(
 			'title' => $this->title['tabel_f2_alias_v9'],
@@ -578,4 +590,3 @@ class Tabel_f2Controller extends OmnitagsController
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
-

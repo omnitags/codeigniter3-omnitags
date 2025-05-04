@@ -27,7 +27,7 @@
   case $tabel_c2_field6_value5: ?>
 
     <!-- method get supaya nilai dari form bisa tampil nanti (tidak langsung masuk ke database) -->
-    <!-- <form action="<?= site_url($tabel_f2) ?>" method="get">
+    <form action="<?= site_url($tabel_f2) ?>" method="get">
       <div id="tour2" class="row justify-content-center align-items-end mt-2">
         <div class="col-md-2">
           <?= add_min_max('date', 'tabel_f2_field10', 'required oninput="myFunction1()"', date('Y-m-d'), '') ?>
@@ -47,7 +47,7 @@
           </div>
         </div>
       </div>
-    </form> -->
+    </form>
     <?php break;
 
   default: ?>
@@ -99,5 +99,5 @@
 
 <?= newsapi_apple('news-container') ?>
 
-<!-- ?= adjust_date1($tabel_f2_field10_input, $tabel_f2_field11_input) ?> -->
+<?= adjust_date1($tabel_f2_field10_input, $tabel_f2_field11_input) ?>
 <?= adjust_col_js('col-md-3', 'col-md-4') ?>

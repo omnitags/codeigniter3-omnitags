@@ -19,7 +19,7 @@
       <td class="pr-2">
         <?= select_edit(
           'tabel_e3_field4',
-          $tabel_e3_field4_value,
+          $tabel_e3_field4,
           $tbl_e4,
           $tabel_e4_field1,
           $tabel_e4_field2,
@@ -53,27 +53,39 @@
 <div id="card-view" class="data-view active">
   <div class="row">
     <?php if (empty($tbl_e3->result())) {
-    load_view('partials/no_data');
-  } else {
-    $counter = 1;
-    foreach ($tbl_e3->result() as $tl_e3):
-      echo card_regular(
-        $counter,
-        $tl_e3->$tabel_e3_field1,
-        $tl_e3->$tabel_e3_field1 . ' | ' . $tl_e3->$tabel_e3_field3,
-        $tl_e3->$tabel_e3_field2,
-        btn_lihat($tl_e3->$tabel_e3_field1) . ' ' .
-        btn_edit($tl_e3->$tabel_e3_field1) . ' ' .
-        btn_hapus('tabel_e3', $tl_e3->$tabel_e3_field1),
-        'text-light bg-dark',
-        'col-md-3',
-        $tabel_e3
-      );
-    $counter++;
-    endforeach;
-  } ?>
+      load_view('partials/no_data');
+    } else {
+      $counter = 1;
+      foreach ($tbl_e3->result() as $tl_e3):
+        switch ($tl_e3->$tabel_e3_field4) {
+          case $tabel_e3_field4_value2:
+          case $tabel_e3_field4_value3:
+            $button = btn_edit($tl_e3->$tabel_e3_field1);
+            break;
+          case $tabel_e3_field4_value4:
+            $button = btn_field($tabel_c1_field7_value1 . $tl_e3->$tabel_e3_field1, '<i class="fas fa-broom"></i>');
+            break;
+          case $tabel_e3_field4_value5:
+            $button = btn_field($tabel_c1_field7_value2 . $tl_e3->$tabel_e3_field1, '<i class="fas fa-hammer"></i>');
+            break;
+        }
 
-</div>
+        echo card_regular(
+          $counter,
+          $tl_e3->$tabel_e3_field1,
+          $tl_e3->$tabel_e3_field1 . ' | ' . $tl_e3->$tabel_e3_field3,
+          $tl_e3->$tabel_e3_field2,
+          btn_lihat($tl_e3->$tabel_e3_field1) . ' ' .
+            $button,
+          'text-light bg-dark',
+          'col-md-3',
+          $tabel_e3
+        );
+        $counter++;
+      endforeach;
+    } ?>
+
+  </div>
   <div class="row">
     <?= card_pagination() ?>
   </div>
@@ -103,8 +115,18 @@
           <td><?= $tl_e3->$tabel_e3_field5 ?></td>
           <td>
             <?= btn_lihat($tl_e3->$tabel_e3_field1) ?>
-            <?= btn_edit($tl_e3->$tabel_e3_field1) ?>
-            <?= btn_hapus('tabel_e3', $tl_e3->$tabel_e3_field1) ?>
+            <?php switch ($tl_e3->$tabel_e3_field4) {
+              case $tabel_e3_field4_value2:
+              case $tabel_e3_field4_value3:
+                btn_edit($tl_e3->$tabel_e3_field1);
+                break;
+              case $tabel_e3_field4_value4:
+                btn_field($tabel_c1_field7_value1 . $tl_e3->$tabel_e3_field1, '<i class="fas fa-broom"></i>');
+                break;
+              case $tabel_e3_field4_value5:
+                btn_field($tabel_c1_field7_value2 . $tl_e3->$tabel_e3_field1, '<i class="fas fa-hammer"></i>');
+                break;
+            } ?>
           </td>
         </tr>
       <?php endforeach; ?>
@@ -126,6 +148,14 @@
           <?= input_add('text', 'tabel_e3_field3', 'required') ?>
 
           <?= select_add(
+            'tabel_e3_field2',
+            $tbl_e3,
+            $tabel_e4_field1,
+            $tabel_e4_field2,
+            'required'
+          ); ?>
+
+          <?= select_add(
             'tabel_e3_field4',
             $tbl_e4,
             $tabel_e4_field1,
@@ -133,13 +163,7 @@
             'required'
           ); ?>
 
-          <?= select_add(
-            'tabel_e3_field5',
-            $tbl_e1,
-            $tabel_e1_field1,
-            $tabel_e1_field2,
-            'required'
-          ); ?>
+          <?= input_add('text', 'tabel_e3_field5', 'required') ?>
 
         </div>
 
@@ -211,9 +235,9 @@
           <div class="modal-body">
             <?= table_data(
               row_data('tabel_e3_field2', $tl_e3->$tabel_e3_field2) .
-              row_data('tabel_e3_field3', $tl_e3->$tabel_e3_field3) .
-              row_data('tabel_e3_field4', $tl_e3->$tabel_e3_field4) .
-              row_data('tabel_e3_field5', $tl_e3->$tabel_e3_field5),
+                row_data('tabel_e3_field3', $tl_e3->$tabel_e3_field3) .
+                row_data('tabel_e3_field4', $tl_e3->$tabel_e3_field4) .
+                row_data('tabel_e3_field5', $tl_e3->$tabel_e3_field5),
               'table-light'
             ) ?>
           </div>

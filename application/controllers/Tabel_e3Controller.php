@@ -22,26 +22,13 @@ class Tabel_e3Controller extends OmnitagsController
 		];
 		$this->page_session_check($allowed_values);
 
-		$param1 = $this->v_get['tabel_e3_field4'];
-
-		$filter = $this->tl_e3->get_e3_by_field('tabel_e3_field4', $param1);
-
-		if (empty($param1)) {
-			$result = $this->tl_e3->get_all_e3();
-		} else {
-			$result = $filter;
-		}
-
 		$data1 = array(
 			'title' => $this->title['tabel_e3_alias_v3'],
 			'konten' => $this->v3['tabel_e3'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e3']),
-			'tbl_e1' => $this->tl_e1->get_all_e1(),
-			'tbl_e2' => $this->tl_e2->get_all_e2(),
-			'tbl_e3' => $result,
+			'tbl_e3' => $this->tl_e3->get_e3_with_e4(),
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
-			// 'tbl_c1' => $this->tl_c1->get_all_c1(),
-			'tabel_e3_field4_value' => $param1
+			'tbl_c1' => $this->tl_c1->get_all_c1(),
 		);
 
 		$this->load_page('tabel_e3', 'layouts/template_admin', $data1);
@@ -79,7 +66,6 @@ class Tabel_e3Controller extends OmnitagsController
 		validate_all(
 			array(
 				$this->v_post['tabel_e3_field2'],
-				$this->v_post['tabel_e3_field3'],
 				$this->v_post['tabel_e3_field4'],
 			),
 			$this->views['flash2'],
@@ -94,9 +80,7 @@ class Tabel_e3Controller extends OmnitagsController
 		$data = array(
 			'id' => $code,
 			$this->aliases['tabel_e3_field2'] => $this->v_post['tabel_e3_field2'],
-			$this->aliases['tabel_e3_field3'] => $this->v_post['tabel_e3_field3'],
 			$this->aliases['tabel_e3_field4'] => $this->v_post['tabel_e3_field4'],
-			$this->aliases['tabel_e3_field5'] => $this->v_post['tabel_e3_field5'],
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
@@ -125,17 +109,13 @@ class Tabel_e3Controller extends OmnitagsController
 		validate_all(
 			array(
 				$this->v_post['tabel_e3_field1'],
-				$this->v_post['tabel_e3_field2'],
-				$this->v_post['tabel_e3_field3'],
 				$this->v_post['tabel_e3_field4'],
-				$this->v_post['tabel_e3_field5'],
 			),
 			$this->views['flash3'],
 			'ubah' . $code
 		);
 
 		$data = array(
-			$this->aliases['tabel_e3_field2'] => $this->v_post['tabel_e3_field2'],
 			$this->aliases['tabel_e3_field3'] => $this->v_post['tabel_e3_field3'],
 			$this->aliases['tabel_e3_field4'] => $this->v_post['tabel_e3_field4'],
 			$this->aliases['tabel_e3_field5'] => $this->v_post['tabel_e3_field5'],

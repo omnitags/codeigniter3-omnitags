@@ -17,6 +17,7 @@ class Tabel_e4Controller extends OmnitagsController
 			'konten' => $this->v1['tabel_e4'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e4']),
 			'tbl_e4' => $this->tl_e4->get_all_e4(),
+			'tbl_e1' => $this->tl_e1->get_all_e1(),
 		);
 
 		$this->load_page('tabel_e4', 'layouts/template', $data1);
@@ -93,6 +94,9 @@ class Tabel_e4Controller extends OmnitagsController
 		validate_all(
 			array(
 				$this->v_post['tabel_e4_field2'],
+				$this->v_post['tabel_e4_field3'],
+				$this->v_post['tabel_e4_field4'],
+				$this->v_post['tabel_e4_field5'],
 			),
 			$this->views['flash2'],
 			'tambah'
@@ -112,6 +116,7 @@ class Tabel_e4Controller extends OmnitagsController
 			'id' => $code,
 			$this->aliases['tabel_e4_field2'] => $this->v_post['tabel_e4_field2'],
 			$this->aliases['tabel_e4_field3'] => $gambar,
+			$this->aliases['tabel_e4_field5'] => $this->v_post['tabel_e4_field5'],
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
@@ -147,6 +152,10 @@ class Tabel_e4Controller extends OmnitagsController
 			array(
 				$this->v_post['tabel_e4_field1'],
 				$this->v_post['tabel_e4_field2'],
+				$this->v_post['tabel_e4_field3'],
+				$this->v_post['tabel_e4_field4'],
+				$this->v_post['tabel_e4_field4_old'],
+				$this->v_post['tabel_e4_field5'],
 			),
 			$this->views['flash3'],
 			'ubah' . $code
@@ -164,6 +173,8 @@ class Tabel_e4Controller extends OmnitagsController
 		$data = array(
 			$this->aliases['tabel_e4_field2'] => $this->v_post['tabel_e4_field2'],
 			$this->aliases['tabel_e4_field3'] => $gambar,
+			$this->aliases['tabel_e4_field4'] => $this->v_post['tabel_e4_field4'],
+			$this->aliases['tabel_e4_field5'] => $this->v_post['tabel_e4_field5'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
 			'updated_by' => userdata('id'),

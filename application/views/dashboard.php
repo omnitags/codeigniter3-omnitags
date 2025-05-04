@@ -127,5 +127,5 @@
   </div>
 <?php endforeach; ?>
 
-<!-- ?= chart(''myChart_1_2'', 'tabel_f1', 'tabel_f2') ?> -->
+<?= bar_graph('myChart_1_2', 'tabel_f1', 'tabel_f2') ?>
 <?= adjust_col_js('col-md-3', 'col-md-4') ?>

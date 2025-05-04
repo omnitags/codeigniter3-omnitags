@@ -18,14 +18,15 @@ terima kasih pada link di atas -->
     <div class="col-md-6">
       <h2 class="pt-2"><?= $tl_e4->$tabel_e4_field2; ?></h2>
       <ul class="list-unstyled ml-2">
-        <li><?= $tabel_e2_alias ?> : </li>
-        <?php foreach ($tbl_e2->result() as $tl_e2): ?>
-          <?php if ($tl_e4->$tabel_e4_field1 === $tl_e2->$tabel_e4_field1) { ?>
+        <li><?= $tabel_e1_alias ?> : </li>
+        <?php foreach ($tbl_e1->result() as $tl_e1): ?>
+          <?php if ($tl_e4->id === $tl_e1->$tabel_e1_field2) { ?>
 
             <li>
-              <a class="text-decoration-none"
-                href="<?= site_url($tabel_e2 . '/' . $tl_e2->$tabel_e2_field1 .'/detail') ?>">
-                <?= $tl_e2->$tabel_e2_field2 ?></a>
+            <?= $tl_e1->$tabel_e1_field3 ?>
+              <!-- <a class="text-decoration-none"
+                href="<?= site_url($tabel_e1 . '/' . $tl_e1->$tabel_e1_field1 .'/detail') ?>">
+                </a> -->
             </li>
 
           <?php } ?>
