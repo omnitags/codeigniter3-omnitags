@@ -56,7 +56,7 @@ class Tabel_e2Controller extends OmnitagsController
 			'title' => $this->title['tabel_e2_alias_v3'],
 			'konten' => $this->v3['tabel_e2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e2']),
-			'tbl_e2' => $result,
+			'tbl_e2' => $this->tl_e2->get_all_e2(),
 		);
 
 		$this->load_page('tabel_e2', 'layouts/template_admin', $data1);
