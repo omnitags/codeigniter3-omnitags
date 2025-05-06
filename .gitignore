@@ -38,6 +38,7 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 # Ignore test directories
 /tests/tests/
 /tests/results/
-application/config/config.php
-application/config/database.php
-assets/json/app.postman_environment.json
+
+# application/config/config.php
+# application/config/database.php
+# assets/json/app.postman_environment.json
