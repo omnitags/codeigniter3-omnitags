@@ -24,16 +24,12 @@
       <tr>
         <th><?= $tabel_f2_field6_alias ?></th>
         <th><?= $tabel_e4_field2_alias ?></th>
-        <th><?= $tabel_f2_field10_alias ?></th>
-        <th><?= $tabel_f2_field11_alias ?></th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td width=""><?= $tl_f3->$tabel_f2_field6 ?></td>
         <td width=""><?= $tl_f3->$tabel_e4_field2 ?></a>
-        <td width=""><?= $tl_f3->$tabel_f2_field10 ?></td>
-        <td width=""><?= $tl_f3->$tabel_f2_field11 ?></td>
         </td>
       </tr>
     </tbody>

@@ -1,127 +1,125 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-// Masih banyak fitur-fitur yang kurang pada fitur pesanan seperti fitur cancel pesanan.
-// Dan juga seharusnya ketika user melakukan pesanan seharusnya stok kamar tidak langsung berkurang
-// // Melainkan harus menunggu tamu membooking kamar untuk customer terlebih dulu
-// Saya baru berpikir untuk mengubah juga query sql pada trigger tambah kamar
-// Yaitu untuk menambah stok kamar dan input ke history jika status pesannanya NOT IN (pending)
-// Hal ini akan diperbaiki pada waktu-waktu mendatang. 
-
 include 'OmnitagsController.php';
-session_write_close();
+
+// Jujurly masih banyak bagian di controller ini yang masih menggunakan variabel biasa dan bukan menggunakan declare
+// Aku juga ingin membuat sebuah fitur history transaksi dimana pesanan yang sudah masuk history bakal masuk ke sana
+
+
+// Saat ini ketika data yang ada di tabel transaksi dan history, data-data yang berada di tabel transaksi bakal hilang
+// Hal ini merupakan hal yang sedang aku coba teliti kepentingannya
+// Aku perlu meneliti lebih jauh, ini adalah kedua pilihan yang kumiliki :
+// 1. Menambahkan fitur untuk melihat data transksi saja, lalu diberi opsi apakah user ingin melihat data pesanan
+// atau data history yang terhubung dengan data transaksi, jika perlu maka akan dicek data pesanan atau history tersebut.
+// Jika data ada, maka akan ditampilkan, jika tidak akan muncul notifikasi data tidak ada
+// 2. Opsi kedua adalah untuk membiarkannya tidak menampilkan data 
+
 class Tabel_f2Controller extends OmnitagsController
 {
 	// Pages
-	// Public Pages/khusus akun
-	public function index()
-	{
-		$this->declarew();
-		$this->page_session_all();
+	// Public Pages
 
-		switch (userdata('role')) {
-			case $this->aliases['tabel_c2_field6_value5']:
-				$data1 = array(
-					'title' => $this->title['tabel_f2_alias_v1'],
-					'konten' => $this->v1['tabel_f2'],
-					'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
-					'tbl_b5' => $this->tl_b5->get_all_b5(),
-					'tbl_b7' => $this->tl_b7->get_all_b7(),
-					'tbl_a1_alt' => $this->tl_a1->get_a1_by_field('tabel_a1_field1', $this->tabel_a1_field1),
-					'tbl_e4' => $this->tl_e4->get_all_e4(),
-
-					'tabel_f2_field10_value' => $this->v_get['tabel_f2_field10'],
-					'tabel_f2_field11_value' => $this->v_get['tabel_f2_field11'],
-					'tabel_f2_field8_value' => $this->v_get['tabel_f2_field8'],
-				);
-
-				set_flashdata($this->views['flash1'], $this->views['flash1_note2']);
-				set_flashdata('toast', $this->views['flash1_func1']);
-
-				$halaman = 'layouts/template';
-				break;
-
-			default:
-				redirect(site_url('login'));
-				break;
-		}
-
-		$this->load_page('tabel_f2', $halaman, $data1);
-	}
 
 	// Account Only Pages
 	public function daftar()
 	{
 		$this->declarew();
-		$this->page_session_5();
+		$allowed_values = [
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->page_session_check($allowed_values);
 
-		// nilai min dan max di sini belum ada
-		$param1 = $this->v_get['tabel_f2_field10_filter1'];
-		$param2 = $this->v_get['tabel_f2_field10_filter2'];
-		$param3 = $this->v_get['tabel_f2_field11_filter1'];
-		$param4 = $this->v_get['tabel_f2_field11_filter2'];
+		// nilai min dan max sudah diinput sebelumnya
+		$param1 = $this->v_get['tabel_f2_field7_filter1'];
+		$param2 = $this->v_get['tabel_f2_field7_filter2'];
 
-		$tabel_c2_field1 = userdata('id');
+		$param3 = userdata('id');
 
-		$filter = $this->tl_f2->filter_user_with_e4($param1, $param2, $param3, $param4, $tabel_c2_field1);
+		$filter = $this->tl_f1->filter_user_with_e4($param1, $param2, $param3);
 
 		if (empty($param1)) {
-			$result = $this->tl_f2->get_f2_with_e4_by_c2_field1($tabel_c2_field1);
+			$result = $this->tl_f2->get_f2_with_e4_with_e3_by_c2_field1($param3);
 		} else {
 			$result = $filter;
 		}
-
 
 		$data1 = array(
 			'title' => $this->title['tabel_f2_alias_v2'],
 			'konten' => $this->v2['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 			'tbl_f2' => $result,
-
-			// menggunakan nilai $min dan $max sebagai bagian dari $data
-			'tabel_f2_field10_filter1_value' => $param1,
-			'tabel_f2_field10_filter2_value' => $param2,
-			'tabel_f2_field11_filter1_value' => $param3,
-			'tabel_f2_field11_filter2_value' => $param4
-
 		);
 
 		$this->load_page('tabel_f2', 'layouts/template', $data1);
 	}
 
+	public function daftar_history()
+	{
+		$this->declarew();
+		$allowed_values = [
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->session_check($allowed_values);
+
+		// nilai min dan max sudah diinput sebelumnya
+		$param1 = $this->v_get['tabel_f2_field7_filter1'];
+		$param2 = $this->v_get['tabel_f2_field7_filter2'];
+
+		$param3 = userdata('id');
+
+		$filter = $this->tl_f1->filter_user_with_e4($param1, $param2, $param3);
+
+		if (empty($param1)) {
+			$result = $this->tl_f1->get_f1_with_f2_with_e4_by_c2_field1($param3);
+		} else {
+			$result = $filter;
+		}
+
+		$data1 = array(
+			'title' => $this->title['tabel_f2_alias'],
+			'konten' => 'contents/tabel_f2/daftar_history',
+			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
+			'tbl_f2' => $result,
+
+			// menggunakan nilai $min dan $max sebagai bagian dari $data
+			'tabel_f2_field7_filter1_value' => $param1,
+			'tabel_f2_field7_filter2_value' => $param2,
+		);
+
+		$this->load_page('tabel_f2', 'layouts/template', $data1);
+	}
 
 	// Admin Pages
 	public function admin()
 	{
 		$this->declarew();
-		$this->page_session_3();
+		$this->page_session_2();
 
-		// nilai min dan max di sini belum ada
-		// $param1 = $this->v_get['tabel_f2_field10_filter1'];
-		// $param2 = $this->v_get['tabel_f2_field10_filter2'];
-		// $param3 = $this->v_get['tabel_f2_field11_filter1'];
-		// $param4 = $this->v_get['tabel_f2_field11_filter2'];
+		// nilai min dan max sudah diinput sebelumnya
+		$param1 = $this->v_get['tabel_f2_field7_filter1'];
+		$param2 = $this->v_get['tabel_f2_field7_filter2'];
 
-		// $filter = $this->tl_f2->filter_with_e4($param1, $param2, $param3, $param4);
+		$filter = $this->tl_f2->filter($param1, $param2);
 
-		// if (empty($param1)) {
-		// 	$result = $this->tl_f2->get_f2_with_e4();
-		// } else {
-		// 	$result = $filter;
-		// }
+		if (empty($param1)) {
+			$result = $this->tl_f2->get_f2_with_e4_with_e4();
+		} else {
+			$result = $filter;
+		}
 
 		$data1 = array(
 			'title' => $this->title['tabel_f2_alias_v3'],
 			'konten' => $this->v3['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
-			'tbl_f2' => $this->tl_f2->get_all_f2(),
-			'tbl_e3' => $this->tl_e3->get_all_e3(),
+			'tbl_f2' => $result,
 
 			// menggunakan nilai $min dan $max sebagai bagian dari $data
-			// 'tabel_f2_field10_filter1_value' => $param1,
-			// 'tabel_f2_field10_filter2_value' => $param2,
-			// 'tabel_f2_field11_filter1_value' => $param3,
-			// 'tabel_f2_field11_filter2_value' => $param4
+			'tabel_f2_field7_filter1_value' => $param1,
+			'tabel_f2_field7_filter2_value' => $param2,
 		);
 
 		$this->load_page('tabel_f2', 'layouts/template_admin', $data1);
@@ -131,19 +129,24 @@ class Tabel_f2Controller extends OmnitagsController
 	public function laporan()
 	{
 		$this->declarew();
-		$this->page_session_3();
+		$this->page_session_2();
 
 		$data1 = array(
 			'title' => $this->title['tabel_f2_alias_v4'],
 			'konten' => $this->v4['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
-			'tbl_f2' => $this->tl_f2->get_f2_with_e4(),
+			'tbl_f2' => $this->tl_f2->get_all_f2(),
+			'tbl_e4' => $this->tl_e4->get_all_f2(),
+			'tbl_e4' => $this->tl_e4->get_all_f2(),
 		);
 
 		$this->load_page('tabel_f2', 'layouts/printpage', $data1);
 	}
 
 	// Print one data
+
+	// Fitur print menurutku tidak memerlukan fitur join sama sekali 
+	// karena sudah menggunakan parameter yang memilki nilai
 	public function print($code = null)
 	{
 		$this->declarew();
@@ -153,74 +156,53 @@ class Tabel_f2Controller extends OmnitagsController
 		];
 		$this->page_session_check($allowed_values);
 
-		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $code);
-		$this->check_data($tabel);
+		$param1 = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $code)->result();
+		$this->check_data($param1);
 
 		$data1 = array(
 			'title' => $this->title['tabel_f2_alias_v5'],
 			'konten' => $this->v5['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
-			'tbl_f2' => $this->tl_f2->get_f2_with_e4_by_f2_field1($code),
 		);
 
-		$this->load_page('tabel_f2', 'layouts/printpage', $data1);
+
+		// Di bawah ini adalah kode untuk memisahkan antara transaksi yang id pesanannya masih berada di tabel pesanann
+		// Dan transaksi yang id pesanananya sudah berada di tabel history
+
+		$param2 = $param1[0]->id;
+
+		$method = $this->tl_f1->get_f1_by_field('tabel_f1_field2', $param2);
+
+
+		if ($method->num_rows() > 0) {
+			$data2 = array(
+				'tbl_f2' => $this->tl_f2->get_f2_with_f1_with_e4_by_f2_field1($code, userdata('id')),
+			);
+			$data = array_merge($data1, $data2);
+			$this->load_page('tabel_f2', 'layouts/printpage', $data);
+		} else {
+			$data2 = array(
+				'tbl_f2' => $this->tl_e4->get_e4_with_f2_with_e4_by_f2_field1($code),
+			);
+			$data = array_merge($data1, $data2);
+			$this->load_page('tabel_f2', 'layouts/printpage', $data);
+		}
 	}
-
-
 
 	// Fungsi khusus
-
-	// Di bawah ini adalah fitur yang ingin kutambahkan ketika ingin memasukkan fitur filter di halaman daftar
-	// Jika user menggunakan tombol cari untuk mencari pesanan, namun pada views masih menggunakan v_pesanan, 
-	// maka fitur ini dibutuhkan untuk membedakan user mana yang sedang mencari daftar pesanan/history/transaksi 
-	// atau hanya membuka halaman saja
-	// Namun fitur di bawah tidak akan berguna jika halaman yang digunakan untuk menampilkan hasil cari berbeda dan
-	// bukan v_pesanan
-	// if (!userdata('id_pesanan')) {}
-	// 	} else {  -->
-	// 	 }  -->
-
-	public function cari()
-	{
-		$this->declarew();
-		$allowed_values = [
-			$this->aliases['tabel_c2_field6_value4'],
-			$this->aliases['tabel_c2_field6_value5']
-		];
-		$this->page_session_check($allowed_values);
-
-		$param1 = $this->v_get['tabel_f2_field1'];
-		$param2 = $this->v_get['tabel_f2_field4'];
-
-		$data1 = array(
-			'title' => $this->title['tabel_f2_alias_v1'],
-			'konten' => $this->v1['tabel_f2'],
-			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
-
-			// mencari dan menampilkan id pesanan berdasarkan id_pesanan yang telah diinput
-			'tbl_f2' => $this->tl_f2->cari($param1, $param2),
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
-			'tbl_e3' => $this->tl_e3->get_all_e3(),
-		);
-
-		$this->load_page('tabel_f2', 'layouts/template_admin', $data1);
-	}
-
-
 	public function konfirmasi()
 	{
 		$this->declarew();
 		$this->page_session_5();
 
-		$tabel_c2_field3 = userdata('email' . '_' . $this->aliases['tabel_f2']);
-
+		$tabel_f2_field3 = userdata($this->aliases['tabel_f2_field3'] . '_' . $this->aliases['tabel_f2']);
 		$data1 = array(
 			'title' => $this->title['tabel_f2_alias_v4'],
 			'konten' => $this->v7['tabel_f2'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_f2']),
 
 			// mengembalikan data baris terakhir/terbaru sesuai ketentuan dalam database untuk ditampilkan
-			'tbl_f2' => $this->tl_f2->get_f2_by_field('tabel_c2_field3', $tabel_c2_field3)->last_row(),
+			'tbl_f2' => $this->tl_f2->get_f2_by_field('field_c2_field3', $tabel_f2_field3)->last_row(),
 		);
 
 		$this->load_page('tabel_f2', 'layouts/blank', $data1);
@@ -230,91 +212,84 @@ class Tabel_f2Controller extends OmnitagsController
 	// Add data
 	public function tambah()
 	{
-		// Functional requirement: Declare necessary configurations
+		// Masih membutuhkan kode untuk mencegah hal ini terjadi lebih dari satu kali dengan id tabel_e4 yang sama
 		$this->declarew();
-		$this->session_5();
+		$allowed_values = [
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value4'],
+			$this->aliases['tabel_c2_field6_value5']
+		];
+		$this->session_check($allowed_values);
 
-		validate_all(
-			array(
-				$this->v_post['tabel_f2_field4'],
-				$this->v_post['tabel_f2_field8'],
-				$this->v_post['tabel_f2_field10'],
-				$this->v_post['tabel_f2_field11'],
-				$this->v_post['tabel_f2_field2'],
-				$this->v_post['tabel_f2_field3'],
-				$this->v_post['tabel_f2_field5'],
-				$this->v_post['tabel_f2_field6'],
-				$this->v_post['tabel_f2_field7'],
-			),
-			$this->views['flash2'],
-			'pesan'
-		);
-
-		// Calculate total price based on date difference
-		$startTimeStamp = strtotime($this->v_post['tabel_f2_field10']);
-		$endTimeStamp = strtotime($this->v_post['tabel_f2_field11']);
-		$timedif = $endTimeStamp - $startTimeStamp;
-		$numberdays = $timedif / 60 / 60 / 24; // 86400 seconds in one day
-
-		$tabel_e4_field1 = $this->v_post['tabel_f2_field7'];
-		$tabel_e4 = $this->tl_e4->get_e4_by_field('tabel_e4_field1', $tabel_e4_field1)->result();
-
-		// Calculate total price
-		$harga_total = ($numberdays * $tabel_e4[0]->{$this->aliases['tabel_f2_field9']});
-
-		$code = get_next_code($this->aliases['tabel_f2'], 'id', '02');
-
-		$data = [
-			'id' => $code,
+		$data = array(
+			'id' => '',
+			$this->aliases['tabel_f2_field2'] => userdata('id'),
 			$this->aliases['tabel_f2_field2'] => $this->v_post['tabel_f2_field2'],
 			$this->aliases['tabel_f2_field3'] => $this->v_post['tabel_f2_field3'],
 			$this->aliases['tabel_f2_field4'] => $this->v_post['tabel_f2_field4'],
-			$this->aliases['tabel_f2_field5'] => $this->v_post['tabel_f2_field5'],
+			$this->aliases['tabel_f2_field5'] => $this->aliases['tabel_f2_field5_value1'],
 			$this->aliases['tabel_f2_field6'] => $this->v_post['tabel_f2_field6'],
 			$this->aliases['tabel_f2_field7'] => $this->v_post['tabel_f2_field7'],
-			$this->aliases['tabel_f2_field8'] => $this->v_post['tabel_f2_field8'],
-			$this->aliases['tabel_f2_field9'] => $harga_total,
-			$this->aliases['tabel_f2_field10'] => $this->v_post['tabel_f2_field10'],
-			$this->aliases['tabel_f2_field11'] => $this->v_post['tabel_f2_field11'],
-			$this->aliases['tabel_f2_field12'] => $this->aliases['tabel_f2_field12_value1'],
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
-		];
+		);
 
-		// Create temporary session for a specific duration
-		set_userdata('email' . '_' . $this->aliases['tabel_f2'], $this->v_post['tabel_f2_field4']);
+		$aksi = $this->tl_f2->insert_f2($data);
+		// $aksi = $this->tl_f2->insert_f2($query);
+		$this->insert_history('tabel_f2', $data);
 
-		try {
-			// Security: Prepared Statements to prevent SQL injection
-			// Functional requirement: Save data to the database
-			$aksi = $this->tl_f2->insert_f2($data);
+		$notif = $this->handle_4b($aksi, 'tabel_f2');
 
-			$notif = $this->handle_4b($aksi, 'tabel_f2');
-
-		} catch (Exception $e) {
-			// Error Handling: Handle database operation errors
-			set_flashdata($this->views['flash2'], "Error occurred while adding data: " . $e->getMessage());
-			set_flashdata('modal', $this->views['flash2_func1']);
-		}
-
-		// Functional requirement: Redirect user to 'tabel_f2' confirmation page
-		redirect($this->aliases['tabel_f2'] . '/konfirmasi');
+		redirect(site_url($this->aliases['tabel_f2'] . '/konfirmasi'));
 	}
 
 
 	// Update data
 	public function update()
 	{
-		// this function is not really reccessary since only status that can be changed
+		$this->declarew();
+		$allowed_values = [
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value4']
+		];
+		$this->session_check($allowed_values);
+
+		$code = $this->v_post['tabel_f2_field1'];
+
+		$tabel_f2 = $this->tl_f2->get_f2_by_field('f3_field1', $code)->result();
+		$this->check_data($tabel_f2);
+
+		// seharusnya fitur ini menggunakan trigger cman saya tidak bisa melakukannya
+		$tabel_f2_field7 = date("Y-m-d\TH:i:s");
+
+		$data = array(
+			$this->aliases['tabel_f2_field1'] => $this->v_post['tabel_f2_field1'],
+			$this->aliases['tabel_f2_field2'] => $this->v_post['tabel_f2_field2'],
+			$this->aliases['tabel_f2_field3'] => $this->v_post['tabel_f2_field3'],
+			$this->aliases['tabel_f2_field4'] => $this->v_post['tabel_f2_field4'],
+			$this->aliases['tabel_f2_field5'] => $this->v_post['tabel_f2_field5'],
+			$this->aliases['tabel_f2_field6'] => $this->v_post['tabel_f2_field6'],
+			$this->aliases['tabel_f2_field7'] => $this->v_post['tabel_f2_field7'],
+			$this->aliases['tabel_f2_field7'] => $tabel_f2_field7,
+
+			'updated_at' => date("Y-m-d\TH:i:s"),
+			'updated_by' => userdata('id'),
+		);
+
+		$aksi = $this->tl_f2->update_f2($data, $code);
+		$this->insert_history('tabel_f2', $data);
+
+		$notif = $this->handle_4c($aksi, 'tabel_f2', $code);
+
+		redirect($_SERVER['HTTP_REFERER']);
 	}
 
-	// bagian update status untuk sementara kubiarkan tidak menggunakan variabel untuk sementara waktu
-	// hal ini ditujukan untuk keperluan penelitian penggunaan array
 	public function update_status()
 	{
 		$this->declarew();
 		$allowed_values = [
+			$this->aliases['tabel_c2_field6_value3'],
 			$this->aliases['tabel_c2_field6_value4'],
 			$this->aliases['tabel_c2_field6_value5']
 		];
@@ -328,7 +303,7 @@ class Tabel_f2Controller extends OmnitagsController
 		validate_all(
 			array(
 				$this->v_post['tabel_f2_field1'],
-				$this->v_post['tabel_f2_field12'],
+				$this->v_post['tabel_f2_field5'],
 			),
 			$this->views['flash1'],
 			'ubah_status' . $code
@@ -336,31 +311,11 @@ class Tabel_f2Controller extends OmnitagsController
 
 
 		$data = array(
-			$this->aliases['tabel_f2_field12'] => $this->v_post['tabel_f2_field12'],
+			$this->aliases['tabel_f2_field5'] => $this->v_post['tabel_f2_field5'],
 		);
-
-		// jika status pesanan cek in
-		if ($this->v_post['tabel_f2_field12'] == $this->aliases['tabel_f2_field12_value4']) {
-
-			// hanya merubah status pesanan
-			$aksi = $this->tl_f2->update_f2($data, $code);
-
-			// jika status pesanan cek out
-		} elseif ($this->v_post['tabel_f2_field12'] == $this->aliases['tabel_f2_field12_value5']) {
-
-			// menghapus data pesanan supaya trigger tambah_kamar dapat berjalan
-			$aksi = $this->tl_f2->delete_f2_by_field('tabel_f2_field1', $code);
-
-			// memasukkan nama resepsionis yang melakukan operasi
-			$data = array(
-				$this->aliases['tabel_f1_field15'] => userdata('id')
-			);
-
-			// mengupdate pesanan dengan nama user yang aktif
-			$aksi = $this->tl_f1->update_f1($data, $code);
-		}
-
-		$notif = $this->handle_4c($aksi, 'tabel_f2_field12', $code);
+		
+		$aksi = $this->tl_f2->update_f2($data, $code);
+		$notif = $this->handle_4c($aksi, 'tabel_f2_field5', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -411,80 +366,22 @@ class Tabel_f2Controller extends OmnitagsController
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 
-
 	// Delete data
 	public function delete($code = null)
 	{
 		$this->declarew();
-		$this->session_4();
+		$allowed_values = [
+			$this->aliases['tabel_c2_field6_value2'],
+			$this->aliases['tabel_c2_field6_value4']
+		];
+		$this->session_check($allowed_values);
 
-		$tabel = $this->tl_f2->get_f2_by_field_archive('tabel_f2_field1', $code)->result();
-		$this->check_data($tabel);
+		$tabel_f2 = $this->tl_f2->get_f2_by_field_archive('tabel_f2_field1', $code)->result();
+		$this->check_data($tabel_f2);
 
-		$code = $this->v_post['tabel_f2_field1'];
-		$status = $this->v_post['tabel_f2_field12'];
-
-		$hapus = $this->tl_f2->delete_f2_by_field('tabel_f2_field1', $code);
-
-		// memasukkan nama resepsionis yang melakukan operasi
-		$data = array(
-			$this->aliases['tabel_f1_field14'] => userdata($this->aliases['tabel_c2_field2'])
-		);
-
-		// mengupdate history dengan nama user yang aktif
-		$update_f1 = $this->tl_f1->update_f1($data, $code);
-
-		$aksi = $hapus && $update_f1;
+		$aksi = $this->tl_f2->delete_f2('tabel_f2_field1', $code);
 
 		$notif = $this->handle_4e($aksi, 'tabel_f2', $code);
-		redirect($_SERVER['HTTP_REFERER']);
-	}
-
-
-
-	// Ini adalah fitur untuk membooking kamar berdasarkan pesanan oleh resepsionis
-	// Pada fitur ini, saya akan mencoba menggunakan gabungan dari jumlah kamar dan tipe kamar, 
-	// Oleh karena itu bakal ada 2 fungsi yang menggunakan parameter ini yakni, book dan ubah status. 
-	// Semoga besok bisa kelar karena ini merupakan fitur yang paling rumit di antara yang lain
-	public function book()
-	{
-		$this->declarew();
-		$this->session_4();
-
-		$code = $this->v_post['tabel_f2_field1'];
-
-		$tabel = $this->tl_f2->get_f2_by_field('tabel_f2_field1', $code)->result();
-		$this->check_data($tabel);
-
-		validate_all(
-			array(
-				$this->v_post['tabel_f2_field1'],
-				$this->v_post['tabel_f2_field12'],
-				$this->v_post['tabel_f2_field13'],
-			),
-			$this->views['flash1'],
-			'ubah_status' . $code
-		);
-
-		// hanya merubah status pesanan berdasarkan id pesanan
-		$data = array(
-			$this->aliases['tabel_f2_field12'] => $this->aliases['tabel_f2_field12_value2'],
-			$this->aliases['tabel_f2_field13'] => $this->v_post['tabel_f2_field13'],
-
-		);
-
-		$aksi = $this->tl_f2->update_f2($data, $code);
-
-		// hanya merubah id pesanan di tabel kamar berdasarkan no kamar
-		$param = $this->v_post['tabel_f2_field13'];
-		$data2 = array(
-			$this->aliases['tabel_e3_field3'] => $this->v_post['tabel_f2_field1'],
-			$this->aliases['tabel_e3_field4'] => $this->aliases['tabel_e3_field4_value3'],
-		);
-		$aksi = $this->tl_e3->update_e3($data2, $param);
-		$this->insert_history('tabel_f2', $data);
-
-		$notif = $this->handle_4c($aksi, 'tabel_f2', $code);
 
 		redirect($_SERVER['HTTP_REFERER']);
 	}
@@ -502,10 +399,10 @@ class Tabel_f2Controller extends OmnitagsController
 			'tbl_f2' => $this->tl_f2->get_all_f2_archive(),
 		);
 
-		$this->load_page('tabel_f2', 'layouts/template_admin', $data1);
+		$this->load_page('tabel_f2', 'layouts/template', $data1);
 	}
-	// Public Pages
-	public function detail_archive($code = null)
+
+	public function detai_archive($code = null)
 	{
 		$this->declarew();
 		$this->page_session_all();
@@ -569,4 +466,3 @@ class Tabel_f2Controller extends OmnitagsController
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
-

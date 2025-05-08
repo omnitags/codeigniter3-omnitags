@@ -44,12 +44,6 @@
                                         <?= dropdown_nav('tabel_e3', '/admin') ?>
                                         <?= dropdown_nav('tabel_e4', '/admin') ?>
                                         <div class="dropdown-divider"></div>
-                                        <!-- <h6 class="dropdown-header">Manage</h6>
-                                        <?= dropdown_nav('tabel_e5', '/admin') ?>
-                                        <?= dropdown_nav('tabel_e6', '/admin') ?>
-                                        <?= dropdown_nav('tabel_e7', '/admin') ?>
-                                        <?= dropdown_nav('tabel_e8', '/admin') ?> -->
-                                        <div class="dropdown-divider"></div>
                                         <h6 class="dropdown-header">Operations</h6>
                                         <?= dropdown_nav('tabel_e1', '/admin') ?>
                                         <?= dropdown_nav('tabel_c1', '/admin') ?>

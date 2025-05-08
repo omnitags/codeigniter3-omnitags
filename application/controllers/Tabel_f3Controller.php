@@ -180,7 +180,6 @@ class Tabel_f3Controller extends OmnitagsController
 			);
 			$data = array_merge($data1, $data2);
 			$this->load_page('tabel_f3', 'layouts/printpage', $data);
-
 		} else {
 			$data2 = array(
 				'tbl_f3' => $this->tl_f2->get_f2_with_f3_with_e4_by_f3_field1($code),
@@ -263,16 +262,15 @@ class Tabel_f3Controller extends OmnitagsController
 		// fitur mengubah status ini seharusnya berada di bagian pesanan cman saya belum bisa menemukan algoritma yang pas jadi akan disimpan untuk pengembangan di kemudian hari
 		$tabel_f3_field4 = $this->v_post['tabel_f3_field4'];
 		$data2 = array(
-			$this->aliases['tabel_f2_field12'] => $this->v_post['tabel_f2_field12'],
+			$this->aliases['tabel_f2_field5'] => $this->v_post['tabel_f2_field5'],
 		);
 
-		if ($this->v_post['tabel_f2_field12'] === $this->aliases['tabel_f2_field12_value3']) {
+		if ($this->v_post['tabel_f2_field5'] === $this->aliases['tabel_f2_field5_value3']) {
 
 			// hanya merubah status pesanan
 			$aksi2 = $this->tl_f2->update_f2($data2, $tabel_f3_field4);
 
 			$notif = $this->handle_4c($aksi2, 'tabel_f2', $tabel_f3_field4);
-
 		} else {
 			set_flashdata($this->views['flash1'], $this->flash_msg3['tabel_f3_alias']);
 			set_flashdata('toast', $this->views['flash1_func1']);
@@ -398,7 +396,7 @@ class Tabel_f3Controller extends OmnitagsController
 
 		$this->load_page('tabel_f3', 'layouts/template', $data1);
 	}
-	
+
 	public function detai_archive($code = null)
 	{
 		$this->declarew();
@@ -463,4 +461,3 @@ class Tabel_f3Controller extends OmnitagsController
 		redirect($_SERVER['HTTP_REFERER']);
 	}
 }
-

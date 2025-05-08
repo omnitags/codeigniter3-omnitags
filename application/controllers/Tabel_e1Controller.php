@@ -14,23 +14,11 @@ class Tabel_e1Controller extends OmnitagsController
 		$this->declarew();
 		$this->page_session_3();
 
-		$param1 = $this->v_get['tabel_e1_field5'];
-
-		$filter = $this->tl_e1->get_e1_by_field('tabel_e1_field5', $param1);
-
-		if (empty($param1)) {
-			$result = $this->tl_e1->get_all_e1();
-		} else {
-			$result = $filter;
-		}
-
 		$data1 = array(
 			'title' => $this->title['tabel_e1_alias_v3'],
 			'konten' => $this->v3['tabel_e1'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e1']),
-			'tbl_e1' => $result,
-			'tbl_e4' => $this->tl_e4->get_all_e4(),
-			'tabel_e1_field5_value' => $param1
+			'tbl_e1' => $this->tl_e1->get_all_e1(),
 		);
 
 		$this->load_page('tabel_e1', 'layouts/template_admin', $data1);
@@ -63,7 +51,6 @@ class Tabel_e1Controller extends OmnitagsController
 				$this->v_post['tabel_e1_field2'],
 				$this->v_post['tabel_e1_field3'],
 				$this->v_post['tabel_e1_field4'],
-				$this->v_post['tabel_e1_field5'],
 			),
 			$this->views['flash2'],
 			'tambah'
@@ -77,7 +64,6 @@ class Tabel_e1Controller extends OmnitagsController
 			$this->aliases['tabel_e1_field2'] => $this->v_post['tabel_e1_field2'],
 			$this->aliases['tabel_e1_field3'] => $this->v_post['tabel_e1_field3'],
 			$this->aliases['tabel_e1_field4'] => $this->v_post['tabel_e1_field4'],
-			$this->aliases['tabel_e1_field5'] => $this->v_post['tabel_e1_field5'],
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
@@ -113,7 +99,6 @@ class Tabel_e1Controller extends OmnitagsController
 				$this->v_post['tabel_e1_field2'],
 				$this->v_post['tabel_e1_field3'],
 				$this->v_post['tabel_e1_field4'],
-				$this->v_post['tabel_e1_field5'],
 			),
 			$this->views['flash3'],
 			'ubah' . $code
@@ -124,7 +109,6 @@ class Tabel_e1Controller extends OmnitagsController
 			$this->aliases['tabel_e1_field2'] => $this->v_post['tabel_e1_field2'],
 			$this->aliases['tabel_e1_field3'] => $this->v_post['tabel_e1_field3'],
 			$this->aliases['tabel_e1_field4'] => $this->v_post['tabel_e1_field4'],
-			$this->aliases['tabel_e1_field5'] => $this->v_post['tabel_e1_field5'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
 			'updated_by' => userdata('id'),
