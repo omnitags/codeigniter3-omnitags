@@ -93,25 +93,21 @@ class Tabel_e4Controller extends OmnitagsController
 		validate_all(
 			array(
 				$this->v_post['tabel_e4_field2'],
+				$this->v_post['tabel_e4_field3'],
+				$this->v_post['tabel_e4_field4'],
+				$this->v_post['tabel_e4_field5'],
 			),
 			$this->views['flash2'],
 			'tambah'
 		);
-
-		$gambar = $this->upload_new_image(
-			$this->v_post['tabel_e4_field2'],
-			$this->v_upload_path['tabel_e4'],
-			'tabel_e4_field3',
-			$this->file_type1,
-			''
-		);
-
 		$code = $this->add_code('tabel_e4', 'id', 5, '04');
 
 		$data = array(
 			'id' => $code,
 			$this->aliases['tabel_e4_field2'] => $this->v_post['tabel_e4_field2'],
-			$this->aliases['tabel_e4_field3'] => $gambar,
+			$this->aliases['tabel_e4_field3'] => $this->v_post['tabel_e4_field3'],
+			$this->aliases['tabel_e4_field4'] => $this->v_post['tabel_e4_field4'],
+			$this->aliases['tabel_e4_field5'] => $this->v_post['tabel_e4_field5'],
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
@@ -147,23 +143,20 @@ class Tabel_e4Controller extends OmnitagsController
 			array(
 				$this->v_post['tabel_e4_field1'],
 				$this->v_post['tabel_e4_field2'],
+				$this->v_post['tabel_e4_field3'],
+				$this->v_post['tabel_e4_field4'],
+				$this->v_post['tabel_e4_field5'],
 			),
 			$this->views['flash3'],
 			'ubah' . $code
 		);
 
-		$gambar = $this->change_image(
-			$this->v_post['tabel_e4_field2'] . "_" . $this->aliases['tabel_e4_field3'],
-			$tabel[0]->{$this->aliases['tabel_e4_field3']},
-			$this->v_upload_path['tabel_e4'],
-			'tabel_e4_field3',
-			$this->file_type1,
-			$tabel
-		);
 
 		$data = array(
 			$this->aliases['tabel_e4_field2'] => $this->v_post['tabel_e4_field2'],
-			$this->aliases['tabel_e4_field3'] => $gambar,
+			$this->aliases['tabel_e4_field3'] => $this->v_post['tabel_e4_field3'],
+			$this->aliases['tabel_e4_field4'] => $this->v_post['tabel_e4_field4'],
+			$this->aliases['tabel_e4_field5'] => $this->v_post['tabel_e4_field5'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
 			'updated_by' => userdata('id'),

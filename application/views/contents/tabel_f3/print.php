@@ -37,19 +37,6 @@
 
     <thead class="thead">
       <tr>
-        <th><?= $tabel_f2_field9_alias ?></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td width="">Rp <?= number_format($tl_f3->$tabel_f2_field9, '2', ',', '.') ?></td>
-        </td>
-      </tr>
-    </tbody>
-
-
-    <thead class="thead">
-      <tr>
         <th><?= $tabel_f3_field1_alias ?></th>
         <th><?= $tabel_f3_field5_alias ?></th>
         <th><?= $tabel_f3_field6_alias ?></th>

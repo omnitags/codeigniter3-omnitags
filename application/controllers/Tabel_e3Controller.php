@@ -26,7 +26,10 @@ class Tabel_e3Controller extends OmnitagsController
 			'title' => $this->title['tabel_e3_alias_v3'],
 			'konten' => $this->v3['tabel_e3'],
 			'dekor' => $this->tl_b1->dekor($this->theme_id, $this->aliases['tabel_e3']),
+			'tbl_e1' => $this->tl_e1->get_all_e1(),
+			'tbl_e2' => $this->tl_e2->get_all_e2(),
 			'tbl_e3' => $this->tl_e3->get_all_e3(),
+			'tbl_e4' => $this->tl_e4->get_all_e4(),
 		);
 
 		$this->load_page('tabel_e3', 'layouts/template_admin', $data1);
@@ -64,6 +67,14 @@ class Tabel_e3Controller extends OmnitagsController
 		validate_all(
 			array(
 				$this->v_post['tabel_e3_field2'],
+				$this->v_post['tabel_e3_field3'],
+				$this->v_post['tabel_e3_field4'],
+				$this->v_post['tabel_e3_field5'],
+				$this->v_post['tabel_e3_field6'],
+				$this->v_post['tabel_e3_field7'],
+				$this->v_post['tabel_e3_field8'],
+				$this->v_post['tabel_e3_field9'],
+				$this->v_post['tabel_e3_field10'],
 			),
 			$this->views['flash2'],
 			'tambah'
@@ -74,6 +85,14 @@ class Tabel_e3Controller extends OmnitagsController
 		$data = array(
 			'id' => $code,
 			$this->aliases['tabel_e3_field2'] => $this->v_post['tabel_e3_field2'],
+			$this->aliases['tabel_e3_field3'] => $this->v_post['tabel_e3_field3'],
+			$this->aliases['tabel_e3_field4'] => $this->v_post['tabel_e3_field4'],
+			$this->aliases['tabel_e3_field5'] => $this->v_post['tabel_e3_field5'],
+			$this->aliases['tabel_e3_field6'] => $this->v_post['tabel_e3_field6'],
+			$this->aliases['tabel_e3_field7'] => $this->v_post['tabel_e3_field7'],
+			$this->aliases['tabel_e3_field8'] => $this->v_post['tabel_e3_field8'],
+			$this->aliases['tabel_e3_field9'] => $this->v_post['tabel_e3_field9'],
+			$this->aliases['tabel_e3_field10'] => $this->v_post['tabel_e3_field10'],
 
 			'created_at' => date("Y-m-d\TH:i:s"),
 			'updated_at' => date("Y-m-d\TH:i:s"),
@@ -103,6 +122,14 @@ class Tabel_e3Controller extends OmnitagsController
 			array(
 				$this->v_post['tabel_e3_field1'],
 				$this->v_post['tabel_e3_field2'],
+				$this->v_post['tabel_e3_field3'],
+				$this->v_post['tabel_e3_field4'],
+				$this->v_post['tabel_e3_field5'],
+				$this->v_post['tabel_e3_field6'],
+				$this->v_post['tabel_e3_field7'],
+				$this->v_post['tabel_e3_field8'],
+				$this->v_post['tabel_e3_field9'],
+				$this->v_post['tabel_e3_field10'],
 			),
 			$this->views['flash3'],
 			'ubah' . $code
@@ -110,6 +137,14 @@ class Tabel_e3Controller extends OmnitagsController
 
 		$data = array(
 			$this->aliases['tabel_e3_field2'] => $this->v_post['tabel_e3_field2'],
+			$this->aliases['tabel_e3_field3'] => $this->v_post['tabel_e3_field3'],
+			$this->aliases['tabel_e3_field4'] => $this->v_post['tabel_e3_field4'],
+			$this->aliases['tabel_e3_field5'] => $this->v_post['tabel_e3_field5'],
+			$this->aliases['tabel_e3_field6'] => $this->v_post['tabel_e3_field6'],
+			$this->aliases['tabel_e3_field7'] => $this->v_post['tabel_e3_field7'],
+			$this->aliases['tabel_e3_field8'] => $this->v_post['tabel_e3_field8'],
+			$this->aliases['tabel_e3_field9'] => $this->v_post['tabel_e3_field9'],
+			$this->aliases['tabel_e3_field10'] => $this->v_post['tabel_e3_field10'],
 
 			'updated_at' => date("Y-m-d\TH:i:s"),
 			'updated_by' => userdata('id'),

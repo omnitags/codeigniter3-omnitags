@@ -29,27 +29,27 @@
 <div id="card-view" class="data-view active">
   <div class="row">
     <?php if (empty($tbl_e3->result())) {
-    load_view('partials/no_data');
-  } else {
-    $counter = 1;
-    foreach ($tbl_e3->result() as $tl_e3):
-      echo card_regular(
-        $counter,
-        $tl_e3->$tabel_e3_field1,
-        $tl_e3->$tabel_e3_field1 . ' | ' . $tl_e3->$tabel_e3_field3,
-        $tl_e3->$tabel_e3_field2,
-        btn_lihat($tl_e3->$tabel_e3_field1) . ' ' .
-        btn_edit($tl_e3->$tabel_e3_field1) . ' ' .
-        btn_hapus('tabel_e3', $tl_e3->$tabel_e3_field1),
-        'text-light bg-dark',
-        'col-md-3',
-        $tabel_e3
-      );
-    $counter++;
-    endforeach;
-  } ?>
+      load_view('partials/no_data');
+    } else {
+      $counter = 1;
+      foreach ($tbl_e3->result() as $tl_e3):
+        echo card_regular(
+          $counter,
+          $tl_e3->$tabel_e3_field1,
+          $tl_e3->$tabel_e3_field1 . ' | ' . $tl_e3->$tabel_e3_field2,
+          $tl_e3->$tabel_e3_field3,
+          btn_lihat($tl_e3->$tabel_e3_field1) . ' ' .
+            btn_edit($tl_e3->$tabel_e3_field1) . ' ' .
+            btn_hapus('tabel_e3', $tl_e3->$tabel_e3_field1),
+          'text-light bg-dark',
+          'col-md-3',
+          $tabel_e3
+        );
+        $counter++;
+      endforeach;
+    } ?>
 
-</div>
+  </div>
   <div class="row">
     <?= card_pagination() ?>
   </div>
@@ -103,19 +103,36 @@
 
           <?= select_add(
             'tabel_e3_field4',
+            $tbl_e2,
+            $tabel_e2_field1,
+            $tabel_e2_field2,
+            'required'
+          ); ?>
+
+          <?= select_add(
+            'tabel_e3_field5',
             $tbl_e4,
             $tabel_e4_field1,
             $tabel_e4_field2,
             'required'
           ); ?>
 
+
+          <?= add_min_max('number', 'tabel_e3_field6', 'required', 1, 100) ?>
+
+          <?= add_min_max('number', 'tabel_e3_field7', 'required', 1, 10) ?>
+
           <?= select_add(
-            'tabel_e3_field5',
+            'tabel_e3_field8',
             $tbl_e1,
             $tabel_e1_field1,
             $tabel_e1_field2,
             'required'
           ); ?>
+
+          <?= add_min_max('number', 'tabel_e3_field9', 'required', 1000, 1000000) ?>
+          <?= add_min_max('number', 'tabel_e3_field10', 'required', 1000, 1000000) ?>
+
 
         </div>
 
@@ -146,20 +163,37 @@
             <?= select_edit(
               'tabel_e3_field4',
               $tl_e3->$tabel_e3_field4,
-              $tbl_e4,
-              $tabel_e4_field1,
-              $tabel_e4_field2,
+              $tbl_e2,
+              $tabel_e2_field1,
+              $tabel_e2_field2,
               'required'
             ); ?>
 
             <?= select_edit(
               'tabel_e3_field5',
               $tl_e3->$tabel_e3_field5,
+              $tbl_e4,
+              $tabel_e4_field1,
+              $tabel_e4_field2,
+              'required'
+            ); ?>
+
+
+            <?= edit_min_max('number', 'tabel_e3_field6', $tl_e3->$tabel_e3_field6, 'required', 1, 100) ?>
+
+            <?= edit_min_max('number', 'tabel_e3_field7', $tl_e3->$tabel_e3_field7, 'required', 1, 10) ?>
+
+            <?= select_edit(
+              'tabel_e3_field8',
+              $tl_e3->$tabel_e3_field5,
               $tbl_e1,
               $tabel_e1_field1,
               $tabel_e1_field2,
               'required'
             ); ?>
+
+            <?= input_edit($tl_e3->$tabel_e3_field1, 'text', 'tabel_e3_field9', $tl_e3->$tabel_e3_field9, 'required') ?>
+            <?= input_edit($tl_e3->$tabel_e3_field1, 'text', 'tabel_e3_field10', $tl_e3->$tabel_e3_field10, 'required') ?>
 
 
             <?= input_hidden('tabel_e3_field1', $tl_e3->$tabel_e3_field1, 'required') ?>
@@ -180,30 +214,45 @@
 
 
   <div id="lihat<?= $tl_e3->$tabel_e3_field1; ?>" class="modal fade lihat" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <?= modal_header_id($tabel_e3_alias, $tl_e3->$tabel_e3_field1) ?>
         <form>
           <div class="modal-body">
-            <?= table_data(
-              row_data('tabel_e3_field2', $tl_e3->$tabel_e3_field2) .
-              row_data('tabel_e3_field3', $tl_e3->$tabel_e3_field3) .
-              row_data('tabel_e3_field4', $tl_e3->$tabel_e3_field4) .
-              row_data('tabel_e3_field5', $tl_e3->$tabel_e3_field5),
-              'table-light'
-            ) ?>
+            <div class="row">
+              <div class="col-md-6">
+              <?= table_data(
+                row_data('tabel_e3_field2', $tl_e3->$tabel_e3_field2) .
+                  row_data('tabel_e3_field3', $tl_e3->$tabel_e3_field3) .
+                  row_data('tabel_e3_field4', $tl_e3->$tabel_e3_field4) .
+                  row_data('tabel_e3_field5', $tl_e3->$tabel_e3_field5) .
+                  row_data('tabel_e3_field6', $tl_e3->$tabel_e3_field6),
+                'table-light'
+              ) ?>
+            </div>
+            <div class="col-md-6">
+              <?= table_data(
+                row_data('tabel_e3_field7', $tl_e3->$tabel_e3_field7) .
+                row_data('tabel_e3_field8', $tl_e3->$tabel_e3_field8) .
+                row_data('tabel_e3_field9', $tl_e3->$tabel_e3_field9) .
+                row_data('tabel_e3_field10', $tl_e3->$tabel_e3_field10),
+                'table-light'
+              ) ?>
+            </div>
           </div>
 
-          <!-- memunculkan notifikasi modal -->
-          <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
-
-          <div class="modal-footer">
-            <?= btn_history('tabel_e3', $tl_e3->$tabel_e3_field1) ?>
-            <?= btn_tutup() ?>
-          </div>
-        </form>
       </div>
+
+      <!-- memunculkan notifikasi modal -->
+      <p class="small text-center text-danger"><?= get_flashdata('pesan_lihat') ?></p>
+
+      <div class="modal-footer">
+        <?= btn_history('tabel_e3', $tl_e3->$tabel_e3_field1) ?>
+        <?= btn_tutup() ?>
+      </div>
+      </form>
     </div>
+  </div>
   </div>
 
 

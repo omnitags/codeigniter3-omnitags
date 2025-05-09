@@ -118,7 +118,7 @@
 <!-- modal edit -->
 <?php foreach ($tbl_e2->result() as $tl_e2): ?>
   <div id="ubah<?= $tl_e2->$tabel_e2_field1; ?>" class="modal fade ubah">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
       <div class="modal-content">
         <?= modal_header_id('Make changes to ' . $tabel_e2_alias, $tl_e2->$tabel_e2_field1) ?>
 
@@ -145,7 +145,7 @@
 
 
   <div id="lihat<?= $tl_e2->$tabel_e2_field1; ?>" class="modal fade lihat" role="dialog">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <?= modal_header_id($tabel_e2_alias, $tl_e2->$tabel_e2_field1) ?>
 
